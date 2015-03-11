@@ -5,4 +5,13 @@ package a8.battleship.Logic;
  */
 public class Constants {
     private int boardSize = 10;
+    private int screenSize;
+
+    public int getBoardSize(){
+        return boardSize;
+    }
+
+    public void setBoardSize(int n){
+        boardSize=n;
+    }
 }
