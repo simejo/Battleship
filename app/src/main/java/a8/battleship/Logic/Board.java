@@ -28,6 +28,8 @@ public class Board {
 
     //Change value in the board
     public void changeBoardValue(int y, int x, BoardValues value){
-
+        ArrayList<BoardValues> tempRow = board.get(y);
+        tempRow.set(x, value);
+        board.set(y, tempRow);
     }
 }
