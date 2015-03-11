@@ -21,7 +21,13 @@ public class Board {
         }
     }
 
+    //Getter
     public ArrayList<ArrayList<BoardValues>> getBoard(){
         return board;
+    }
+
+    //Change value in the board
+    public void changeBoardValue(int y, int x, BoardValues value){
+
     }
 }
