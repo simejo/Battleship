@@ -27,7 +27,7 @@ public class Board {
     }
 
     //Change value in the board
-    public void changeBoardValue(int y, int x, BoardValues value){
+    public void changeBoardValue(int y, int x, BoardValues value){ // remember range for y and x is 0 to n-1 not 1 to n
         ArrayList<BoardValues> tempRow = board.get(y);
         tempRow.set(x, value);
         board.set(y, tempRow);
