@@ -23,7 +23,7 @@ public class MainMenuView extends ActionBarActivity implements View.OnClickListe
 
         startButton = (Button) findViewById(R.id.buttonStart);
         settingsButton = (Button) findViewById(R.id.buttonSettings);
-        creditsButton = (Button) findViewById(R.id.buttonStart);
+        creditsButton = (Button) findViewById(R.id.buttonCredits);
 
         startButton.setOnClickListener(this);
         settingsButton.setOnClickListener(this);
