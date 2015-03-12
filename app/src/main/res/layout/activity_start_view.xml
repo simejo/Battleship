@@ -40,6 +40,7 @@
         android:id="@+id/radioButtonOnePlayer" />
 
     <SeekBar
+        android:id="@+id/seekBarAIChooser"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" />
 
