@@ -31,6 +31,12 @@
     <string name="scores">Score for player 1: \n Score for player 2: </string>
     <string name="congratulations">Congratulations to the winner! </string>
 
+    //used in activity_start_up_view.xml
+    <string name="sound">Sound</string>
+    <string name="music">Music</string>
+    <string name="placeBoats">Place boats</string>
+    <string name="done">Done</string>
+
 
 
 
