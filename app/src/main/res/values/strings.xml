@@ -14,6 +14,9 @@
     <string name="startViewIntro">Please choose your opponent</string>
     <string name="mainMenu">Main Menu</string>
     <string name="startGame">Start game</string>
+    <string name="tvPlayerOneHint">Name of Player 1</string>
+    <string name="tvPlayerTwoHint">Name of Player 2</string>
+
 
 
     //used in activity_credits_view.xml
