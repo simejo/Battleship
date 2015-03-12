@@ -13,6 +13,7 @@
     <string name="startViewTitle">Start</string>
     <string name="startViewIntro">Please choose your opponent</string>
     <string name="mainMenu">Main Menu</string>
+    <string name="startGame">Start game</string>
 
 
     //used in activity_credits_view.xml

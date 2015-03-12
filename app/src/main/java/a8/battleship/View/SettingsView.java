@@ -19,16 +19,16 @@ public class SettingsView extends ActionBarActivity implements View.OnClickListe
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_menu_view);
+        setContentView(R.layout.activity_settings_view);
 
         startButton = (Button) findViewById(R.id.buttonStart);
-        startButton.setOnClickListener(this);
-
         mainMenuButton = (Button) findViewById(R.id.buttonMainMenu);
+
+        startButton.setOnClickListener(this);
         mainMenuButton.setOnClickListener(this);
 
     }
-
+    @Override
     public void onClick(View v){
         if(v.getId() == R.id.buttonMainMenu){
             startActivity(new Intent(SettingsView.this, MainMenuView.class));
