@@ -37,6 +37,11 @@
     <string name="placeBoats">Place boats</string>
     <string name="done">Done</string>
 
+    //used in activity_switch_view.xml
+    <string name="switchPlayer">Switch Player</string>
+    <string name="status">Status</string>
+
+
 
 
 
