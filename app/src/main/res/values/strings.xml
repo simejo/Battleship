@@ -20,6 +20,15 @@
     creditsDevelopers
     <string name="creditsTitle">Credits</string>
 
+    //used in activity_end_game_view.xml
+    <string name="gameOver">Game over</string>
+    <string name="buttonMainMenu">Main menu</string>
+    <string name="scores">Score for player 1: \n Score for player 2: </string>
+    <string name="congratulations">Congratulations to the winner! </string>
+
+
+
+
 
 
 
