@@ -12,6 +12,7 @@
     <string name="twoPlayer">Two players</string>
     <string name="startViewTitle">Start</string>
     <string name="startViewIntro">Please choose your opponent</string>
+    <string name="mainMenu">Main Menu</string>
 
 
     //used in activity_credits_view.xml

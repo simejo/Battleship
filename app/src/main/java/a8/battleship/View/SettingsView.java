@@ -27,11 +27,7 @@ public class SettingsView extends ActionBarActivity implements View.OnClickListe
         mainMenuButton = (Button) findViewById(R.id.buttonMainMenu);
         mainMenuButton.setOnClickListener(this);
 
-
     }
-
-
-
 
     public void onClick(View v){
         if(v.getId() == R.id.buttonMainMenu){
