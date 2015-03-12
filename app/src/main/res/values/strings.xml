@@ -12,11 +12,12 @@
     <string name="twoPlayer">Two players</string>
     <string name="startViewTitle">Start</string>
     <string name="startViewIntro">Please choose your opponent</string>
+    <string name="mainMenu">Main Menu</string>
 
 
     //used in activity_credits_view.xml
     <string name="creditsMusic">Music made by: TBA</string>
-    <string name="creditsDevelopers">Developers: \n Simen Johnsrud \n Morten Kartevoll \n Thea Johnsrud \n Maja Kirkerød \n Manasa Dheeraj \n Silje Christensen</string>
+    <string name="creditsDevelopers">Developers: \n Simen Johnsrud \n Morten Kartevoll \n Thea Hove Johansen \n Maja Kirkerød \n Manasa Vallamkondu \n Silje Christensen</string>
     creditsDevelopers
     <string name="creditsTitle">Credits</string>
 
