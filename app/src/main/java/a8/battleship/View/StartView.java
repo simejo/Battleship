@@ -11,6 +11,8 @@ import a8.battleship.R;
  */
 public class StartView extends ActionBarActivity{
 
+    //Choose between one-player or two players
+
     private RadioButton rbOnePlayer, rbTwoPlayer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
