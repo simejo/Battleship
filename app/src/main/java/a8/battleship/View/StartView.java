@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ public class StartView extends ActionBarActivity implements View.OnClickListener
     private RadioButton rbOnePlayer, rbTwoPlayer;
     private Button buttonStartGame;
     private TextView tvPlayerOne, tvPlayerTwo;
+    private SeekBar sbAIChooser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -33,23 +35,39 @@ public class StartView extends ActionBarActivity implements View.OnClickListener
         buttonStartGame = (Button) findViewById(R.id.buttonStartGame);
         tvPlayerOne = (EditText) findViewById(R.id.tvPlayerOne);
         tvPlayerTwo = (EditText) findViewById(R.id.tvPlayerTwo);
+        sbAIChooser = (SeekBar) findViewById(R.id.seekBarAIChooser);
+
+        rbOnePlayer.setOnClickListener(this);
+        rbTwoPlayer.setOnClickListener(this);
+        rbOnePlayer.setChecked(true);
 
         tvPlayerOne.setAlpha(0);
         tvPlayerTwo.setAlpha(0);
 
-        if(rbOnePlayer.isChecked()){
-            tvPlayerTwo.setAlpha(1);
-        }
-
     }
     @Override
     public void onClick(View v){
-        //if(v.getId() == R.id.buttonStartGame){
-        //
-        //}
-        if(rbOnePlayer.isChecked()){
+
+        //Functionality for radiobuttons
+
+        if(rbTwoPlayer.isChecked()) {
+            tvPlayerOne.setAlpha(1);
             tvPlayerTwo.setAlpha(1);
+            sbAIChooser.setAlpha(0);
+
         }
+        else if(rbOnePlayer.isChecked()){
+            tvPlayerOne.setAlpha(0);
+            tvPlayerTwo.setAlpha(0);
+            sbAIChooser.setAlpha(1);
+        }
+
+        //Functionality for button
+
+        else if(v.getId() == R.id.buttonStartGame){
+            //startActivity(new Intent());
+        }
+
 
     }
 
