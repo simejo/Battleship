@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import a8.battleship.Logic.Constants;
 import a8.battleship.R;
 import a8.battleship.View.CreditsView;
 
@@ -28,6 +29,8 @@ public class MainMenuView extends ActionBarActivity implements View.OnClickListe
         startButton.setOnClickListener(this);
         settingsButton.setOnClickListener(this);
         creditsButton.setOnClickListener(this);
+        Constants.screenHeight = this.getResources().getDisplayMetrics().heightPixels;
+        Constants.screenWidth = this.getResources().getDisplayMetrics().widthPixels;
 
     }
 
