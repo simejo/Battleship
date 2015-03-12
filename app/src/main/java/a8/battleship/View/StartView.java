@@ -2,6 +2,7 @@ package a8.battleship.View;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.widget.Button;
 import android.widget.RadioButton;
 
 import a8.battleship.R;
@@ -12,6 +13,8 @@ import a8.battleship.R;
 public class StartView extends ActionBarActivity{
 
     private RadioButton rbOnePlayer, rbTwoPlayer;
+    private Button buttonStartGame;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +22,7 @@ public class StartView extends ActionBarActivity{
 
         rbOnePlayer = (RadioButton) findViewById(R.id.radioButtonOnePlayer);
         rbTwoPlayer = (RadioButton) findViewById(R.id.radioButtonTwoPlayer);
+        buttonStartGame = (Button) findViewById(R.id.buttonStartGame);
 
     }
 
