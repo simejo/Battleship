@@ -12,6 +12,8 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import a8.battleship.Logic.Constants;
+import a8.battleship.Models.Player;
 import a8.battleship.R;
 
 /**
@@ -52,6 +54,8 @@ public class StartView extends ActionBarActivity implements View.OnClickListener
         //Functionality for button
         if(v.getId() == R.id.buttonStartGame){
             startActivity(new Intent(StartView.this, SetShipView.class));
+            Constants.playerOne = new Player(tvPlayerOne.getText().toString());
+            Constants.playerTwo = new Player(tvPlayerTwo.getText().toString());
         }
 
         //Functionality for radiobuttons
