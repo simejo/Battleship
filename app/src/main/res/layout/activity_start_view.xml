@@ -29,7 +29,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/radioGroup"
         android:layout_below="@+id/textView"
-        android:layout_toStartOf="@+id/buttonStartGame"
         android:layout_marginTop="88dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true">

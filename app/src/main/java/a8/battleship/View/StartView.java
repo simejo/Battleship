@@ -47,27 +47,27 @@ public class StartView extends ActionBarActivity implements View.OnClickListener
         tvPlayerTwo.setAlpha(0);
 
     }
-    @Override
     public void onClick(View v){
 
-        //Functionality for radiobuttons
+        //Functionality for button
+        if(v.getId() == R.id.buttonStartGame){
+            startActivity(new Intent(StartView.this, SetShipView.class));
+        }
 
+        //Functionality for radiobuttons
         if(rbTwoPlayer.isChecked()) {
             tvPlayerOne.setAlpha(1);
             tvPlayerTwo.setAlpha(1);
             sbAIChooser.setAlpha(0);
 
         }
-        else if(rbOnePlayer.isChecked()){
+        if(rbOnePlayer.isChecked()){
             tvPlayerOne.setAlpha(0);
             tvPlayerTwo.setAlpha(0);
             sbAIChooser.setAlpha(1);
         }
 
-        //Functionality for button
 
-        else if(v.getId() == R.id.buttonStartGame){
-            startActivity(new Intent(StartView.this, StartUpView.class));        }
 
 
     }

@@ -19,14 +19,13 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_start_view);
+        setContentView(R.layout.activity_set_ship_view);
 
         buttonStartGame = (Button) findViewById(R.id.buttonDone);
         buttonStartGame.setOnClickListener(this);
 
     }
 
-    @Override
     public void onClick(View v){
         if(v.getId() == R.id.buttonDone){
             startActivity(new Intent(SetShipView.this, BattleView.class));
