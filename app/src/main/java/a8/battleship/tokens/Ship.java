@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.widget.ImageView;
 import android.view.View;
 
+import java.util.ArrayList;
+
 import a8.battleship.R;
 
 /**
@@ -21,8 +23,10 @@ public class Ship extends Activity{
     private ImageView westDestroyedImage;
     private ImageView middleImage;
     private ImageView middleDestroyedImage;
+    private ArrayList<ImageView> boat;
 
-    public Ship(){
+    public Ship(int shipSize, int direction){//direction, 0 equals vertical, 1 equals horizontal
+        boat = new ArrayList<ImageView>();
         this.southImage = (ImageView) findViewById(R.id.south);
         this.southDestroyedImage = (ImageView) findViewById(R.id.southDestroyed);
         this.northImage = (ImageView) findViewById(R.id.north);
@@ -33,11 +37,23 @@ public class Ship extends Activity{
         this.westDestroyedImage = (ImageView) findViewById(R.id.westDestroyed);
         this.middleImage = (ImageView) findViewById(R.id.middle);
         this.middleDestroyedImage = (ImageView) findViewById(R.id.middleDestroyed);
+        if(direction==0){//adding pictures to array if vertical
+            boat.add(northImage);
+        }
+        else{//if horizontal add west image
+            boat.add(westImage);
+        }
+        for(int i=1; i<shipSize-2; i++){//add middlepieces
+            boat.add(middleImage);
+        }
+        if(direction==0){//add endpiece
+            boat.add(southImage);
+        }
+        else{
+            boat.add(eastImage);
+        }
+
     }
 
-    public void onCreate(){
-        
-
-    }
 
 }
