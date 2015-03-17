@@ -12,13 +12,38 @@
     <string name="twoPlayer">Two players</string>
     <string name="startViewTitle">Start</string>
     <string name="startViewIntro">Please choose your opponent</string>
+    <string name="mainMenu">Main Menu</string>
+    <string name="startGame">Start game</string>
+    <string name="tvPlayerOneHint">Name of Player 1</string>
+    <string name="tvPlayerTwoHint">Name of Player 2</string>
+
 
 
     //used in activity_credits_view.xml
     <string name="creditsMusic">Music made by: TBA</string>
-    <string name="creditsDevelopers">Developers: \n Simen Johnsrud \n Morten Kartevoll \n Thea Johnsrud \n Maja Kirkerød \n Manasa Dheeraj \n Silje Christensen</string>
+    <string name="creditsDevelopers">Developers: \n Simen Johnsrud \n Morten Kartevoll \n Thea Hove Johansen \n Maja Kirkerød \n Manasa Vallamkondu \n Silje Christensen</string>
     creditsDevelopers
     <string name="creditsTitle">Credits</string>
+
+    //used in activity_end_game_view.xml
+    <string name="gameOver">Game over</string>
+    <string name="buttonMainMenu">Main menu</string>
+    <string name="scores">Score for player 1: \n Score for player 2: </string>
+    <string name="congratulations">Congratulations to the winner! </string>
+
+    //used in activity_start_up_view.xml
+    <string name="sound">Sound</string>
+    <string name="music">Music</string>
+    <string name="placeBoats">Place boats</string>
+    <string name="done">Done</string>
+
+    //used in activity_switch_view.xml
+    <string name="switchPlayer">Switch Player</string>
+    <string name="status">Status</string>
+
+
+
+
 
 
 
