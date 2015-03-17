@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +13,8 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import a8.battleship.Logic.Constants;
+import a8.battleship.Models.Player;
 import a8.battleship.R;
 
 /**
@@ -51,6 +54,10 @@ public class StartView extends ActionBarActivity implements View.OnClickListener
 
         //Functionality for button
         if(v.getId() == R.id.buttonStartGame){
+            //TODO: Check if textView is empty or not
+
+            Constants.playerOne = new Player(tvPlayerOne.getText().toString());
+            Constants.playerTwo = new Player(tvPlayerTwo.getText().toString());
             startActivity(new Intent(StartView.this, SetShipView.class));
         }
 

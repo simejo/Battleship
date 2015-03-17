@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 import a8.battleship.Logic.BoardValues;
+import a8.battleship.Tokens.Ship;
 
 /**
  * Created by majakirkerod on 11.03.15.
@@ -78,6 +79,23 @@ public class Board{
         ArrayList<BoardValues> tempRow = board.get(y);
         tempRow.set(x, value);
         board.set(y, tempRow);
+    }
+
+    public void placeShip(Ship ship, int y, int x){//only send in coordinates that are valid for said boat
+        if( ship.getDirection()==0){//vertical
+            for (int i=y; i<ship.getBoat().size(); i++){//goes through all rows that need changing
+                ArrayList<BoardValues> tempRow = board.get(i);//makes duplicate of current row
+                tempRow.set(x, ship.getBoat().get(i-y));//replaces piece with corresponding piece in ship
+                board.set(i, tempRow);//places temp row back in board
+            }
+        }
+        else if(ship.getDirection()==1) {//horizontal
+            ArrayList<BoardValues> tempRow = board.get(y);// makes a copy of the row you want to work on
+            for (int i=x; i<ship.getBoat().size()+x; i++){//goes through the temporary row, and then replaces the pieces where you want to place the boat
+               tempRow.set(i, ship.getBoat().get(i-x));//changes enumvalues in temporary row, to fit boat enumvalues
+            }
+            board.set(y, tempRow); //replaces row in board with temporary row.
+        }
     }
 
     public void randomizeShipPositions(){

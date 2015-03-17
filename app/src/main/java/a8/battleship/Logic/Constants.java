@@ -1,19 +1,26 @@
 package a8.battleship.Logic;
 
-import android.media.Image;
-import android.widget.ImageView;
-
-import a8.battleship.R;
+import a8.battleship.Models.Board;
+import a8.battleship.Models.Player;
 
 /**
  * Created by majakirkerod on 11.03.15.
  */
 public class Constants {
-    private static int boardSize = 10;
+
+    public static int boardSize = 10;
     public static int numOfCollumns=10;
 
     public static int screenHeight;
     public static int screenWidth;
-//I think we should make the variables static, in stead of making getters and setters for all of them
+
+    public static Board boardPlayerOne;
+    public static Board boardPlayerTwo;
+
+    public static Player playerOne;
+    public static Player playerTwo;
+
+    //Player one or player two is playing
+    public static String turn;
 
 }

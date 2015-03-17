@@ -6,6 +6,7 @@ import android.view.View;
 
 import java.util.ArrayList;
 
+import a8.battleship.Logic.BoardValues;
 import a8.battleship.R;
 
 /**
@@ -23,37 +24,68 @@ public class Ship extends Activity{
     private ImageView westDestroyedImage;
     private ImageView middleImage;
     private ImageView middleDestroyedImage;
-    private ArrayList<ImageView> boat;
+    private ArrayList<BoardValues> boat;
+    private int direction;
 
     public Ship(int shipSize, int direction){//direction, 0 equals vertical, 1 equals horizontal
-        boat = new ArrayList<ImageView>();
+        boat = new ArrayList<BoardValues>();
+        this.direction=direction;
         this.southImage = (ImageView) findViewById(R.id.south);
-        this.southDestroyedImage = (ImageView) findViewById(R.id.southDestroyed);
+        this.southDestroyedImage = (ImageView) findViewById(R.id.southdestroyed);
         this.northImage = (ImageView) findViewById(R.id.north);
-        this.northDestroyedImage = (ImageView) findViewById(R.id.northDestroyed);
+        this.northDestroyedImage = (ImageView) findViewById(R.id.northdestroyed);
         this.eastImage = (ImageView) findViewById(R.id.east);
-        this.eastDestroyedImage = (ImageView) findViewById(R.id.eastDestroyed);
+        this.eastDestroyedImage = (ImageView) findViewById(R.id.eastdestroyed);
         this.westImage = (ImageView) findViewById(R.id.west);
-        this.westDestroyedImage = (ImageView) findViewById(R.id.westDestroyed);
+        this.westDestroyedImage = (ImageView) findViewById(R.id.westdestroyed);
         this.middleImage = (ImageView) findViewById(R.id.middle);
-        this.middleDestroyedImage = (ImageView) findViewById(R.id.middleDestroyed);
+        this.middleDestroyedImage = (ImageView) findViewById(R.id.middledestroyed);
         if(direction==0){//adding pictures to array if vertical
-            boat.add(northImage);
+            boat.add(BoardValues.NORTH);
         }
         else{//if horizontal add west image
-            boat.add(westImage);
+            boat.add(BoardValues.WEST);
         }
         for(int i=1; i<shipSize-2; i++){//add middlepieces
-            boat.add(middleImage);
+            boat.add(BoardValues.MIDDLE);
         }
         if(direction==0){//add endpiece
-            boat.add(southImage);
+            boat.add(BoardValues.SOUTH);
         }
         else{
-            boat.add(eastImage);
+            boat.add(BoardValues.EAST);
         }
 
     }
+
+    public void destroyPiece(int placement){
+        if (boat.get(placement)==BoardValues.NORTH){
+            boat.set(placement, BoardValues.NORTH_DESTROYED);
+        }
+        else if(boat.get(placement) == BoardValues.SOUTH){
+            boat.set(placement, BoardValues.SOUTH_DESTROYED);
+        }
+        else if(boat.get(placement) == BoardValues.WEST){
+            boat.set(placement, BoardValues.WEST_DESTROYED);
+        }
+        else if(boat.get(placement) == BoardValues.EAST){
+            boat.set(placement, BoardValues.EAST_DESTROYED);
+        }
+        else{
+            boat.set(placement, BoardValues.MIDDLE_DESTROYED);
+        }
+
+    }
+
+    public ArrayList<BoardValues> getBoat(){
+        return this.boat;
+    }
+
+    public int getDirection(){
+        return this.direction;
+    }
+
+
 
 
 }
