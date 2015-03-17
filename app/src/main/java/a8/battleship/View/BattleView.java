@@ -26,6 +26,8 @@ public class BattleView extends ActionBarActivity{
 
 
     GridView boardGridView;
+
+    //test data
     static final String[] letters = new String[] {
             "A", "B", "C", "D", "E",
             "F", "G", "H", "I", "J",
@@ -44,6 +46,11 @@ public class BattleView extends ActionBarActivity{
 
         boardGridView.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
         boardGridView.setAdapter(new GridAdapter(this, letters));
+
+
+
+        //TODO: Implement OnItemClickListener, and write the method in the class. See SetShipView as an example
+        //Which means that the following lines must be rewritten a bit
         boardGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView parent, View v, int position, long id) {
                 //Toast.makeText(getApplicationContext(), ((TextView) v).getText(), Toast.LENGTH_SHORT).show();

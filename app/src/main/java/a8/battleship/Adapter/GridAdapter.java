@@ -14,17 +14,25 @@ import android.widget.TextView;
 import a8.battleship.Logic.BoardValues;
 import a8.battleship.R;
 
+
+//The adapter is  a description of how the cell will look like (in this case in the gridView)
+
+
 public class GridAdapter extends BaseAdapter {
     private Context context;
     private final String[] ships;
 
 
     //TODO: Need to decide if we should have BoardValues[][] or ArrayrList<ArrayList<BoardValues>>
+
+    //The constructor
     public GridAdapter(Context context, String[] ships) {
         this.context = context;
         this.ships = ships;
     }
 
+    //What to show, with the parameters so we can change the layout based on the different parameters
+    //Position is the number in the array based on what cell you clicked
     public View getView(int position, View convertView, ViewGroup parent) {
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -35,12 +43,13 @@ public class GridAdapter extends BaseAdapter {
 
             gridView = new View(context);
 
-            gridView = inflater.inflate(R.layout.grid_adapter_layout, null);
+            gridView = inflater.inflate(R.layout.grid_adapter_layout, null); //A reference to the adapter xml file
 
             ImageView cell = (ImageView) gridView.findViewById(R.id.cell);
 
             cell.setAdjustViewBounds(true); //Added this to remove the extra space between the cells in the grid
 
+            //TODO: implement the board so we can choose the correct pictures to the right enums
             cell.setImageResource(R.drawable.empty);
 
             String mobile = ships[position];
@@ -64,6 +73,8 @@ public class GridAdapter extends BaseAdapter {
 
         return gridView;
     }
+
+    //Below, there are basic methods to make the adapter work
 
     @Override
     public int getCount() {

@@ -25,13 +25,20 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
 
 
 
-    //Is it in this class we should instantiate the board?
+    /*
+    Is it in this class we should instantiate the board?
+
+    Probably not. But we should call the Board object here (Constants.boardPlayerOne)
+    The board should be instantiate in the Board class (I think).
+    */
+
     public Board boardModel;
 
     private Button buttonStartGame;
 
     GridView setShipGridView;
 
+    //Test input
     static final String[] letters = new String[] {
             "A", "B", "C", "D", "E",
             "F", "G", "H", "I", "J",
@@ -55,6 +62,8 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
         }
     }
 
+    //Method to use when a cell is clicked
+    //TODO: Implement this, to make changes on the board when clicked
     public void onItemClick(AdapterView parent, View v, int position, long id) {
 
     }
