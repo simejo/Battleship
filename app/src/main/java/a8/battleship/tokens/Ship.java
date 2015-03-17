@@ -25,9 +25,11 @@ public class Ship extends Activity{
     private ImageView middleImage;
     private ImageView middleDestroyedImage;
     private ArrayList<BoardValues> boat;
+    private int direction;
 
     public Ship(int shipSize, int direction){//direction, 0 equals vertical, 1 equals horizontal
         boat = new ArrayList<BoardValues>();
+        this.direction=direction;
         this.southImage = (ImageView) findViewById(R.id.south);
         this.southDestroyedImage = (ImageView) findViewById(R.id.southdestroyed);
         this.northImage = (ImageView) findViewById(R.id.north);
@@ -74,6 +76,16 @@ public class Ship extends Activity{
         }
 
     }
+
+    public ArrayList<BoardValues> getBoat(){
+        return this.boat;
+    }
+
+    public int getDirection(){
+        return this.direction;
+    }
+
+
 
 
 }
