@@ -1,5 +1,7 @@
 package a8.battleship.Models;
 
+import android.util.Log;
+
 /**
  * Created by TheaHove on 11/03/2015.
  */
@@ -13,6 +15,8 @@ public class Player {
         this.name = name;
         this.board = null;
         this.turn = true;
+
+        Log.i("Player.class", "Player created with name: " + name);
     }
 
     public String getName(){
