@@ -11,12 +11,15 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import a8.battleship.Logic.BoardValues;
 import a8.battleship.R;
 
 public class GridAdapter extends BaseAdapter {
     private Context context;
     private final String[] ships;
 
+
+    //TODO: Need to decide if we should have BoardValues[][] or ArrayrList<ArrayList<BoardValues>>
     public GridAdapter(Context context, String[] ships) {
         this.context = context;
         this.ships = ships;
@@ -35,6 +38,9 @@ public class GridAdapter extends BaseAdapter {
             gridView = inflater.inflate(R.layout.grid_adapter_layout, null);
 
             ImageView cell = (ImageView) gridView.findViewById(R.id.cell);
+
+            cell.setAdjustViewBounds(true); //Added this to remove the extra space between the cells in the grid
+
             cell.setImageResource(R.drawable.empty);
 
             String mobile = ships[position];

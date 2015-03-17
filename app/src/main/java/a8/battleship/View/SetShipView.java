@@ -11,6 +11,7 @@ import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import a8.battleship.Adapter.GridAdapter;
 import a8.battleship.Logic.BoardValues;
 import a8.battleship.Logic.Constants;
 import a8.battleship.Models.Board;
@@ -55,7 +56,7 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
     }
 
     public void onItemClick(AdapterView parent, View v, int position, long id) {
-        Toast.makeText(getApplicationContext(), ((TextView) v).getText(), Toast.LENGTH_SHORT).show();
+
     }
 
     //Connecting with the XML-objects
@@ -67,9 +68,7 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
 
         setShipGridView.setNumColumns(Constants.numOfCollumns);
 
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, letters);
-
-        setShipGridView.setAdapter(adapter);
+        setShipGridView.setAdapter(new GridAdapter(this, letters));
         //Gives the adapter onItemClickListener
         setShipGridView.setOnItemClickListener(this);
     }
