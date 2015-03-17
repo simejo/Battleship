@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:weightSum="1">
 
+    <!-- Place Boats -->
     <TextView
         android:id = "@+id/mainMenuTitle"
         android:text="Place Boats for Player 1"
