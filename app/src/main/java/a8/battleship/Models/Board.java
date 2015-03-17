@@ -49,11 +49,12 @@ public class Board{
             {EMPTY,EMPTY,EMPTY,EMPTY,SOUTH,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY}};
 
     private Random random = new Random();
-    //private a8.battleship.tokens.Ship ship1 = new a8.battleship.tokens.Ship(3,random.nextInt((1 - 0) + 1 ) + 0);
-    //private a8.battleship.tokens.Ship ship2 = new a8.battleship.tokens.Ship(3,random.nextInt((1 - 0) + 1 ) + 0);
-    //private a8.battleship.tokens.Ship ship3 = new a8.battleship.tokens.Ship(4,random.nextInt((1 - 0) + 1 ) + 0);
-    //private a8.battleship.tokens.Ship ship4 = new a8.battleship.tokens.Ship(4,random.nextInt((1 - 0) + 1 ) + 0);
-    //private a8.battleship.tokens.Ship ship5 = new a8.battleship.tokens.Ship(5,random.nextInt((1 - 0) + 1 ) + 0);
+    private Ship ship1 = new Ship(3,random.nextInt((1 - 0) + 1 ) + 0);
+    private Ship ship2 = new Ship(3,random.nextInt((1 - 0) + 1 ) + 0);
+    private Ship ship3 = new Ship(4,random.nextInt((1 - 0) + 1 ) + 0);
+    private Ship ship4 = new Ship(4,random.nextInt((1 - 0) + 1 ) + 0);
+    private Ship ship5 = new Ship(5,random.nextInt((1 - 0) + 1 ) + 0);
+    private ArrayList<Ship> shipArray = new ArrayList<Ship>(Arrays.asList(ship1,ship2,ship3,ship4,ship5));
 
     //Makes the board initially empty
     public Board(int boardsize){
@@ -99,18 +100,24 @@ public class Board{
     }
 
     public void randomizeShipPositions(){
-
-
-
-    /*
-        for(int i = 0; i < shipList.size(); i++){
+        for(int i = 0; i < shipArray.size(); i++){
             while(!valid){
-                shipList[i].boat
+                //make a random x value between the boardsize minus the length of the boat and zero
+                int x = random.nextInt((boardsize - shipArray.get(i).getBoat().size()));
+                int y = random.nextInt((boardsize - shipArray.get(i).getBoat().size()));
+
+                if(shipArray.get(i).getDirection() == 0){//if vertical
+                    for(int j = 0; j< boardsize; j++){
+
+                    }
+                }
+                else if(shipArray.get(i).getDirection() == 1){//if horizontal
+
+                }
 
             }
             random.nextInt((boardsize) + 1);
         }
-        */
     }
 
 }
