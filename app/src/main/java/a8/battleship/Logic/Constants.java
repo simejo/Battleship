@@ -1,4 +1,10 @@
 package a8.battleship.Logic;
+
+import android.media.Image;
+import android.widget.ImageView;
+
+import a8.battleship.R;
+
 /**
  * Created by majakirkerod on 11.03.15.
  */
