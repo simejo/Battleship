@@ -1,6 +1,5 @@
 package a8.battleship.View;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -12,7 +11,7 @@ import a8.battleship.R;
 /**
  * Created by Kartefull on 11.03.2015.
  */
-public class StartUpView extends ActionBarActivity implements View.OnClickListener{
+public class SetShipView extends ActionBarActivity implements View.OnClickListener{
 
     //Where to place the boats
 
@@ -30,7 +29,7 @@ public class StartUpView extends ActionBarActivity implements View.OnClickListen
     @Override
     public void onClick(View v){
         if(v.getId() == R.id.buttonDone){
-            startActivity(new Intent(StartUpView.this, BattleView.class));
+            startActivity(new Intent(SetShipView.this, BattleView.class));
         }
     }
 }
