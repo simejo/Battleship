@@ -23,6 +23,7 @@ public class StartUpView extends ActionBarActivity implements View.OnClickListen
         setContentView(R.layout.activity_start_view);
 
         buttonStartGame = (Button) findViewById(R.id.buttonDone);
+        buttonStartGame.setOnClickListener(this);
 
     }
 
