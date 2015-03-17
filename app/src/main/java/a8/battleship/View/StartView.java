@@ -19,10 +19,9 @@ import a8.battleship.R;
 
 /**
  * Created by Kartefull on 11.03.2015.
+ * This is the view where a player can choose between one-player or two-players
  */
 public class StartView extends ActionBarActivity implements View.OnClickListener{
-
-    //Choose between one-player or two players
 
     private RadioButton rbOnePlayer, rbTwoPlayer;
     private Button buttonStartGame;
