@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:padding="1dp" >
+    android:layout_height="wrap_content" android:padding="0.5dp">
 
+    <!-- GridAdapter defines how each cell should look like.
+    And the gridView in activity_battle_view.xml uses these cells-->
+
+    <!-- Quick fixed the hight -->
     <ImageView
         android:id="@+id/cell"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="0dp">
+        android:layout_height="wrap_content">
     </ImageView>
 
-</LinearLayout>
+</RelativeLayout>
