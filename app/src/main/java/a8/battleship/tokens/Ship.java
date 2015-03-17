@@ -55,5 +55,9 @@ public class Ship extends Activity{
 
     }
 
+    public void drawShip(){
+
+    }
+
 
 }
