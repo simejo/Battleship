@@ -11,7 +11,7 @@
         android:src="@drawable/south" />
 
     <ImageView
-        android:id="@+id/southDestroyed"
+        android:id="@+id/southdestroyed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/southdestroyed" />
@@ -23,7 +23,7 @@
         android:src="@drawable/north" />
 
     <ImageView
-        android:id="@+id/northDestroyed"
+        android:id="@+id/northdestroyed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/northdestroyed" />
@@ -35,7 +35,7 @@
         android:src="@drawable/east" />
 
     <ImageView
-        android:id="@+id/eastDestroyed"
+        android:id="@+id/eastdestroyed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/eastdestroyed" />
@@ -47,7 +47,7 @@
         android:src="@drawable/west" />
 
     <ImageView
-        android:id="@+id/westDestroyed"
+        android:id="@+id/westdestroyed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/westdestroyed" />
@@ -59,7 +59,7 @@
         android:src="@drawable/middle" />
 
     <ImageView
-        android:id="@+id/middleDestroyed"
+        android:id="@+id/middledestroyed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/middledestroyed" />
