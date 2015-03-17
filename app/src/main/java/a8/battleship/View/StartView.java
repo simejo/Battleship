@@ -1,6 +1,7 @@
 package a8.battleship.View;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
@@ -40,6 +41,7 @@ public class StartView extends ActionBarActivity implements View.OnClickListener
         rbOnePlayer.setOnClickListener(this);
         rbTwoPlayer.setOnClickListener(this);
         rbOnePlayer.setChecked(true);
+        buttonStartGame.setOnClickListener(this);
 
         tvPlayerOne.setAlpha(0);
         tvPlayerTwo.setAlpha(0);
@@ -65,8 +67,7 @@ public class StartView extends ActionBarActivity implements View.OnClickListener
         //Functionality for button
 
         else if(v.getId() == R.id.buttonStartGame){
-            //startActivity(new Intent());
-        }
+            startActivity(new Intent(StartView.this, StartUpView.class));        }
 
 
     }
