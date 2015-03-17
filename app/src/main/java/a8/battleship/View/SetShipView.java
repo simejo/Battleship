@@ -66,9 +66,9 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
         setShipGridView = (GridView) findViewById(R.id.setShipGridView);
 
         setShipGridView.setNumColumns(Constants.numOfCollumns);
+
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, letters);
 
-        //
         setShipGridView.setAdapter(adapter);
         //Gives the adapter onItemClickListener
         setShipGridView.setOnItemClickListener(this);

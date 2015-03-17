@@ -9,6 +9,7 @@ import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import a8.battleship.Adapter.GridAdapter;
 import a8.battleship.Logic.BoardValues;
 import a8.battleship.Logic.Constants;
 import a8.battleship.Models.Board;
@@ -32,8 +33,6 @@ public class BattleView extends ActionBarActivity{
             "P", "Q", "R", "S", "T",
             "U", "V", "W", "X", "Y", "Z"};
 
-    static final BoardValues[] images = new BoardValues[] {
-    };
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -42,12 +41,12 @@ public class BattleView extends ActionBarActivity{
         boardGridView = (GridView) findViewById(R.id.boardGridView);
 
         boardGridView.setNumColumns(Constants.numOfCollumns);
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, letters);
 
-        boardGridView.setAdapter(adapter);
+
+        boardGridView.setAdapter(new GridAdapter(this, letters));
         boardGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView parent, View v, int position, long id) {
-                Toast.makeText(getApplicationContext(), ((TextView) v).getText(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), ((TextView) v).getText(), Toast.LENGTH_SHORT).show();
             }
         });
 
