@@ -54,7 +54,8 @@ public class StartView extends ActionBarActivity implements View.OnClickListener
         //Functionality for button
         if(v.getId() == R.id.buttonStartGame){
             startActivity(new Intent(StartView.this, SetShipView.class));
-            Constants.playerOne = new Player();
+            Constants.playerOne = new Player(tvPlayerOne.getText().toString());
+            Constants.playerTwo = new Player(tvPlayerTwo.getText().toString());
         }
 
         //Functionality for radiobuttons

@@ -31,5 +31,9 @@ public class Player {
         return turn;
     }
 
+    public String toString(){
+        return name;
+    }
+
 
 }
