@@ -1,6 +1,8 @@
-package a8.battleship.Logic;
+package a8.battleship.Models;
 
 import java.util.ArrayList;
+
+import a8.battleship.Logic.BoardValues;
 
 /**
  * Created by majakirkerod on 11.03.15.
