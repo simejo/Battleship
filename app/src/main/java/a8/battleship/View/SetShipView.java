@@ -18,10 +18,10 @@ import a8.battleship.R;
 
 /**
  * Created by Kartefull on 11.03.2015.
+ * This is the view where the player can place his/hers boats
  */
-public class SetShipView extends ActionBarActivity implements View.OnClickListener{
+public class SetShipView extends ActionBarActivity implements View.OnClickListener, AdapterView.OnItemClickListener{
 
-    //Where to place the boats
 
 
     //Is it in this class we should instantiate the board?
@@ -45,6 +45,21 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_ship_view);
 
+        initiateWidgets();
+    }
+
+    public void onClick(View v){
+        if(v.getId() == R.id.buttonDone){
+            startActivity(new Intent(SetShipView.this, BattleView.class));
+        }
+    }
+
+    public void onItemClick(AdapterView parent, View v, int position, long id) {
+        Toast.makeText(getApplicationContext(), ((TextView) v).getText(), Toast.LENGTH_SHORT).show();
+    }
+
+    //Connecting with the XML-objects
+    public void initiateWidgets(){
         buttonStartGame = (Button) findViewById(R.id.buttonDone);
         buttonStartGame.setOnClickListener(this);
 
@@ -53,17 +68,9 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
         setShipGridView.setNumColumns(Constants.numOfCollumns);
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, letters);
 
+        //
         setShipGridView.setAdapter(adapter);
-        setShipGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView parent, View v, int position, long id) {
-                Toast.makeText(getApplicationContext(), ((TextView) v).getText(), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    public void onClick(View v){
-        if(v.getId() == R.id.buttonDone){
-            startActivity(new Intent(SetShipView.this, BattleView.class));
-        }
+        //Gives the adapter onItemClickListener
+        setShipGridView.setOnItemClickListener(this);
     }
 }
