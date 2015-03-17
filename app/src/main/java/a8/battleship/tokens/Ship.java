@@ -28,15 +28,15 @@ public class Ship extends Activity{
     public Ship(int shipSize, int direction){//direction, 0 equals vertical, 1 equals horizontal
         boat = new ArrayList<ImageView>();
         this.southImage = (ImageView) findViewById(R.id.south);
-        this.southDestroyedImage = (ImageView) findViewById(R.id.southDestroyed);
+        this.southDestroyedImage = (ImageView) findViewById(R.id.southdestroyed);
         this.northImage = (ImageView) findViewById(R.id.north);
-        this.northDestroyedImage = (ImageView) findViewById(R.id.northDestroyed);
+        this.northDestroyedImage = (ImageView) findViewById(R.id.northdestroyed);
         this.eastImage = (ImageView) findViewById(R.id.east);
-        this.eastDestroyedImage = (ImageView) findViewById(R.id.eastDestroyed);
+        this.eastDestroyedImage = (ImageView) findViewById(R.id.eastdestroyed);
         this.westImage = (ImageView) findViewById(R.id.west);
-        this.westDestroyedImage = (ImageView) findViewById(R.id.westDestroyed);
+        this.westDestroyedImage = (ImageView) findViewById(R.id.westdestroyed);
         this.middleImage = (ImageView) findViewById(R.id.middle);
-        this.middleDestroyedImage = (ImageView) findViewById(R.id.middleDestroyed);
+        this.middleDestroyedImage = (ImageView) findViewById(R.id.middledestroyed);
         if(direction==0){//adding pictures to array if vertical
             boat.add(northImage);
         }
