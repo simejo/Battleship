@@ -35,7 +35,7 @@ public class GridAdapter extends BaseAdapter {
             gridView = inflater.inflate(R.layout.grid_adapter_layout, null);
 
             ImageView cell = (ImageView) gridView.findViewById(R.id.cell);
-            cell.setImageResource(R.drawable.south);
+            cell.setImageResource(R.drawable.empty);
 
             String mobile = ships[position];
 /*

@@ -42,7 +42,7 @@ public class BattleView extends ActionBarActivity{
 
         boardGridView.setNumColumns(Constants.numOfCollumns);
 
-
+        boardGridView.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
         boardGridView.setAdapter(new GridAdapter(this, letters));
         boardGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView parent, View v, int position, long id) {
