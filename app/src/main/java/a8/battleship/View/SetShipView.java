@@ -4,8 +4,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.GridView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import a8.battleship.Logic.BoardValues;
+import a8.battleship.Logic.Constants;
+import a8.battleship.Models.Board;
 import a8.battleship.R;
 
 /**
@@ -15,7 +23,23 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
 
     //Where to place the boats
 
+
+    //Is it in this class we should instantiate the board?
+    public Board boardModel;
+
     private Button buttonStartGame;
+
+    GridView setShipGridView;
+
+    static final String[] letters = new String[] {
+            "A", "B", "C", "D", "E",
+            "F", "G", "H", "I", "J",
+            "K", "L", "M", "N", "O",
+            "P", "Q", "R", "S", "T",
+            "U", "V", "W", "X", "Y", "Z"};
+
+    static final BoardValues[] images = new BoardValues[] {
+    };
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +48,17 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
         buttonStartGame = (Button) findViewById(R.id.buttonDone);
         buttonStartGame.setOnClickListener(this);
 
+        setShipGridView = (GridView) findViewById(R.id.setShipGridView);
+
+        setShipGridView.setNumColumns(Constants.numOfCollumns);
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, letters);
+
+        setShipGridView.setAdapter(adapter);
+        setShipGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView parent, View v, int position, long id) {
+                Toast.makeText(getApplicationContext(), ((TextView) v).getText(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void onClick(View v){

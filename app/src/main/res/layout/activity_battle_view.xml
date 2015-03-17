@@ -6,6 +6,9 @@
     <GridView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:columnWidth="50dp"
         android:id="@+id/boardGridView" />
+    <!-- android:numColumns="aut"-->
+
 
 </LinearLayout>
