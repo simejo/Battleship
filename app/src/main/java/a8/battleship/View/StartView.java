@@ -61,8 +61,10 @@ public class StartView extends ActionBarActivity implements View.OnClickListener
             Constants.playerTwo = new Player(tvPlayerTwo.getText().toString());
 
             //Creates boards to players
-//            Constants.playerOne.setBoard(new Board(Constants.boardSize));
-//            Constants.playerTwo.setBoard(new Board(Constants.boardSize));
+            Constants.playerOne.setBoard(new Board(Constants.boardSize));
+            Constants.playerTwo.setBoard(new Board(Constants.boardSize));
+
+            Constants.turn = "playerOne";
 
             startActivity(new Intent(StartView.this, SetShipView.class));
         }

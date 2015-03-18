@@ -33,6 +33,13 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
     The board should be instantiate in the Board class (I think).
     */
 
+    static final String[] letters = new String[] {
+            "A", "B", "C", "D", "E",
+            "F", "G", "H", "I", "J",
+            "K", "L", "M", "N", "O",
+            "P", "Q", "R", "S", "T",
+            "U", "V", "W", "X", "Y", "Z"};
+
     public Board boardModel;
 
     private Button buttonStartGame;
@@ -78,8 +85,8 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
         else{
             player = Constants.playerTwo;
         }
-        setShipGridView.setAdapter(new GridAdapter(this, player.getBoard()));
-        //setShipGridView.setAdapter(new GridAdapter(this, letters));
+        //setShipGridView.setAdapter(new GridAdapter(this, Constants.playerOne.getBoard()));
+        setShipGridView.setAdapter(new GridAdapter(this, letters));
 
         //Gives the adapter onItemClickListener
         setShipGridView.setOnItemClickListener(this);

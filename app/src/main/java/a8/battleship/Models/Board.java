@@ -22,6 +22,8 @@ public class Board{
 
     private ArrayList<ArrayList<BoardValues>> board;
 
+    private BoardValues[][] boardArrayTest;
+
     private ArrayList<BoardValues[][]> boardArray;
 
     //Making 2 standard boards
@@ -48,18 +50,13 @@ public class Board{
             {EMPTY,EMPTY,EMPTY,EMPTY,MIDDLE,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY},
             {EMPTY,EMPTY,EMPTY,EMPTY,SOUTH,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY}};
 
-    private Random random = new Random();
-
-    private ArrayList<Ship> shipArray = new ArrayList<Ship>(Arrays.asList(
-            new Ship(3,random.nextInt(2)),new Ship(3,random.nextInt(2)),
-            new Ship(4,random.nextInt(2)),new Ship(4,random.nextInt(2)),
-            new Ship(5,random.nextInt(2))));
-
     //Makes the board initially empty
     public Board(int boardsize){
-        boardArray  = new ArrayList<BoardValues[][]>(Arrays.asList(board1, board2));
+        //boardArray  = new ArrayList<BoardValues[][]>(Arrays.asList(board1, board2));
         this.boardsize = boardsize;
-        board = new ArrayList<ArrayList<BoardValues>>();
+
+        this.boardArrayTest = board2;
+/*        board = new ArrayList<ArrayList<BoardValues>>();
         for(int i = 0; i < boardsize; i++){
             ArrayList<BoardValues> row = new ArrayList<BoardValues>();
             for(int j = 0; j < boardsize; j++){
@@ -67,8 +64,19 @@ public class Board{
             }
             board.set(i, row);
         }
-        randomizeShipPositions();//place ships onto empty board
+        randomizeShipPositions();//place ships onto empty board*/
     }
+
+    private BoardValues[][] getBoardArrayTest(){
+        return boardArrayTest;
+    }
+
+    private Random random = new Random();
+
+    private ArrayList<Ship> shipArray = new ArrayList<Ship>(Arrays.asList(
+            new Ship(3,random.nextInt(2)),new Ship(3,random.nextInt(2)),
+            new Ship(4,random.nextInt(2)),new Ship(4,random.nextInt(2)),
+            new Ship(5,random.nextInt(2))));
 
     //Getter
     public ArrayList<ArrayList<BoardValues>> getBoard(){

@@ -24,16 +24,17 @@ public class GridAdapter extends BaseAdapter {
     private Context context;
     //private final ArrayList<Ship> ships;
     private Board board;
+    private String[] test;
 
 
     //TODO: Need to decide if we should have BoardValues[][] or ArrayrList<ArrayList<BoardValues>>
     //Pros/cons in the agenda document, we are using arrayList
 
     //The constructor
-    public GridAdapter(Context context, Board board) {
+    public GridAdapter(Context context, String[] test) {
         this.context = context;
         //this.ships = ships;
-        this.board = board;
+        this.test = test;
     }
 
     //What to show, with the parameters so we can change the layout based on the different parameters
@@ -64,8 +65,8 @@ public class GridAdapter extends BaseAdapter {
             /*  TODO: * Connect a cell to a coordinate in a specific board
                 (need to use a reference to a board, because we might have two boards during a game)
             */
-            cell.setImageResource(R.drawable.empty);
 
+            cell.setImageResource(R.drawable.empty);
            // String mobile = ships[position];
 /*
             if (mobile.equals("Greece")) {
@@ -88,7 +89,7 @@ public class GridAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 0; //ships.length;
+        return test.length; //ships.length;
     }
 
     @Override

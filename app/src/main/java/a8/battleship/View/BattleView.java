@@ -57,7 +57,7 @@ public class BattleView extends ActionBarActivity{
         else{
             player = Constants.playerTwo;
         }
-        boardGridView.setAdapter(new GridAdapter(this, player.getBoard()));
+        //boardGridView.setAdapter(new GridAdapter(this, player.getBoard()));
 
 
 
