@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.ArrayList;
 import a8.battleship.Logic.BoardValues;
+import a8.battleship.Logic.Constants;
 import a8.battleship.Models.Board;
 import a8.battleship.R;
 import a8.battleship.Tokens.Ship;
@@ -68,7 +69,20 @@ public class GridAdapter extends BaseAdapter {
 
             cell.setImageResource(R.drawable.empty);
 
-           // String mobile = ships[position];
+            int x,y;
+            x=position % Constants.boardSize-1;
+
+            if(position < 10){
+                y = 0;
+            }
+            else{
+                y=(int) Integer.toString(position).charAt(0);
+            }
+
+            BoardValues cellView = board.getContentInACell(x,y);
+
+
+           // String cellView = ships[position];
 /*
             if (mobile.equals("Greece")) {
                 cell.setImageResource(R.drawable.greekflag);

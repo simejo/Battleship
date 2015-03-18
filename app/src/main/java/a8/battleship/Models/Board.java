@@ -151,4 +151,8 @@ public class Board{
         return boardsize * boardsize - 10;
     }
 
+    public BoardValues getContentInACell(int x, int y){
+        return board.get(y).get(x);
+    }
+
 }
