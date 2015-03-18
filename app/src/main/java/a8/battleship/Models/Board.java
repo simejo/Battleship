@@ -49,12 +49,11 @@ public class Board{
             {EMPTY,EMPTY,EMPTY,EMPTY,SOUTH,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY}};
 
     private Random random = new Random();
-    private Ship ship1 = new Ship(3,random.nextInt((1 - 0) + 1 ) + 0);
-    private Ship ship2 = new Ship(3,random.nextInt((1 - 0) + 1 ) + 0);
-    private Ship ship3 = new Ship(4,random.nextInt((1 - 0) + 1 ) + 0);
-    private Ship ship4 = new Ship(4,random.nextInt((1 - 0) + 1 ) + 0);
-    private Ship ship5 = new Ship(5,random.nextInt((1 - 0) + 1 ) + 0);
-    private ArrayList<Ship> shipArray = new ArrayList<Ship>(Arrays.asList(ship1,ship2,ship3,ship4,ship5));
+
+    private ArrayList<Ship> shipArray = new ArrayList<Ship>(Arrays.asList(
+            new Ship(3,random.nextInt(2)),new Ship(3,random.nextInt(2)),
+            new Ship(4,random.nextInt(2)),new Ship(4,random.nextInt(2)),
+            new Ship(5,random.nextInt(2))));
 
     //Makes the board initially empty
     public Board(int boardsize){
