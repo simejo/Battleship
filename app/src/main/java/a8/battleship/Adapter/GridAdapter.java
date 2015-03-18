@@ -71,18 +71,18 @@ public class GridAdapter extends BaseAdapter {
             //cell.setImageResource(R.drawable.empty);
 
             int x,y;
-            x=position % Constants.boardSize-1;
 
             if(position < 10){
                 y = 0;
+                x=position;
             }
             else{
-                y=(int) Integer.toString(position).charAt(0);
+                y=(int) position/Constants.boardSize;
+                x= position % Constants.boardSize;
+
             }
 
-            BoardValues cellView = board.getContentInACell(9,9);
-
-            Log.i("GridAdapter.class", cellView.toString());
+            BoardValues cellView = board.getContentInACell(x,y);
 
             if (cellView.equals(BoardValues.EAST)) {
                 cell.setImageResource(R.drawable.east);

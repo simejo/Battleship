@@ -39,7 +39,15 @@
         android:text="@string/onePlayer"
         android:id="@+id/radioButtonOnePlayer" />
 
-    <SeekBar
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="AI Difficulty"
+            android:id="@+id/textView4" />
+
+        <SeekBar
         android:id="@+id/seekBarAIChooser"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" />
