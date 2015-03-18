@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import a8.battleship.Logic.BoardValues;
+import a8.battleship.Models.Board;
 import a8.battleship.R;
 
 
@@ -21,15 +22,17 @@ import a8.battleship.R;
 public class GridAdapter extends BaseAdapter {
     private Context context;
     private final String[] ships;
+    private Board board;
 
 
     //TODO: Need to decide if we should have BoardValues[][] or ArrayrList<ArrayList<BoardValues>>
     //Pros/cons in the agenda document
 
     //The constructor
-    public GridAdapter(Context context, String[] ships) {
+    public GridAdapter(Context context, String[] ships, Board board) {
         this.context = context;
         this.ships = ships;
+        this.board = board;
     }
 
     //What to show, with the parameters so we can change the layout based on the different parameters
