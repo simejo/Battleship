@@ -25,15 +25,15 @@
         android:layout_height="wrap_content"
         android:text="@string/done"
         android:layout_gravity="center_horizontal"
-        android:layout_alignTop="@+id/buttonPlace"
-        android:layout_toRightOf="@+id/buttonPlace"
-        android:layout_toEndOf="@+id/buttonPlace" />
+        android:layout_alignTop="@+id/buttonRandomize"
+        android:layout_toRightOf="@+id/buttonRandomize"
+        android:layout_toEndOf="@+id/buttonRandomize" />
 
     <Button
-        android:id="@+id/buttonPlace"
+        android:id="@+id/buttonRandomize"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/placeBoats"
+        android:text="@string/randomizeShips"
         android:layout_marginBottom="46dp"
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/checkBox2"

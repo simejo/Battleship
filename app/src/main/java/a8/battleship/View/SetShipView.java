@@ -80,7 +80,7 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
 
 
         //Check who is playing, so we give the right parameter to the setAdapter-method
-        if (Constants.turn == "playerOne"){
+        if (Constants.turn){
             player = Constants.playerOne;
         }
         else{

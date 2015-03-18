@@ -21,6 +21,6 @@ public class Constants {
     public static Player playerTwo;
 
     //Player one or player two is playing
-    public static String turn;
+    public static boolean turn = true;
 
 }
