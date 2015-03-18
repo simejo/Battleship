@@ -66,20 +66,34 @@ public class GridAdapter extends BaseAdapter {
                 (need to use a reference to a board, because we might have two boards during a game)
             */
 
-            cell.setImageResource(R.drawable.empty);
+            //cell.setImageResource(R.drawable.empty);
 
-           // String mobile = ships[position];
-/*
-            if (mobile.equals("Greece")) {
-                cell.setImageResource(R.drawable.greekflag);
-            } else if (mobile.equals("Germany")) {
-                cell.setImageResource(R.drawable.germanflag);
-            } else if (mobile.equals("Italy")) {
-                cell.setImageResource(R.drawable.italianflag);
+           BoardValues cellView = null;
+
+            if (cellView.equals(BoardValues.EAST)) {
+                cell.setImageResource(R.drawable.east);
+            } else if (cellView.equals(BoardValues.EAST_DESTROYED)) {
+                cell.setImageResource(R.drawable.eastdestroyed);
+            } else if (cellView.equals(BoardValues.MIDDLE)) {
+                cell.setImageResource(R.drawable.middle);
+            } else if (cellView.equals(BoardValues.MIDDLE_DESTROYED)) {
+                cell.setImageResource(R.drawable.middledestroyed);
+            } else if (cellView.equals(BoardValues.NORTH)) {
+                cell.setImageResource(R.drawable.north);
+            } else if (cellView.equals(BoardValues.NORTH_DESTROYED)) {
+                cell.setImageResource(R.drawable.northdestroyed);
+            } else if (cellView.equals(BoardValues.SOUTH)){
+                cell.setImageResource(R.drawable.south);
+            } else if (cellView.equals(BoardValues.SOUTH_DESTROYED)) {
+                cell.setImageResource(R.drawable.southdestroyed);
+            } else if (cellView.equals(BoardValues.WEST)) {
+                cell.setImageResource(R.drawable.west);
+            } else if (cellView.equals(BoardValues.WEST_DESTROYED)) {
+                cell.setImageResource(R.drawable.westdestroyed);
             } else {
-                cell.setImageResource(R.drawable.britishflag);
+                cell.setImageResource(R.drawable.empty);
             }
-*/
+
         } else {
             gridView = (View) convertView;
         }
