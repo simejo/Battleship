@@ -70,9 +70,15 @@ public class Board{
         }
     }
 
-    //Getter
+    //Getter for the board
     public ArrayList<ArrayList<BoardValues>> getBoard(){
         return board;
+    }
+
+    //Getter for a specific value at the board, given x and y coordinates
+    public BoardValues getValue(int x, int y){
+        ArrayList<BoardValues> row = board.get(y);
+        return row.get(x);
     }
 
     //Change value in the board

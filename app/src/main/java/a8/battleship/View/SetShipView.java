@@ -60,6 +60,7 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
         initiateWidgets();
     }
 
+
     public void onClick(View v){
         if(v.getId() == R.id.buttonDone){
             startActivity(new Intent(SetShipView.this, BattleView.class));

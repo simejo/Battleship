@@ -38,8 +38,7 @@ public class GridAdapter extends BaseAdapter {
     //What to show, with the parameters so we can change the layout based on the different parameters
     //Position is the number in the array based on what cell you clicked
 
-    /*Can we give this method a parameter which is a board/player, and a coordinate?
-    So we can get the value in that cell? And then just call the
+    /* just call the
     cell.setImageResource(R.drawable.XXXXXXX);
     where XXXXXXX depends on what value the board has at a given coordinate?
      */
@@ -63,6 +62,8 @@ public class GridAdapter extends BaseAdapter {
             /*  TODO: * Connect a cell to a coordinate in a specific board
                 (need to use a reference to a board, because we might have two boards during a game)
             */
+
+            //TODO: Find correct
             cell.setImageResource(R.drawable.empty);
 
             String mobile = ships[position];
