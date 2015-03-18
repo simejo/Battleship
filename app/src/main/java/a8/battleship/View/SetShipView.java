@@ -86,7 +86,7 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
             player = Constants.playerTwo;
         }
         //setShipGridView.setAdapter(new GridAdapter(this, Constants.playerOne.getBoard()));
-        setShipGridView.setAdapter(new GridAdapter(this, letters));
+        setShipGridView.setAdapter(new GridAdapter(this, player.getBoard()));
 
         //Gives the adapter onItemClickListener
         setShipGridView.setOnItemClickListener(this);

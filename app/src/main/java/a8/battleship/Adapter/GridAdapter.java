@@ -31,9 +31,9 @@ public class GridAdapter extends BaseAdapter {
     //Pros/cons in the agenda document, we are using arrayList
 
     //The constructor
-    public GridAdapter(Context context, String[] test) {
+    public GridAdapter(Context context, Board board) {
         this.context = context;
-        //this.ships = ships;
+        this.board = board;
         this.test = test;
     }
 
@@ -67,6 +67,7 @@ public class GridAdapter extends BaseAdapter {
             */
 
             cell.setImageResource(R.drawable.empty);
+
            // String mobile = ships[position];
 /*
             if (mobile.equals("Greece")) {
@@ -89,7 +90,7 @@ public class GridAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return test.length; //ships.length;
+        return board.getLength(); //ships.length;
     }
 
     @Override

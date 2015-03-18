@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 import a8.battleship.Logic.BoardValues;
+import a8.battleship.Logic.Constants;
 import a8.battleship.Tokens.Ship;
 
 /**
@@ -55,14 +56,14 @@ public class Board{
         //boardArray  = new ArrayList<BoardValues[][]>(Arrays.asList(board1, board2));
         this.boardsize = boardsize;
 
-        this.boardArrayTest = board2;
-/*        board = new ArrayList<ArrayList<BoardValues>>();
+        //this.boardArrayTest = board2;
+        board = new ArrayList<ArrayList<BoardValues>>();
         for(int i = 0; i < boardsize; i++){
             ArrayList<BoardValues> row = new ArrayList<BoardValues>();
             for(int j = 0; j < boardsize; j++){
-                row.set(j, EMPTY);
+                row.add(EMPTY);
             }
-            board.set(i, row);
+            board.add(row);
         }
         randomizeShipPositions();//place ships onto empty board*/
     }
@@ -144,6 +145,10 @@ public class Board{
             }
             valid=false;//reset valid before continuing on for loop
         }
+    }
+
+    public int getLength(){
+        return boardsize * boardsize - 10;
     }
 
 }
