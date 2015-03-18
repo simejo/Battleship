@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
     <TextView
         android:id = "@+id/mainMenuTitle"
-        android:text="@string/switchPlayer"
+        android:text="@string/player"
         android:layout_width="fill_parent"
         android:textSize="25dp"
         android:layout_height="wrap_content"
@@ -31,7 +31,6 @@
         android:text="@string/switchPlayer"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
-
 
 
 </RelativeLayout>

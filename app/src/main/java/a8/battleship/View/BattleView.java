@@ -23,8 +23,6 @@ import a8.battleship.R;
  * Created by Kartefull on 11.03.2015.
  * This is the game/boardGridView/battleview.
  * All the logic needed to show the boardGridView on the screen
- *
- *
  */
 public class BattleView extends ActionBarActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
@@ -53,12 +51,13 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         boardGridView.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
 
         //Check who is playing, so we give the right parameter to the setAdapter-method
-        if (Constants.turn == "playerOne") {
+        if (Constants.turn){
             player = Constants.playerOne;
-        } else {
+        }
+        else{
             player = Constants.playerTwo;
         }
-        boardGridView.setAdapter(new GridAdapter(this, letters, player.getBoard()));
+        boardGridView.setAdapter(new GridAdapter(this, player.getBoard()));
 
 
         //TODO: Implement OnItemClickListener, and write the method in the class. See SetShipView as an example

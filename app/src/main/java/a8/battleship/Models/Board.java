@@ -1,10 +1,13 @@
 package a8.battleship.Models;
 
+import android.util.Log;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 import a8.battleship.Logic.BoardValues;
+import a8.battleship.Logic.Constants;
 import a8.battleship.Tokens.Ship;
 
 /**
@@ -21,6 +24,8 @@ public class Board{
     private BoardValues MIDDLE = BoardValues.MIDDLE;
 
     private ArrayList<ArrayList<BoardValues>> board;
+
+    private BoardValues[][] boardArrayTest;
 
     private ArrayList<BoardValues[][]> boardArray;
 
@@ -48,28 +53,35 @@ public class Board{
             {EMPTY,EMPTY,EMPTY,EMPTY,MIDDLE,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY},
             {EMPTY,EMPTY,EMPTY,EMPTY,SOUTH,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY}};
 
-    private Random random = new Random();
-    private Ship ship1 = new Ship(3,random.nextInt((1 - 0) + 1 ) + 0);
-    private Ship ship2 = new Ship(3,random.nextInt((1 - 0) + 1 ) + 0);
-    private Ship ship3 = new Ship(4,random.nextInt((1 - 0) + 1 ) + 0);
-    private Ship ship4 = new Ship(4,random.nextInt((1 - 0) + 1 ) + 0);
-    private Ship ship5 = new Ship(5,random.nextInt((1 - 0) + 1 ) + 0);
-    private ArrayList<Ship> shipArray = new ArrayList<Ship>(Arrays.asList(ship1,ship2,ship3,ship4,ship5));
-
     //Makes the board initially empty
     public Board(int boardsize){
-        boardArray  = new ArrayList<BoardValues[][]>(Arrays.asList(board1, board2));
+        //boardArray  = new ArrayList<BoardValues[][]>(Arrays.asList(board1, board2));
         this.boardsize = boardsize;
+
+        //this.boardArrayTest = board2;
         board = new ArrayList<ArrayList<BoardValues>>();
         for(int i = 0; i < boardsize; i++){
             ArrayList<BoardValues> row = new ArrayList<BoardValues>();
             for(int j = 0; j < boardsize; j++){
-                row.set(j, EMPTY);
+                row.add(EMPTY);
             }
-            board.set(i, row);
+            board.add(row);
         }
+        randomizeShipPositions();//place ships onto empty board*/
     }
 
+    private BoardValues[][] getBoardArrayTest(){
+        return boardArrayTest;
+    }
+
+    private Random random = new Random();
+
+    private ArrayList<Ship> shipArray = new ArrayList<Ship>(Arrays.asList(
+            new Ship(3,random.nextInt(2)),new Ship(3,random.nextInt(2)),
+            new Ship(4,random.nextInt(2)),new Ship(4,random.nextInt(2)),
+            new Ship(5,random.nextInt(2))));
+
+    //Getter
     //Getter for the board
     public ArrayList<ArrayList<BoardValues>> getBoard(){
         return board;
@@ -90,7 +102,7 @@ public class Board{
 
     public void placeShip(Ship ship, int y, int x){//only send in coordinates that are valid for said boat
         if( ship.getDirection()==0){//vertical
-            for (int i=y; i<ship.getBoat().size(); i++){//goes through all rows that need changing
+            for (int i=y; i<ship.getBoat().size()+y; i++){//goes through all rows that need changing
                 ArrayList<BoardValues> tempRow = board.get(i);//makes duplicate of current row
                 tempRow.set(x, ship.getBoat().get(i-y));//replaces piece with corresponding piece in ship
                 board.set(i, tempRow);//places temp row back in board
@@ -106,24 +118,61 @@ public class Board{
     }
 
     public void randomizeShipPositions(){
-        for(int i = 0; i < shipArray.size(); i++){
-            while(!valid){
+        for(int i = 0; i < shipArray.size(); i++){//traverse through the boats you are going to place
+            while(!valid){//while boat not placed
                 //make a random x value between the boardsize minus the length of the boat and zero
-                int x = random.nextInt((boardsize - shipArray.get(i).getBoat().size()));
+                int x = random.nextInt((boardsize - shipArray.get(i).getBoat().size()));//random place where it is okay to place boat on empty board
                 int y = random.nextInt((boardsize - shipArray.get(i).getBoat().size()));
 
                 if(shipArray.get(i).getDirection() == 0){//if vertical
-                    for(int j = 0; j< boardsize; j++){
-
+                    int counter = 0; //counter that increases if one of coordinates is filled
+                    for(int j = y; j< y+shipArray.get(i).getBoat().size(); j++){//check if all coordinates are empty
+                        ArrayList<BoardValues> tempRow = board.get(j);//retrieve row that you are checking
+                        if(tempRow.get(x)!=EMPTY){//check if empty
+                            counter++;//if not, increase counter
+                        }
+                    }
+                    if(counter==0){//if counter not increased, place boat
+                        placeShip(shipArray.get(i), y, x);
+                        valid=true;//exit while loop if boat is placed. 
                     }
                 }
                 else if(shipArray.get(i).getDirection() == 1){//if horizontal
-
+                    int counter = 0;//counter
+                    ArrayList<BoardValues> tempRow = board.get(y);//create temporary row to check
+                    for(int j = x; j<x+shipArray.get(i).getBoat().size(); j++){//traverse through x coordinates
+                        if(tempRow.get(j)!=EMPTY){//check if empty
+                            counter++;//if not, increase counter
+                        }
+                    }
+                    if(counter==0){//if counter not increased
+                        placeShip(shipArray.get(i), y, x);//place ship
+                        valid=true;//boat placed, exit while loop
+                    }
                 }
 
             }
-            random.nextInt((boardsize) + 1);
+            valid=false;//reset valid before continuing on for loop
         }
+    }
+
+    public int getLength(){
+        return boardsize * boardsize - 10;
+    }
+
+    public BoardValues getContentInACell(int x, int y){
+        return board.get(y).get(x);
+    }
+
+    public String toString(){
+        String holder = "";
+        for(int i =0;i<10;i++ ){
+            for(int j = 0; j < 10; j++){
+                holder += board.get(i).get(j).toString() + " ";
+            }
+            holder += "\n";
+        }
+        return holder;
     }
 
 }

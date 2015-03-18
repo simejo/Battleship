@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import a8.battleship.Logic.Constants;
+import a8.battleship.Models.Board;
 import a8.battleship.Models.Player;
 import a8.battleship.R;
 
@@ -56,8 +57,16 @@ public class StartView extends ActionBarActivity implements View.OnClickListener
         if(v.getId() == R.id.buttonStartGame){
             //TODO: Check if textView is empty or not
 
+            //Creates players
             Constants.playerOne = new Player(tvPlayerOne.getText().toString());
             Constants.playerTwo = new Player(tvPlayerTwo.getText().toString());
+
+            //Creates boards to players
+            Constants.playerOne.setBoard(new Board(Constants.boardSize));
+            Constants.playerTwo.setBoard(new Board(Constants.boardSize));
+
+            Constants.turn = true;
+
             startActivity(new Intent(StartView.this, SetShipView.class));
         }
 
