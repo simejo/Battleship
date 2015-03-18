@@ -51,7 +51,7 @@ public class BattleView extends ActionBarActivity{
         boardGridView.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
 
         //Check who is playing, so we give the right parameter to the setAdapter-method
-        if (Constants.turn == "playerOne"){
+        if (Constants.turn){
             player = Constants.playerOne;
         }
         else{
