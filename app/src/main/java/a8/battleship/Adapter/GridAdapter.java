@@ -29,7 +29,7 @@ public class GridAdapter extends BaseAdapter {
     private String[] test;
 
 
-    //TODO: Need to decide if we should have BoardValues[][] or ArrayrList<ArrayList<BoardValues>>
+    //TODO: Need to decide if we should have BoardValues[][] or ArrayList<ArrayList<BoardValues>>
     //Pros/cons in the agenda document, we are using arrayList
 
     //The constructor
@@ -68,8 +68,7 @@ public class GridAdapter extends BaseAdapter {
                 (need to use a reference to a board, because we might have two boards during a game)
             */
 
-            //cell.setImageResource(R.drawable.empty);
-
+            //converting position to coordinates
             int x,y;
 
             if(position < 10){
@@ -82,7 +81,11 @@ public class GridAdapter extends BaseAdapter {
 
             }
 
+            //Getting the BoardValue depending on the coordinates
+
             BoardValues cellView = board.getContentInACell(x,y);
+
+            //Converting BoardValues to images
 
             if (cellView.equals(BoardValues.EAST)) {
                 cell.setImageResource(R.drawable.east);
