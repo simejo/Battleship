@@ -13,6 +13,7 @@ import a8.battleship.Adapter.GridAdapter;
 import a8.battleship.Logic.BoardValues;
 import a8.battleship.Logic.Constants;
 import a8.battleship.Models.Board;
+import a8.battleship.Models.Player;
 import a8.battleship.R;
 
 
@@ -26,6 +27,9 @@ public class BattleView extends ActionBarActivity{
 
 
     GridView boardGridView;
+
+    //Need to know which Player is playing
+    Player player;
 
     //test data
     static final String[] letters = new String[] {
@@ -45,7 +49,15 @@ public class BattleView extends ActionBarActivity{
         boardGridView.setNumColumns(Constants.numOfCollumns);
 
         boardGridView.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
-        boardGridView.setAdapter(new GridAdapter(this, letters));
+
+        //Check who is playing, so we give the right parameter to the setAdapter-method
+        if (Constants.turn == "playerOne"){
+            player = Constants.playerOne;
+        }
+        else{
+            player = Constants.playerTwo;
+        }
+        boardGridView.setAdapter(new GridAdapter(this, letters, player.getBoard()));
 
 
 

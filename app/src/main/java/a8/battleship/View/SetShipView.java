@@ -15,6 +15,7 @@ import a8.battleship.Adapter.GridAdapter;
 import a8.battleship.Logic.BoardValues;
 import a8.battleship.Logic.Constants;
 import a8.battleship.Models.Board;
+import a8.battleship.Models.Player;
 import a8.battleship.R;
 
 /**
@@ -35,6 +36,9 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
     public Board boardModel;
 
     private Button buttonStartGame;
+
+    //Need to know which Player is playing
+    Player player;
 
     GridView setShipGridView;
 
@@ -77,7 +81,17 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
 
         setShipGridView.setNumColumns(Constants.numOfCollumns);
 
-        setShipGridView.setAdapter(new GridAdapter(this, letters));
+
+        //Check who is playing, so we give the right parameter to the setAdapter-method
+        if (Constants.turn == "playerOne"){
+            player = Constants.playerOne;
+        }
+        else{
+            player = Constants.playerTwo;
+        }
+        setShipGridView.setAdapter(new GridAdapter(this, letters, player.getBoard()));
+        //setShipGridView.setAdapter(new GridAdapter(this, letters));
+
         //Gives the adapter onItemClickListener
         setShipGridView.setOnItemClickListener(this);
     }
