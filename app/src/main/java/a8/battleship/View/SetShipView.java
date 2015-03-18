@@ -42,17 +42,6 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
 
     GridView setShipGridView;
 
-    //Test input
-    static final String[] letters = new String[] {
-            "A", "B", "C", "D", "E",
-            "F", "G", "H", "I", "J",
-            "K", "L", "M", "N", "O",
-            "P", "Q", "R", "S", "T",
-            "U", "V", "W", "X", "Y", "Z"};
-
-    static final BoardValues[] images = new BoardValues[] {
-    };
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_ship_view);
@@ -89,7 +78,7 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
         else{
             player = Constants.playerTwo;
         }
-        setShipGridView.setAdapter(new GridAdapter(this, letters, player.getBoard()));
+        setShipGridView.setAdapter(new GridAdapter(this, player.getBoard()));
         //setShipGridView.setAdapter(new GridAdapter(this, letters));
 
         //Gives the adapter onItemClickListener

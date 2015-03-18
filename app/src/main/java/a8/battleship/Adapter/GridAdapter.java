@@ -22,7 +22,7 @@ import a8.battleship.Tokens.Ship;
 
 public class GridAdapter extends BaseAdapter {
     private Context context;
-    private final ArrayList<Ship> ships;
+    //private final ArrayList<Ship> ships;
     private Board board;
 
 
@@ -30,9 +30,9 @@ public class GridAdapter extends BaseAdapter {
     //Pros/cons in the agenda document, we are using arrayList
 
     //The constructor
-    public GridAdapter(Context context, ArrayList<Ship> ships, Board board) {
+    public GridAdapter(Context context, Board board) {
         this.context = context;
-        this.ships = ships;
+        //this.ships = ships;
         this.board = board;
     }
 
