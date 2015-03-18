@@ -1,5 +1,7 @@
 package a8.battleship.Models;
 
+import android.util.Log;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -158,8 +160,8 @@ public class Board{
     public String toString(){
         String holder = "";
         for(int i =0;i<10;i++ ){
-            for(int j = 0; j < 10; i++){
-                holder += board.get(i).get(j).toString();
+            for(int j = 0; j < 10; j++){
+                holder += board.get(i).get(j).toString() + " ";
             }
             holder += "\n";
         }
