@@ -3,6 +3,7 @@ package a8.battleship.View;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -87,6 +88,7 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
         }
         //setShipGridView.setAdapter(new GridAdapter(this, Constants.playerOne.getBoard()));
         setShipGridView.setAdapter(new GridAdapter(this, player.getBoard()));
+        //Log.i("THE WHOLE BOARD: ", player.getBoard().toString());
 
         //Gives the adapter onItemClickListener
         setShipGridView.setOnItemClickListener(this);

@@ -4,6 +4,7 @@ package a8.battleship.Adapter;
  * Created by siljechristensen on 17.03.15.
  */
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,8 +80,9 @@ public class GridAdapter extends BaseAdapter {
                 y=(int) Integer.toString(position).charAt(0);
             }
 
-            BoardValues cellView = board.getContentInACell(x,y);
+            BoardValues cellView = board.getContentInACell(9,9);
 
+            Log.i("GridAdapter.class", cellView.toString());
 
             if (cellView.equals(BoardValues.EAST)) {
                 cell.setImageResource(R.drawable.east);

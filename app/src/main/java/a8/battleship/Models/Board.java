@@ -155,4 +155,15 @@ public class Board{
         return board.get(y).get(x);
     }
 
+    public String toString(){
+        String holder = "";
+        for(int i =0;i<10;i++ ){
+            for(int j = 0; j < 10; i++){
+                holder += board.get(i).get(j).toString();
+            }
+            holder += "\n";
+        }
+        return holder;
+    }
+
 }
