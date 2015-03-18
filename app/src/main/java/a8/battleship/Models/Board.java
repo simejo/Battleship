@@ -68,6 +68,7 @@ public class Board{
             }
             board.set(i, row);
         }
+        randomizeShipPositions();//place ships onto empty board
     }
 
     //Getter
@@ -100,23 +101,41 @@ public class Board{
     }
 
     public void randomizeShipPositions(){
-        for(int i = 0; i < shipArray.size(); i++){
-            while(!valid){
+        for(int i = 0; i < shipArray.size(); i++){//traverse through the boats you are going to place
+            while(!valid){//while boat not placed
                 //make a random x value between the boardsize minus the length of the boat and zero
-                int x = random.nextInt((boardsize - shipArray.get(i).getBoat().size()));
+                int x = random.nextInt((boardsize - shipArray.get(i).getBoat().size()));//random place where it is okay to place boat on empty board
                 int y = random.nextInt((boardsize - shipArray.get(i).getBoat().size()));
 
                 if(shipArray.get(i).getDirection() == 0){//if vertical
-                    for(int j = 0; j< boardsize; j++){
-
+                    int counter = 0; //counter that increases if one of coordinates is filled
+                    for(int j = y; j< y+shipArray.get(i).getBoat().size(); j++){//check if all coordinates are empty
+                        ArrayList<BoardValues> tempRow = board.get(j);//retrieve row that you are checking
+                        if(tempRow.get(x)!=EMPTY){//check if empty
+                            counter++;//if not, increase counter
+                        }
+                    }
+                    if(counter==0){//if counter not increased, place boat
+                        placeShip(shipArray.get(i), y, x);
+                        valid=true;
                     }
                 }
                 else if(shipArray.get(i).getDirection() == 1){//if horizontal
-
+                    int counter = 0;//counter
+                    ArrayList<BoardValues> tempRow = board.get(y);//create temporary row to check
+                    for(int j = x; j<x+shipArray.get(i).getBoat().size(); j++){//traverse through x coordinates
+                        if(tempRow.get(j)!=EMPTY){//check if empty
+                            counter++;//if not, increase counter
+                        }
+                    }
+                    if(counter==0){//if counter not increased
+                        placeShip(shipArray.get(i), y, x);//place ship
+                        valid=true;//boat placed, exit while loop
+                    }
                 }
 
             }
-            random.nextInt((boardsize) + 1);
+            valid=false;//reset valid before continuing on for loop
         }
     }
 
