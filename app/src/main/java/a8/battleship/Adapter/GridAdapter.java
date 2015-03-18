@@ -24,6 +24,7 @@ public class GridAdapter extends BaseAdapter {
 
 
     //TODO: Need to decide if we should have BoardValues[][] or ArrayrList<ArrayList<BoardValues>>
+    //Pros/cons in the agenda document
 
     //The constructor
     public GridAdapter(Context context, String[] ships) {
@@ -33,6 +34,12 @@ public class GridAdapter extends BaseAdapter {
 
     //What to show, with the parameters so we can change the layout based on the different parameters
     //Position is the number in the array based on what cell you clicked
+
+    /*Can we give this method a parameter which is a board/player, and a coordinate?
+    So we can get the value in that cell? And then just call the
+    cell.setImageResource(R.drawable.XXXXXXX);
+    where XXXXXXX depends on what value the board has at a given coordinate?
+     */
     public View getView(int position, View convertView, ViewGroup parent) {
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -50,6 +57,9 @@ public class GridAdapter extends BaseAdapter {
             cell.setAdjustViewBounds(true); //Added this to remove the extra space between the cells in the grid
 
             //TODO: implement the board so we can choose the correct pictures to the right enums
+            /*  TODO: * Connect a cell to a coordinate in a specific board
+                (need to use a reference to a board, because we might have two boards during a game)
+            */
             cell.setImageResource(R.drawable.empty);
 
             String mobile = ships[position];
@@ -65,12 +75,8 @@ public class GridAdapter extends BaseAdapter {
             }
 */
         } else {
-
             gridView = (View) convertView;
-
         }
-
-
         return gridView;
     }
 
