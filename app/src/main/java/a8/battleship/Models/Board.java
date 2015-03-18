@@ -116,7 +116,7 @@ public class Board{
                     }
                     if(counter==0){//if counter not increased, place boat
                         placeShip(shipArray.get(i), y, x);
-                        valid=true;
+                        valid=true;//exit while loop if boat is placed. 
                     }
                 }
                 else if(shipArray.get(i).getDirection() == 1){//if horizontal
