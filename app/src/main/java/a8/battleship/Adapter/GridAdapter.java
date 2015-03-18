@@ -10,10 +10,11 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import java.util.ArrayList;
 import a8.battleship.Logic.BoardValues;
 import a8.battleship.Models.Board;
 import a8.battleship.R;
+import a8.battleship.Tokens.Ship;
 
 
 //The adapter is  a description of how the cell will look like (in this case in the gridView)
@@ -21,15 +22,15 @@ import a8.battleship.R;
 
 public class GridAdapter extends BaseAdapter {
     private Context context;
-    private final String[] ships;
+    private final ArrayList<Ship> ships;
     private Board board;
 
 
     //TODO: Need to decide if we should have BoardValues[][] or ArrayrList<ArrayList<BoardValues>>
-    //Pros/cons in the agenda document
+    //Pros/cons in the agenda document, we are using arrayList
 
     //The constructor
-    public GridAdapter(Context context, String[] ships, Board board) {
+    public GridAdapter(Context context, ArrayList<Ship> ships, Board board) {
         this.context = context;
         this.ships = ships;
         this.board = board;
@@ -65,7 +66,7 @@ public class GridAdapter extends BaseAdapter {
             */
             cell.setImageResource(R.drawable.empty);
 
-            String mobile = ships[position];
+           // String mobile = ships[position];
 /*
             if (mobile.equals("Greece")) {
                 cell.setImageResource(R.drawable.greekflag);
@@ -87,7 +88,7 @@ public class GridAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return ships.length;
+        return 0; //ships.length;
     }
 
     @Override
