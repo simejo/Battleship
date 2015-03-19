@@ -1,5 +1,7 @@
 package a8.battleship.Models;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -25,29 +27,7 @@ public class Board{
 
     private ArrayList<BoardValues[][]> boardArray;
 
-    //Making 2 standard boards
-    public BoardValues[][] board1 = new BoardValues[][]{
-            {NORTH,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY},
-            {MIDDLE,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY},
-            {SOUTH,EMPTY,WEST,MIDDLE,MIDDLE,MIDDLE,EAST,EMPTY,EMPTY,EMPTY},
-            {EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY},
-            {EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY},
-            {EMPTY,EMPTY,EMPTY,EMPTY,NORTH,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY},
-            {EMPTY,EMPTY,EMPTY,EMPTY,MIDDLE,EMPTY,EMPTY,WEST,MIDDLE,EAST},
-            {EMPTY,EMPTY,EMPTY,EMPTY,MIDDLE,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY},
-            {EMPTY,EMPTY,EMPTY,EMPTY,SOUTH,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY},
-            {EMPTY,EMPTY,EMPTY,EMPTY,WEST,MIDDLE,MIDDLE,EAST,EMPTY,EMPTY}};
-    public BoardValues[][] board2 = new BoardValues[][]{
-            {EMPTY,EMPTY,NORTH,NORTH,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY},
-            {EMPTY,EMPTY,MIDDLE,MIDDLE,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY},
-            {EMPTY,EMPTY,MIDDLE,SOUTH,EMPTY,EMPTY,WEST,MIDDLE,MIDDLE,EAST},
-            {EMPTY,EMPTY,SOUTH,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,NORTH},
-            {EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,MIDDLE},
-            {EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,MIDDLE},
-            {EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,MIDDLE},
-            {EMPTY,EMPTY,EMPTY,EMPTY,NORTH,EMPTY,EMPTY,EMPTY,EMPTY,SOUTH},
-            {EMPTY,EMPTY,EMPTY,EMPTY,MIDDLE,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY},
-            {EMPTY,EMPTY,EMPTY,EMPTY,SOUTH,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY}};
+    private String className = "Board.java";
 
     //Makes the board initially empty
     public Board(int boardsize){
@@ -115,10 +95,12 @@ public class Board{
 
     public void randomizeShipPositions(){
         for(int i = 0; i < shipArray.size(); i++){//traverse through the boats you are going to place
+            int x = 0;
+            int y = 0;
             while(!valid){//while boat not placed
                 //make a random x value between the boardsize minus the length of the boat and zero
-                int x = random.nextInt((boardsize - shipArray.get(i).getShip().size()));//random place where it is okay to place boat on empty board
-                int y = random.nextInt((boardsize - shipArray.get(i).getShip().size()));
+                x = random.nextInt((boardsize - shipArray.get(i).getShip().size()));//random place where it is okay to place boat on empty board
+                y = random.nextInt((boardsize - shipArray.get(i).getShip().size()));
 
                 if(shipArray.get(i).getDirection() == 0){//if vertical
                     int counter = 0; //counter that increases if one of coordinates is filled
@@ -149,7 +131,13 @@ public class Board{
 
             }
             valid=false;//reset valid before continuing on for loop
+            shipArray.get(i).setShipPosition(x,y);
         }
+        //TEST to check if the ships get the correct positions
+        for(int i = 0; i < shipArray.size(); i++){
+            Log.i(className, "    public void randomizeShipPositions() - boat " + i + " has x = " + shipArray.get(i).getX() + " and y =" +shipArray.get(i).getY() );
+        }
+        Log.i(className, board.toString());
     }
 
     public int getLength(){

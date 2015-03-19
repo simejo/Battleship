@@ -129,13 +129,16 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         else if (value == BoardValues.NORTH){
             opponentBoard.changeBoardValue(x,y,BoardValues.NORTH_DESTROYED);
         }
-        else if (value == BoardValues.MIDDLE){
-            opponentBoard.changeBoardValue(x,y,BoardValues.MIDDLE_DESTROYED);
+        else if (value == BoardValues.MIDDLE_HORIZONTAL){
+            opponentBoard.changeBoardValue(x,y,BoardValues.MIDDLE_HORIZONTAL_DESTROYED);
+        }
+        else if (value == BoardValues.MIDDLE_VERTICAL){
+            opponentBoard.changeBoardValue(x,y,BoardValues.MIDDLE_VERTICAL_DESTROYED);
         }
         //Checks if it was a valid shot
-        else if (value == BoardValues.MIDDLE_DESTROYED | value == BoardValues.NORTH_DESTROYED |
-                value == BoardValues.WEST_DESTROYED | value == BoardValues.SOUTH_DESTROYED
-                | value == BoardValues.EAST_DESTROYED){
+        else if (value == BoardValues.MIDDLE_HORIZONTAL_DESTROYED |value == BoardValues.MIDDLE_HORIZONTAL_DESTROYED |
+                value == BoardValues.NORTH_DESTROYED | value == BoardValues.WEST_DESTROYED |
+                value == BoardValues.SOUTH_DESTROYED | value == BoardValues.EAST_DESTROYED){
             Log.i(className, "Nope, you have already shot here");
             Toast toast = Toast.makeText(getApplicationContext(), "You have already shot here!",
                     Toast.LENGTH_SHORT);
