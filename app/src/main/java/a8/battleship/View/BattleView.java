@@ -125,6 +125,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         }
         else if (value == BoardValues.WEST){
             opponentBoard.changeBoardValue(x,y,BoardValues.WEST_DESTROYED);
+
         }
         else if (value == BoardValues.NORTH){
             opponentBoard.changeBoardValue(x,y,BoardValues.NORTH_DESTROYED);

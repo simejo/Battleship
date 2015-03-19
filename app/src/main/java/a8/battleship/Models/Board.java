@@ -29,6 +29,16 @@ public class Board{
 
     private String className = "Board.java";
 
+    private BoardValues[][] getBoardArrayTest(){
+        return boardArrayTest;
+    }
+
+    private Random random = new Random();
+
+    private ArrayList<Ship> shipArray = new ArrayList<Ship>(Arrays.asList(
+            new Ship(3,random.nextInt(2)),new Ship(3,random.nextInt(2)),
+            new Ship(4,random.nextInt(2)),new Ship(4,random.nextInt(2)),
+            new Ship(5,random.nextInt(2))));
     //Makes the board initially empty
     public Board(int boardsize){
         //boardArray  = new ArrayList<BoardValues[][]>(Arrays.asList(board1, board2));
@@ -46,16 +56,7 @@ public class Board{
         randomizeShipPositions();//place ships onto empty board*/
     }
 
-    private BoardValues[][] getBoardArrayTest(){
-        return boardArrayTest;
-    }
 
-    private Random random = new Random();
-
-    private ArrayList<Ship> shipArray = new ArrayList<Ship>(Arrays.asList(
-            new Ship(3,random.nextInt(2)),new Ship(3,random.nextInt(2)),
-            new Ship(4,random.nextInt(2)),new Ship(4,random.nextInt(2)),
-            new Ship(5,random.nextInt(2))));
 
     //Getter
     //Getter for the board
@@ -133,8 +134,9 @@ public class Board{
             valid=false;//reset valid before continuing on for loop
             shipArray.get(i).setShipPosition(x,y);
         }
-        //TEST to check if the ships get the correct positions
         for(int i = 0; i < shipArray.size(); i++){
+
+            //TEST to check if the ships get the correct positions
             Log.i(className, "    public void randomizeShipPositions() - boat " + i + " has x = " + shipArray.get(i).getX() + " and y =" +shipArray.get(i).getY() );
         }
         Log.i(className, board.toString());
