@@ -47,7 +47,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         boardGridView.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
 
         //Check who is playing, so we give the right parameter to the setAdapter-method
-        if (Constants.turn){
+        if (Constants.turn == "playerOne"){
             player = Constants.playerOne;
         }
         else{
@@ -87,7 +87,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         //Finding x
         int x = position%boardSize;
         //Need to get the opponents board
-        if (Constants.turn) {
+        if (Constants.turn == "playerOne") {
             opponentBoard = Constants.playerTwo.getBoard();
         } else {
             opponentBoard = Constants.playerOne.getBoard();

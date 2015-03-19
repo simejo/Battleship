@@ -20,8 +20,13 @@ public class Constants {
 
     public static Player playerOne;
     public static Player playerTwo;
+    public static Player playerAI;
+
+    //Selected game mode
+
+    public static String gameMode;
 
     //Player one or player two is playing
-    public static boolean turn = true;
+    public static String turn;
 
 }

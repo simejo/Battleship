@@ -34,7 +34,7 @@ public class SwitchView extends ActionBarActivity implements View.OnClickListene
 
         //Functionality for button
         if(v.getId() == R.id.buttonSwitchPlayer){
-            if(Constants.turn){
+            if(Constants.turn == "playerOne"){
                 tvPlayer.setText("Player Ones Turn");
                 startActivity(new Intent(SwitchView.this, BattleView.class));
             }
