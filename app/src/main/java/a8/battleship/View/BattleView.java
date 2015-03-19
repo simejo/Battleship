@@ -57,11 +57,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
 
         //TODO: Implement OnItemClickListener, and write the method in the class. See SetShipView as an example
         //Which means that the following lines must be rewritten a bit
-        boardGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView parent, View v, int position, long id) {
-                //Toast.makeText(getApplicationContext(), ((TextView) v).getText(), Toast.LENGTH_SHORT).show();
-            }
-        });
+        boardGridView.setOnItemClickListener(this);
 
     }
 
@@ -116,7 +112,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         }
         return y;
     }
-    //Help method to onItemClick() - Performs the correct action
+    //Help method to onItemClick() - Performs the correct action, and changes the Board-model
     public void doAction(BoardValues value, Board opponentBoard, int x, int y){
         if (value == BoardValues.EAST){
             opponentBoard.changeBoardValue(x,y,BoardValues.EAST_DESTROYED);
@@ -139,11 +135,12 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                 value == BoardValues.WEST_DESTROYED | value == BoardValues.SOUTH_DESTROYED
                 | value == BoardValues.EAST_DESTROYED){
             Log.i(className, "Nope, you have already shot here");
-            //TODO: Some action with
+
         }
         else if (value == BoardValues.EMPTY){
             Log.i(className, "LOL, you missed");
             //TODO:
+
         }
 
     }
