@@ -31,13 +31,8 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
     //Need to know which Player is playing
     Player player;
 
-    //Test data
-    static final String[] letters = new String[]{
-            "A", "B", "C", "D", "E",
-            "F", "G", "H", "I", "J",
-            "K", "L", "M", "N", "O",
-            "P", "Q", "R", "S", "T",
-            "U", "V", "W", "X", "Y", "Z"};
+    //String class name
+    private String className = "BattleView.java";
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,7 +90,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         //Finding x
         int x = position%boardSize;
         //Need to get the opponents board
-        if (Constants.turn == true) {
+        if (Constants.turn) {
             opponentBoard = Constants.playerTwo.getBoard();
         } else {
             opponentBoard = Constants.playerOne.getBoard();
@@ -143,11 +138,12 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         else if (value == BoardValues.MIDDLE_DESTROYED | value == BoardValues.NORTH_DESTROYED |
                 value == BoardValues.WEST_DESTROYED | value == BoardValues.SOUTH_DESTROYED
                 | value == BoardValues.EAST_DESTROYED){
-            Log.i("Nope", "You have already shot here");
+            Log.i(className, "Nope, you have already shot here");
             //TODO: Some action with
         }
         else if (value == BoardValues.EMPTY){
-            Log.i("LOL", "You missed");
+            Log.i(className, "LOL, you missed");
+            //TODO:
         }
 
     }
