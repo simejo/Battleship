@@ -14,5 +14,7 @@ public enum BoardValues {
     SOUTH_DESTROYED,
     EAST_DESTROYED,
     WEST_DESTROYED,
-    MIDDLE_DESTROYED
+    MIDDLE_DESTROYED,
+    MISSED,
+    HIT
 }

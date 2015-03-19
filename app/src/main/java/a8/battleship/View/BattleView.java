@@ -95,7 +95,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         //Finding x
         int x = position%boardSize;
         //Need to get the opponents board
-        if (Constants.turn == "playerOne") {
+        if (Constants.turn == true) {
             opponentBoard = Constants.playerTwo.getBoard();
         } else {
             opponentBoard = Constants.playerOne.getBoard();
