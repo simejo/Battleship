@@ -28,7 +28,8 @@ import a8.battleship.R;
  */
 public class BattleView extends ActionBarActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
-    GridView boardGridView;
+    private GridView boardGridView;
+    private TextView tvBattleTitle;
 
     //Need to know which Player is playing
     Player player;
@@ -42,6 +43,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         setContentView(R.layout.activity_battle_view);
 
         boardGridView = (GridView) findViewById(R.id.boardGridView);
+        tvBattleTitle = (TextView) findViewById(R.id.textBattleTitle);
 
         boardGridView.setNumColumns(Constants.numOfCollumns);
 
@@ -50,11 +52,17 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         //Check who is playing, so we give the right parameter to the setAdapter-method
         if (Constants.turn == "playerOne"){
             player = Constants.playerOne;
+            Constants.opponent = Constants.playerTwo;
+            tvBattleTitle.setText(Constants.playerOne.getName() + "'s turn to battle");
+
         }
         else{
             player = Constants.playerTwo;
+            Constants.opponent = Constants.playerOne;
+            tvBattleTitle.setText(Constants.playerTwo.getName() + "'s turn to battle");
+
         }
-        boardGridView.setAdapter(new GridAdapter(this, player.getBoard()));
+        boardGridView.setAdapter(new GridAdapter(this, Constants.opponent.getBoard()));
 
 
         //TODO: Implement OnItemClickListener, and write the method in the class. See SetShipView as an example
