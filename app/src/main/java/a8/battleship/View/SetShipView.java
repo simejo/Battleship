@@ -37,6 +37,7 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
     public Board boardModel;
 
     private Button buttonStartGame, buttonRandomizeShips;
+    private TextView tvHeader;
 
     //Need to know which Player is playing
     Player player;
@@ -53,16 +54,32 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
 
     public void onClick(View v){
         if(v.getId() == R.id.buttonDone){
-            if(Constants.turn == "playerTwo"){
-                startActivity(new Intent(SetShipView.this, SetShipView.class));
-            }
-            else{
+            if (Constants.gameMode == "onePlayer"){
+                Constants.playerAI.setBoard(new Board(Constants.boardSize));
+                Constants.turn = "playerOne";
                 startActivity(new Intent(SetShipView.this, BattleView.class));
+            }
+            else if(Constants.gameMode == "twoPlayer"){
+                if(Constants.turn == "playerTwo") {
+                    Constants.turn = "playerOne";
+                    startActivity(new Intent(SetShipView.this, BattleView.class));
+                }
+                else {
+                    Constants.turn = "playerTwo";
+                    startActivity(new Intent(SetShipView.this, SetShipView.class));
+                }
             }
         }
         else if(v.getId() == R.id.buttonRandomize){
-            Constants.playerOne.setBoard(new Board(Constants.boardSize));
-            setShipGridView.setAdapter(new GridAdapter(this, player.getBoard()));
+            if(Constants.turn == "playerOne"){
+                Constants.playerOne.setBoard(new Board(Constants.boardSize));
+                setShipGridView.setAdapter(new GridAdapter(this, player.getBoard()));
+            }
+            else{
+                Constants.playerTwo.setBoard(new Board(Constants.boardSize));
+                setShipGridView.setAdapter(new GridAdapter(this, player.getBoard()));
+
+            }
         }
     }
 
@@ -74,6 +91,9 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
 
     //Connecting with the XML-objects
     public void initiateWidgets(){
+
+        tvHeader = (TextView) findViewById(R.id.mainMenuTitle);
+
         buttonStartGame = (Button) findViewById(R.id.buttonDone);
         buttonRandomizeShips = (Button) findViewById(R.id.buttonRandomize);
 
@@ -86,16 +106,15 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
 
 
         //Check who is playing, so we give the right parameter to the setAdapter-method
-        if (Constants.turn == "playerOne"){
-            player = Constants.playerOne;
-        }
-        else{
+        if (Constants.turn == "playerTwo"){
+            tvHeader.setText("Place boats for " + Constants.playerTwo.getName());
             player = Constants.playerTwo;
         }
+        else{
+            tvHeader.setText("Place boats for " + Constants.playerOne.getName());
+            player = Constants.playerOne;
+        }
         setShipGridView.setAdapter(new GridAdapter(this, player.getBoard()));
-
-        //Printing the whole board
-        Log.i("THE WHOLE BOARD: ", player.getBoard().toString());
 
         //Gives the adapter onItemClickListener
         setShipGridView.setOnItemClickListener(this);
