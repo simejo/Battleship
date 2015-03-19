@@ -1,5 +1,7 @@
 package a8.battleship.Models;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -25,30 +27,18 @@ public class Board{
 
     private ArrayList<BoardValues[][]> boardArray;
 
-    //Making 2 standard boards
-    public BoardValues[][] board1 = new BoardValues[][]{
-            {NORTH,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY},
-            {MIDDLE,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY},
-            {SOUTH,EMPTY,WEST,MIDDLE,MIDDLE,MIDDLE,EAST,EMPTY,EMPTY,EMPTY},
-            {EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY},
-            {EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY},
-            {EMPTY,EMPTY,EMPTY,EMPTY,NORTH,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY},
-            {EMPTY,EMPTY,EMPTY,EMPTY,MIDDLE,EMPTY,EMPTY,WEST,MIDDLE,EAST},
-            {EMPTY,EMPTY,EMPTY,EMPTY,MIDDLE,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY},
-            {EMPTY,EMPTY,EMPTY,EMPTY,SOUTH,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY},
-            {EMPTY,EMPTY,EMPTY,EMPTY,WEST,MIDDLE,MIDDLE,EAST,EMPTY,EMPTY}};
-    public BoardValues[][] board2 = new BoardValues[][]{
-            {EMPTY,EMPTY,NORTH,NORTH,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY},
-            {EMPTY,EMPTY,MIDDLE,MIDDLE,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY},
-            {EMPTY,EMPTY,MIDDLE,SOUTH,EMPTY,EMPTY,WEST,MIDDLE,MIDDLE,EAST},
-            {EMPTY,EMPTY,SOUTH,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,NORTH},
-            {EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,MIDDLE},
-            {EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,MIDDLE},
-            {EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,MIDDLE},
-            {EMPTY,EMPTY,EMPTY,EMPTY,NORTH,EMPTY,EMPTY,EMPTY,EMPTY,SOUTH},
-            {EMPTY,EMPTY,EMPTY,EMPTY,MIDDLE,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY},
-            {EMPTY,EMPTY,EMPTY,EMPTY,SOUTH,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY}};
+    private String className = "Board.java";
 
+    private BoardValues[][] getBoardArrayTest(){
+        return boardArrayTest;
+    }
+
+    private Random random = new Random();
+
+    private ArrayList<Ship> shipArray = new ArrayList<Ship>(Arrays.asList(
+            new Ship(3,random.nextInt(2)),new Ship(3,random.nextInt(2)),
+            new Ship(4,random.nextInt(2)),new Ship(4,random.nextInt(2)),
+            new Ship(5,random.nextInt(2))));
     //Makes the board initially empty
     public Board(int boardsize){
         //boardArray  = new ArrayList<BoardValues[][]>(Arrays.asList(board1, board2));
@@ -66,16 +56,7 @@ public class Board{
         randomizeShipPositions();//place ships onto empty board*/
     }
 
-    private BoardValues[][] getBoardArrayTest(){
-        return boardArrayTest;
-    }
 
-    private Random random = new Random();
-
-    private ArrayList<Ship> shipArray = new ArrayList<Ship>(Arrays.asList(
-            new Ship(3,random.nextInt(2)),new Ship(3,random.nextInt(2)),
-            new Ship(4,random.nextInt(2)),new Ship(4,random.nextInt(2)),
-            new Ship(5,random.nextInt(2))));
 
     //Getter
     //Getter for the board
@@ -115,10 +96,12 @@ public class Board{
 
     public void randomizeShipPositions(){
         for(int i = 0; i < shipArray.size(); i++){//traverse through the boats you are going to place
+            int x = 0;
+            int y = 0;
             while(!valid){//while boat not placed
                 //make a random x value between the boardsize minus the length of the boat and zero
-                int x = random.nextInt((boardsize - shipArray.get(i).getShip().size()));//random place where it is okay to place boat on empty board
-                int y = random.nextInt((boardsize - shipArray.get(i).getShip().size()));
+                x = random.nextInt((boardsize - shipArray.get(i).getShip().size()));//random place where it is okay to place boat on empty board
+                y = random.nextInt((boardsize - shipArray.get(i).getShip().size()));
 
                 if(shipArray.get(i).getDirection() == 0){//if vertical
                     int counter = 0; //counter that increases if one of coordinates is filled
@@ -149,7 +132,14 @@ public class Board{
 
             }
             valid=false;//reset valid before continuing on for loop
+            shipArray.get(i).setShipPosition(x,y);
         }
+        for(int i = 0; i < shipArray.size(); i++){
+
+            //TEST to check if the ships get the correct positions
+            Log.i(className, "    public void randomizeShipPositions() - boat " + i + " has x = " + shipArray.get(i).getX() + " and y =" +shipArray.get(i).getY() );
+        }
+        Log.i(className, board.toString());
     }
 
     public int getLength(){
