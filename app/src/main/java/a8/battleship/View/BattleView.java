@@ -34,6 +34,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
     //String class name
     private String className = "BattleView.java";
 
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_battle_view);
@@ -90,8 +91,9 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         } else {
             opponentBoard = Constants.playerOne.getBoard();
         }
-        //Checks what value it is, and performs the correct action
+        //Check if this player hit a boat, and execute correct action
         BoardValues value = opponentBoard.getValue(x,y);
+        //Checks what value it is, and performs the correct action
         doAction(value, opponentBoard, x, y);
 
     }
