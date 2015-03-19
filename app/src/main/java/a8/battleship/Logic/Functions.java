@@ -12,9 +12,20 @@ public class Functions {
      *
      */
     /*public int[] findShipPosition(int x, int y, BoardValues value){
-        if (value == BoardValues.EAST | value == BoardValues.MIDDLE_HORIZONTAL){
-            findShipPosition(int )
+        if (value == BoardValues.EAST){
+            findShipPosition(x-1, y, value);
+        } else if (value == BoardValues.MIDDLE_HORIZONTAL){
+            findShipPosition(x-1, y, value);
         }
+        else if (value == BoardValues.MIDDLE_VERTICAL){
+            findShipPosition(x, y-1, value);
+        }
+        else if (value == BoardValues.SOUTH | value == BoardValues.SOUTH_DESTROYED){
+            findShipPosition(x, y-1, value);
+        }
+        else if (value == BoardValues.NORTH )
+
+
 
     }*/
 }
