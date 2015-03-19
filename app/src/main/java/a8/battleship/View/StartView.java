@@ -58,14 +58,27 @@ public class StartView extends ActionBarActivity implements View.OnClickListener
             //TODO: Check if textView is empty or not
 
             //Creates players
+
+            if(rbTwoPlayer.isChecked()){
+
+                //Creates player two
+                Constants.playerTwo = new Player(tvPlayerTwo.getText().toString());
+                Constants.playerTwo.setBoard(new Board(Constants.boardSize));
+                Constants.gameMode = "twoPlayer";
+            }
+
+            else{
+                //Creates player AI
+                Constants.playerAI = new Player("AI Bot");
+                Constants.playerAI.setBoard(new Board(Constants.boardSize));
+                Constants.gameMode = "onePlayer";
+            }
+
+            //Creates Player One
             Constants.playerOne = new Player(tvPlayerOne.getText().toString());
-            Constants.playerTwo = new Player(tvPlayerTwo.getText().toString());
-
-            //Creates boards to players
             Constants.playerOne.setBoard(new Board(Constants.boardSize));
-            Constants.playerTwo.setBoard(new Board(Constants.boardSize));
 
-            Constants.turn = true;
+            Constants.turn = "playerOne";
 
             startActivity(new Intent(StartView.this, SetShipView.class));
         }
