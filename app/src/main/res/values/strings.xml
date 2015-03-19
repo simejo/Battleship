@@ -47,6 +47,8 @@
 
     //used in activity_battle_view.xml
     <string name="titleBattle">Battle</string>
+    <string name="confirmShot">Confirm shot</string>
+    <string name="nextPlayer">Next player</string>
 
 
 
