@@ -69,6 +69,10 @@ public class Board{
         ArrayList<BoardValues> row = board.get(y);
         return row.get(x);
     }
+    //Getter for the shipArray
+    public ArrayList<Ship> getShipArray(){
+        return shipArray;
+    }
 
     //Change value in the board
     public void changeBoardValue(int y, int x, BoardValues value){ // remember range for y and x is 0 to n-1 not 1 to n
