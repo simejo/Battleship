@@ -49,12 +49,8 @@ public class Functions {
                 //Checking the ship
                 Ship ship = shipsList.get(i);
                 if (x == ship.getX() && y == ship.getY()){
-<<<<<<< HEAD
                     //DECREASING PARTS LEFT
                     ship.decreasePartsLeft();
-=======
-                    //ship.decreasePartsLeft();
->>>>>>> origin/master
                 }
             }
         }

@@ -57,8 +57,14 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
 
         //Check who is playing, so we give the right parameter to the setAdapter-method
         if (Constants.turn == "playerOne"){
+            if(Constants.gameMode == "onePlayer"){
+               Constants.opponent = Constants.playerAI;
+
+            }
+            else{
+                Constants.opponent = Constants.playerTwo;
+            }
             player = Constants.playerOne;
-            Constants.opponent = Constants.playerTwo;
             tvBattleTitle.setText(Constants.playerOne.getName() + "'s turn to battle");
 
         }
@@ -68,6 +74,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             tvBattleTitle.setText(Constants.playerTwo.getName() + "'s turn to battle");
 
         }
+        //TODO: make an else if player is AI (?)
 
         //Connecting the grids with the adapter
         boardGridView.setAdapter(new GridAdapter(this, Constants.opponent.getBoard()));
@@ -105,7 +112,12 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         int x = position%boardSize;
         //Need to get the opponents board
         if (Constants.turn == "playerOne") {
-            opponentBoard = Constants.playerTwo.getBoard();
+            if(Constants.gameMode == "onePlayer"){
+                opponentBoard = Constants.playerAI.getBoard();
+            }
+            else{
+                opponentBoard = Constants.playerTwo.getBoard();
+            }
         } else {
             opponentBoard = Constants.playerOne.getBoard();
         }
@@ -132,7 +144,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
     }
     //Help method to onItemClick() - Performs the correct action, and changes the Board-model
     public void doAction(BoardValues value, Board opponentBoard, int x, int y){
-        Log.i(className, Constants.playerTwo.getBoard().toString());    //Printing board for player 2
+        //Log.i(className, Constants.playerTwo.getBoard().toString());    //Printing board for player 2
         if (value == BoardValues.EAST){
             Functions.findAndUpdateShip(x,y,Constants.opponent);        //Will update partsLeft in the correct ship (hopefully)
             opponentBoard.changeBoardValue(x, y, BoardValues.EAST_DESTROYED);
