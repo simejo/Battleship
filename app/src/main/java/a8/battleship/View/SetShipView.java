@@ -34,13 +34,6 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
     The board should be instantiate in the Board class (I think).
     */
 
-    static final String[] letters = new String[] {
-            "A", "B", "C", "D", "E",
-            "F", "G", "H", "I", "J",
-            "K", "L", "M", "N", "O",
-            "P", "Q", "R", "S", "T",
-            "U", "V", "W", "X", "Y", "Z"};
-
     public Board boardModel;
 
     private Button buttonStartGame, buttonRandomizeShips;
@@ -60,7 +53,12 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
 
     public void onClick(View v){
         if(v.getId() == R.id.buttonDone){
-            startActivity(new Intent(SetShipView.this, BattleView.class));
+            if(Constants.turn == "playerTwo"){
+                startActivity(new Intent(SetShipView.this, SetShipView.class));
+            }
+            else{
+                startActivity(new Intent(SetShipView.this, BattleView.class));
+            }
         }
         else if(v.getId() == R.id.buttonRandomize){
             Constants.playerOne.setBoard(new Board(Constants.boardSize));
@@ -88,13 +86,12 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
 
 
         //Check who is playing, so we give the right parameter to the setAdapter-method
-        if (Constants.turn){
+        if (Constants.turn == "playerOne"){
             player = Constants.playerOne;
         }
         else{
             player = Constants.playerTwo;
         }
-        //setShipGridView.setAdapter(new GridAdapter(this, Constants.playerOne.getBoard()));
         setShipGridView.setAdapter(new GridAdapter(this, player.getBoard()));
 
         //Printing the whole board

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -34,6 +35,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
     //String class name
     private String className = "BattleView.java";
 
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_battle_view);
@@ -45,7 +47,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         boardGridView.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
 
         //Check who is playing, so we give the right parameter to the setAdapter-method
-        if (Constants.turn){
+        if (Constants.turn == "playerOne"){
             player = Constants.playerOne;
         }
         else{
@@ -56,11 +58,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
 
         //TODO: Implement OnItemClickListener, and write the method in the class. See SetShipView as an example
         //Which means that the following lines must be rewritten a bit
-        boardGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView parent, View v, int position, long id) {
-                //Toast.makeText(getApplicationContext(), ((TextView) v).getText(), Toast.LENGTH_SHORT).show();
-            }
-        });
+        boardGridView.setOnItemClickListener(this);
 
     }
 
@@ -89,13 +87,14 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         //Finding x
         int x = position%boardSize;
         //Need to get the opponents board
-        if (Constants.turn) {
+        if (Constants.turn == "playerOne") {
             opponentBoard = Constants.playerTwo.getBoard();
         } else {
             opponentBoard = Constants.playerOne.getBoard();
         }
-        //Checks what value it is, and performs the correct action
+        //Check if this player hit a boat, and execute correct action
         BoardValues value = opponentBoard.getValue(x,y);
+        //Checks what value it is, and performs the correct action
         doAction(value, opponentBoard, x, y);
 
     }
@@ -114,8 +113,9 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         }
         return y;
     }
-    //Help method to onItemClick() - Performs the correct action
+    //Help method to onItemClick() - Performs the correct action, and changes the Board-model
     public void doAction(BoardValues value, Board opponentBoard, int x, int y){
+        Log.i(className, Constants.playerOne.getBoard().toString());
         if (value == BoardValues.EAST){
             opponentBoard.changeBoardValue(x,y,BoardValues.EAST_DESTROYED);
         }
@@ -137,11 +137,16 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                 value == BoardValues.WEST_DESTROYED | value == BoardValues.SOUTH_DESTROYED
                 | value == BoardValues.EAST_DESTROYED){
             Log.i(className, "Nope, you have already shot here");
-            //TODO: Some action with
+
         }
         else if (value == BoardValues.EMPTY){
             Log.i(className, "LOL, you missed");
-            //TODO:
+            //TODO: Change boardValues to a "plupp" or the correct image
+            Toast toast = Toast.makeText(getApplicationContext(), "You missed!",
+                    Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.TOP|Gravity.LEFT, 0, 0);
+            toast.show();
+
         }
 
     }
