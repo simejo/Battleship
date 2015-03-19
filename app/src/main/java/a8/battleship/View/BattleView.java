@@ -15,6 +15,7 @@ import android.widget.Toast;
 import a8.battleship.Adapter.GridAdapter;
 import a8.battleship.Logic.BoardValues;
 import a8.battleship.Logic.Constants;
+import a8.battleship.Logic.Functions;
 import a8.battleship.Models.Board;
 import a8.battleship.Models.Player;
 import a8.battleship.R;
@@ -117,7 +118,9 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
     public void doAction(BoardValues value, Board opponentBoard, int x, int y){
         Log.i(className, Constants.playerOne.getBoard().toString());
         if (value == BoardValues.EAST){
-            opponentBoard.changeBoardValue(x,y,BoardValues.EAST_DESTROYED);
+            //Functions.findAndUpdateShip(x,y,value, Constant.opponent);
+            opponentBoard.changeBoardValue(x, y, BoardValues.EAST_DESTROYED);
+
         }
         else if (value == BoardValues.SOUTH){
             opponentBoard.changeBoardValue(x,y,BoardValues.SOUTH_DESTROYED);
