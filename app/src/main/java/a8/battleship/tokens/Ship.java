@@ -56,12 +56,13 @@ public class Ship extends Activity{
 
     }
 
-    public ArrayList<BoardValues> getBoat(){
+    public ArrayList<BoardValues> getShip(){
         return this.boat;
     }
 
     public int getDirection(){
         return this.direction;
+
     }
 
     /*
