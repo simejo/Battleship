@@ -8,6 +8,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,13 +31,13 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
 
     private GridView boardGridView, gridViewOwnBoard;
     private TextView tvBattleTitle;
+    private Button buttonNextButton;
 
     //Need to know which Player is playing
     Player player;
 
     //String class name
     private String className = "BattleView.java";
-
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
