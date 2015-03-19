@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -114,6 +115,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
     }
     //Help method to onItemClick() - Performs the correct action, and changes the Board-model
     public void doAction(BoardValues value, Board opponentBoard, int x, int y){
+        Log.i(className, Constants.playerOne.getBoard().toString());
         if (value == BoardValues.EAST){
             opponentBoard.changeBoardValue(x,y,BoardValues.EAST_DESTROYED);
         }
@@ -139,7 +141,11 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         }
         else if (value == BoardValues.EMPTY){
             Log.i(className, "LOL, you missed");
-            //TODO:
+            //TODO: Change boardValues to a "plupp" or the correct image
+            Toast toast = Toast.makeText(getApplicationContext(), "You missed!",
+                    Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.TOP|Gravity.LEFT, 0, 0);
+            toast.show();
 
         }
 
