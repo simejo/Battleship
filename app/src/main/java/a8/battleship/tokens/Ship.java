@@ -101,11 +101,14 @@ public class Ship extends Activity{
     }
 
     public ArrayList<BoardValues> getShip(){
+
         return this.ship;
+
     }
 
     public int getDirection(){
         return this.direction;
+
     }
 
     /*
