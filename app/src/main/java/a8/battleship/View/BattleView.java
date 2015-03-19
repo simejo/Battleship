@@ -8,6 +8,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,8 +29,9 @@ import a8.battleship.R;
  */
 public class BattleView extends ActionBarActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
-    private GridView boardGridView;
+    private GridView boardGridView, gridViewOwnBoard;
     private TextView tvBattleTitle;
+    private Button buttonNextButton;
 
     //Need to know which Player is playing
     Player player;
@@ -37,17 +39,21 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
     //String class name
     private String className = "BattleView.java";
 
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_battle_view);
 
         boardGridView = (GridView) findViewById(R.id.boardGridView);
+        gridViewOwnBoard = (GridView) findViewById(R.id.gridViewOwnBoard);
+
         tvBattleTitle = (TextView) findViewById(R.id.textBattleTitle);
 
         boardGridView.setNumColumns(Constants.numOfCollumns);
-
         boardGridView.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
+
+        //The small gridView which shows your OWN map
+        gridViewOwnBoard.setNumColumns(Constants.numOfCollumns);
+        gridViewOwnBoard.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
 
         //Check who is playing, so we give the right parameter to the setAdapter-method
         if (Constants.turn == "playerOne"){
@@ -62,10 +68,12 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             tvBattleTitle.setText(Constants.playerTwo.getName() + "'s turn to battle");
 
         }
+
+        //Connecting the grids with the adapter
         boardGridView.setAdapter(new GridAdapter(this, Constants.opponent.getBoard()));
+        gridViewOwnBoard.setAdapter(new GridAdapter(this, player.getBoard()));
 
 
-        //TODO: Implement OnItemClickListener, and write the method in the class. See SetShipView as an example
         //Which means that the following lines must be rewritten a bit
         boardGridView.setOnItemClickListener(this);
 
