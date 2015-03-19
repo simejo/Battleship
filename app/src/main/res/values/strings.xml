@@ -42,7 +42,11 @@
     <string name="status">Status</string>
     <string name="player">Player Ones Turn</string>
 
+    //used in activity_set_ship_view.xml
+    <string name="titleSetShip">Place ships for player one</string>
 
+    //used in activity_battle_view.xml
+    <string name="titleBattle">Battle</string>
 
 
 
