@@ -35,11 +35,7 @@
                 android:text="New Button"
                 android:id="@+id/button2"
                 android:layout_below="@+id/button"
-<<<<<<< HEAD
                 />
-=======
-                android:layout_toEndOf="@+id/button"/>
->>>>>>> origin/master
         </LinearLayout>
     </LinearLayout>
 
