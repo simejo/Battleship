@@ -51,6 +51,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         boardGridView.setNumColumns(Constants.numOfCollumns);
         boardGridView.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
 
+        //The small gridView which shows your OWN map
         gridViewOwnBoard.setNumColumns(Constants.numOfCollumns);
         gridViewOwnBoard.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
 
@@ -67,11 +68,12 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             tvBattleTitle.setText(Constants.playerTwo.getName() + "'s turn to battle");
 
         }
+
+        //Connecting the grids with the adapter
         boardGridView.setAdapter(new GridAdapter(this, Constants.opponent.getBoard()));
         gridViewOwnBoard.setAdapter(new GridAdapter(this, player.getBoard()));
 
 
-        //TODO: Implement OnItemClickListener, and write the method in the class. See SetShipView as an example
         //Which means that the following lines must be rewritten a bit
         boardGridView.setOnItemClickListener(this);
 

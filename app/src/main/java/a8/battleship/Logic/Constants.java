@@ -22,7 +22,7 @@ public class Constants {
     public static Player playerTwo;
     public static Player playerAI;
 
-    //
+    //This will always be the players opponent
     public static Player opponent;
 
     //Selected game mode

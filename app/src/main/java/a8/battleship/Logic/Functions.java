@@ -36,7 +36,7 @@ public class Functions {
                 //Checking the ship
                 Ship ship = shipsList.get(i);
                 if (x == ship.getX() && y == ship.getY()){
-                    ship.decreasePartsLeft();
+                    //ship.decreasePartsLeft();
                 }
             }
         }
@@ -47,7 +47,7 @@ public class Functions {
                 //Checking the ship
                 Ship ship = shipsList.get(i);
                 if (x == ship.getX() && y == ship.getY()){
-                    ship.decreasePartsLeft();
+                    //ship.decreasePartsLeft();
                 }
             }
         }
