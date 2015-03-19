@@ -124,27 +124,32 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
     }
     //Help method to onItemClick() - Performs the correct action, and changes the Board-model
     public void doAction(BoardValues value, Board opponentBoard, int x, int y){
-        Log.i(className, Constants.playerOne.getBoard().toString());
+        Log.i(className, Constants.playerTwo.getBoard().toString());    //Printing board for player 2
         if (value == BoardValues.EAST){
-            //Functions.findAndUpdateShip(x,y,value, Constant.opponent);
+            Functions.findAndUpdateShip(x,y,Constants.opponent);        //Will update partsLeft in the correct ship (hopefully)
             opponentBoard.changeBoardValue(x, y, BoardValues.EAST_DESTROYED);
 
         }
         else if (value == BoardValues.SOUTH){
+            Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x,y,BoardValues.SOUTH_DESTROYED);
 
         }
         else if (value == BoardValues.WEST){
+            Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x,y,BoardValues.WEST_DESTROYED);
 
         }
         else if (value == BoardValues.NORTH){
+            Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x,y,BoardValues.NORTH_DESTROYED);
         }
         else if (value == BoardValues.MIDDLE_HORIZONTAL){
+            Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x,y,BoardValues.MIDDLE_HORIZONTAL_DESTROYED);
         }
         else if (value == BoardValues.MIDDLE_VERTICAL){
+            Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x,y,BoardValues.MIDDLE_VERTICAL_DESTROYED);
         }
         //Checks if it was a valid shot

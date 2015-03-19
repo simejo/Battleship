@@ -61,12 +61,15 @@ public class Ship extends Activity{
         this.x = x;
         this.y = y;
     }
-
     public int getX(){
         return this.x;
     }
     public int getY(){
         return this.y;
+    }
+
+    public void decreasePartsLeft(){ //Decreasing partsLeft - e.g when the ship is hit
+        this.partsLeft--;
     }
 
     //the position in - private ArrayList<Ship> shipArray in Board.java

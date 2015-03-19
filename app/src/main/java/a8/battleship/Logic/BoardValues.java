@@ -16,7 +16,7 @@ public enum BoardValues {
     WEST_DESTROYED,
     MIDDLE_DESTROYED,
     MISSED,
-    HIT,
+    HIT,//Probably wont need this?
     MIDDLE_VERTICAL,
     MIDDLE_HORIZONTAL,
     MIDDLE_VERTICAL_DESTROYED,
