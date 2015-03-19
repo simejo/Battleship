@@ -137,6 +137,10 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                 value == BoardValues.WEST_DESTROYED | value == BoardValues.SOUTH_DESTROYED
                 | value == BoardValues.EAST_DESTROYED){
             Log.i(className, "Nope, you have already shot here");
+            Toast toast = Toast.makeText(getApplicationContext(), "You have already shot here!",
+                    Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
+            toast.show();
 
         }
         else if (value == BoardValues.EMPTY){
@@ -144,7 +148,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             //TODO: Change boardValues to a "plupp" or the correct image
             Toast toast = Toast.makeText(getApplicationContext(), "You missed!",
                     Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.TOP|Gravity.LEFT, 0, 0);
+            toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
             toast.show();
 
         }
