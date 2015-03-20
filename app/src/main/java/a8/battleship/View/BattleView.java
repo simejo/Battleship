@@ -143,34 +143,40 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         return y;
     }
     //Help method to onItemClick() - Performs the correct action, and changes the Board-model
+    //CHANGES THE MODEL
     public void doAction(BoardValues value, Board opponentBoard, int x, int y){
         //Log.i(className, Constants.playerTwo.getBoard().toString());    //Printing board for player 2
         if (value == BoardValues.EAST){
             Functions.findAndUpdateShip(x,y,Constants.opponent);        //Will update partsLeft in the correct ship (hopefully)
             opponentBoard.changeBoardValue(x, y, BoardValues.EAST_DESTROYED);
+            printSuccess();
 
         }
         else if (value == BoardValues.SOUTH){
             Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x,y,BoardValues.SOUTH_DESTROYED);
+            printSuccess();
 
         }
         else if (value == BoardValues.WEST){
             Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x,y,BoardValues.WEST_DESTROYED);
-
+            printSuccess();
         }
         else if (value == BoardValues.NORTH){
             Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x,y,BoardValues.NORTH_DESTROYED);
+            printSuccess();
         }
         else if (value == BoardValues.MIDDLE_HORIZONTAL){
             Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x,y,BoardValues.MIDDLE_HORIZONTAL_DESTROYED);
+            printSuccess();
         }
         else if (value == BoardValues.MIDDLE_VERTICAL){
             Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x,y,BoardValues.MIDDLE_VERTICAL_DESTROYED);
+            printSuccess();
         }
         //Checks if it was a valid shot
         else if (value == BoardValues.MIDDLE_HORIZONTAL_DESTROYED |value == BoardValues.MIDDLE_HORIZONTAL_DESTROYED |
@@ -193,6 +199,14 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
 
         }
 
+    }
+
+    public void printSuccess(){
+        Log.i(className, "Wohooo, you hit a boat!");
+        Toast toast = Toast.makeText(getApplicationContext(), "YOU HIT A BOAT!",
+                Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
+        toast.show();
     }
     public void initiateWidgets() {
 
