@@ -105,7 +105,6 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
     public void onItemClick(AdapterView parent, View v, int position, long id) {
         Board opponentBoard;
         int boardSize = Constants.numOfCollumns;
-
         //Finding y
         int y = findY(position, boardSize);
         //Finding x
@@ -201,6 +200,9 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
 
     }
 
+    /* If success - this method should be called
+     * Printing to logcat and makes a toast (Pop-up text on the screen)
+    */
     public void printSuccess(){
         Log.i(className, "Wohooo, you hit a boat!");
         Toast toast = Toast.makeText(getApplicationContext(), "YOU HIT A BOAT!",

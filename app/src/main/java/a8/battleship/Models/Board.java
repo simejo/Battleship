@@ -143,7 +143,7 @@ public class Board{
             //TEST to check if the ships get the correct positions
             Log.i(className, "    public void randomizeShipPositions() - boat " + i + " has x = " + shipArray.get(i).getX() + " and y =" +shipArray.get(i).getY() );
         }
-        Log.i(className, board.toString());
+        Log.i(className, "\n" + board.toString());
     }
 
     public int getLength(){
