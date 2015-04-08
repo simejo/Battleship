@@ -75,13 +75,13 @@ public class Board{
     }
 
     //Change value in the board
-    public void changeBoardValue(int y, int x, BoardValues value){ // remember range for y and x is 0 to n-1 not 1 to n
+    public void changeBoardValue(int x, int y, BoardValues value){ // remember range for y and x is 0 to n-1 not 1 to n
         ArrayList<BoardValues> tempRow = board.get(y);
         tempRow.set(x, value);
         board.set(y, tempRow);
     }
 
-    public void placeShip(Ship ship, int y, int x){//only send in coordinates that are valid for said boat
+    public void placeShip(Ship ship, int x, int y){//only send in coordinates that are valid for said boat
         if( ship.getDirection()==0){//vertical
             for (int i=y; i<ship.getShip().size()+y; i++){//goes through all rows that need changing
                 ArrayList<BoardValues> tempRow = board.get(i);//makes duplicate of current row
@@ -116,7 +116,7 @@ public class Board{
                         }
                     }
                     if(counter==0){//if counter not increased, place boat
-                        placeShip(shipArray.get(i), y, x);
+                        placeShip(shipArray.get(i), x, y);
                         valid=true;//exit while loop if boat is placed. 
                     }
                 }
@@ -129,7 +129,7 @@ public class Board{
                         }
                     }
                     if(counter==0){//if counter not increased
-                        placeShip(shipArray.get(i), y, x);//place ship
+                        placeShip(shipArray.get(i), x, y);//place ship
                         valid=true;//boat placed, exit while loop
                     }
                 }
@@ -147,7 +147,7 @@ public class Board{
     }
 
     public int getLength(){
-        return boardsize * boardsize - 10;
+        return boardsize * boardsize;
     }
 
     //Get value in the board

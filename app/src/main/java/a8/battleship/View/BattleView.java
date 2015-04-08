@@ -212,10 +212,11 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
 
     public void doAction(BoardValues value, Board opponentBoard, int x, int y){
         //Log.i(className, Constants.playerTwo.getBoard().toString());    //Printing board for player 2
+        Log.i(className, "X: " + Integer.toString(x) + ", Y: " + Integer.toString(y));
         if (value == BoardValues.EAST){
             Constants.hit.start();
             Functions.findAndUpdateShip(x,y,Constants.opponent);        //Will update partsLeft in the correct ship (hopefully)
-            opponentBoard.changeBoardValue(x, y, BoardValues.EAST_DESTROYED);
+            opponentBoard.changeBoardValue(x,y, BoardValues.EAST_DESTROYED);
             printSuccess();
 
         }
