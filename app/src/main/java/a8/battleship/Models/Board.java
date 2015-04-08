@@ -75,10 +75,10 @@ public class Board{
     }
 
     //Change value in the board
-    public void changeBoardValue(int y, int x, BoardValues value){ // remember range for y and x is 0 to n-1 not 1 to n
-        ArrayList<BoardValues> tempRow = board.get(y);
-        tempRow.set(x, value);
-        board.set(y, tempRow);
+    public void changeBoardValue(int x, int y, BoardValues value){ // remember range for y and x is 0 to n-1 not 1 to n
+        ArrayList<BoardValues> tempRow = board.get(x);
+        tempRow.set(y, value);
+        board.set(x, tempRow);
     }
 
     public void placeShip(Ship ship, int y, int x){//only send in coordinates that are valid for said boat

@@ -113,8 +113,8 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             } else {
                 opponentBoard = Constants.playerOne.getBoard();
             }
-            BoardValues value = opponentBoard.getValue(currentXPosition,currentYPosition);
-            doAction(value, opponentBoard, currentXPosition, currentYPosition);
+            BoardValues value = opponentBoard.getValue(currentYPosition,currentXPosition);
+            doAction(value, opponentBoard, currentYPosition, currentXPosition);
 
         }
         if(v.getId() == R.id.buttonNextPlayer){
@@ -194,9 +194,10 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
     //CHANGES THE MODEL
     public void doAction(BoardValues value, Board opponentBoard, int x, int y){
         //Log.i(className, Constants.playerTwo.getBoard().toString());    //Printing board for player 2
+        Log.i(className, "X: " + Integer.toString(x) + ", Y: " + Integer.toString(y));
         if (value == BoardValues.EAST){
             Functions.findAndUpdateShip(x,y,Constants.opponent);        //Will update partsLeft in the correct ship (hopefully)
-            opponentBoard.changeBoardValue(x, y, BoardValues.EAST_DESTROYED);
+            opponentBoard.changeBoardValue(x,y, BoardValues.EAST_DESTROYED);
             printSuccess();
 
         }
