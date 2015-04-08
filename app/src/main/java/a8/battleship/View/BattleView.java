@@ -270,8 +270,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                 value == BoardValues.NORTH_DESTROYED | value == BoardValues.WEST_DESTROYED |
                 value == BoardValues.SOUTH_DESTROYED | value == BoardValues.EAST_DESTROYED){ //| value == BoardValues.MISSED){
             Log.i(className, "Nope, you have already shot here");
-            Toast toast = Toast.makeText(getApplicationContext(), "You have already shot here!",
-                    Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(), "You have already shot here!", Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
             toast.show();
 
