@@ -75,10 +75,10 @@ public class Board{
     }
 
     //Change value in the board
-    public void changeBoardValue(int y, int x, BoardValues value){ // remember range for y and x is 0 to n-1 not 1 to n
-        ArrayList<BoardValues> tempRow = board.get(y);
-        tempRow.set(x, value);
-        board.set(y, tempRow);
+    public void changeBoardValue(int x, int y, BoardValues value){ // remember range for y and x is 0 to n-1 not 1 to n
+        ArrayList<BoardValues> tempRow = board.get(x);
+        tempRow.set(y, value);
+        board.set(x, tempRow);
     }
 
     public void placeShip(Ship ship, int x, int y){//only send in coordinates that are valid for said boat
@@ -141,9 +141,9 @@ public class Board{
         for(int i = 0; i < shipArray.size(); i++){
 
             //TEST to check if the ships get the correct positions
-            Log.i(className, "    public void randomizeShipPositions() - boat " + i + " has x = " + shipArray.get(i).getX() + " and y =" +shipArray.get(i).getY() );
+            //Log.i(className, "    public void randomizeShipPositions() - boat " + i + " has x = " + shipArray.get(i).getX() + " and y =" +shipArray.get(i).getY() );
         }
-        Log.i(className, "\n" + board.toString());
+        //Log.i(className, "\n" + board.toString());
     }
 
     public int getLength(){
