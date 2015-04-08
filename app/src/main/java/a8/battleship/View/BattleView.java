@@ -113,7 +113,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         if(v.getId() == R.id.buttonConfirmShot){
             //Log.i(className, "onClick: buttonConfirmShot was clicked");
 
-            Constants.launch.start();
+            /*Constants.launch.start();
             try {
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
@@ -122,6 +122,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             if(Constants.launch.isPlaying()){
                 Log.i(className, "launch noise" );
             }
+            */
 
             Board opponentBoard;
             //Need to get the opponents board
