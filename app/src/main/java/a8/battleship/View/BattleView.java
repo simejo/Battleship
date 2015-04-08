@@ -178,7 +178,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             printSuccess();
         }
         //Checks if it was a valid shot
-        else if (value == BoardValues.MIDDLE_HORIZONTAL_DESTROYED |value == BoardValues.MIDDLE_HORIZONTAL_DESTROYED |
+        else if (value == BoardValues.MIDDLE_HORIZONTAL_DESTROYED |value == BoardValues.MIDDLE_VERTICAL_DESTROYED |
                 value == BoardValues.NORTH_DESTROYED | value == BoardValues.WEST_DESTROYED |
                 value == BoardValues.SOUTH_DESTROYED | value == BoardValues.EAST_DESTROYED){
             Log.i(className, "Nope, you have already shot here");
