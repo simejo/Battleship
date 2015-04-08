@@ -136,18 +136,10 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             } else {
                 opponentBoard = Constants.playerOne.getBoard();
             }
-<<<<<<< HEAD
-            BoardValues value = opponentBoard.getValue(currentYPosition,currentXPosition);
-            doAction(value, opponentBoard, currentYPosition, currentXPosition);
-            buttonNextPlayer.setVisibility(Button.VISIBLE);
-=======
             BoardValues value = opponentBoard.getValue(currentXPosition,currentYPosition);
-            if(value == BoardValues.EMPTY){
-                value = BoardValues.MISSED;
-            }
             doAction(value, opponentBoard, currentXPosition, currentYPosition);
+            buttonNextPlayer.setVisibility(Button.VISIBLE);
 
->>>>>>> 7b60b3ee1f341e093effed72860df90eac07a2ad
         }
         if(v.getId() == R.id.buttonNextPlayer){
             //Log.i(className, "onClick: buttonNextPlayer was clicked");
