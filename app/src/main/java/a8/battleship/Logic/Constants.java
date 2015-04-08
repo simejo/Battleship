@@ -26,10 +26,11 @@ public class Constants {
     public static Player opponent;
 
     //Selected game mode
-
+    //onePlayer or twoPlayer
     public static String gameMode;
 
     //Player one or player two is playing
+    //playerOne or playerTwo or playerAI
     public static String turn;
 
 }
