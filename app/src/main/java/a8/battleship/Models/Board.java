@@ -104,7 +104,7 @@ public class Board{
             int y = 0;
             while(!valid){//while boat not placed
                 //make a random x value between the boardsize minus the length of the boat and zero
-                x = random.nextInt((boardsize - shipArray.get(i).getShip().size()));//random place where it is okay to place boat on empty board
+                x = random.nextInt((boardsize - shipArray.get(i).getShip().size()) + 1);//random place where it is okay to place boat on empty board
                 y = random.nextInt((boardsize - shipArray.get(i).getShip().size()));
 
                 if(shipArray.get(i).getDirection() == 0){//if vertical
