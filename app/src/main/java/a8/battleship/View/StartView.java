@@ -27,7 +27,7 @@ public class StartView extends ActionBarActivity implements View.OnClickListener
 
     private RadioButton rbOnePlayer, rbTwoPlayer;
     private Button buttonStartGame;
-    private TextView tvPlayerOne, tvPlayerTwo;
+    private TextView tvPlayerOne, tvPlayerTwo, tvEasyAI, tvMediumAI, tvHardAI;
     private SeekBar sbAIChooser;
 
     @Override
@@ -41,13 +41,15 @@ public class StartView extends ActionBarActivity implements View.OnClickListener
         tvPlayerOne = (EditText) findViewById(R.id.tvPlayerOne);
         tvPlayerTwo = (EditText) findViewById(R.id.tvPlayerTwo);
         sbAIChooser = (SeekBar) findViewById(R.id.seekBarAIChooser);
+        tvEasyAI = (TextView) findViewById(R.id.textViewEasyAI);
+        tvMediumAI = (TextView) findViewById(R.id.textViewMediumAI);
+        tvHardAI = (TextView) findViewById(R.id.textViewHardAI);
 
         rbOnePlayer.setOnClickListener(this);
         rbTwoPlayer.setOnClickListener(this);
         rbOnePlayer.setChecked(true);
         buttonStartGame.setOnClickListener(this);
 
-        tvPlayerOne.setAlpha(0);
         tvPlayerTwo.setAlpha(0);
 
         sbAIChooser.setMax(2);
@@ -91,15 +93,18 @@ public class StartView extends ActionBarActivity implements View.OnClickListener
             tvPlayerOne.setAlpha(1);
             tvPlayerTwo.setAlpha(1);
             sbAIChooser.setAlpha(0);
+            tvEasyAI.setAlpha(0);
+            tvMediumAI.setAlpha(0);
+            tvHardAI.setAlpha(0);
 
         }
         if(rbOnePlayer.isChecked()){
-            tvPlayerOne.setAlpha(0);
             tvPlayerTwo.setAlpha(0);
             sbAIChooser.setAlpha(1);
+            tvEasyAI.setAlpha(1);
+            tvMediumAI.setAlpha(1);
+            tvHardAI.setAlpha(1);
         }
-
-
 
 
     }

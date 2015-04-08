@@ -36,6 +36,9 @@
     <string name="music">Music</string>
     <string name="randomizeShips">Randomize ships</string>
     <string name="done">Done</string>
+    <string name="easy">Easy</string>
+    <string name="medium">Medium</string>
+    <string name="hard">Hard</string>
 
     //used in activity_switch_view.xml
     <string name="switchPlayer">Battle</string>
