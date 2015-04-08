@@ -108,13 +108,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
     }
 
 
-
-    //TODO: Need to add a button in the activity_battle_view.xml file
-    //(So we can get to the "change player" screen)
     public void onClick(View v) {
-        /*if(v.getId() == R.id.buttonDone){
-            startActivity(new Intent(SetShipView.this, BattleView.class));
-        }*/
 
         if(v.getId() == R.id.buttonConfirmShot){
             //Log.i(className, "onClick: buttonConfirmShot was clicked");
