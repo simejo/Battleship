@@ -3,7 +3,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
-        android:id = "@+id/mainMenuTitle"
+        android:id = "@+id/switchViewHeader"
         android:text="@string/player"
         android:layout_width="fill_parent"
         android:textSize="25dp"
@@ -20,7 +20,7 @@
         android:textSize="25dp"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_below="@+id/mainMenuTitle"
+        android:layout_below="@+id/switchViewHeader"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="69dp" />

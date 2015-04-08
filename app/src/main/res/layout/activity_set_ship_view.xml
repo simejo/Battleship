@@ -6,7 +6,7 @@
 
     <!-- Place Boats -->
     <TextView
-        android:id = "@+id/mainMenuTitle"
+        android:id = "@+id/switchViewHeader"
         android:text="@string/titleSetShip"
         android:layout_width="match_parent"
         android:textSize="25dp"
@@ -72,7 +72,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/setShipGridView"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/mainMenuTitle"
+        android:layout_below="@+id/switchViewHeader"
         android:layout_above="@+id/buttonHolderSetShipView" />
 
 
