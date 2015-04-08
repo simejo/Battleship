@@ -120,6 +120,11 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             //Log.i(className, "onClick: buttonConfirmShot was clicked");
 
             Constants.launch.start();
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             if(Constants.launch.isPlaying()){
                 Log.i(className, "launch noise" );
             }
