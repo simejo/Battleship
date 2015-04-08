@@ -1,6 +1,8 @@
 package a8.battleship.View;
 
+import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -65,6 +67,8 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         Constants.hit = MediaPlayer.create(this, R.raw.hit);
         Constants.miss = MediaPlayer.create(this, R.raw.miss);
 
+        AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 20, 0);
 
 
         //Check who is playing, so we give the right parameter to the setAdapter-method
