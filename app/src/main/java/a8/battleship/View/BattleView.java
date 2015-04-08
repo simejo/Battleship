@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
@@ -52,11 +51,11 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         buttonConfirmShot = (Button) findViewById(R.id.buttonConfirmShot);
 
 
-        boardGridView.setNumColumns(Constants.numOfCollumns);
+        boardGridView.setNumColumns(Constants.boardSize);
         boardGridView.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
 
         //The small gridView which shows your OWN map
-        gridViewOwnBoard.setNumColumns(Constants.numOfCollumns);
+        gridViewOwnBoard.setNumColumns(Constants.boardSize);
         gridViewOwnBoard.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
 
         //Check who is playing, so we give the right parameter to the setAdapter-method
@@ -151,7 +150,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
     public void onItemClick(AdapterView parent, View v, int position, long id) {
 
         /*Board opponentBoard;*/
-        int boardSize = Constants.numOfCollumns;
+        int boardSize = Constants.boardSize;
         //Finding y
         currentYPosition = findY(position, boardSize);
         //Finding x

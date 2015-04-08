@@ -98,7 +98,7 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
 
         setShipGridView = (GridView) findViewById(R.id.setShipGridView);
 
-        setShipGridView.setNumColumns(Constants.numOfCollumns);
+        setShipGridView.setNumColumns(Constants.boardSize);
 
 
         //Check who is playing, so we give the right parameter to the setAdapter-method
