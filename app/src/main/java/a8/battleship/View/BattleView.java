@@ -100,7 +100,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             startActivity(new Intent(SetShipView.this, BattleView.class));
         }*/
         if(v.getId() == R.id.buttonConfirmShot){
-            Log.i(className, "onClick: buttonConfirmShot was clicked");
+            //Log.i(className, "onClick: buttonConfirmShot was clicked");
 
             Board opponentBoard;
             //Need to get the opponents board
@@ -119,7 +119,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
 
         }
         if(v.getId() == R.id.buttonNextPlayer){
-            Log.i(className, "onClick: buttonNextPlayer was clicked");
+            //Log.i(className, "onClick: buttonNextPlayer was clicked");
             startActivity(new Intent(BattleView.this, SwitchView.class));
             if(Constants.gameMode == "twoPlayer"){
                 if(Constants.turn == "playerOne"){
@@ -247,7 +247,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             toast.show();
 
         }
-        Log.i(className, "Inside doAction()");
+        //Log.i(className, "Inside doAction()");
 
 
     }
