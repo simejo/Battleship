@@ -32,6 +32,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
     private GridView boardGridView, gridViewOwnBoard;
     private TextView tvBattleTitle;
     private Button buttonNextButton;
+    private int currentXPosition, currentYPosition;
 
     //Need to know which Player is playing
     Player player;
@@ -106,9 +107,9 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         Board opponentBoard;
         int boardSize = Constants.numOfCollumns;
         //Finding y
-        int y = findY(position, boardSize);
+        currentYPosition = findY(position, boardSize);
         //Finding x
-        int x = position%boardSize;
+        currentXPosition = position%boardSize;
         //Need to get the opponents board
         if (Constants.turn == "playerOne") {
             if(Constants.gameMode == "onePlayer"){
@@ -121,9 +122,9 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             opponentBoard = Constants.playerOne.getBoard();
         }
         //Check if this player hit a boat, and execute correct action
-        BoardValues value = opponentBoard.getValue(x,y);
+        BoardValues value = opponentBoard.getValue(currentXPosition,currentYPosition);
         //Checks what value it is, and performs the correct action
-        doAction(value, opponentBoard, x, y);
+        doAction(value, opponentBoard, currentXPosition, currentYPosition);
 
     }
     //Help method to onItemClick() - find y
