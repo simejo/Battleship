@@ -1,7 +1,10 @@
 package a8.battleship.Logic;
 
+import android.media.MediaPlayer;
+
 import a8.battleship.Models.Board;
 import a8.battleship.Models.Player;
+import a8.battleship.R;
 
 /**
  * Created by majakirkerod on 11.03.15.
@@ -32,4 +35,8 @@ public class Constants {
     //playerOne or playerTwo or playerAI
     public static String turn;
 
+    public static MediaPlayer launch;
+    public static MediaPlayer hit;
+    public static MediaPlayer miss;
+    public static MediaPlayer backgroundMusic;
 }
