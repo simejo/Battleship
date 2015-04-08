@@ -264,18 +264,11 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             opponentBoard.changeBoardValue(x,y,BoardValues.MIDDLE_VERTICAL_DESTROYED);
             printSuccess();
         }
-        else if (value == BoardValues.EMPTY){
-            Log.i(className, "LOL, you missed");
-            Toast toast = Toast.makeText(getApplicationContext(), "You missed!", Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
-            toast.show();
-            opponentBoard.changeBoardValue(x,y,BoardValues.MISSED);
-
-        }
+        //TODO: It is possible to fire a shot at the MISSED enum, this must be fixed
         //Checks if it was a valid shot
         else if (value == BoardValues.MIDDLE_HORIZONTAL_DESTROYED |value == BoardValues.MIDDLE_VERTICAL_DESTROYED |
                 value == BoardValues.NORTH_DESTROYED | value == BoardValues.WEST_DESTROYED |
-                value == BoardValues.SOUTH_DESTROYED | value == BoardValues.EAST_DESTROYED){
+                value == BoardValues.SOUTH_DESTROYED | value == BoardValues.EAST_DESTROYED){ //| value == BoardValues.MISSED){
             Log.i(className, "Nope, you have already shot here");
             Toast toast = Toast.makeText(getApplicationContext(), "You have already shot here!",
                     Toast.LENGTH_SHORT);
@@ -283,19 +276,14 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             toast.show();
 
         }
-<<<<<<< HEAD
-        else if (value == BoardValues.EMPTY){
-            //Constants.miss.start();
+        else {// if (value == BoardValues.EMPTY){
             Log.i(className, "LOL, you missed");
-            //TODO: Change boardValues to a "plupp" or the correct image
-            Toast toast = Toast.makeText(getApplicationContext(), "You missed!",
-                    Toast.LENGTH_SHORT);
+            opponentBoard.changeBoardValue(x,y,BoardValues.MISSED);
+            Toast toast = Toast.makeText(getApplicationContext(), "You missed!", Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
             toast.show();
 
         }
-=======
->>>>>>> 60734e2da88edf70a0683b3255335431b2a4c744
         //Log.i(className, "Inside doAction()");
 
 
