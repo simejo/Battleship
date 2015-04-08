@@ -50,6 +50,9 @@ public class StartView extends ActionBarActivity implements View.OnClickListener
         tvPlayerOne.setAlpha(0);
         tvPlayerTwo.setAlpha(0);
 
+        sbAIChooser.setMax(2);
+        sbAIChooser.setProgress(1);
+
     }
     public void onClick(View v){
 
