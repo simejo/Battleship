@@ -135,6 +135,9 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                 opponentBoard = Constants.playerOne.getBoard();
             }
             BoardValues value = opponentBoard.getValue(currentXPosition,currentYPosition);
+            if(value == BoardValues.EMPTY){
+                value = BoardValues.MISSED;
+            }
             doAction(value, opponentBoard, currentXPosition, currentYPosition);
 
         }
@@ -159,8 +162,6 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             }
         }
     }
-
-
 
     //Method to use when a cell is clicked
     //TODO: Implement this, to make changes on the board when clicked
@@ -263,6 +264,14 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             opponentBoard.changeBoardValue(x,y,BoardValues.MIDDLE_VERTICAL_DESTROYED);
             printSuccess();
         }
+        else if (value == BoardValues.EMPTY){
+            Log.i(className, "LOL, you missed");
+            Toast toast = Toast.makeText(getApplicationContext(), "You missed!", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
+            toast.show();
+            opponentBoard.changeBoardValue(x,y,BoardValues.MISSED);
+
+        }
         //Checks if it was a valid shot
         else if (value == BoardValues.MIDDLE_HORIZONTAL_DESTROYED |value == BoardValues.MIDDLE_VERTICAL_DESTROYED |
                 value == BoardValues.NORTH_DESTROYED | value == BoardValues.WEST_DESTROYED |
@@ -274,6 +283,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             toast.show();
 
         }
+<<<<<<< HEAD
         else if (value == BoardValues.EMPTY){
             //Constants.miss.start();
             Log.i(className, "LOL, you missed");
@@ -284,6 +294,8 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             toast.show();
 
         }
+=======
+>>>>>>> 60734e2da88edf70a0683b3255335431b2a4c744
         //Log.i(className, "Inside doAction()");
 
 
