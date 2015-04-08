@@ -1,6 +1,9 @@
 package a8.battleship.View;
 
+import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -33,6 +36,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
     private Button buttonNextPlayer, buttonConfirmShot;
     private int currentXPosition, currentYPosition;
 
+
     //Need to know which Player is playing
     Player player;
 
@@ -59,6 +63,15 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         //The small gridView which shows your OWN map
         gridViewOwnBoard.setNumColumns(Constants.boardSize);
         gridViewOwnBoard.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
+
+        //sounds
+        Constants.launch = MediaPlayer.create(this, R.raw.launch);
+        //Constants.hit = MediaPlayer.create(this, R.raw.hit);
+        //Constants.miss = MediaPlayer.create(this, R.raw.miss);
+
+        AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        am.setStreamVolume(AudioManager.STREAM_MUSIC, am.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+
 
         //Check who is playing, so we give the right parameter to the setAdapter-method
         if (Constants.turn == "playerOne"){
@@ -94,14 +107,22 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
 
     }
 
+
+
     //TODO: Need to add a button in the activity_battle_view.xml file
     //(So we can get to the "change player" screen)
     public void onClick(View v) {
         /*if(v.getId() == R.id.buttonDone){
             startActivity(new Intent(SetShipView.this, BattleView.class));
         }*/
+
         if(v.getId() == R.id.buttonConfirmShot){
             //Log.i(className, "onClick: buttonConfirmShot was clicked");
+
+            Constants.launch.start();
+            if(Constants.launch.isPlaying()){
+                Log.i(className, "launch noise" );
+            }
 
             Board opponentBoard;
             //Need to get the opponents board
@@ -115,9 +136,18 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             } else {
                 opponentBoard = Constants.playerOne.getBoard();
             }
+<<<<<<< HEAD
             BoardValues value = opponentBoard.getValue(currentYPosition,currentXPosition);
             doAction(value, opponentBoard, currentYPosition, currentXPosition);
             buttonNextPlayer.setVisibility(Button.VISIBLE);
+=======
+            BoardValues value = opponentBoard.getValue(currentXPosition,currentYPosition);
+            if(value == BoardValues.EMPTY){
+                value = BoardValues.MISSED;
+            }
+            doAction(value, opponentBoard, currentXPosition, currentYPosition);
+
+>>>>>>> 7b60b3ee1f341e093effed72860df90eac07a2ad
         }
         if(v.getId() == R.id.buttonNextPlayer){
             //Log.i(className, "onClick: buttonNextPlayer was clicked");
@@ -194,40 +224,61 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
     }
     //Help method to onItemClick() - Performs the correct action, and changes the Board-model
     //CHANGES THE MODEL
+
     public void doAction(BoardValues value, Board opponentBoard, int x, int y){
         //Log.i(className, Constants.playerTwo.getBoard().toString());    //Printing board for player 2
         Log.i(className, "X: " + Integer.toString(x) + ", Y: " + Integer.toString(y));
         if (value == BoardValues.EAST){
+            //Constants.hit.start();
+            //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);        //Will update partsLeft in the correct ship (hopefully)
             opponentBoard.changeBoardValue(x,y, BoardValues.EAST_DESTROYED);
             printSuccess();
 
         }
         else if (value == BoardValues.SOUTH){
+            //Constants.hit.start();
+            //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x,y,BoardValues.SOUTH_DESTROYED);
             printSuccess();
 
         }
         else if (value == BoardValues.WEST){
+            //Constants.hit.start();
+            //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x,y,BoardValues.WEST_DESTROYED);
             printSuccess();
         }
         else if (value == BoardValues.NORTH){
+            //Constants.hit.start();
+            //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x,y,BoardValues.NORTH_DESTROYED);
             printSuccess();
         }
         else if (value == BoardValues.MIDDLE_HORIZONTAL){
+            //Constants.hit.start();
+            //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x,y,BoardValues.MIDDLE_HORIZONTAL_DESTROYED);
             printSuccess();
         }
         else if (value == BoardValues.MIDDLE_VERTICAL){
+            //Constants.hit.start();
+            //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x,y,BoardValues.MIDDLE_VERTICAL_DESTROYED);
             printSuccess();
+        }
+        else if (value == BoardValues.EMPTY){
+            Log.i(className, "LOL, you missed");
+            Toast toast = Toast.makeText(getApplicationContext(), "You missed!", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
+            toast.show();
+            opponentBoard.changeBoardValue(x,y,BoardValues.MISSED);
+
         }
         //Checks if it was a valid shot
         else if (value == BoardValues.MIDDLE_HORIZONTAL_DESTROYED |value == BoardValues.MIDDLE_VERTICAL_DESTROYED |
@@ -240,7 +291,9 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             toast.show();
 
         }
+<<<<<<< HEAD
         else if (value == BoardValues.EMPTY){
+            //Constants.miss.start();
             Log.i(className, "LOL, you missed");
             //TODO: Change boardValues to a "plupp" or the correct image
             Toast toast = Toast.makeText(getApplicationContext(), "You missed!",
@@ -249,6 +302,8 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             toast.show();
 
         }
+=======
+>>>>>>> 60734e2da88edf70a0683b3255335431b2a4c744
         //Log.i(className, "Inside doAction()");
 
 

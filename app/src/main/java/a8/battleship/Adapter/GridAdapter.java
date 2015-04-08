@@ -91,12 +91,15 @@ public class GridAdapter extends BaseAdapter {
                 cell.setImageResource(R.drawable.east);
             } else if (cellView.equals(BoardValues.EAST_DESTROYED)) {
                 cell.setImageResource(R.drawable.eastdestroyed);
-
             } else if (cellView.equals(BoardValues.MIDDLE_HORIZONTAL)) {
                 cell.setImageResource(R.drawable.middle);
             } else if (cellView.equals(BoardValues.MIDDLE_VERTICAL)) {
                 cell.setImageResource(R.drawable.middle);
             } else if (cellView.equals(BoardValues.MIDDLE_DESTROYED)) {
+                cell.setImageResource(R.drawable.middledestroyed);
+            } else if (cellView.equals(BoardValues.MIDDLE_HORIZONTAL_DESTROYED)) {
+                cell.setImageResource(R.drawable.middledestroyed);
+            }else if (cellView.equals(BoardValues.MIDDLE_VERTICAL_DESTROYED)) {
                 cell.setImageResource(R.drawable.middledestroyed);
             } else if (cellView.equals(BoardValues.NORTH)) {
                 cell.setImageResource(R.drawable.north);
@@ -110,6 +113,8 @@ public class GridAdapter extends BaseAdapter {
                 cell.setImageResource(R.drawable.west);
             } else if (cellView.equals(BoardValues.WEST_DESTROYED)) {
                 cell.setImageResource(R.drawable.westdestroyed);
+            } else if(cellView.equals(BoardValues.MISSED)){
+                cell.setImageResource(R.drawable.missedshot);
             } else {
                 cell.setImageResource(R.drawable.empty);
             }
