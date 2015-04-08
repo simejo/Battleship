@@ -81,20 +81,20 @@ public class Board{
         board.set(y, tempRow);
     }
 
-    public void placeShip(Ship ship, int y, int x){//only send in coordinates that are valid for said boat
+    public void placeShip(Ship ship, int x, int y){//only send in coordinates that are valid for said boat
         if( ship.getDirection()==0){//vertical
-            for (int i=y; i<ship.getShip().size()+y; i++){//goes through all rows that need changing
+            for (int i=x; i<ship.getShip().size()+x; i++){//goes through all rows that need changing
                 ArrayList<BoardValues> tempRow = board.get(i);//makes duplicate of current row
-                tempRow.set(x, ship.getShip().get(i-y));//replaces piece with corresponding piece in ship
+                tempRow.set(y, ship.getShip().get(i-x));//replaces piece with corresponding piece in ship
                 board.set(i, tempRow);//places temp row back in board
             }
         }
         else if(ship.getDirection()==1) {//horizontal
-            ArrayList<BoardValues> tempRow = board.get(y);// makes a copy of the row you want to work on
-            for (int i=x; i<ship.getShip().size()+x; i++){//goes through the temporary row, and then replaces the pieces where you want to place the boat
-               tempRow.set(i, ship.getShip().get(i-x));//changes enumvalues in temporary row, to fit boat enumvalues
+            ArrayList<BoardValues> tempRow = board.get(x);// makes a copy of the row you want to work on
+            for (int i=y; i<ship.getShip().size()+y; i++){//goes through the temporary row, and then replaces the pieces where you want to place the boat
+               tempRow.set(i, ship.getShip().get(i-y));//changes enumvalues in temporary row, to fit boat enumvalues
             }
-            board.set(y, tempRow); //replaces row in board with temporary row.
+            board.set(x, tempRow); //replaces row in board with temporary row.
         }
     }
 
@@ -116,7 +116,7 @@ public class Board{
                         }
                     }
                     if(counter==0){//if counter not increased, place boat
-                        placeShip(shipArray.get(i), y, x);
+                        placeShip(shipArray.get(i), x, y);
                         valid=true;//exit while loop if boat is placed. 
                     }
                 }
@@ -129,7 +129,7 @@ public class Board{
                         }
                     }
                     if(counter==0){//if counter not increased
-                        placeShip(shipArray.get(i), y, x);//place ship
+                        placeShip(shipArray.get(i), x, y);//place ship
                         valid=true;//boat placed, exit while loop
                     }
                 }
