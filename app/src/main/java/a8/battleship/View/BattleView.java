@@ -31,7 +31,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
 
     private GridView boardGridView, gridViewOwnBoard;
     private TextView tvBattleTitle;
-    private Button buttonNextButton;
+    private Button buttonNextPlayer, buttonConfirmShot;
     private int currentXPosition, currentYPosition;
 
     //Need to know which Player is playing
@@ -48,6 +48,9 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         gridViewOwnBoard = (GridView) findViewById(R.id.gridViewOwnBoard);
 
         tvBattleTitle = (TextView) findViewById(R.id.textBattleTitle);
+        buttonNextPlayer = (Button) findViewById(R.id.buttonNextPlayer);
+        buttonConfirmShot = (Button) findViewById(R.id.buttonConfirmShot);
+
 
         boardGridView.setNumColumns(Constants.numOfCollumns);
         boardGridView.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
@@ -85,6 +88,9 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         //Which means that the following lines must be rewritten a bit
         boardGridView.setOnItemClickListener(this);
 
+        buttonNextPlayer.setOnClickListener(this);
+        buttonConfirmShot.setOnClickListener(this);
+
     }
 
     //TODO: Need to add a button in the activity_battle_view.xml file
@@ -93,6 +99,45 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         /*if(v.getId() == R.id.buttonDone){
             startActivity(new Intent(SetShipView.this, BattleView.class));
         }*/
+        if(v.getId() == R.id.buttonConfirmShot){
+            Log.i(className, "onClick: buttonConfirmShot was clicked");
+
+            Board opponentBoard;
+            //Need to get the opponents board
+            if (Constants.turn == "playerOne") {
+                if(Constants.gameMode == "onePlayer"){
+                    opponentBoard = Constants.playerAI.getBoard();
+                }
+                else{
+                    opponentBoard = Constants.playerTwo.getBoard();
+                }
+            } else {
+                opponentBoard = Constants.playerOne.getBoard();
+            }
+            BoardValues value = opponentBoard.getValue(currentXPosition,currentYPosition);
+            doAction(value, opponentBoard, currentXPosition, currentYPosition);
+
+        }
+        if(v.getId() == R.id.buttonNextPlayer){
+            Log.i(className, "onClick: buttonNextPlayer was clicked");
+            startActivity(new Intent(BattleView.this, SwitchView.class));
+            if(Constants.gameMode == "twoPlayer"){
+                if(Constants.turn == "playerOne"){
+                    Constants.turn = "playerTwo";
+                }
+                else{
+                    Constants.turn = "playerOne";
+                }
+            }
+            else if(Constants.gameMode == "onePlayer"){
+                if(Constants.turn == "playerOne"){
+                    Constants.turn = "playerAI";
+                }
+                else{
+                    Constants.turn = "playerOne";
+                }
+            }
+        }
     }
 
     //Method to use when a cell is clicked
@@ -104,12 +149,16 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         id	        The row id of the item that was clicked.
      */
     public void onItemClick(AdapterView parent, View v, int position, long id) {
-        Board opponentBoard;
+
+        /*Board opponentBoard;*/
         int boardSize = Constants.numOfCollumns;
         //Finding y
         currentYPosition = findY(position, boardSize);
         //Finding x
         currentXPosition = position%boardSize;
+        Log.i(className, "onItemClick: currentYPosition = " + currentYPosition + ", and currentXPosition = " + currentXPosition);
+
+        /*
         //Need to get the opponents board
         if (Constants.turn == "playerOne") {
             if(Constants.gameMode == "onePlayer"){
@@ -124,7 +173,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         //Check if this player hit a boat, and execute correct action
         BoardValues value = opponentBoard.getValue(currentXPosition,currentYPosition);
         //Checks what value it is, and performs the correct action
-        doAction(value, opponentBoard, currentXPosition, currentYPosition);
+        doAction(value, opponentBoard, currentXPosition, currentYPosition);*/
 
     }
     //Help method to onItemClick() - find y
@@ -198,6 +247,8 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             toast.show();
 
         }
+        Log.i(className, "Inside doAction()");
+
 
     }
 

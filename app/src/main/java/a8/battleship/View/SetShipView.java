@@ -3,17 +3,13 @@ package a8.battleship.View;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import a8.battleship.Adapter.GridAdapter;
-import a8.battleship.Logic.BoardValues;
 import a8.battleship.Logic.Constants;
 import a8.battleship.Models.Board;
 import a8.battleship.Models.Player;
@@ -92,7 +88,7 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
     //Connecting with the XML-objects
     public void initiateWidgets(){
 
-        tvHeader = (TextView) findViewById(R.id.mainMenuTitle);
+        tvHeader = (TextView) findViewById(R.id.switchViewHeader);
 
         buttonStartGame = (Button) findViewById(R.id.buttonDone);
         buttonRandomizeShips = (Button) findViewById(R.id.buttonRandomize);

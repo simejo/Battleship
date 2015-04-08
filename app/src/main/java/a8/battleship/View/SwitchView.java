@@ -19,27 +19,36 @@ import android.widget.TextView;
 public class SwitchView extends ActionBarActivity implements View.OnClickListener{
 
     private Button buttonSwitchPlayer;
-    private TextView tvPlayer;
+    private TextView switchViewHeader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_menu_view);
+        setContentView(R.layout.activity_switch_view);
 
         buttonSwitchPlayer = (Button)findViewById(R.id.buttonSwitchPlayer);
 
         buttonSwitchPlayer.setOnClickListener(this);
+
+        switchViewHeader = (TextView)findViewById(R.id.switchViewHeader);
+        if(Constants.turn == "playerOne"){
+            switchViewHeader.setText("Player One's turn");
+        }
+        else if(Constants.turn == "playerTwo"){
+            switchViewHeader.setText("Player Two's turn");
+        }
+        else if(Constants.turn == "playerAI"){
+            switchViewHeader.setText("Player AI's turn");
+        }
     }
     public void onClick(View v){
 
         //Functionality for button
         if(v.getId() == R.id.buttonSwitchPlayer){
             if(Constants.turn == "playerOne"){
-                tvPlayer.setText("Player Ones Turn");
                 startActivity(new Intent(SwitchView.this, BattleView.class));
             }
             else{
-                tvPlayer.setText("Player Twos Turn");
                 startActivity(new Intent(SwitchView.this, BattleView.class));
             }
 
