@@ -64,11 +64,11 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
 
         //sounds
         Constants.launch = MediaPlayer.create(this, R.raw.launch);
-        Constants.hit = MediaPlayer.create(this, R.raw.hit);
-        Constants.miss = MediaPlayer.create(this, R.raw.miss);
+        //Constants.hit = MediaPlayer.create(this, R.raw.hit);
+        //Constants.miss = MediaPlayer.create(this, R.raw.miss);
 
-        AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-        audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 20, 0);
+        AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        am.setStreamVolume(AudioManager.STREAM_MUSIC, am.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
 
 
         //Check who is playing, so we give the right parameter to the setAdapter-method
@@ -118,7 +118,9 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             //Log.i(className, "onClick: buttonConfirmShot was clicked");
 
             Constants.launch.start();
-            Log.i(className, "launch noise" );
+            if(Constants.launch.isPlaying()){
+                Log.i(className, "launch noise" );
+            }
 
             Board opponentBoard;
             //Need to get the opponents board
@@ -219,39 +221,45 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         //Log.i(className, Constants.playerTwo.getBoard().toString());    //Printing board for player 2
         Log.i(className, "X: " + Integer.toString(x) + ", Y: " + Integer.toString(y));
         if (value == BoardValues.EAST){
-            Constants.hit.start();
+            //Constants.hit.start();
+            //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);        //Will update partsLeft in the correct ship (hopefully)
             opponentBoard.changeBoardValue(x,y, BoardValues.EAST_DESTROYED);
             printSuccess();
 
         }
         else if (value == BoardValues.SOUTH){
-            Constants.hit.start();
+            //Constants.hit.start();
+            //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x,y,BoardValues.SOUTH_DESTROYED);
             printSuccess();
 
         }
         else if (value == BoardValues.WEST){
-            Constants.hit.start();
+            //Constants.hit.start();
+            //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x,y,BoardValues.WEST_DESTROYED);
             printSuccess();
         }
         else if (value == BoardValues.NORTH){
-            Constants.hit.start();
+            //Constants.hit.start();
+            //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x,y,BoardValues.NORTH_DESTROYED);
             printSuccess();
         }
         else if (value == BoardValues.MIDDLE_HORIZONTAL){
-            Constants.hit.start();
+            //Constants.hit.start();
+            //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x,y,BoardValues.MIDDLE_HORIZONTAL_DESTROYED);
             printSuccess();
         }
         else if (value == BoardValues.MIDDLE_VERTICAL){
-            Constants.hit.start();
+            //Constants.hit.start();
+            //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x,y,BoardValues.MIDDLE_VERTICAL_DESTROYED);
             printSuccess();
