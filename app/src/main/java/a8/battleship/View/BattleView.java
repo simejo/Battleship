@@ -50,6 +50,8 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         buttonNextPlayer = (Button) findViewById(R.id.buttonNextPlayer);
         buttonConfirmShot = (Button) findViewById(R.id.buttonConfirmShot);
 
+        buttonNextPlayer.setVisibility(Button.INVISIBLE);
+
 
         boardGridView.setNumColumns(Constants.boardSize);
         boardGridView.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
@@ -115,7 +117,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             }
             BoardValues value = opponentBoard.getValue(currentYPosition,currentXPosition);
             doAction(value, opponentBoard, currentYPosition, currentXPosition);
-
+            buttonNextPlayer.setVisibility(Button.VISIBLE);
         }
         if(v.getId() == R.id.buttonNextPlayer){
             //Log.i(className, "onClick: buttonNextPlayer was clicked");
