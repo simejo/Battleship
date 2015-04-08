@@ -139,6 +139,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             BoardValues value = opponentBoard.getValue(currentXPosition,currentYPosition);
             doAction(value, opponentBoard, currentXPosition, currentYPosition);
             buttonNextPlayer.setVisibility(Button.VISIBLE);
+            buttonConfirmShot.setVisibility(Button.INVISIBLE);
 
         }
         if(v.getId() == R.id.buttonNextPlayer){
