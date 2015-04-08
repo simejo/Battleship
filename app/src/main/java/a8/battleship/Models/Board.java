@@ -76,25 +76,25 @@ public class Board{
 
     //Change value in the board
     public void changeBoardValue(int x, int y, BoardValues value){ // remember range for y and x is 0 to n-1 not 1 to n
-        ArrayList<BoardValues> tempRow = board.get(x);
-        tempRow.set(y, value);
-        board.set(x, tempRow);
+        ArrayList<BoardValues> tempRow = board.get(y);
+        tempRow.set(x, value);
+        board.set(y, tempRow);
     }
 
     public void placeShip(Ship ship, int x, int y){//only send in coordinates that are valid for said boat
         if( ship.getDirection()==0){//vertical
-            for (int i=x; i<ship.getShip().size()+x; i++){//goes through all rows that need changing
+            for (int i=y; i<ship.getShip().size()+y; i++){//goes through all rows that need changing
                 ArrayList<BoardValues> tempRow = board.get(i);//makes duplicate of current row
-                tempRow.set(y, ship.getShip().get(i-x));//replaces piece with corresponding piece in ship
+                tempRow.set(x, ship.getShip().get(i-y));//replaces piece with corresponding piece in ship
                 board.set(i, tempRow);//places temp row back in board
             }
         }
         else if(ship.getDirection()==1) {//horizontal
-            ArrayList<BoardValues> tempRow = board.get(x);// makes a copy of the row you want to work on
-            for (int i=y; i<ship.getShip().size()+y; i++){//goes through the temporary row, and then replaces the pieces where you want to place the boat
-               tempRow.set(i, ship.getShip().get(i-y));//changes enumvalues in temporary row, to fit boat enumvalues
+            ArrayList<BoardValues> tempRow = board.get(y);// makes a copy of the row you want to work on
+            for (int i=x; i<ship.getShip().size()+x; i++){//goes through the temporary row, and then replaces the pieces where you want to place the boat
+               tempRow.set(i, ship.getShip().get(i-x));//changes enumvalues in temporary row, to fit boat enumvalues
             }
-            board.set(x, tempRow); //replaces row in board with temporary row.
+            board.set(y, tempRow); //replaces row in board with temporary row.
         }
     }
 
@@ -147,7 +147,7 @@ public class Board{
     }
 
     public int getLength(){
-        return boardsize * boardsize - 10;
+        return boardsize * boardsize;
     }
 
     //Get value in the board

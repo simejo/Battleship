@@ -113,8 +113,8 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             } else {
                 opponentBoard = Constants.playerOne.getBoard();
             }
-            BoardValues value = opponentBoard.getValue(currentYPosition,currentXPosition);
-            doAction(value, opponentBoard, currentYPosition, currentXPosition);
+            BoardValues value = opponentBoard.getValue(currentXPosition,currentYPosition);
+            doAction(value, opponentBoard, currentXPosition, currentYPosition);
 
         }
         if(v.getId() == R.id.buttonNextPlayer){
