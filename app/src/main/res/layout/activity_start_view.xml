@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="AI Difficulty"
+            android:text="Difficulty"
             android:id="@+id/textView4" />
 
         <SeekBar
@@ -96,7 +96,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/twoPlayer"
-        android:id="@+id/radioButtonTwoPlayer" />
+        android:id="@+id/radioButtonTwoPlayer"
+        android:layout_marginTop="40dp"/>
 
     <EditText
         android:id="@+id/tvPlayerOne"
