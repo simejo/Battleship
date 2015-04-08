@@ -91,7 +91,6 @@ public class GridAdapter extends BaseAdapter {
                 cell.setImageResource(R.drawable.east);
             } else if (cellView.equals(BoardValues.EAST_DESTROYED)) {
                 cell.setImageResource(R.drawable.eastdestroyed);
-
             } else if (cellView.equals(BoardValues.MIDDLE_HORIZONTAL)) {
                 cell.setImageResource(R.drawable.middle);
             } else if (cellView.equals(BoardValues.MIDDLE_VERTICAL)) {

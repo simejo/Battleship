@@ -114,6 +114,9 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                 opponentBoard = Constants.playerOne.getBoard();
             }
             BoardValues value = opponentBoard.getValue(currentXPosition,currentYPosition);
+            if(value == BoardValues.EMPTY){
+                value = BoardValues.MISSED;
+            }
             doAction(value, opponentBoard, currentXPosition, currentYPosition);
 
         }
@@ -193,7 +196,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
     //Help method to onItemClick() - Performs the correct action, and changes the Board-model
     //CHANGES THE MODEL
     public void doAction(BoardValues value, Board opponentBoard, int x, int y){
-        //Log.i(className, Constants.playerTwo.getBoard().toString());    //Printing board for player 2
+        Log.i(className, Constants.playerTwo.getBoard().toString());    //Printing board for player 2
         Log.i(className, "X: " + Integer.toString(x) + ", Y: " + Integer.toString(y));
         if (value == BoardValues.EAST){
             Functions.findAndUpdateShip(x,y,Constants.opponent);        //Will update partsLeft in the correct ship (hopefully)
@@ -227,21 +230,20 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             opponentBoard.changeBoardValue(x,y,BoardValues.MIDDLE_VERTICAL_DESTROYED);
             printSuccess();
         }
+        else if (value == BoardValues.EMPTY){
+            Log.i(className, "LOL, you missed");
+            Toast toast = Toast.makeText(getApplicationContext(), "You missed!", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
+            toast.show();
+            opponentBoard.changeBoardValue(x,y,BoardValues.MISSED);
+
+        }
         //Checks if it was a valid shot
         else if (value == BoardValues.MIDDLE_HORIZONTAL_DESTROYED |value == BoardValues.MIDDLE_VERTICAL_DESTROYED |
                 value == BoardValues.NORTH_DESTROYED | value == BoardValues.WEST_DESTROYED |
-                value == BoardValues.SOUTH_DESTROYED | value == BoardValues.EAST_DESTROYED){
+                value == BoardValues.SOUTH_DESTROYED | value == BoardValues.EAST_DESTROYED | value == BoardValues.MISSED){
             Log.i(className, "Nope, you have already shot here");
             Toast toast = Toast.makeText(getApplicationContext(), "You have already shot here!",
-                    Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
-            toast.show();
-
-        }
-        else if (value == BoardValues.EMPTY){
-            Log.i(className, "LOL, you missed");
-            //TODO: Change boardValues to a "plupp" or the correct image
-            Toast toast = Toast.makeText(getApplicationContext(), "You missed!",
                     Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
             toast.show();
