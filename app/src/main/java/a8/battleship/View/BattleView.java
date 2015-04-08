@@ -1,6 +1,7 @@
 package a8.battleship.View;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -33,6 +34,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
     private Button buttonNextPlayer, buttonConfirmShot;
     private int currentXPosition, currentYPosition;
 
+
     //Need to know which Player is playing
     Player player;
 
@@ -57,6 +59,13 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         //The small gridView which shows your OWN map
         gridViewOwnBoard.setNumColumns(Constants.boardSize);
         gridViewOwnBoard.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
+
+        //sounds
+        Constants.launch = MediaPlayer.create(this, R.raw.launch);
+        Constants.hit = MediaPlayer.create(this, R.raw.hit);
+        Constants.miss = MediaPlayer.create(this, R.raw.miss);
+
+
 
         //Check who is playing, so we give the right parameter to the setAdapter-method
         if (Constants.turn == "playerOne"){
@@ -92,14 +101,20 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
 
     }
 
+
+
     //TODO: Need to add a button in the activity_battle_view.xml file
     //(So we can get to the "change player" screen)
     public void onClick(View v) {
         /*if(v.getId() == R.id.buttonDone){
             startActivity(new Intent(SetShipView.this, BattleView.class));
         }*/
+
         if(v.getId() == R.id.buttonConfirmShot){
             //Log.i(className, "onClick: buttonConfirmShot was clicked");
+
+            Constants.launch.start();
+            Log.i(className, "launch noise" );
 
             Board opponentBoard;
             //Need to get the opponents board
@@ -138,6 +153,8 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             }
         }
     }
+
+
 
     //Method to use when a cell is clicked
     //TODO: Implement this, to make changes on the board when clicked
@@ -192,36 +209,43 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
     }
     //Help method to onItemClick() - Performs the correct action, and changes the Board-model
     //CHANGES THE MODEL
+
     public void doAction(BoardValues value, Board opponentBoard, int x, int y){
         //Log.i(className, Constants.playerTwo.getBoard().toString());    //Printing board for player 2
         if (value == BoardValues.EAST){
+            Constants.hit.start();
             Functions.findAndUpdateShip(x,y,Constants.opponent);        //Will update partsLeft in the correct ship (hopefully)
             opponentBoard.changeBoardValue(x, y, BoardValues.EAST_DESTROYED);
             printSuccess();
 
         }
         else if (value == BoardValues.SOUTH){
+            Constants.hit.start();
             Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x,y,BoardValues.SOUTH_DESTROYED);
             printSuccess();
 
         }
         else if (value == BoardValues.WEST){
+            Constants.hit.start();
             Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x,y,BoardValues.WEST_DESTROYED);
             printSuccess();
         }
         else if (value == BoardValues.NORTH){
+            Constants.hit.start();
             Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x,y,BoardValues.NORTH_DESTROYED);
             printSuccess();
         }
         else if (value == BoardValues.MIDDLE_HORIZONTAL){
+            Constants.hit.start();
             Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x,y,BoardValues.MIDDLE_HORIZONTAL_DESTROYED);
             printSuccess();
         }
         else if (value == BoardValues.MIDDLE_VERTICAL){
+            Constants.hit.start();
             Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x,y,BoardValues.MIDDLE_VERTICAL_DESTROYED);
             printSuccess();
@@ -238,6 +262,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
 
         }
         else if (value == BoardValues.EMPTY){
+            Constants.miss.start();
             Log.i(className, "LOL, you missed");
             //TODO: Change boardValues to a "plupp" or the correct image
             Toast toast = Toast.makeText(getApplicationContext(), "You missed!",
