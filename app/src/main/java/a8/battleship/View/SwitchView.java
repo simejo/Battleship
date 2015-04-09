@@ -6,10 +6,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
 
-import org.w3c.dom.Text;
-
 import a8.battleship.Logic.Constants;
-import a8.battleship.Models.Player;
+import a8.battleship.Models.AiPlayer;
 import a8.battleship.R;
 import android.widget.TextView;
 
@@ -20,6 +18,7 @@ public class SwitchView extends ActionBarActivity implements View.OnClickListene
 
     private Button buttonSwitchPlayer;
     private TextView switchViewHeader;
+    //private AiPlayer playerAI = Constants.playerAI;;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,17 +41,32 @@ public class SwitchView extends ActionBarActivity implements View.OnClickListene
         }
     }
     public void onClick(View v){
-
         //Functionality for button
         if(v.getId() == R.id.buttonSwitchPlayer){
-            if(Constants.turn == "playerOne"){
+            //If its twoPlayer
+            if(Constants.turn == "playerOne" && Constants.gameMode == "twoPlayer"){
                 startActivity(new Intent(SwitchView.this, BattleView.class));
             }
-            else{
+            else if (Constants.turn == "playerTwo" && Constants.gameMode == "twoPlayer"){
                 startActivity(new Intent(SwitchView.this, BattleView.class));
+            }
+            //If its onePlayer ---
+            if(Constants.turn == "playerOne" && Constants.gameMode == "onePlayer"){
+
+                startActivity(new Intent(SwitchView.this, BattleView.class));
+            }
+            else if (Constants.turn == "playerAi" && Constants.gameMode == "onePlayer"){
+
+                startActivity(new Intent(SwitchView.this, BattleView.class));
+                Constants.turn = "playerOne";
+
+
+
+                //startActivity(new Intent(SwitchView.this, BattleView.class));
             }
 
         }
+
 
 
 

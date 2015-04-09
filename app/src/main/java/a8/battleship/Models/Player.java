@@ -16,11 +16,15 @@ public class Player {
     private Board board;
     private boolean turn;
 
+    public  Player() {
+        this.board = null;
+        this.turn = true;
+    }
+
     public Player(String name){
         this.name = name;
         this.board = null;
         this.turn = true;
-
         Log.i("Player.class", "Player created with name: " + name);
     }
 

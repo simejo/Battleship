@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import a8.battleship.Logic.Constants;
+import a8.battleship.Models.AiPlayer;
 import a8.battleship.Models.Board;
 import a8.battleship.Models.Player;
 import a8.battleship.R;
@@ -74,7 +75,7 @@ public class StartView extends ActionBarActivity implements View.OnClickListener
 
             else{
                 //Creates player AI
-                Constants.playerAI = new Player("AI Bot");
+                Constants.playerAI = new AiPlayer();
                 Constants.playerAI.setBoard(new Board(Constants.boardSize));
                 Constants.gameMode = "onePlayer";
             }

@@ -19,6 +19,7 @@ import a8.battleship.Adapter.GridAdapter;
 import a8.battleship.Logic.BoardValues;
 import a8.battleship.Logic.Constants;
 import a8.battleship.Logic.Functions;
+import a8.battleship.Models.AiPlayer;
 import a8.battleship.Models.Board;
 import a8.battleship.Models.Player;
 import a8.battleship.R;
@@ -35,13 +36,14 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
     private TextView tvBattleTitle;
     private Button buttonNextPlayer, buttonConfirmShot;
     private int currentXPosition, currentYPosition;
+    private AiPlayer playerAI = Constants.playerAI;
 
 
     //Need to know which Player is playing
     Player player;
 
     //String class name
-    private String className = "BattleView.java";
+    private static String className = "BattleView.java";
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -155,7 +157,23 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             }
             else if(Constants.gameMode == "onePlayer"){
                 if(Constants.turn == "playerOne"){
-                    Constants.turn = "playerAI";
+                    //Constants.turn = "playerAI";
+                    //logic - AI MAKES A MOVE
+                    if (playerAI.getLevel() == "low"){
+                        int nextMove = playerAI.aiNextMoveLow();
+                        int x = nextMove % Constants.boardSize;
+                        int y = findY(nextMove, Constants.boardSize);
+                        BoardValues value = playerAI.getBoard().getContentInACell(x, y);
+                        doAction(value, Constants.playerOne.getBoard(), x, y);
+                    }
+                    else if (playerAI.getLevel() =="medium"){
+
+                    }
+                    else if (playerAI.getLevel() =="hard"){
+
+                    }
+
+
                 }
                 else{
                     Constants.turn = "playerOne";

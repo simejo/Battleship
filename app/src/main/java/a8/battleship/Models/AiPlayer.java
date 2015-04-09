@@ -1,46 +1,40 @@
 package a8.battleship.Models;
 
+import android.util.Log;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 
 /**
- * Created by TheaHove on 11/03/2015.
+ * Created by siljechristensen on 09.04.15.
  */
-public class AiPlayer {
-    //TODO: Implement AI
-    private Board board;
-    private boolean turn;
+public class AiPlayer extends Player {
     private ArrayList<Integer> rndPos;
+    private String classname = "AiPlayer";
+    private String level;
 
-    public AiPlayer() {
-        this.board = null;
-        this.turn = true;
 
+    public AiPlayer(){
+        Log.i(classname, "Ai player created");
+
+        //Makes a list with all the positions ans shuffles it
         rndPos = new ArrayList<Integer>();
         for (int i = 0; i < 100; i++) {
             rndPos.add(i);
         }
         Collections.shuffle(rndPos);
+        //NEED TO FIX THIS!!!!!!!
+        level = "low";
     }
 
-    public void setBoard(Board board){
-        this.board = board;
+    public String getLevel(){
+        return this.level;
     }
 
-    public void setTurn(boolean turn){
-        this.turn = turn;
-    }
 
-    public boolean getTurn(){
-        return turn;
-    }
-
-    public Board getBoard(){
-        return this.board;
-    }
-
-    public Integer aiPositions() {
+    // LOW MEDIUM HARD
+    //Finds the next move for low level
+    public int aiNextMoveLow() {
         return rndPos.remove(0);
     }
 }

@@ -2,9 +2,9 @@ package a8.battleship.Logic;
 
 import android.media.MediaPlayer;
 
+import a8.battleship.Models.AiPlayer;
 import a8.battleship.Models.Board;
 import a8.battleship.Models.Player;
-import a8.battleship.R;
 
 /**
  * Created by majakirkerod on 11.03.15.
@@ -22,7 +22,9 @@ public class Constants {
 
     public static Player playerOne;
     public static Player playerTwo;
-    public static Player playerAI;
+    public static AiPlayer playerAI;
+
+
 
     //This will always be the players opponent
     public static Player opponent;
