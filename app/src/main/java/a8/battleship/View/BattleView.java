@@ -73,13 +73,14 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         gridViewOwnBoard.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
 
         //sounds
-        Constants.launch = MediaPlayer.create(this, R.raw.launch);
+        /*Constants.launch = MediaPlayer.create(this, R.raw.launch);
         Constants.hit = MediaPlayer.create(this, R.raw.hit);
         Constants.miss = MediaPlayer.create(this, R.raw.miss);
 
         AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         am.setStreamVolume(AudioManager.STREAM_MUSIC, am.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
 
+        */
 
         //Check who is playing, so we give the right parameter to the setAdapter-method
         if (Constants.turn.equals("playerOne")){
@@ -152,6 +153,10 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             doAction(value, opponentBoard, currentXPosition, currentYPosition);
 
             boardGridView.setAdapter(new GridAdapter(this, opponentBoard));
+
+            if(Functions.endGame(opponentBoard)){
+                startActivity(new Intent(BattleView.this, EndGameView.class));
+            }
 
         }
         if(v.getId() == R.id.buttonNextPlayer){
