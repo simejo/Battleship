@@ -79,7 +79,7 @@ public class GridAdapter extends BaseAdapter {
 
             //Converting BoardValues to images
 
-            /*if (cellView.equals(BoardValues.EAST)) {
+            if (cellView.equals(BoardValues.EAST)) {
                 cell.setImageResource(R.drawable.east);
             } else if (cellView.equals(BoardValues.WEST)) {
                 cell.setImageResource(R.drawable.west);
@@ -91,7 +91,7 @@ public class GridAdapter extends BaseAdapter {
                 cell.setImageResource(R.drawable.north);
             } else if (cellView.equals(BoardValues.SOUTH)){
                 cell.setImageResource(R.drawable.south);
-            } else */if (cellView.equals(BoardValues.SOUTH_DESTROYED)) {
+            } else if (cellView.equals(BoardValues.SOUTH_DESTROYED)) {
                 cell.setImageResource(R.drawable.southdestroyed);
             } else if (cellView.equals(BoardValues.EAST_DESTROYED)) {
                 cell.setImageResource(R.drawable.eastdestroyed);
