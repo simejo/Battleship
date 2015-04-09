@@ -68,7 +68,13 @@ public class StartView extends ActionBarActivity implements View.OnClickListener
             if(rbTwoPlayer.isChecked()){
 
                 //Creates player two
-                Constants.playerTwo = new Player(tvPlayerTwo.getText().toString());
+                if(tvPlayerTwo.getText().toString().equals("")){
+                    Constants.playerTwo = new Player("Player 2");
+
+                }
+                else{
+                    Constants.playerTwo = new Player(tvPlayerTwo.getText().toString());
+                }
                 Constants.playerTwo.setBoard(new Board(Constants.boardSize));
                 Constants.gameMode = "twoPlayer";
             }
@@ -81,7 +87,12 @@ public class StartView extends ActionBarActivity implements View.OnClickListener
             }
 
             //Creates Player One
-            Constants.playerOne = new Player(tvPlayerOne.getText().toString());
+            if(tvPlayerTwo.getText().toString().equals("")){
+                Constants.playerOne = new Player("Player 1");
+            }
+            else{
+                Constants.playerOne = new Player(tvPlayerOne.getText().toString());
+            }
             Constants.playerOne.setBoard(new Board(Constants.boardSize));
 
             Constants.turn = "playerOne";
