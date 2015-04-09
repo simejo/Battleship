@@ -2,6 +2,7 @@ package a8.battleship.View;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +40,8 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
     private Button buttonNextPlayer, buttonConfirmShot;
     private int currentXPosition, currentYPosition;
     private AiPlayer playerAI = Constants.playerAI;
+    private boolean hasShot = false;
+    private View selectedCell = null;
 
 
     //Need to know which Player is playing
@@ -78,8 +82,8 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
 
 
         //Check who is playing, so we give the right parameter to the setAdapter-method
-        if (Constants.turn == "playerOne"){
-            if(Constants.gameMode == "onePlayer"){
+        if (Constants.turn.equals("playerOne")){
+            if(Constants.gameMode.equals("onePlayer")){
                Constants.opponent = Constants.playerAI;
 
             }
@@ -115,6 +119,8 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
     public void onClick(View v) {
 
         if(v.getId() == R.id.buttonConfirmShot){
+            //This prevents the user to shot more than once
+            hasShot = true;
             //Log.i(className, "onClick: buttonConfirmShot was clicked");
 
             /*Constants.launch.start();
@@ -153,29 +159,29 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
 
 
             startActivity(new Intent(BattleView.this, SwitchView.class));
-            if(Constants.gameMode == "twoPlayer"){
-                if(Constants.turn == "playerOne"){
+            if(Constants.gameMode.equals("twoPlayer")){
+                if(Constants.turn.equals("playerOne")){
                     Constants.turn = "playerTwo";
                 }
                 else{
                     Constants.turn = "playerOne";
                 }
             }
-            else if(Constants.gameMode == "onePlayer"){
-                if(Constants.turn == "playerOne"){
+            else if(Constants.gameMode.equals("onePlayer")){
+                if(Constants.turn.equals("playerOne")){
                     //Constants.turn = "playerAI";
                     //logic - AI MAKES A MOVE
-                    if (playerAI.getLevel() == "low"){
+                    if (playerAI.getLevel().equals("low")){
                         int nextMove = playerAI.aiNextMoveLow();
                         int x = nextMove % Constants.boardSize;
                         int y = findY(nextMove, Constants.boardSize);
                         BoardValues value = playerAI.getBoard().getContentInACell(x, y);
                         doAction(value, Constants.playerOne.getBoard(), x, y);
                     }
-                    else if (playerAI.getLevel() =="medium"){
+                    else if (playerAI.getLevel().equals("medium")){
 
                     }
-                    else if (playerAI.getLevel() =="hard"){
+                    else if (playerAI.getLevel().equals("hard")){
 
                     }
 
@@ -199,7 +205,17 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
     public void onItemClick(AdapterView parent, View v, int position, long id) {
 
         /*Board opponentBoard;*/
-        buttonConfirmShot.setVisibility(Button.VISIBLE);
+        if(!(selectedCell == null)){
+            selectedCell.setAlpha(1);
+        }
+
+
+        //Checks whether the player has shot or not
+        if(!hasShot){
+            selectedCell = (View) v;
+            selectedCell.setAlpha(0.5f);
+            buttonConfirmShot.setVisibility(Button.VISIBLE);
+        }
         int boardSize = Constants.boardSize;
         //Finding y
         currentYPosition = findY(position, boardSize);
@@ -258,7 +274,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             Constants.hit.start();
             //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);
-            opponentBoard.changeBoardValue(x,y,BoardValues.SOUTH_DESTROYED);
+            opponentBoard.changeBoardValue(x, y, BoardValues.SOUTH_DESTROYED);
             printSuccess();
 
         }
@@ -266,28 +282,28 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             Constants.hit.start();
             //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);
-            opponentBoard.changeBoardValue(x,y,BoardValues.WEST_DESTROYED);
+            opponentBoard.changeBoardValue(x, y, BoardValues.WEST_DESTROYED);
             printSuccess();
         }
         else if (value == BoardValues.NORTH){
             Constants.hit.start();
             //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);
-            opponentBoard.changeBoardValue(x,y,BoardValues.NORTH_DESTROYED);
+            opponentBoard.changeBoardValue(x, y, BoardValues.NORTH_DESTROYED);
             printSuccess();
         }
         else if (value == BoardValues.MIDDLE_HORIZONTAL){
             Constants.hit.start();
             //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);
-            opponentBoard.changeBoardValue(x,y,BoardValues.MIDDLE_HORIZONTAL_DESTROYED);
+            opponentBoard.changeBoardValue(x, y, BoardValues.MIDDLE_HORIZONTAL_DESTROYED);
             printSuccess();
         }
         else if (value == BoardValues.MIDDLE_VERTICAL){
             Constants.hit.start();
             //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);
-            opponentBoard.changeBoardValue(x,y,BoardValues.MIDDLE_VERTICAL_DESTROYED);
+            opponentBoard.changeBoardValue(x, y, BoardValues.MIDDLE_VERTICAL_DESTROYED);
             printSuccess();
         }
         //TODO: It is possible to fire a shot at the MISSED enum, this must be fixed
@@ -320,7 +336,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
         toast.show();
     }
-    public void initiateWidgets() {
+    /*public void initiateWidgets() {
 
-    }
+    }*/
 }
