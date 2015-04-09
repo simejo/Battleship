@@ -147,9 +147,9 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                 opponentBoard = Constants.playerOne.getBoard();
             }
             BoardValues value = opponentBoard.getValue(currentXPosition,currentYPosition);
-            doAction(value, opponentBoard, currentXPosition, currentYPosition);
             buttonNextPlayer.setVisibility(Button.VISIBLE);
             buttonConfirmShot.setVisibility(Button.INVISIBLE);
+            doAction(value, opponentBoard, currentXPosition, currentYPosition);
 
             boardGridView.setAdapter(new GridAdapter(this, opponentBoard));
 
@@ -267,7 +267,6 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);        //Will update partsLeft in the correct ship (hopefully)
             opponentBoard.changeBoardValue(x,y, BoardValues.EAST_DESTROYED);
-            printSuccess();
 
         }
         else if (value == BoardValues.SOUTH){
@@ -275,7 +274,6 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x, y, BoardValues.SOUTH_DESTROYED);
-            printSuccess();
 
         }
         else if (value == BoardValues.WEST){
@@ -283,42 +281,41 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x, y, BoardValues.WEST_DESTROYED);
-            printSuccess();
         }
         else if (value == BoardValues.NORTH){
             Constants.hit.start();
             //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x, y, BoardValues.NORTH_DESTROYED);
-            printSuccess();
         }
         else if (value == BoardValues.MIDDLE_HORIZONTAL){
             Constants.hit.start();
             //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x, y, BoardValues.MIDDLE_HORIZONTAL_DESTROYED);
-            printSuccess();
         }
         else if (value == BoardValues.MIDDLE_VERTICAL){
             Constants.hit.start();
             //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x, y, BoardValues.MIDDLE_VERTICAL_DESTROYED);
-            printSuccess();
         }
-        //TODO: It is possible to fire a shot at the MISSED enum, this must be fixed
-        //Checks if it was a valid shot
-        else if (value == BoardValues.MIDDLE_HORIZONTAL_DESTROYED |value == BoardValues.MIDDLE_VERTICAL_DESTROYED |
-                value == BoardValues.NORTH_DESTROYED | value == BoardValues.WEST_DESTROYED |
-                value == BoardValues.SOUTH_DESTROYED | value == BoardValues.EAST_DESTROYED){ //| value == BoardValues.MISSED){
-            Log.i(className, "Nope, you have already shot here");
-
-
-        }
-        else {// if (value == BoardValues.EMPTY){
+        else if (value == BoardValues.EMPTY){
             Constants.miss.start();
             Log.i(className, "LOL, you missed");
             opponentBoard.changeBoardValue(x,y,BoardValues.MISSED);
+
+        }
+        //TODO: It is possible to fire a shot at the MISSED enum, this must be fixed
+        //Checks if it was a valid shot
+        else{
+            buttonNextPlayer.setVisibility(Button.INVISIBLE);
+            buttonConfirmShot.setVisibility(Button.VISIBLE);
+            hasShot = false;
+            Log.i(className, "Nope, you have already shot here");
+            Toast popupBox = Toast.makeText(getApplicationContext(), "You have already shot there!", Toast.LENGTH_SHORT);
+            popupBox.setGravity(Gravity.CENTER|Gravity.CENTER_HORIZONTAL, 0, 0);
+            popupBox.show();
 
         }
         //Log.i(className, "Inside doAction()");
@@ -326,16 +323,6 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
 
     }
 
-    /* If success - this method should be called
-     * Printing to logcat and makes a toast (Pop-up text on the screen)
-    */
-    public void printSuccess(){
-        Log.i(className, "Wohooo, you hit a boat!");
-        Toast toast = Toast.makeText(getApplicationContext(), "YOU HIT A BOAT!",
-                Toast.LENGTH_SHORT);
-        toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
-        toast.show();
-    }
     /*public void initiateWidgets() {
 
     }*/
