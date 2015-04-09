@@ -2,6 +2,7 @@ package a8.battleship.Logic;
 
 import java.util.ArrayList;
 
+import a8.battleship.Models.Board;
 import a8.battleship.Models.Player;
 import a8.battleship.Tokens.Ship;
 
@@ -54,6 +55,19 @@ public class Functions {
                 }
             }
         }
+    }
+
+    public static boolean endGame(Board board){
+        for (ArrayList<BoardValues> rows : board.getBoard()){
+            for(BoardValues cell : rows){
+                if(cell == BoardValues.WEST || cell == BoardValues.EAST || cell == BoardValues.NORTH || cell == BoardValues.SOUTH
+                        || cell == BoardValues.MIDDLE || cell == BoardValues.MIDDLE_HORIZONTAL || cell == BoardValues.MIDDLE_VERTICAL){
+                    return false;
+
+                }
+            }
+        }
+        return true;
     }
 
     //FINDING Y POSITION WHEN YOU ONLY HAVE A INT FOR THE POS
