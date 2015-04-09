@@ -168,11 +168,16 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                     if (playerAI.getLevel() == "low"){
                         int nextMove = playerAI.aiNextMoveLow();
                         int x = nextMove % Constants.boardSize;
-                        int y = findY(nextMove, Constants.boardSize);
+                        int y = Functions.findY(nextMove, Constants.boardSize);
                         BoardValues value = playerAI.getBoard().getContentInACell(x, y);
                         doAction(value, Constants.playerOne.getBoard(), x, y);
                     }
                     else if (playerAI.getLevel() =="medium"){
+                        int nextMove = playerAI.aiNextMoveMedium();
+                        int x = nextMove % Constants.boardSize;
+                        int y = Functions.findY(nextMove, Constants.boardSize);
+                        BoardValues value = playerAI.getBoard().getContentInACell(x, y);
+                        doAction(value, Constants.playerOne.getBoard(), x, y);
 
                     }
                     else if (playerAI.getLevel() =="hard"){
@@ -202,7 +207,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         buttonConfirmShot.setVisibility(Button.VISIBLE);
         int boardSize = Constants.boardSize;
         //Finding y
-        currentYPosition = findY(position, boardSize);
+        currentYPosition = Functions.findY(position, boardSize);
         //Finding x
         currentXPosition = position%boardSize;
         Log.i(className, "onItemClick: currentYPosition = " + currentYPosition + ", and currentXPosition = " + currentXPosition);
@@ -226,7 +231,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
 
     }
     //Help method to onItemClick() - find y
-    public int findY(int position, int boardSize){
+    /*public int findY(int position, int boardSize){
         int tempPos = position;
         int y = 0;
         for (int i = 0; i < boardSize; i++){
@@ -239,7 +244,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             }
         }
         return y;
-    }
+    }*/
     //Help method to onItemClick() - Performs the correct action, and changes the Board-model
     //CHANGES THE MODEL
 

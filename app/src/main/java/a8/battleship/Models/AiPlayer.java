@@ -1,40 +1,1 @@
-package a8.battleship.Models;
-
-import android.util.Log;
-
-import java.util.ArrayList;
-import java.util.Collections;
-
-/**
- * Created by siljechristensen on 09.04.15.
- */
-public class AiPlayer extends Player {
-    private ArrayList<Integer> rndPos;
-    private String classname = "AiPlayer";
-    private String level;
-
-
-    public AiPlayer(){
-        Log.i(classname, "Ai player created");
-
-        //Makes a list with all the positions ans shuffles it
-        rndPos = new ArrayList<Integer>();
-        for (int i = 0; i < 100; i++) {
-            rndPos.add(i);
-        }
-        Collections.shuffle(rndPos);
-        //NEED TO FIX THIS!!!!!!!
-        level = "low";
-    }
-
-    public String getLevel(){
-        return this.level;
-    }
-
-
-    // LOW MEDIUM HARD
-    //Finds the next move for low level
-    public int aiNextMoveLow() {
-        return rndPos.remove(0);
-    }
-}
+package a8.battleship.Models;import android.util.Log;import java.util.ArrayList;import java.util.Collections;import java.util.Random;import a8.battleship.Logic.BoardValues;import a8.battleship.Logic.Constants;import a8.battleship.Logic.Functions;/** * Created by siljechristensen on 09.04.15. */public class AiPlayer extends Player {    private ArrayList<Integer> rndPos;    private String classname = "AiPlayer";    private String level;    private ArrayList<Integer> prioritizedMoves; //Where the prioritized moves will be saved    private ArrayList<Integer> allPositions;    public AiPlayer(){        Log.i(classname, "Ai player created");        //Makes a list with all the positions        rndPos = new ArrayList<Integer>();        for (int i = 0; i < 100; i++) {            rndPos.add(i);        }        allPositions = rndPos;          // THE LIST SORTED        Collections.shuffle(rndPos);    // THE RANDOM LIST        prioritizedMoves = new ArrayList<Integer>();        //NEED TO FIX THIS!!!!!!!        level = "medium";    }    public String getLevel(){        return this.level;    }    // LOW MEDIUM HARD    //Finds the next move for low level    public int aiNextMoveLow() {        return rndPos.remove(0);    }    //Finds the next move for low level    public int aiNextMoveMedium(){        ArrayList<Integer> prioritizedMoves = new ArrayList<Integer>();     //Where the prioritized moves will be saved        ArrayList<Integer> usedMoves = new ArrayList<Integer>();            //Need this because when we add moves to the prioritizedMoves list, we dont remove it from the rndPos list        Board opponentBoard = Constants.playerOne.getBoard();        int nextPos;        if(prioritizedMoves.size() == 0){            nextPos = rndPos.remove(0);        }        else{            nextPos = prioritizedMoves.remove(0);        }        int x = nextPos % Constants.boardSize;        int y = Functions.findY(nextPos, Constants.boardSize);        if(hitBoat(opponentBoard, x, y)){            updatePrioritizedMoves(x,y);        }        return nextPos;    }    public void updatePrioritizedMoves(int x,int y){        if (x != 0 && x != Constants.boardSize-1){            int pos1 = Functions.findPos(x+1,y);            int pos2 = Functions.findPos(x-1,y);            if (!rndPos.contains(pos1)){                prioritizedMoves.add(pos1);                rndPos.remove(pos1);            }            if (!rndPos.contains(pos2)){                prioritizedMoves.add(pos2);                rndPos.remove(pos2);            }        }        else if (x==0){            int pos1 = Functions.findPos(x+1,y);            if (!rndPos.contains(pos1)){                prioritizedMoves.add(pos1);                rndPos.remove(pos1);            }        }        else if (x==Constants.boardSize - 1){            int pos1 = Functions.findPos(x-1,y);            if (!rndPos.contains(pos1)){                prioritizedMoves.add(pos1);                rndPos.remove(pos1);            }        }        if(y != 0 && y!=Constants.boardSize -1){            int pos1 = Functions.findPos(x,y+1);            int pos2 = Functions.findPos(x,y-1);            if (!rndPos.contains(pos1)){                prioritizedMoves.add(pos1);                rndPos.remove(pos1);            }            if (!rndPos.contains(pos2)){                prioritizedMoves.add(pos2);                rndPos.remove(pos2);            }        }        else if (y==0){            int pos1 = Functions.findPos(x,y+1);            if (!rndPos.contains(pos1)){                prioritizedMoves.add(pos1);                rndPos.remove(pos1);            }        }        else if (y==Constants.boardSize - 1){            int pos1 = Functions.findPos(x,y-1);            if (!rndPos.contains(pos1)){                prioritizedMoves.add(pos1);                rndPos.remove(pos1);            }        }    }    public boolean hitBoat(Board board, int x, int y){        BoardValues value = board.getContentInACell(x,y);        if(value == BoardValues.EAST || value == BoardValues.WEST || value == BoardValues.NORTH || value == BoardValues.SOUTH ||value == BoardValues.MIDDLE ){            return true;        }        else{ return false;}    }}
