@@ -89,7 +89,7 @@ public class OwnBoardGridAdapter extends BaseAdapter {
                 cell.setImageResource(R.drawable.middledestroyed);
             } else if (cellView.equals(BoardValues.MIDDLE_HORIZONTAL_DESTROYED)) {
                 cell.setImageResource(R.drawable.middledestroyed);
-            }else if (cellView.equals(BoardValues.MIDDLE_VERTICAL_DESTROYED)) {
+            } else if (cellView.equals(BoardValues.MIDDLE_VERTICAL_DESTROYED)) {
                 cell.setImageResource(R.drawable.middledestroyed);
             } else if (cellView.equals(BoardValues.NORTH)) {
                 cell.setImageResource(R.drawable.north);
@@ -131,5 +131,6 @@ public class OwnBoardGridAdapter extends BaseAdapter {
     public long getItemId(int position) {
         return 0;
     }
+
 
 }

@@ -99,10 +99,6 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         //Connecting the grids with the adapter
         boardGridView.setAdapter(new GridAdapter(this, Constants.opponent.getBoard()));
         gridViewOwnBoard.setAdapter(new OwnBoardGridAdapter(this, player.getBoard()));
-        //gridViewOwnBoard.clearFocus();
-        gridViewOwnBoard.setClickable(false);
-        gridViewOwnBoard.setActivated(false);
-        gridViewOwnBoard.setFocusable(false);
 
 
         //Which means that the following lines must be rewritten a bit
@@ -131,7 +127,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             */
 
             Board opponentBoard;
-            //Need to get the opponents board
+            //Need to get the opponents board to change the values
             if (Constants.turn == "playerOne") {
                 if(Constants.gameMode == "onePlayer"){
                     opponentBoard = Constants.playerAI.getBoard();
@@ -147,9 +143,13 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             buttonNextPlayer.setVisibility(Button.VISIBLE);
             buttonConfirmShot.setVisibility(Button.INVISIBLE);
 
+            boardGridView.setAdapter(new GridAdapter(this, opponentBoard));
+
         }
         if(v.getId() == R.id.buttonNextPlayer){
             //Log.i(className, "onClick: buttonNextPlayer was clicked");
+
+
             startActivity(new Intent(BattleView.this, SwitchView.class));
             if(Constants.gameMode == "twoPlayer"){
                 if(Constants.turn == "playerOne"){
@@ -278,18 +278,13 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                 value == BoardValues.NORTH_DESTROYED | value == BoardValues.WEST_DESTROYED |
                 value == BoardValues.SOUTH_DESTROYED | value == BoardValues.EAST_DESTROYED){ //| value == BoardValues.MISSED){
             Log.i(className, "Nope, you have already shot here");
-            Toast toast = Toast.makeText(getApplicationContext(), "You have already shot here!", Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
-            toast.show();
+
 
         }
         else {// if (value == BoardValues.EMPTY){
             Constants.miss.start();
             Log.i(className, "LOL, you missed");
             opponentBoard.changeBoardValue(x,y,BoardValues.MISSED);
-            Toast toast = Toast.makeText(getApplicationContext(), "You missed!", Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
-            toast.show();
 
         }
         //Log.i(className, "Inside doAction()");

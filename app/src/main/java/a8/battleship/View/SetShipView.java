@@ -34,7 +34,6 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
 
     private Button buttonStartGame, buttonRandomizeShips;
     private TextView tvHeader;
-    private OwnBoardGridAdapter adapter;
 
     //Need to know which Player is playing
     Player player;
@@ -44,7 +43,6 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_ship_view);
-        //adapter = new OwnBoardGridAdapter(this, player.getBoard());
 
         initiateWidgets();
     }
@@ -71,21 +69,11 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
         else if(v.getId() == R.id.buttonRandomize){
             if(Constants.turn == "playerOne"){
                 Constants.playerOne.setBoard(new Board(Constants.boardSize));
-
-                //adapter.notifyDataSetChanged();
-                //setShipGridView.invalidateViews();
-
-                //setShipGridView.invalidateViews();
-                //setShipGridView.refreshDrawableState();
-                //setShipGridView.invalidate();
                 setShipGridView.setAdapter(new OwnBoardGridAdapter(this, player.getBoard()));
             }
             else{
                 Constants.playerTwo.setBoard(new Board(Constants.boardSize));
                 setShipGridView.setAdapter(new OwnBoardGridAdapter(this, player.getBoard()));
-                //setShipGridView.invalidateViews();
-                //adapter.notifyDataSetChanged();
-                //setShipGridView.invalidateViews();
 
 
             }
@@ -126,6 +114,6 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
         setShipGridView.setAdapter(new OwnBoardGridAdapter(this, player.getBoard()));
 
         //Gives the adapter onItemClickListener
-        setShipGridView.setOnItemClickListener(this);
+        //setShipGridView.setOnItemClickListener(this);
     }
 }

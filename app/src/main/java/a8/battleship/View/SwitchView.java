@@ -32,10 +32,10 @@ public class SwitchView extends ActionBarActivity implements View.OnClickListene
 
         switchViewHeader = (TextView)findViewById(R.id.switchViewHeader);
         if(Constants.turn == "playerOne"){
-            switchViewHeader.setText("Player One's turn");
+            switchViewHeader.setText(Constants.playerOne.getName() + "'s turn");
         }
         else if(Constants.turn == "playerTwo"){
-            switchViewHeader.setText("Player Two's turn");
+            switchViewHeader.setText(Constants.playerTwo.getName() + "'s turn");
         }
         else if(Constants.turn == "playerAI"){
             switchViewHeader.setText("Player AI's turn");
