@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
 
-import a8.battleship.Adapter.GridAdapter;
+import a8.battleship.Adapter.OwnBoardGridAdapter;
 import a8.battleship.Logic.Constants;
 import a8.battleship.Models.Board;
 import a8.battleship.Models.Player;
@@ -69,11 +69,12 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
         else if(v.getId() == R.id.buttonRandomize){
             if(Constants.turn == "playerOne"){
                 Constants.playerOne.setBoard(new Board(Constants.boardSize));
-                setShipGridView.setAdapter(new GridAdapter(this, player.getBoard()));
+                setShipGridView.setAdapter(new OwnBoardGridAdapter(this, player.getBoard()));
             }
             else{
                 Constants.playerTwo.setBoard(new Board(Constants.boardSize));
-                setShipGridView.setAdapter(new GridAdapter(this, player.getBoard()));
+                setShipGridView.setAdapter(new OwnBoardGridAdapter(this, player.getBoard()));
+
 
             }
         }
@@ -110,9 +111,9 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
             tvHeader.setText("Place boats for " + Constants.playerOne.getName());
             player = Constants.playerOne;
         }
-        setShipGridView.setAdapter(new GridAdapter(this, player.getBoard()));
+        setShipGridView.setAdapter(new OwnBoardGridAdapter(this, player.getBoard()));
 
         //Gives the adapter onItemClickListener
-        setShipGridView.setOnItemClickListener(this);
+        //setShipGridView.setOnItemClickListener(this);
     }
 }
