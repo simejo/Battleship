@@ -11,7 +11,6 @@ import a8.battleship.Models.Player;
  */
 public class Constants {
 
-    //Why do we have both boardSize and boardSize? I keep using numOfColluns since it's already been used
     public static int boardSize = 10;
 
     public static int screenHeight;
