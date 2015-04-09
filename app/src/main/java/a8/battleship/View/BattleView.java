@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import a8.battleship.Adapter.GridAdapter;
+import a8.battleship.Adapter.OwnBoardGridAdapter;
 import a8.battleship.Logic.BoardValues;
 import a8.battleship.Logic.Constants;
 import a8.battleship.Logic.Functions;
@@ -55,6 +56,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         buttonConfirmShot = (Button) findViewById(R.id.buttonConfirmShot);
 
         buttonNextPlayer.setVisibility(Button.INVISIBLE);
+        buttonConfirmShot.setVisibility(Button.INVISIBLE);
 
 
         boardGridView.setNumColumns(Constants.boardSize);
@@ -96,7 +98,11 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
 
         //Connecting the grids with the adapter
         boardGridView.setAdapter(new GridAdapter(this, Constants.opponent.getBoard()));
-        gridViewOwnBoard.setAdapter(new GridAdapter(this, player.getBoard()));
+        gridViewOwnBoard.setAdapter(new OwnBoardGridAdapter(this, player.getBoard()));
+        //gridViewOwnBoard.clearFocus();
+        gridViewOwnBoard.setClickable(false);
+        gridViewOwnBoard.setActivated(false);
+        gridViewOwnBoard.setFocusable(false);
 
 
         //Which means that the following lines must be rewritten a bit
@@ -175,6 +181,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
     public void onItemClick(AdapterView parent, View v, int position, long id) {
 
         /*Board opponentBoard;*/
+        buttonConfirmShot.setVisibility(Button.VISIBLE);
         int boardSize = Constants.boardSize;
         //Finding y
         currentYPosition = findY(position, boardSize);

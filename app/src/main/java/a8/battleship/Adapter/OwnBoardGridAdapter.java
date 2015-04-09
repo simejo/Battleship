@@ -1,7 +1,7 @@
 package a8.battleship.Adapter;
 
 /**
- * Created by siljechristensen on 17.03.15.
+ * Created by simen on 09.04.15.
  */
 import android.content.Context;
 import android.util.Log;
@@ -22,15 +22,13 @@ import a8.battleship.Tokens.Ship;
 //The adapter is  a description of how the cell will look like (in this case in the gridView)
 
 
-public class GridAdapter extends BaseAdapter {
+public class OwnBoardGridAdapter extends BaseAdapter {
     private Context context;
     private Board board;
 
 
-
-
     //The constructor
-    public GridAdapter(Context context, Board board) {
+    public OwnBoardGridAdapter(Context context, Board board) {
         this.context = context;
         this.board = board;
     }
@@ -79,32 +77,32 @@ public class GridAdapter extends BaseAdapter {
 
             //Converting BoardValues to images
 
-            /*if (cellView.equals(BoardValues.EAST)) {
+            if (cellView.equals(BoardValues.EAST)) {
                 cell.setImageResource(R.drawable.east);
-            } else if (cellView.equals(BoardValues.WEST)) {
-                cell.setImageResource(R.drawable.west);
+            } else if (cellView.equals(BoardValues.EAST_DESTROYED)) {
+                cell.setImageResource(R.drawable.eastdestroyed);
             } else if (cellView.equals(BoardValues.MIDDLE_HORIZONTAL)) {
                 cell.setImageResource(R.drawable.middle);
             } else if (cellView.equals(BoardValues.MIDDLE_VERTICAL)) {
                 cell.setImageResource(R.drawable.middle);
-            } else if (cellView.equals(BoardValues.NORTH)) {
-                cell.setImageResource(R.drawable.north);
-            } else if (cellView.equals(BoardValues.SOUTH)){
-                cell.setImageResource(R.drawable.south);
-            } else */if (cellView.equals(BoardValues.SOUTH_DESTROYED)) {
-                cell.setImageResource(R.drawable.southdestroyed);
-            } else if (cellView.equals(BoardValues.EAST_DESTROYED)) {
-                cell.setImageResource(R.drawable.eastdestroyed);
-            } else if (cellView.equals(BoardValues.WEST_DESTROYED)) {
-                cell.setImageResource(R.drawable.westdestroyed);
             } else if (cellView.equals(BoardValues.MIDDLE_DESTROYED)) {
                 cell.setImageResource(R.drawable.middledestroyed);
             } else if (cellView.equals(BoardValues.MIDDLE_HORIZONTAL_DESTROYED)) {
                 cell.setImageResource(R.drawable.middledestroyed);
             }else if (cellView.equals(BoardValues.MIDDLE_VERTICAL_DESTROYED)) {
                 cell.setImageResource(R.drawable.middledestroyed);
+            } else if (cellView.equals(BoardValues.NORTH)) {
+                cell.setImageResource(R.drawable.north);
             } else if (cellView.equals(BoardValues.NORTH_DESTROYED)) {
                 cell.setImageResource(R.drawable.northdestroyed);
+            } else if (cellView.equals(BoardValues.SOUTH)){
+                cell.setImageResource(R.drawable.south);
+            } else if (cellView.equals(BoardValues.SOUTH_DESTROYED)) {
+                cell.setImageResource(R.drawable.southdestroyed);
+            } else if (cellView.equals(BoardValues.WEST)) {
+                cell.setImageResource(R.drawable.west);
+            } else if (cellView.equals(BoardValues.WEST_DESTROYED)) {
+                cell.setImageResource(R.drawable.westdestroyed);
             } else if(cellView.equals(BoardValues.MISSED)){
                 cell.setImageResource(R.drawable.missedshot);
             } else {
