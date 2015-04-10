@@ -3,6 +3,7 @@ package a8.battleship.View;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -32,20 +33,26 @@ public class SwitchView extends ActionBarActivity implements View.OnClickListene
         buttonSwitchPlayer.setOnClickListener(this);
 
         switchViewHeader = (TextView)findViewById(R.id.switchViewHeader);
-        if(Constants.turn == "playerOne"){
+        if(Constants.gameMode == "onePlayer"){
             switchViewHeader.setText(Constants.playerOne.getName() + "'s turn");
         }
-        else if(Constants.turn == "playerTwo"){
-            switchViewHeader.setText(Constants.playerTwo.getName() + "'s turn");
-        }
-        else if(Constants.turn == "playerAI"){
-            switchViewHeader.setText("Player AI's turn");
+        else{
+            if(Constants.turn == "playerOne"){
+                switchViewHeader.setText(Constants.playerOne.getName() + "'s turn");
+            }
+            else if(Constants.turn == "playerTwo"){
+                switchViewHeader.setText(Constants.playerTwo.getName() + "'s turn");
+            }
+            else if(Constants.turn == "playerAI"){
+                switchViewHeader.setText("Player AI's turn");
+            }
         }
 
     }
     public void onClick(View v){
         //Functionality for button
         if(v.getId() == R.id.buttonSwitchPlayer){
+            Log.i("SwitchView.java","When buttonSwitchPlayer is pressed - the current player is: " + Constants.turn);
             //If its twoPlayer
             if(Constants.turn == "playerOne" && Constants.gameMode == "twoPlayer"){
                 startActivity(new Intent(SwitchView.this, BattleView.class));
@@ -58,15 +65,14 @@ public class SwitchView extends ActionBarActivity implements View.OnClickListene
 
                 startActivity(new Intent(SwitchView.this, BattleView.class));
             }
-            else if (Constants.turn == "playerAi" && Constants.gameMode == "onePlayer"){
+            else if (Constants.turn == "playerAI" && Constants.gameMode == "onePlayer"){
 
                 startActivity(new Intent(SwitchView.this, BattleView.class));
                 Constants.turn = "playerOne";
-
-
-
                 //startActivity(new Intent(SwitchView.this, BattleView.class));
             }
+            Log.i("SwitchView.java","When buttonSwitchPlayer logic is done - the current player is: " + Constants.turn);
+
 
         }
 
