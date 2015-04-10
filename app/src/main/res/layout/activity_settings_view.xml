@@ -38,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Boats"
-                android:id="@+id/radioButton"
+                android:id="@+id/boatsRadioButton"
                 android:layout_gravity="left|top"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
@@ -48,7 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Girls"
-                android:id="@+id/radioButton2"
+                android:id="@+id/girlsRadioButton"
                 android:layout_gravity="left|top"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true" />
