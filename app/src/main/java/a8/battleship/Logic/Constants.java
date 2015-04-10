@@ -22,6 +22,7 @@ public class Constants {
     public static Player playerOne;
     public static Player playerTwo;
     public static AiPlayer playerAI;
+    public static String level = "low";
 
 
     //This string will keep track of the last shot (missed or hit)

@@ -1,6 +1,8 @@
 package a8.battleship.View;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.AudioManager;
@@ -37,11 +39,12 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
 
     private GridView boardGridView, gridViewOwnBoard;
     private TextView tvBattleTitle, tvScoreCounter;
-    private Button buttonNextPlayer, buttonConfirmShot;
+    private Button buttonNextPlayer, buttonConfirmShot, buttonHome;
     private int currentXPosition, currentYPosition;
     private AiPlayer playerAI = Constants.playerAI;
     private boolean hasShot = false;
     private View selectedCell = null;
+    private AlertDialog.Builder alertDialogBuilder;
 
 
     //Need to know which Player is playing
@@ -62,6 +65,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
 
         buttonNextPlayer = (Button) findViewById(R.id.buttonNextPlayer);
         buttonConfirmShot = (Button) findViewById(R.id.buttonConfirmShot);
+        buttonHome = (Button) findViewById(R.id.buttonHome);
 
         buttonNextPlayer.setVisibility(Button.INVISIBLE);
         buttonConfirmShot.setVisibility(Button.INVISIBLE);
@@ -115,6 +119,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
 
         buttonNextPlayer.setOnClickListener(this);
         buttonConfirmShot.setOnClickListener(this);
+        buttonHome.setOnClickListener(this);
 
         tvScoreCounter.setText("Score: " + player.getScore());
 
@@ -163,7 +168,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             }
 
         }
-        if(v.getId() == R.id.buttonNextPlayer){
+        else if(v.getId() == R.id.buttonNextPlayer){
             //Log.i(className, "onClick: buttonNextPlayer was clicked");
 
 
@@ -210,6 +215,20 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                     Constants.turn = "playerOne";
                 }
             }
+        }
+        else if(v.getId() == R.id.buttonHome){
+            alertDialogBuilder = new AlertDialog.Builder(this);
+            alertDialogBuilder.setTitle("Back to main menu");
+            alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface arg0, int arg1) {
+                    startActivity(new Intent(BattleView.this, MainMenuView.class));
+                }
+            });
+            alertDialogBuilder.setNegativeButton("Cancel", null);
+            alertDialogBuilder.show();
+
         }
     }
 
