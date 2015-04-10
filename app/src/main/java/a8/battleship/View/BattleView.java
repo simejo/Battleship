@@ -191,7 +191,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                 e.printStackTrace();
             }
 */
-            startActivity(new Intent(BattleView.this, SwitchView.class));
+
             if(Constants.gameMode.equals("twoPlayer")){
                 if(Constants.turn.equals("playerOne")){
                     Constants.turn = "playerTwo";
@@ -202,7 +202,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             }
             else if(Constants.gameMode.equals("onePlayer")){
                 if(Constants.turn.equals("playerOne")){
-                    //Constants.turn = "playerAI";
+                Log.i("BattleView","turn is " + Constants.turn);
                     //logic - AI MAKES A MOVE
                     Constants.turn = "playerAI";
                     if (playerAI.getLevel().equals("low")){
@@ -218,6 +218,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                         int y = Functions.findY(nextMove, Constants.boardSize);
                         BoardValues value = playerAI.getBoard().getContentInACell(x, y);
                         doAction(value, Constants.playerOne.getBoard(), x, y);
+                        Log.i("BattleView","MEDIUM AI");
 
                     }
                     else if (playerAI.getLevel().equals("hard")){
@@ -233,6 +234,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                 else{
                     Constants.turn = "playerOne";
                 }
+                startActivity(new Intent(BattleView.this, SwitchView.class));
             }
         }
         else if(v.getId() == R.id.buttonHome){
@@ -305,6 +307,13 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         //Log.i(className, Constants.playerTwo.getBoard().toString());    //Printing board for player 2
         Log.i(className, "X: " + Integer.toString(x) + ", Y: " + Integer.toString(y));
 
+        if(Constants.gameMode =="onePlayer"){
+            Constants.stringStatus = "Mor di hit one of your boats \n Mor di has score " + (Constants.playerAI.getScore() + 10);
+        }
+        else{
+            Constants.stringStatus = player.getName() + " hit one of your boats";
+        }
+
         if (value == BoardValues.EAST){
             Constants.hit.start();
             //Log.i(className, "hit noise" );
@@ -347,14 +356,9 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             opponentBoard.changeBoardValue(x, y, BoardValues.MIDDLE_VERTICAL_DESTROYED);
             addPoints();
         }
-        if(Constants.gameMode =="onePlayer"){
-            Constants.stringStatus = "Mor di missed \n Mor di has score " + (Constants.playerAI.getScore());
-        }
-        else{
-            Constants.stringStatus = player.getName() + " hit one of your boats";
-        }
 
-        if (value == BoardValues.EMPTY){
+
+        else if (value == BoardValues.EMPTY){
             Constants.miss.start();
             Log.i(className, "LOL, you missed");
             opponentBoard.changeBoardValue(x,y,BoardValues.MISSED);
@@ -367,7 +371,6 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                 Constants.stringStatus = player.getName() + " missed";
             }
         }
-        //TODO: It is possible to fire a shot at the MISSED enum, this must be fixed
         //Checks if it was a valid shot
         else{
             buttonNextPlayer.setVisibility(Button.INVISIBLE);
@@ -393,6 +396,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                 player.incrementScore();
             }
             else{
+                Log.i("BattleView", "AI ADD POINTS");
                 playerAI.incrementScore();
             }
         }
@@ -406,6 +410,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                 player.decrementScore();
             }
             else{
+                Log.i("BattleView", "AI REMOVE POINTS");
                 playerAI.decrementScore();
             }
         }
