@@ -343,10 +343,6 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             player.decrementScore();
             Constants.stringStatus = player.getName() + " missed";
         }
-
-        //Help method - to increment/decrement the score to the correct player.
-
-
         //TODO: It is possible to fire a shot at the MISSED enum, this must be fixed
         //Checks if it was a valid shot
         else{
@@ -359,11 +355,19 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             popupBox.show();
 
         }
-
         tvScoreCounter.setText("Score: " + player.getScore());
         //Log.i(className, "Inside doAction()");
 
+    }
 
+    //Help method - to increment/decrement the score to the correct player.
+    public void addPoints(){
+        if(Constants.gameMode == "onePlayer"){
+
+        }
+        else{
+
+        }
 
     }
     public void onCheckboxClicked(View view) {
