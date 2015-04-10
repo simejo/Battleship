@@ -12,10 +12,13 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.IOException;
 
 import a8.battleship.Adapter.GridAdapter;
 import a8.battleship.Adapter.OwnBoardGridAdapter;
@@ -124,17 +127,6 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             hasShot = true;
             //Log.i(className, "onClick: buttonConfirmShot was clicked");
 
-            /*Constants.launch.start();
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            if(Constants.launch.isPlaying()){
-                Log.i(className, "launch noise" );
-            }
-            */
-
             Board opponentBoard;
             //Need to get the opponents board to change the values
             if (Constants.turn == "playerOne") {
@@ -163,7 +155,21 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         if(v.getId() == R.id.buttonNextPlayer){
             //Log.i(className, "onClick: buttonNextPlayer was clicked");
 
-
+            //Constants.miss.stop();
+            //Constants.miss.reset();
+            /*try {
+                Constants.miss.prepare();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            //Constants.hit.stop();
+            //Constants.hit.reset();
+            try {
+                Constants.hit.prepare();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+*/
             startActivity(new Intent(BattleView.this, SwitchView.class));
             if(Constants.gameMode.equals("twoPlayer")){
                 if(Constants.turn.equals("playerOne")){
@@ -259,45 +265,45 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         //Log.i(className, Constants.playerTwo.getBoard().toString());    //Printing board for player 2
         Log.i(className, "X: " + Integer.toString(x) + ", Y: " + Integer.toString(y));
         if (value == BoardValues.EAST){
-//            Constants.hit.start();
+            Constants.hit.start();
             //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);        //Will update partsLeft in the correct ship (hopefully)
             opponentBoard.changeBoardValue(x,y, BoardValues.EAST_DESTROYED);
 
         }
         else if (value == BoardValues.SOUTH){
-//            Constants.hit.start();
+            Constants.hit.start();
             //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x, y, BoardValues.SOUTH_DESTROYED);
 
         }
         else if (value == BoardValues.WEST){
-//            Constants.hit.start();
+            Constants.hit.start();
             //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x, y, BoardValues.WEST_DESTROYED);
         }
         else if (value == BoardValues.NORTH){
-//            Constants.hit.start();
+            Constants.hit.start();
             //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x, y, BoardValues.NORTH_DESTROYED);
         }
         else if (value == BoardValues.MIDDLE_HORIZONTAL){
-//            Constants.hit.start();
+            Constants.hit.start();
             //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x, y, BoardValues.MIDDLE_HORIZONTAL_DESTROYED);
         }
         else if (value == BoardValues.MIDDLE_VERTICAL){
-//            Constants.hit.start();
+            Constants.hit.start();
             //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x, y, BoardValues.MIDDLE_VERTICAL_DESTROYED);
         }
         else if (value == BoardValues.EMPTY){
-//            Constants.miss.start();
+            Constants.miss.start();
             Log.i(className, "LOL, you missed");
             opponentBoard.changeBoardValue(x,y,BoardValues.MISSED);
 
@@ -314,11 +320,32 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             popupBox.show();
 
         }
+
         //Log.i(className, "Inside doAction()");
 
 
-    }
 
+    }
+    public void onCheckboxClicked(View view) {
+        boolean checked = ((CheckBox) view).isChecked();
+
+        switch (view.getId()) {
+            case R.id.cbSound:
+                if (checked) {
+                    Constants.amSound.setStreamVolume(AudioManager.STREAM_MUSIC, Constants.amSound.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+                }
+                else{
+                    Constants.amSound.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
+                }
+            case R.id.cbMusic:
+                if(checked){
+                    Constants.amMusic.setStreamVolume(AudioManager.STREAM_MUSIC, Constants.amMusic.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+                }
+                else{
+                    Constants.amMusic.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
+                }
+        }
+    }
     /*public void initiateWidgets() {
 
     }*/
