@@ -317,9 +317,11 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             opponentBoard.changeBoardValue(x,y,BoardValues.MISSED);
             player.decrementScore();
             Constants.stringStatus = player.getName() + " missed";
-
-
         }
+
+        //Help method - to increment/decrement the score to the correct player.
+
+
         //TODO: It is possible to fire a shot at the MISSED enum, this must be fixed
         //Checks if it was a valid shot
         else{
