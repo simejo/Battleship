@@ -129,11 +129,11 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         buttonConfirmShot.setOnClickListener(this);
         buttonHome.setOnClickListener(this);
 
-        checkBoxMusic.setOnClickListener(this);
-        checkBoxSound.setOnClickListener(this);
+        checkBoxMusic.setOnCheckedChangeListener(this);
+        checkBoxSound.setOnCheckedChangeListener(this);
 
-        checkBoxMusic.setChecked(true);
-        checkBoxSound.setChecked(true);
+        checkBoxMusic.setChecked(Constants.cbBooleanMusic);
+        checkBoxSound.setChecked(Constants.cbBooleanSound);
 
         tvScoreCounter.setText("Score: " + player.getScore());
 
@@ -384,27 +384,23 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
 
     //Method which turns the sound and music on/off
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
-        Log.i("BattleView", "in onCheckedChanged");
-        switch (buttonView.getId()) {
-            case R.id.cbSound:
-                if (isChecked) {
-                    Log.i("BattleView", "turned sound on");
-                    Constants.amSound.setStreamVolume(AudioManager.STREAM_MUSIC, Constants.amSound.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
-                }
-                else{
-                    Log.i("BattleView", "turned sound off");
-                    Constants.amSound.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
-                }
-            case R.id.cbMusic:
-                if(isChecked){
-                    Constants.amMusic.setStreamVolume(AudioManager.STREAM_MUSIC, Constants.amMusic.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
-                }
-                else{
-                    Constants.amMusic.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
-                }
-        }
-    }
-    /*public void initiateWidgets() {
+        if (buttonView.getId() == R.id.cbSound) {
 
-    }*/
+                Log.i("BattleView", "Sound change");
+                Constants.cbBooleanSound = isChecked;
+                Constants.amSound.setStreamMute(AudioManager.STREAM_MUSIC, !isChecked);
+                Log.i("BattleView", buttonView.getId()+ "      " + Constants.cbBooleanMusic + ", " + Constants.cbBooleanSound);
+        }
+        else if(buttonView.getId() == R.id.cbMusic){
+
+
+                Log.i("BattleView", "Music change");
+                Constants.cbBooleanMusic = isChecked;
+                Constants.amMusic.setStreamMute(AudioManager.STREAM_MUSIC, !isChecked);
+                Log.i("BattleView", buttonView.getId()+ "      " + Constants.cbBooleanMusic + "," + Constants.cbBooleanSound);
+
+        }
+
+    }
+
 }
