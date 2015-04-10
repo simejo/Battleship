@@ -17,7 +17,7 @@ import android.widget.TextView;
 public class SwitchView extends ActionBarActivity implements View.OnClickListener{
 
     private Button buttonSwitchPlayer;
-    private TextView switchViewHeader;
+    private TextView switchViewHeader, textViewStatus;
     //private AiPlayer playerAI = Constants.playerAI;;
 
     @Override
@@ -26,6 +26,8 @@ public class SwitchView extends ActionBarActivity implements View.OnClickListene
         setContentView(R.layout.activity_switch_view);
 
         buttonSwitchPlayer = (Button)findViewById(R.id.buttonSwitchPlayer);
+        textViewStatus = (TextView)findViewById(R.id.textViewStatus);
+        textViewStatus.setText(Constants.stringStatus);
 
         buttonSwitchPlayer.setOnClickListener(this);
 
@@ -39,6 +41,7 @@ public class SwitchView extends ActionBarActivity implements View.OnClickListene
         else if(Constants.turn == "playerAI"){
             switchViewHeader.setText("Player AI's turn");
         }
+
     }
     public void onClick(View v){
         //Functionality for button

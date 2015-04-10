@@ -15,6 +15,7 @@ public class Player {
     private String name;
     private Board board;
     private boolean turn;
+    private int score;
 
     public  Player() {
         this.board = null;
@@ -25,6 +26,7 @@ public class Player {
         this.name = name;
         this.board = null;
         this.turn = true;
+        this.score = 0;
         Log.i("Player.class", "Player created with name: " + name);
     }
 
@@ -34,6 +36,14 @@ public class Player {
 
     public void setBoard(Board board){
         this.board = board;
+    }
+
+    public void incrementScore(){
+        this.score += 10;
+    }
+
+    public void decrementScore(){
+        this.score -= 1;
     }
 
     public void setTurn(boolean turn){
@@ -46,6 +56,10 @@ public class Player {
 
     public String toString(){
         return name;
+    }
+
+    public int getScore(){
+        return score;
     }
 
     public Board getBoard(){
