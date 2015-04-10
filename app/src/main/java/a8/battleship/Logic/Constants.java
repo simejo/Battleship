@@ -1,5 +1,6 @@
 package a8.battleship.Logic;
 
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 
 import a8.battleship.Models.AiPlayer;
@@ -22,6 +23,7 @@ public class Constants {
     public static Player playerOne;
     public static Player playerTwo;
     public static AiPlayer playerAI;
+    public static String level = "low";
 
 
     //This string will keep track of the last shot (missed or hit)
@@ -40,8 +42,10 @@ public class Constants {
     //playerOne or playerTwo or playerAI
     public static String turn;
 
-    public static MediaPlayer launch;
+    //public static MediaPlayer launch;
     public static MediaPlayer hit;
     public static MediaPlayer miss;
     public static MediaPlayer backgroundMusic;
+    public static AudioManager amSound;
+    public static AudioManager amMusic;
 }

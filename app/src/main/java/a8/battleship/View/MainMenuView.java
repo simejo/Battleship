@@ -1,6 +1,9 @@
 package a8.battleship.View;
 
+import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -31,6 +34,20 @@ public class MainMenuView extends ActionBarActivity implements View.OnClickListe
         creditsButton.setOnClickListener(this);
         Constants.screenHeight = this.getResources().getDisplayMetrics().heightPixels;
         Constants.screenWidth = this.getResources().getDisplayMetrics().widthPixels;
+
+        //sounds
+        //Constants.launch = MediaPlayer.create(this, R.raw.launch);
+        Constants.hit = MediaPlayer.create(this, R.raw.hit);
+        Constants.miss = MediaPlayer.create(this, R.raw.miss);
+
+        Constants.amSound = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        Constants.amSound.setStreamVolume(AudioManager.STREAM_MUSIC, Constants.amSound.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+
+        Constants.amMusic = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        Constants.amMusic.setStreamVolume(AudioManager.STREAM_MUSIC, Constants.amMusic.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+
+
+
 
     }
 
