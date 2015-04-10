@@ -64,10 +64,20 @@ public class StartView extends ActionBarActivity implements View.OnClickListener
             //TODO: Check if textView is empty or not
 
             //Creates players
+            //Creates Player One
+            if(tvPlayerOne.getText().toString().equals("")){
+                Constants.playerOne = new Player("Player 1");
+            }
+            else{
+                Constants.playerOne = new Player(tvPlayerOne.getText().toString());
+            }
+            Constants.playerOne.setBoard(new Board(Constants.boardSize));
 
+            Constants.turn = "playerOne";
+
+            //Creates player two
             if(rbTwoPlayer.isChecked()){
 
-                //Creates player two
                 if(tvPlayerTwo.getText().toString().equals("")){
                     Constants.playerTwo = new Player("Player 2");
 
@@ -86,16 +96,7 @@ public class StartView extends ActionBarActivity implements View.OnClickListener
                 Constants.gameMode = "onePlayer";
             }
 
-            //Creates Player One
-            if(tvPlayerTwo.getText().toString().equals("")){
-                Constants.playerOne = new Player("Player 1");
-            }
-            else{
-                Constants.playerOne = new Player(tvPlayerOne.getText().toString());
-            }
-            Constants.playerOne.setBoard(new Board(Constants.boardSize));
 
-            Constants.turn = "playerOne";
 
             startActivity(new Intent(StartView.this, SetShipView.class));
         }

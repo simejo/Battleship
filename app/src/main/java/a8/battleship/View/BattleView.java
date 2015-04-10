@@ -45,7 +45,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
 
 
     //Need to know which Player is playing
-    Player player;
+    private Player player;
 
     //String class name
     private static String className = "BattleView.java";
@@ -94,7 +94,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                 Constants.opponent = Constants.playerTwo;
             }
             player = Constants.playerOne;
-            tvBattleTitle.setText(Constants.playerOne.getName() + "'s turn to battle");
+            tvBattleTitle.setText(player.getName() + "'s turn to battle");
 
         }
         else{
