@@ -193,6 +193,11 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
 
                     }
                     else if (playerAI.getLevel().equals("hard")){
+                        int nextMove = playerAI.aiNextMoveHard();
+                        int x = nextMove % Constants.boardSize;
+                        int y = Functions.findY(nextMove, Constants.boardSize);
+                        BoardValues value = playerAI.getBoard().getContentInACell(x, y);
+                        doAction(value, Constants.playerOne.getBoard(), x, y);
 
                     }
 
