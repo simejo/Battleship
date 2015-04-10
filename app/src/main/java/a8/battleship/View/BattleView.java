@@ -36,7 +36,7 @@ import a8.battleship.R;
 public class BattleView extends ActionBarActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
     private GridView boardGridView, gridViewOwnBoard;
-    private TextView tvBattleTitle;
+    private TextView tvBattleTitle, tvScoreCounter;
     private Button buttonNextPlayer, buttonConfirmShot;
     private int currentXPosition, currentYPosition;
     private AiPlayer playerAI = Constants.playerAI;
@@ -58,6 +58,8 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         gridViewOwnBoard = (GridView) findViewById(R.id.gridViewOwnBoard);
 
         tvBattleTitle = (TextView) findViewById(R.id.textBattleTitle);
+        tvScoreCounter = (TextView) findViewById(R.id.textViewScoreCounter);
+
         buttonNextPlayer = (Button) findViewById(R.id.buttonNextPlayer);
         buttonConfirmShot = (Button) findViewById(R.id.buttonConfirmShot);
 
@@ -114,6 +116,8 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         buttonNextPlayer.setOnClickListener(this);
         buttonConfirmShot.setOnClickListener(this);
 
+        tvScoreCounter.setText("Score: " + player.getScore());
+
     }
 
 
@@ -148,7 +152,6 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                 opponentBoard = Constants.playerOne.getBoard();
             }
             BoardValues value = opponentBoard.getValue(currentXPosition,currentYPosition);
-            doAction(value, opponentBoard, currentXPosition, currentYPosition);
             buttonNextPlayer.setVisibility(Button.VISIBLE);
             buttonConfirmShot.setVisibility(Button.INVISIBLE);
             doAction(value, opponentBoard, currentXPosition, currentYPosition);
@@ -251,18 +254,20 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         //Checks what value it is, and performs the correct action
         doAction(value, opponentBoard, currentXPosition, currentYPosition);*/
 
-    }   
+    }
     //Help method to onItemClick() - Performs the correct action, and changes the Board-model
     //CHANGES THE MODEL
 
     public void doAction(BoardValues value, Board opponentBoard, int x, int y){
         //Log.i(className, Constants.playerTwo.getBoard().toString());    //Printing board for player 2
         Log.i(className, "X: " + Integer.toString(x) + ", Y: " + Integer.toString(y));
+        Constants.stringStatus = player.getName() + " hit one of your boats";
         if (value == BoardValues.EAST){
 //            Constants.hit.start();
             //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);        //Will update partsLeft in the correct ship (hopefully)
             opponentBoard.changeBoardValue(x,y, BoardValues.EAST_DESTROYED);
+            player.incrementScore();
 
         }
         else if (value == BoardValues.SOUTH){
@@ -270,6 +275,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x, y, BoardValues.SOUTH_DESTROYED);
+            player.incrementScore();
 
         }
         else if (value == BoardValues.WEST){
@@ -277,29 +283,36 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x, y, BoardValues.WEST_DESTROYED);
+            player.incrementScore();
         }
         else if (value == BoardValues.NORTH){
 //            Constants.hit.start();
             //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x, y, BoardValues.NORTH_DESTROYED);
+            player.incrementScore();
         }
         else if (value == BoardValues.MIDDLE_HORIZONTAL){
 //            Constants.hit.start();
             //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x, y, BoardValues.MIDDLE_HORIZONTAL_DESTROYED);
+            player.incrementScore();
         }
         else if (value == BoardValues.MIDDLE_VERTICAL){
 //            Constants.hit.start();
             //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x, y, BoardValues.MIDDLE_VERTICAL_DESTROYED);
+            player.incrementScore();
         }
         else if (value == BoardValues.EMPTY){
 //            Constants.miss.start();
             Log.i(className, "LOL, you missed");
             opponentBoard.changeBoardValue(x,y,BoardValues.MISSED);
+            player.decrementScore();
+            Constants.stringStatus = player.getName() + " missed";
+
 
         }
         //TODO: It is possible to fire a shot at the MISSED enum, this must be fixed
@@ -314,6 +327,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             popupBox.show();
 
         }
+        tvScoreCounter.setText("Score: " + player.getScore());
         //Log.i(className, "Inside doAction()");
 
 
