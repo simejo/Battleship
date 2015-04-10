@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -36,7 +37,7 @@ import a8.battleship.R;
  * This is the game/boardGridView/battleview.
  * All the logic needed to show the boardGridView on the screen
  */
-public class BattleView extends ActionBarActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
+public class BattleView extends ActionBarActivity implements View.OnClickListener, AdapterView.OnItemClickListener, CompoundButton.OnCheckedChangeListener {
 
     private GridView boardGridView, gridViewOwnBoard;
     private TextView tvBattleTitle, tvScoreCounter;
@@ -45,6 +46,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
     private AiPlayer playerAI = Constants.playerAI;
     private boolean hasShot = false;
     private View selectedCell = null;
+    private CheckBox checkBoxSound, checkBoxMusic;
 
 
     //Need to know which Player is playing
@@ -66,9 +68,11 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         buttonNextPlayer = (Button) findViewById(R.id.buttonNextPlayer);
         buttonConfirmShot = (Button) findViewById(R.id.buttonConfirmShot);
 
+        checkBoxMusic = (CheckBox) findViewById(R.id.cbMusic);
+        checkBoxSound = (CheckBox) findViewById(R.id.cbSound);
+
         buttonNextPlayer.setVisibility(Button.INVISIBLE);
         buttonConfirmShot.setVisibility(Button.INVISIBLE);
-
 
         boardGridView.setNumColumns(Constants.boardSize);
         boardGridView.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
@@ -118,6 +122,12 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
 
         buttonNextPlayer.setOnClickListener(this);
         buttonConfirmShot.setOnClickListener(this);
+
+        checkBoxMusic.setOnClickListener(this);
+        checkBoxSound.setOnClickListener(this);
+
+        checkBoxMusic.setChecked(true);
+        checkBoxSound.setChecked(true);
 
         tvScoreCounter.setText("Score: " + player.getScore());
 
@@ -345,19 +355,22 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
 
 
     }
-    public void onCheckboxClicked(View view) {
-        boolean checked = ((CheckBox) view).isChecked();
 
-        switch (view.getId()) {
+    //Method which turns the sound and music on/off
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
+        Log.i("BattleView", "in onCheckedChanged");
+        switch (buttonView.getId()) {
             case R.id.cbSound:
-                if (checked) {
+                if (isChecked) {
+                    Log.i("BattleView", "turned sound on");
                     Constants.amSound.setStreamVolume(AudioManager.STREAM_MUSIC, Constants.amSound.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
                 }
                 else{
+                    Log.i("BattleView", "turned sound off");
                     Constants.amSound.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
                 }
             case R.id.cbMusic:
-                if(checked){
+                if(isChecked){
                     Constants.amMusic.setStreamVolume(AudioManager.STREAM_MUSIC, Constants.amMusic.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
                 }
                 else{
