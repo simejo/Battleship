@@ -25,6 +25,9 @@ public class Constants {
     public static AiPlayer playerAI;
     public static String level = "low";
 
+    public static boolean cbBooleanSound = true;
+    public static boolean cbBooleanMusic = true;
+
 
     //This string will keep track of the last shot (missed or hit)
     public static String stringStatus;

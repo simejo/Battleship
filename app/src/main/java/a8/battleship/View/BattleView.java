@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -38,7 +39,7 @@ import a8.battleship.R;
  * This is the game/boardGridView/battleview.
  * All the logic needed to show the boardGridView on the screen
  */
-public class BattleView extends ActionBarActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
+public class BattleView extends ActionBarActivity implements View.OnClickListener, AdapterView.OnItemClickListener, CompoundButton.OnCheckedChangeListener {
 
     private GridView boardGridView, gridViewOwnBoard;
     private TextView tvBattleTitle, tvScoreCounter;
@@ -47,7 +48,9 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
     private AiPlayer playerAI = Constants.playerAI;
     private boolean hasShot = false;
     private View selectedCell = null;
+    private CheckBox checkBoxSound, checkBoxMusic;
     private AlertDialog.Builder alertDialogBuilder;
+
 
 
     //Need to know which Player is playing
@@ -70,9 +73,11 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         buttonConfirmShot = (Button) findViewById(R.id.buttonConfirmShot);
         buttonHome = (Button) findViewById(R.id.buttonHome);
 
+        checkBoxMusic = (CheckBox) findViewById(R.id.cbMusic);
+        checkBoxSound = (CheckBox) findViewById(R.id.cbSound);
+
         buttonNextPlayer.setVisibility(Button.INVISIBLE);
         buttonConfirmShot.setVisibility(Button.INVISIBLE);
-
 
         boardGridView.setNumColumns(Constants.boardSize);
         boardGridView.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
@@ -125,6 +130,12 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         buttonNextPlayer.setOnClickListener(this);
         buttonConfirmShot.setOnClickListener(this);
         buttonHome.setOnClickListener(this);
+
+        checkBoxMusic.setOnCheckedChangeListener(this);
+        checkBoxSound.setOnCheckedChangeListener(this);
+
+        checkBoxMusic.setChecked(Constants.cbBooleanMusic);
+        checkBoxSound.setChecked(Constants.cbBooleanSound);
 
         tvScoreCounter.setText("Score: " + player.getScore());
 
@@ -399,27 +410,26 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             }
         }
     }
-    public void onCheckboxClicked(View view) {
-        boolean checked = ((CheckBox) view).isChecked();
 
-        switch (view.getId()) {
-            case R.id.cbSound:
-                if (checked) {
-                    Constants.amSound.setStreamVolume(AudioManager.STREAM_MUSIC, Constants.amSound.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
-                }
-                else{
-                    Constants.amSound.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
-                }
-            case R.id.cbMusic:
-                if(checked){
-                    Constants.amMusic.setStreamVolume(AudioManager.STREAM_MUSIC, Constants.amMusic.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
-                }
-                else{
-                    Constants.amMusic.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
-                }
+    //Method which turns the sound and music on/off
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
+        if (buttonView.getId() == R.id.cbSound) {
+
+                Log.i("BattleView", "Sound change");
+                Constants.cbBooleanSound = isChecked;
+                Constants.amSound.setStreamMute(AudioManager.STREAM_MUSIC, !isChecked);
+                Log.i("BattleView", buttonView.getId()+ "      " + Constants.cbBooleanMusic + ", " + Constants.cbBooleanSound);
         }
-    }
-    /*public void initiateWidgets() {
+        else if(buttonView.getId() == R.id.cbMusic){
 
-    }*/
+
+                Log.i("BattleView", "Music change");
+                Constants.cbBooleanMusic = isChecked;
+                Constants.amMusic.setStreamMute(AudioManager.STREAM_MUSIC, !isChecked);
+                Log.i("BattleView", buttonView.getId()+ "      " + Constants.cbBooleanMusic + "," + Constants.cbBooleanSound);
+
+        }
+
+    }
+
 }
