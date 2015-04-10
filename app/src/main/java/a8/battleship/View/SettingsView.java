@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.TabHost;
 
 import a8.battleship.R;
@@ -16,6 +17,7 @@ import a8.battleship.R;
 public class SettingsView extends ActionBarActivity implements View.OnClickListener{
 
     private Button startButton, mainMenuButton;
+    private RadioButton boatsRButton, girlsRButton;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,9 +25,13 @@ public class SettingsView extends ActionBarActivity implements View.OnClickListe
 
         startButton = (Button) findViewById(R.id.buttonStart);
         mainMenuButton = (Button) findViewById(R.id.buttonMainMenu);
+        boatsRButton = (RadioButton) findViewById(R.id.boatsRadioButton);
+        girlsRButton = (RadioButton) findViewById(R.id.girlsRadioButton);
 
         startButton.setOnClickListener(this);
         mainMenuButton.setOnClickListener(this);
+        boatsRButton.setOnClickListener(this);
+        girlsRButton.setOnClickListener(this);
 
     }
     @Override
@@ -35,6 +41,12 @@ public class SettingsView extends ActionBarActivity implements View.OnClickListe
         }
         else if(v.getId() == R.id.buttonStart){
             startActivity(new Intent(SettingsView.this, StartView.class));
+        }
+        if(boatsRButton.isChecked()) {
+
+        }
+        else if (girlsRButton.isChecked()) {
+
         }
 
     }
