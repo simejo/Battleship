@@ -24,7 +24,7 @@ import a8.battleship.R;
  * This is the view where a player can choose between one-player or two-players
  * The player and the board will be initialized here
  */
-public class StartView extends ActionBarActivity implements View.OnClickListener{
+public class StartView extends ActionBarActivity implements View.OnClickListener, SeekBar.OnSeekBarChangeListener{
 
     private RadioButton rbOnePlayer, rbTwoPlayer;
     private Button buttonStartGame;
@@ -54,7 +54,9 @@ public class StartView extends ActionBarActivity implements View.OnClickListener
         tvPlayerTwo.setAlpha(0);
 
         sbAIChooser.setMax(2);
-        sbAIChooser.setProgress(1);
+        sbAIChooser.setProgress(0);
+
+        sbAIChooser.setOnSeekBarChangeListener(this);
 
     }
     public void onClick(View v){
@@ -64,10 +66,20 @@ public class StartView extends ActionBarActivity implements View.OnClickListener
             //TODO: Check if textView is empty or not
 
             //Creates players
+            //Creates Player One
+            if(tvPlayerOne.getText().toString().equals("")){
+                Constants.playerOne = new Player("Player 1");
+            }
+            else{
+                Constants.playerOne = new Player(tvPlayerOne.getText().toString());
+            }
+            Constants.playerOne.setBoard(new Board(Constants.boardSize));
 
+            Constants.turn = "playerOne";
+
+            //Creates player two
             if(rbTwoPlayer.isChecked()){
 
-                //Creates player two
                 if(tvPlayerTwo.getText().toString().equals("")){
                     Constants.playerTwo = new Player("Player 2");
 
@@ -86,16 +98,7 @@ public class StartView extends ActionBarActivity implements View.OnClickListener
                 Constants.gameMode = "onePlayer";
             }
 
-            //Creates Player One
-            if(tvPlayerTwo.getText().toString().equals("")){
-                Constants.playerOne = new Player("Player 1");
-            }
-            else{
-                Constants.playerOne = new Player(tvPlayerOne.getText().toString());
-            }
-            Constants.playerOne.setBoard(new Board(Constants.boardSize));
 
-            Constants.turn = "playerOne";
 
             startActivity(new Intent(StartView.this, SetShipView.class));
         }
@@ -120,5 +123,33 @@ public class StartView extends ActionBarActivity implements View.OnClickListener
 
 
     }
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
 
+    }
+
+    /**
+     * Notification that the user has started a touch gesture. Clients may want to use this
+     * to disable advancing the seekbar.
+     * @param seekBar The SeekBar in which the touch gesture began
+     */
+    public void onStartTrackingTouch(SeekBar seekBar){
+
+    }
+
+    /**
+     * Notification that the user has finished a touch gesture. Clients may want to use this
+     * to re-enable advancing the seekbar.
+     * @param seekBar The SeekBar in which the touch gesture began
+     */
+    public void onStopTrackingTouch(SeekBar seekBar){
+        if(seekBar.getProgress() == 0){
+            Constants.level = "low";
+        }else if(seekBar.getProgress() == 1){
+            Constants.level = "medium";
+        }else
+            Constants.level = "hard";
+        {
+
+        }
+    }
 }

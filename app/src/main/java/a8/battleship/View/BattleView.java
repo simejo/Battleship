@@ -1,6 +1,8 @@
 package a8.battleship.View;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.AudioManager;
@@ -12,10 +14,13 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.IOException;
 
 import a8.battleship.Adapter.GridAdapter;
 import a8.battleship.Adapter.OwnBoardGridAdapter;
@@ -37,15 +42,16 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
 
     private GridView boardGridView, gridViewOwnBoard;
     private TextView tvBattleTitle, tvScoreCounter;
-    private Button buttonNextPlayer, buttonConfirmShot;
+    private Button buttonNextPlayer, buttonConfirmShot, buttonHome;
     private int currentXPosition, currentYPosition;
     private AiPlayer playerAI = Constants.playerAI;
     private boolean hasShot = false;
     private View selectedCell = null;
+    private AlertDialog.Builder alertDialogBuilder;
 
 
     //Need to know which Player is playing
-    Player player;
+    private Player player;
 
     //String class name
     private static String className = "BattleView.java";
@@ -62,6 +68,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
 
         buttonNextPlayer = (Button) findViewById(R.id.buttonNextPlayer);
         buttonConfirmShot = (Button) findViewById(R.id.buttonConfirmShot);
+        buttonHome = (Button) findViewById(R.id.buttonHome);
 
         buttonNextPlayer.setVisibility(Button.INVISIBLE);
         buttonConfirmShot.setVisibility(Button.INVISIBLE);
@@ -94,7 +101,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                 Constants.opponent = Constants.playerTwo;
             }
             player = Constants.playerOne;
-            tvBattleTitle.setText(Constants.playerOne.getName() + "'s turn to battle");
+            tvBattleTitle.setText(player.getName() + "'s turn to battle");
 
         }
         else{
@@ -115,6 +122,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
 
         buttonNextPlayer.setOnClickListener(this);
         buttonConfirmShot.setOnClickListener(this);
+        buttonHome.setOnClickListener(this);
 
         tvScoreCounter.setText("Score: " + player.getScore());
 
@@ -127,17 +135,6 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             //This prevents the user to shot more than once
             hasShot = true;
             //Log.i(className, "onClick: buttonConfirmShot was clicked");
-
-            /*Constants.launch.start();
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            if(Constants.launch.isPlaying()){
-                Log.i(className, "launch noise" );
-            }
-            */
 
             Board opponentBoard;
             //Need to get the opponents board to change the values
@@ -163,10 +160,24 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             }
 
         }
-        if(v.getId() == R.id.buttonNextPlayer){
+        else if(v.getId() == R.id.buttonNextPlayer){
             //Log.i(className, "onClick: buttonNextPlayer was clicked");
 
-
+            //Constants.miss.stop();
+            //Constants.miss.reset();
+            /*try {
+                Constants.miss.prepare();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            //Constants.hit.stop();
+            //Constants.hit.reset();
+            try {
+                Constants.hit.prepare();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+*/
             startActivity(new Intent(BattleView.this, SwitchView.class));
             if(Constants.gameMode.equals("twoPlayer")){
                 if(Constants.turn.equals("playerOne")){
@@ -210,6 +221,20 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                     Constants.turn = "playerOne";
                 }
             }
+        }
+        else if(v.getId() == R.id.buttonHome){
+            alertDialogBuilder = new AlertDialog.Builder(this);
+            alertDialogBuilder.setTitle("Back to main menu");
+            alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface arg0, int arg1) {
+                    startActivity(new Intent(BattleView.this, MainMenuView.class));
+                }
+            });
+            alertDialogBuilder.setNegativeButton("Cancel", null);
+            alertDialogBuilder.show();
+
         }
     }
 
@@ -268,7 +293,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         Log.i(className, "X: " + Integer.toString(x) + ", Y: " + Integer.toString(y));
         Constants.stringStatus = player.getName() + " hit one of your boats";
         if (value == BoardValues.EAST){
-//            Constants.hit.start();
+            Constants.hit.start();
             //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);        //Will update partsLeft in the correct ship (hopefully)
             opponentBoard.changeBoardValue(x,y, BoardValues.EAST_DESTROYED);
@@ -276,7 +301,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
 
         }
         else if (value == BoardValues.SOUTH){
-//            Constants.hit.start();
+            Constants.hit.start();
             //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x, y, BoardValues.SOUTH_DESTROYED);
@@ -284,35 +309,35 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
 
         }
         else if (value == BoardValues.WEST){
-//            Constants.hit.start();
+            Constants.hit.start();
             //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x, y, BoardValues.WEST_DESTROYED);
             player.incrementScore();
         }
         else if (value == BoardValues.NORTH){
-//            Constants.hit.start();
+            Constants.hit.start();
             //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x, y, BoardValues.NORTH_DESTROYED);
             player.incrementScore();
         }
         else if (value == BoardValues.MIDDLE_HORIZONTAL){
-//            Constants.hit.start();
+            Constants.hit.start();
             //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x, y, BoardValues.MIDDLE_HORIZONTAL_DESTROYED);
             player.incrementScore();
         }
         else if (value == BoardValues.MIDDLE_VERTICAL){
-//            Constants.hit.start();
+            Constants.hit.start();
             //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x, y, BoardValues.MIDDLE_VERTICAL_DESTROYED);
             player.incrementScore();
         }
         else if (value == BoardValues.EMPTY){
-//            Constants.miss.start();
+            Constants.miss.start();
             Log.i(className, "LOL, you missed");
             opponentBoard.changeBoardValue(x,y,BoardValues.MISSED);
             player.decrementScore();
@@ -334,12 +359,33 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             popupBox.show();
 
         }
+
         tvScoreCounter.setText("Score: " + player.getScore());
         //Log.i(className, "Inside doAction()");
 
 
-    }
 
+    }
+    public void onCheckboxClicked(View view) {
+        boolean checked = ((CheckBox) view).isChecked();
+
+        switch (view.getId()) {
+            case R.id.cbSound:
+                if (checked) {
+                    Constants.amSound.setStreamVolume(AudioManager.STREAM_MUSIC, Constants.amSound.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+                }
+                else{
+                    Constants.amSound.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
+                }
+            case R.id.cbMusic:
+                if(checked){
+                    Constants.amMusic.setStreamVolume(AudioManager.STREAM_MUSIC, Constants.amMusic.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+                }
+                else{
+                    Constants.amMusic.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
+                }
+        }
+    }
     /*public void initiateWidgets() {
 
     }*/
