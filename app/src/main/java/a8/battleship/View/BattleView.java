@@ -94,7 +94,9 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         //Check who is playing, so we give the right parameter to the setAdapter-method
         if (Constants.turn.equals("playerOne")){
             if(Constants.gameMode.equals("onePlayer")){
+               Log.i("BattleView", "Test1");
                Constants.opponent = Constants.playerAI;
+               Log.i("BattleView", "Test2");
 
             }
             else{
@@ -191,6 +193,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                 if(Constants.turn.equals("playerOne")){
                     //Constants.turn = "playerAI";
                     //logic - AI MAKES A MOVE
+                    Constants.turn = "playerAI";
                     if (playerAI.getLevel().equals("low")){
                         int nextMove = playerAI.aiNextMoveLow();
                         int x = nextMove % Constants.boardSize;
@@ -212,7 +215,6 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                         int y = Functions.findY(nextMove, Constants.boardSize);
                         BoardValues value = playerAI.getBoard().getContentInACell(x, y);
                         doAction(value, Constants.playerOne.getBoard(), x, y);
-
                     }
 
 
@@ -291,57 +293,68 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
     public void doAction(BoardValues value, Board opponentBoard, int x, int y){
         //Log.i(className, Constants.playerTwo.getBoard().toString());    //Printing board for player 2
         Log.i(className, "X: " + Integer.toString(x) + ", Y: " + Integer.toString(y));
-        Constants.stringStatus = player.getName() + " hit one of your boats";
+
         if (value == BoardValues.EAST){
             Constants.hit.start();
             //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);        //Will update partsLeft in the correct ship (hopefully)
             opponentBoard.changeBoardValue(x,y, BoardValues.EAST_DESTROYED);
-            player.incrementScore();
-
+            addPoints();
         }
         else if (value == BoardValues.SOUTH){
             Constants.hit.start();
             //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x, y, BoardValues.SOUTH_DESTROYED);
-            player.incrementScore();
-
+            addPoints();
         }
         else if (value == BoardValues.WEST){
             Constants.hit.start();
             //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x, y, BoardValues.WEST_DESTROYED);
-            player.incrementScore();
+            addPoints();
         }
         else if (value == BoardValues.NORTH){
             Constants.hit.start();
             //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x, y, BoardValues.NORTH_DESTROYED);
-            player.incrementScore();
+            addPoints();
         }
         else if (value == BoardValues.MIDDLE_HORIZONTAL){
             Constants.hit.start();
             //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x, y, BoardValues.MIDDLE_HORIZONTAL_DESTROYED);
-            player.incrementScore();
+            addPoints();
         }
         else if (value == BoardValues.MIDDLE_VERTICAL){
             Constants.hit.start();
             //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y,Constants.opponent);
             opponentBoard.changeBoardValue(x, y, BoardValues.MIDDLE_VERTICAL_DESTROYED);
-            player.incrementScore();
+            addPoints();
         }
-        else if (value == BoardValues.EMPTY){
+        if(Constants.gameMode =="onePlayer"){
+            Constants.stringStatus = "Mor di missed \n Mor di has score " + (Constants.playerAI.getScore());
+        }
+        else{
+            Constants.stringStatus = player.getName() + " hit one of your boats";
+        }
+
+        if (value == BoardValues.EMPTY){
             Constants.miss.start();
             Log.i(className, "LOL, you missed");
             opponentBoard.changeBoardValue(x,y,BoardValues.MISSED);
-            player.decrementScore();
+            removePoints();
             Constants.stringStatus = player.getName() + " missed";
+            if(Constants.gameMode =="onePlayer"){
+                Constants.stringStatus = "Mor di missed \n Mor di has score " + Constants.playerAI.getScore();
+            }
+            else{
+                Constants.stringStatus = player.getName() + " missed";
+            }
         }
         //TODO: It is possible to fire a shot at the MISSED enum, this must be fixed
         //Checks if it was a valid shot
@@ -357,18 +370,34 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         }
         tvScoreCounter.setText("Score: " + player.getScore());
         //Log.i(className, "Inside doAction()");
-
     }
 
     //Help method - to increment/decrement the score to the correct player.
     public void addPoints(){
-        if(Constants.gameMode == "onePlayer"){
-
+        if(Constants.gameMode == "twoPlayer"){
+            player.incrementScore();
         }
         else{
-
+            if(Constants.turn == "playerOne"){
+                player.incrementScore();
+            }
+            else{
+                playerAI.incrementScore();
+            }
         }
-
+    }
+    public void removePoints(){
+        if(Constants.gameMode == "twoPlayer"){
+            player.decrementScore();
+        }
+        else{
+            if(Constants.turn == "playerOne"){
+                player.decrementScore();
+            }
+            else{
+                playerAI.decrementScore();
+            }
+        }
     }
     public void onCheckboxClicked(View view) {
         boolean checked = ((CheckBox) view).isChecked();
