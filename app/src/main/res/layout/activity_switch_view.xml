@@ -14,7 +14,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
     <TextView
-        android:id = "@+id/status"
+        android:id = "@+id/textViewStatus"
         android:text="@string/status"
         android:layout_width="fill_parent"
         android:textSize="25dp"
