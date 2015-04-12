@@ -99,10 +99,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         //Check who is playing, so we give the right parameter to the setAdapter-method
         if (Constants.turn.equals("playerOne")){
             if(Constants.gameMode.equals("onePlayer")){
-               Log.i("BattleView", "Test1");
                Constants.opponent = Constants.playerAI;
-               Log.i("BattleView", "Test2");
-
             }
             else{
                 Constants.opponent = Constants.playerTwo;
@@ -169,28 +166,12 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             boardGridView.setAdapter(new GridAdapter(this, opponentBoard));
 
             if(Functions.endGame(opponentBoard)){
+                Constants.winner = player;
                 startActivity(new Intent(BattleView.this, EndGameView.class));
             }
 
         }
         else if(v.getId() == R.id.buttonNextPlayer){
-            //Log.i(className, "onClick: buttonNextPlayer was clicked");
-
-            //Constants.miss.stop();
-            //Constants.miss.reset();
-            /*try {
-                Constants.miss.prepare();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            //Constants.hit.stop();
-            //Constants.hit.reset();
-            try {
-                Constants.hit.prepare();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-*/
 
             if(Constants.gameMode.equals("twoPlayer")){
                 if(Constants.turn.equals("playerOne")){

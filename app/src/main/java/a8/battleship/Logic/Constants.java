@@ -22,6 +22,9 @@ public class Constants {
 
     public static Player playerOne;
     public static Player playerTwo;
+
+    public static Player winner;
+
     public static AiPlayer playerAI;
     public static String level = "low";
 
