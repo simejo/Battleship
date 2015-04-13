@@ -70,20 +70,17 @@ public class Functions {
         return true;
     }
 
+
     //FINDING Y POSITION WHEN YOU ONLY HAVE A INT FOR THE POS
-    public static int findY(int position, int boardSize) {
-        int tempPos = position;
-        int y = 0;
-        for (int i = 0; i < boardSize; i++) {
-            if (tempPos > boardSize) {
-                y++;                    //Y is not in this row, need to update the temporary y-value
-                tempPos -= boardSize;    //Minus boardSize, so we can check if y is in the next row.
-            } else {
-                break;
-            }
-        }
-        return y;
+    public static int findY(int position, int boardSize){
+        return position/boardSize;
     }
+
+    //FINDING X POSITION WHEN YOU ONLY HAVE A INT FOR THE POS
+    public static int findX(int position, int boardSize){
+        return position%boardSize;
+    }
+
 
     //FINDING TOTAL POS BASED ON X AND Y
     public static int findPos(int x, int y){

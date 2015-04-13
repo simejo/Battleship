@@ -35,8 +35,6 @@ public class Constants {
     //This string will keep track of the last shot (missed or hit)
     public static String stringStatus;
 
-
-
     //This will always be the players opponent
     public static Player opponent;
 

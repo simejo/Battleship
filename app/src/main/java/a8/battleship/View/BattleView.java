@@ -188,14 +188,14 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                     Constants.turn = "playerAI";
                     if (playerAI.getLevel().equals("low")){
                         int nextMove = playerAI.aiNextMoveLow();
-                        int x = nextMove % Constants.boardSize;
+                        int x = Functions.findX(nextMove, Constants.boardSize);
                         int y = Functions.findY(nextMove, Constants.boardSize);
                         BoardValues value = Constants.playerOne.getBoard().getContentInACell(x, y);
                         doAction(value, Constants.playerOne.getBoard(), x, y);
                     }
                     else if (playerAI.getLevel().equals("medium")){
                         int nextMove = playerAI.aiNextMoveMedium();
-                        int x = nextMove % Constants.boardSize;
+                        int x = Functions.findX(nextMove, Constants.boardSize);
                         int y = Functions.findY(nextMove, Constants.boardSize);
                         BoardValues value = Constants.playerOne.getBoard().getContentInACell(x, y);
                         doAction(value, Constants.playerOne.getBoard(), x, y);
@@ -204,7 +204,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                     }
                     else if (playerAI.getLevel().equals("hard")){
                         int nextMove = playerAI.aiNextMoveHard();
-                        int x = nextMove % Constants.boardSize;
+                        int x = Functions.findX(nextMove, Constants.boardSize);
                         int y = Functions.findY(nextMove, Constants.boardSize);
                         BoardValues value = Constants.playerOne.getBoard().getContentInACell(x, y);
                         doAction(value, Constants.playerOne.getBoard(), x, y);
@@ -260,8 +260,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         //Finding y
         currentYPosition = Functions.findY(position, boardSize);
         //Finding x
-        currentXPosition = position%boardSize;
-        Log.i(className, "onItemClick: currentYPosition = " + currentYPosition + ", and currentXPosition = " + currentXPosition);
+        currentXPosition = Functions.findX(position,boardSize);
 
         /*
         //Need to get the opponents board
