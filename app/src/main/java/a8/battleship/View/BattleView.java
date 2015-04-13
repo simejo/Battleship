@@ -215,6 +215,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                 else{
                     Constants.turn = "playerOne";
                 }
+
             }
             startActivity(new Intent(BattleView.this, SwitchView.class));
         }
