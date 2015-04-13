@@ -2,12 +2,7 @@ package a8.battleship.Models;
 
 import android.util.Log;
 
-import java.util.ArrayList;
-
-import a8.battleship.Logic.BoardValues;
-
 /**
- * Created by TheaHove on 11/03/2015.
  * A player has a name (might be null), a board, and a boolean that tells if it's his/hers turn or not
  */
 public class Player {
@@ -48,14 +43,6 @@ public class Player {
 
     public void decrementScore(){
         this.score -= 1;
-    }
-
-    public void setTurn(boolean turn){
-        this.turn = turn;
-    }
-
-    public boolean getTurn(){
-        return turn;
     }
 
     public String toString(){

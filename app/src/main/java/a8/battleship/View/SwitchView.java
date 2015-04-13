@@ -8,13 +8,9 @@ import android.view.View;
 import android.widget.Button;
 
 import a8.battleship.Logic.Constants;
-import a8.battleship.Models.AiPlayer;
 import a8.battleship.R;
 import android.widget.TextView;
 
-/**
- * Created by Kartefull on 11.03.2015.
- */
 public class SwitchView extends ActionBarActivity implements View.OnClickListener{
 
     private Button buttonSwitchPlayer;
@@ -33,39 +29,43 @@ public class SwitchView extends ActionBarActivity implements View.OnClickListene
         buttonSwitchPlayer.setOnClickListener(this);
 
         switchViewHeader = (TextView)findViewById(R.id.switchViewHeader);
-        if(Constants.gameMode == "onePlayer"){
+        if(Constants.gameMode.equals("onePlayer")){
             switchViewHeader.setText(Constants.playerOne.getName() + "'s turn");
         }
         else{
-            if(Constants.turn == "playerOne"){
-                switchViewHeader.setText(Constants.playerOne.getName() + "'s turn");
-            }
-            else if(Constants.turn == "playerTwo"){
-                switchViewHeader.setText(Constants.playerTwo.getName() + "'s turn");
-            }
-            else if(Constants.turn == "playerAI"){
-                switchViewHeader.setText("Player AI's turn");
+            switch(Constants.turn){
+                case("playerOne"):
+                    switchViewHeader.setText(Constants.playerOne.getName() + "'s turn");
+                    break;
+                case("playerTwo"):
+                    switchViewHeader.setText(Constants.playerTwo.getName() + "'s turn");
+                    break;
+                case("playerAI"):
+                    switchViewHeader.setText("Player AI's turn");
+                    break;
             }
         }
-
     }
     public void onClick(View v){
         //Functionality for button
+        if(!Constants.backgroundMusic.isPlaying()){
+            Constants.backgroundMusic.isLooping();
+        }
         if(v.getId() == R.id.buttonSwitchPlayer){
             Log.i("SwitchView.java","When buttonSwitchPlayer is pressed - the current player is: " + Constants.turn);
             //If its twoPlayer
-            if(Constants.turn == "playerOne" && Constants.gameMode == "twoPlayer"){
+            if(Constants.turn.equals("playerOne") && Constants.gameMode.equals("twoPlayer")){
                 startActivity(new Intent(SwitchView.this, BattleView.class));
             }
-            else if (Constants.turn == "playerTwo" && Constants.gameMode == "twoPlayer"){
+            else if (Constants.turn.equals("playerTwo") && Constants.gameMode.equals("twoPlayer")){
                 startActivity(new Intent(SwitchView.this, BattleView.class));
             }
             //If its onePlayer ---
-            if(Constants.turn == "playerOne" && Constants.gameMode == "onePlayer"){
+            if(Constants.turn.equals("playerOne") && Constants.gameMode.equals("onePlayer")){
 
                 startActivity(new Intent(SwitchView.this, BattleView.class));
             }
-            else if (Constants.turn == "playerAI" && Constants.gameMode == "onePlayer"){
+            else if (Constants.turn.equals("playerAI") && Constants.gameMode.equals("onePlayer")){
 
                 startActivity(new Intent(SwitchView.this, BattleView.class));
                 Constants.turn = "playerOne";
