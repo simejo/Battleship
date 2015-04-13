@@ -55,7 +55,7 @@
             android:layout_gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Difficulty"
-            android:id="@+id/textView4" />
+            android:id="@+id/textViewDifficulty" />
 
         <SeekBar
         android:id="@+id/seekBarAIChooser"
