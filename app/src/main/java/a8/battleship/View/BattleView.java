@@ -180,6 +180,8 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                 else{
                     Constants.turn = "playerOne";
                 }
+                Log.i("Battleview", "\n playerOnes board \n " + Constants.playerOne.getBoard().toString() + "\n playerTwos board " + Constants.playerTwo.getBoard().toString());
+
             }
             else if(Constants.gameMode.equals("onePlayer")){
                 if(Constants.turn.equals("playerOne")){
@@ -209,13 +211,12 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                         BoardValues value = Constants.playerOne.getBoard().getContentInACell(x, y);
                         doAction(value, Constants.playerOne.getBoard(), x, y);
                     }
-
-
                 }
                 else{
                     Constants.turn = "playerOne";
                 }
                 startActivity(new Intent(BattleView.this, SwitchView.class));
+                Log.i("Battleview", "\n playerOnes board \n " + Constants.playerOne.getBoard().toString() + "\n playerAis board " + Constants.playerAI.getBoard().toString());
             }
         }
         else if(v.getId() == R.id.buttonHome){

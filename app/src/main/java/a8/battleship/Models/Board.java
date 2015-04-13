@@ -159,11 +159,15 @@ public class Board{
         String holder = "\n";
         for(int i =0;i<10;i++ ){
             for(int j = 0; j < 10; j++){
-                holder += board.get(i).get(j).toString() + " ";
+                holder += fixedLengthString(board.get(i).get(j).toString(), 25);
             }
             holder += "\n";
         }
         return holder;
+    }
+
+    public static String fixedLengthString(String string, int length) {
+        return String.format("%1$"+length+ "s", string);
     }
 
 }
