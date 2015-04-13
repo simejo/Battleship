@@ -217,6 +217,8 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                 }
                 startActivity(new Intent(BattleView.this, SwitchView.class));
                 Log.i("Battleview", "\n playerOnes board \n " + Constants.playerOne.getBoard().toString() + "\n playerAis board " + Constants.playerAI.getBoard().toString());
+                Log.i("Battleview", Constants.playerAI.toString());
+
             }
         }
         else if(v.getId() == R.id.buttonHome){
