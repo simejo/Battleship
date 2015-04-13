@@ -63,7 +63,6 @@ public class StartView extends ActionBarActivity implements View.OnClickListener
 
         //Functionality for button
         if(v.getId() == R.id.buttonStartGame){
-            //TODO: Check if textView is empty or not
 
             //Creates players
             //Creates Player One
@@ -96,6 +95,13 @@ public class StartView extends ActionBarActivity implements View.OnClickListener
                 Constants.playerAI = new AiPlayer();
                 Constants.playerAI.setBoard(new Board(Constants.boardSize));
                 Constants.gameMode = "onePlayer";
+                if(Constants.playerAI.getLevel().equals("low")){
+                    Constants.playerAI.setName("Per");
+                } else if(Constants.playerAI.getLevel().equals("medium")){
+                    Constants.playerAI.setName("Pål");
+                } else{
+                    Constants.playerAI.setName("Askeladd");
+                }
             }
 
 
