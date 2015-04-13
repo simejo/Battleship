@@ -288,7 +288,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         Log.i(className, "X: " + Integer.toString(x) + ", Y: " + Integer.toString(y));
 
         if(Constants.gameMode =="onePlayer"){
-            Constants.stringStatus = "Mor di hit one of your boats \n Mor di has score " + (Constants.playerAI.getScore() + 10);
+            Constants.stringStatus = Constants.playerAI.getName() + " hit one of your boats \n" + Constants.playerAI.getName() + "  di has score " + (Constants.playerAI.getScore() + 10);
         }
         else{
             Constants.stringStatus = player.getName() + " hit one of your boats";
@@ -345,7 +345,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             removePoints();
             Constants.stringStatus = player.getName() + " missed";
             if(Constants.gameMode =="onePlayer"){
-                Constants.stringStatus = "Mor di missed \n Mor di has score " + Constants.playerAI.getScore();
+                Constants.stringStatus = Constants.playerAI.getName() + " missed\n" + Constants.playerAI.getName() + " has score " + Constants.playerAI.getScore();
             }
             else{
                 Constants.stringStatus = player.getName() + " missed";
@@ -356,7 +356,6 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             buttonNextPlayer.setVisibility(Button.INVISIBLE);
             buttonConfirmShot.setVisibility(Button.VISIBLE);
             hasShot = false;
-            Log.i(className, "Nope, you have already shot here");
             Toast popupBox = Toast.makeText(getApplicationContext(), "You have already shot there!", Toast.LENGTH_SHORT);
             popupBox.setGravity(Gravity.CENTER|Gravity.CENTER_HORIZONTAL, 0, 0);
             popupBox.show();
