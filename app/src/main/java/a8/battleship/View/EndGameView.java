@@ -29,12 +29,12 @@ public class EndGameView extends ActionBarActivity implements View.OnClickListen
         buttonMainMenu.setOnClickListener(this);
 
         if(Constants.gameMode == "onePlayer"){
-            tvEndScore.setText(Constants.playerOne.getName() + " score: " + Constants.playerOne.getScore() + "\n " + " AI player " + " score: " + Constants.playerAI.getScore());
+            tvEndScore.setText(Constants.playerOne.getName() + " score: " + Constants.playerOne.getScore() + "\n " + Constants.playerAI.getName() + " score: " + Constants.playerAI.getScore());
         } else {
             tvEndScore.setText(Constants.playerOne.getName() + " score: " + Constants.playerOne.getScore() + "\n " + Constants.playerTwo.getName() + " score: " + Constants.playerTwo.getScore());
         }
 
-        tvEndGameHeader.setText(Constants.turn + " won");
+        tvEndGameHeader.setText(Constants.winner + " won");
 
     }
 
