@@ -1,12 +1,9 @@
 package a8.battleship.View;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.media.AudioManager;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -17,12 +14,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.io.IOException;
-
 import a8.battleship.Adapter.GridAdapter;
 import a8.battleship.Adapter.OwnBoardGridAdapter;
 import a8.battleship.Logic.BoardValues;
@@ -35,7 +28,6 @@ import a8.battleship.R;
 
 
 /**
- * Created by Kartefull on 11.03.2015.
  * This is the game/boardGridView/battleview.
  * All the logic needed to show the boardGridView on the screen
  */
@@ -114,7 +106,6 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             tvBattleTitle.setText(Constants.playerTwo.getName() + "'s turn to battle");
 
         }
-        //TODO: make an else if player is AI (?)
 
         //Connecting the grids with the adapter
         boardGridView.setAdapter(new GridAdapter(this, Constants.opponent.getBoard()));
@@ -148,8 +139,8 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
 
             Board opponentBoard;
             //Need to get the opponents board to change the values
-            if (Constants.turn == "playerOne") {
-                if(Constants.gameMode == "onePlayer"){
+            if (Constants.turn.equals("playerOne")) {
+                if(Constants.gameMode.equals("onePlayer")){
                     opponentBoard = Constants.playerAI.getBoard();
                 }
                 else{
@@ -192,14 +183,14 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                         int nextMove = playerAI.aiNextMoveLow();
                         int x = Functions.findX(nextMove, Constants.boardSize);
                         int y = Functions.findY(nextMove, Constants.boardSize);
-                        BoardValues value = Constants.playerOne.getBoard().getContentInACell(x, y);
+                        BoardValues value = playerAI.getBoard().getContentInACell(x, y);
                         doAction(value, Constants.playerOne.getBoard(), x, y);
                     }
                     else if (playerAI.getLevel().equals("medium")){
                         int nextMove = playerAI.aiNextMoveMedium();
                         int x = Functions.findX(nextMove, Constants.boardSize);
                         int y = Functions.findY(nextMove, Constants.boardSize);
-                        BoardValues value = Constants.playerOne.getBoard().getContentInACell(x, y);
+                        BoardValues value = playerAI.getBoard().getContentInACell(x, y);
                         doAction(value, Constants.playerOne.getBoard(), x, y);
                         Log.i("BattleView","MEDIUM AI");
 
@@ -208,7 +199,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                         int nextMove = playerAI.aiNextMoveHard();
                         int x = Functions.findX(nextMove, Constants.boardSize);
                         int y = Functions.findY(nextMove, Constants.boardSize);
-                        BoardValues value = Constants.playerOne.getBoard().getContentInACell(x, y);
+                        BoardValues value = playerAI.getBoard().getContentInACell(x, y);
                         doAction(value, Constants.playerOne.getBoard(), x, y);
                     }
                 }
@@ -236,13 +227,6 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
     }
 
     //Method to use when a cell is clicked
-    //TODO: Implement this, to make changes on the board when clicked
-    /*
-        parent	    The AdapterView where the click happened.
-        view	    The view within the AdapterView that was clicked (this will be a view provided by the adapter)
-        position	The position of the view in the adapter.
-        id	        The row id of the item that was clicked.
-     */
     public void onItemClick(AdapterView parent, View v, int position, long id) {
 
         /*Board opponentBoard;*/
@@ -253,7 +237,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
 
         //Checks whether the player has shot or not
         if(!hasShot){
-            selectedCell = (View) v;
+            selectedCell = v;
             selectedCell.setAlpha(0.5f);
             buttonConfirmShot.setVisibility(Button.VISIBLE);
         }
@@ -288,7 +272,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         //Log.i(className, Constants.playerTwo.getBoard().toString());    //Printing board for player 2
         Log.i(className, "X: " + Integer.toString(x) + ", Y: " + Integer.toString(y));
 
-        if(Constants.gameMode =="onePlayer"){
+        if(Constants.gameMode.equals("onePlayer")){
             Constants.stringStatus = Constants.playerAI.getName() + " hit one of your boats \n" + Constants.playerAI.getName() + "  di has score " + (Constants.playerAI.getScore() + 10);
         }
         else{
@@ -345,7 +329,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             opponentBoard.changeBoardValue(x,y,BoardValues.MISSED);
             removePoints();
             Constants.stringStatus = player.getName() + " missed";
-            if(Constants.gameMode =="onePlayer"){
+            if(Constants.gameMode.equals("onePlayer")){
                 Constants.stringStatus = Constants.playerAI.getName() + " missed\n" + Constants.playerAI.getName() + " has score " + Constants.playerAI.getScore();
             }
             else{
@@ -368,11 +352,11 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
 
     //Help method - to increment/decrement the score to the correct player.
     public void addPoints(){
-        if(Constants.gameMode == "twoPlayer"){
+        if(Constants.gameMode.equals("twoPlayer")){
             player.incrementScore();
         }
         else{
-            if(Constants.turn == "playerOne"){
+            if(Constants.turn.equals("playerOne")){
                 player.incrementScore();
             }
             else{
@@ -382,11 +366,11 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         }
     }
     public void removePoints(){
-        if(Constants.gameMode == "twoPlayer"){
+        if(Constants.gameMode.equals("twoPlayer")){
             player.decrementScore();
         }
         else{
-            if(Constants.turn == "playerOne"){
+            if(Constants.turn.equals("playerOne")){
                 player.decrementScore();
             }
             else{
@@ -400,18 +384,13 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
         if (buttonView.getId() == R.id.cbSound) {
 
-                Log.i("BattleView", "Sound change");
                 Constants.cbBooleanSound = isChecked;
                 Constants.amSound.setStreamMute(AudioManager.STREAM_MUSIC, !isChecked);
-                Log.i("BattleView", buttonView.getId()+ "      " + Constants.cbBooleanMusic + ", " + Constants.cbBooleanSound);
         }
         else if(buttonView.getId() == R.id.cbMusic){
 
-
-                Log.i("BattleView", "Music change");
                 Constants.cbBooleanMusic = isChecked;
                 Constants.amMusic.setStreamMute(AudioManager.STREAM_MUSIC, !isChecked);
-                Log.i("BattleView", buttonView.getId()+ "      " + Constants.cbBooleanMusic + "," + Constants.cbBooleanSound);
 
         }
 

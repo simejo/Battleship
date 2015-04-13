@@ -1,18 +1,14 @@
 package a8.battleship.View;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import a8.battleship.Logic.Constants;
 import a8.battleship.Models.AiPlayer;
 import a8.battleship.Models.Board;
@@ -109,7 +105,7 @@ public class StartView extends ActionBarActivity implements View.OnClickListener
             startActivity(new Intent(StartView.this, SetShipView.class));
         }
 
-        //Functionality for radiobuttons
+        //Functionality for radio buttons
         if(rbTwoPlayer.isChecked()) {
             tvPlayerOne.setAlpha(1);
             tvPlayerTwo.setAlpha(1);
