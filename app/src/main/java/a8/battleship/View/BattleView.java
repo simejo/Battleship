@@ -190,14 +190,14 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                         int nextMove = playerAI.aiNextMoveLow();
                         int x = nextMove % Constants.boardSize;
                         int y = Functions.findY(nextMove, Constants.boardSize);
-                        BoardValues value = playerAI.getBoard().getContentInACell(x, y);
+                        BoardValues value = Constants.playerOne.getBoard().getContentInACell(x, y);
                         doAction(value, Constants.playerOne.getBoard(), x, y);
                     }
                     else if (playerAI.getLevel().equals("medium")){
                         int nextMove = playerAI.aiNextMoveMedium();
                         int x = nextMove % Constants.boardSize;
                         int y = Functions.findY(nextMove, Constants.boardSize);
-                        BoardValues value = playerAI.getBoard().getContentInACell(x, y);
+                        BoardValues value = Constants.playerOne.getBoard().getContentInACell(x, y);
                         doAction(value, Constants.playerOne.getBoard(), x, y);
                         Log.i("BattleView","MEDIUM AI");
 
@@ -206,7 +206,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                         int nextMove = playerAI.aiNextMoveHard();
                         int x = nextMove % Constants.boardSize;
                         int y = Functions.findY(nextMove, Constants.boardSize);
-                        BoardValues value = playerAI.getBoard().getContentInACell(x, y);
+                        BoardValues value = Constants.playerOne.getBoard().getContentInACell(x, y);
                         doAction(value, Constants.playerOne.getBoard(), x, y);
                     }
 
