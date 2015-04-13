@@ -186,8 +186,8 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                 Log.i("BattleView","turn is " + Constants.turn);
                     //logic - AI MAKES A MOVE
                     Constants.turn = "playerAI";
-                    if (playerAI.getLevel().equals("low")){
-                        int nextMove = playerAI.aiNextMoveLow();
+                    if (playerAI.getLevel().equals("easy")){
+                        int nextMove = playerAI.aiNextMoveEasy();
                         int x = Functions.findX(nextMove, Constants.boardSize);
                         int y = Functions.findY(nextMove, Constants.boardSize);
                         BoardValues value = playerAI.getBoard().getContentInACell(x, y);
