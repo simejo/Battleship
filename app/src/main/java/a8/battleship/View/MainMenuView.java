@@ -6,7 +6,6 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,7 +13,6 @@ import android.widget.Button;
 
 import a8.battleship.Logic.Constants;
 import a8.battleship.R;
-import a8.battleship.View.CreditsView;
 
 public class MainMenuView extends ActionBarActivity implements View.OnClickListener{
 
@@ -39,6 +37,7 @@ public class MainMenuView extends ActionBarActivity implements View.OnClickListe
         //Constants.launch = MediaPlayer.create(this, R.raw.launch);
         Constants.hit = MediaPlayer.create(this, R.raw.hit);
         Constants.miss = MediaPlayer.create(this, R.raw.miss);
+        Constants.backgroundMusic = MediaPlayer.create(this, R.raw.music);
 
         Constants.amSound = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         Constants.amSound.setStreamVolume(AudioManager.STREAM_MUSIC, Constants.amSound.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
@@ -46,7 +45,8 @@ public class MainMenuView extends ActionBarActivity implements View.OnClickListe
         Constants.amMusic = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         Constants.amMusic.setStreamVolume(AudioManager.STREAM_MUSIC, Constants.amMusic.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
 
-
+        Constants.backgroundMusic.start();
+        Constants.backgroundMusic.setLooping(true);
 
 
     }
