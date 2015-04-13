@@ -22,7 +22,7 @@ public class Constants {
     public static Player winner;
 
     public static AiPlayer playerAI;
-    public static String level = "easy";
+    public static String level = "low";
 
     public static boolean cbBooleanSound = true;
     public static boolean cbBooleanMusic = true;
