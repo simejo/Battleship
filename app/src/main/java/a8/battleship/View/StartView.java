@@ -24,7 +24,7 @@ public class StartView extends ActionBarActivity implements View.OnClickListener
 
     private RadioButton rbOnePlayer, rbTwoPlayer;
     private Button buttonStartGame;
-    private TextView tvPlayerOne, tvPlayerTwo, tvEasyAI, tvMediumAI, tvHardAI;
+    private TextView tvPlayerOne, tvPlayerTwo, tvEasyAI, tvMediumAI, tvHardAI, tvDifficulty;
     private SeekBar sbAIChooser;
 
     @Override
@@ -41,13 +41,14 @@ public class StartView extends ActionBarActivity implements View.OnClickListener
         tvEasyAI = (TextView) findViewById(R.id.textViewEasyAI);
         tvMediumAI = (TextView) findViewById(R.id.textViewMediumAI);
         tvHardAI = (TextView) findViewById(R.id.textViewHardAI);
+        tvDifficulty = (TextView) findViewById(R.id.textViewDifficulty);
 
         rbOnePlayer.setOnClickListener(this);
         rbTwoPlayer.setOnClickListener(this);
         rbOnePlayer.setChecked(true);
         buttonStartGame.setOnClickListener(this);
 
-        tvPlayerTwo.setAlpha(0);
+        tvPlayerTwo.setVisibility(View.INVISIBLE);
 
         sbAIChooser.setMax(2);
         sbAIChooser.setProgress(0);
@@ -99,28 +100,26 @@ public class StartView extends ActionBarActivity implements View.OnClickListener
                     Constants.playerAI.setName("Askeladd");
                 }
             }
-
-
-
             startActivity(new Intent(StartView.this, SetShipView.class));
         }
 
         //Functionality for radio buttons
         if(rbTwoPlayer.isChecked()) {
-            tvPlayerOne.setAlpha(1);
-            tvPlayerTwo.setAlpha(1);
-            sbAIChooser.setAlpha(0);
-            tvEasyAI.setAlpha(0);
-            tvMediumAI.setAlpha(0);
-            tvHardAI.setAlpha(0);
+            tvPlayerTwo.setVisibility(View.VISIBLE);
+            tvDifficulty.setVisibility(View.INVISIBLE);
+            sbAIChooser.setVisibility(View.INVISIBLE);
+            tvEasyAI.setVisibility(View.INVISIBLE);
+            tvMediumAI.setVisibility(View.INVISIBLE);
+            tvHardAI.setVisibility(View.INVISIBLE);
 
         }
         if(rbOnePlayer.isChecked()){
-            tvPlayerTwo.setAlpha(0);
-            sbAIChooser.setAlpha(1);
-            tvEasyAI.setAlpha(1);
-            tvMediumAI.setAlpha(1);
-            tvHardAI.setAlpha(1);
+            tvPlayerTwo.setVisibility(View.INVISIBLE);
+            tvDifficulty.setVisibility(View.VISIBLE);
+            sbAIChooser.setVisibility(View.VISIBLE);
+            tvEasyAI.setVisibility(View.VISIBLE);
+            tvMediumAI.setVisibility(View.VISIBLE);
+            tvHardAI.setVisibility(View.VISIBLE);
         }
 
 

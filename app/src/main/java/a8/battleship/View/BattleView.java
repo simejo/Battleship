@@ -93,7 +93,10 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         */
 
         //Check who is playing, so we give the right parameter to the setAdapter-method
+        Log.i("BattleView", "before if Constants.turn.equals(playerOne)");
         if (Constants.turn.equals("playerOne")){
+            Log.i("BattleView", "after if Constants.turn.equals(playerOne)");
+
             if(Constants.gameMode.equals("onePlayer")){
                Constants.opponent = Constants.playerAI;
             }
