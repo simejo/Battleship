@@ -1,12 +1,9 @@
 package a8.battleship.View;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.media.AudioManager;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -17,13 +14,10 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.IOException;
-
-import a8.battleship.Adapter.GridAdapter;
+import a8.battleship.Adapter.ShootingBoardGridAdapter;
 import a8.battleship.Adapter.OwnBoardGridAdapter;
 import a8.battleship.Logic.BoardValues;
 import a8.battleship.Logic.Constants;
@@ -117,7 +111,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         //TODO: make an else if player is AI (?)
 
         //Connecting the grids with the adapter
-        boardGridView.setAdapter(new GridAdapter(this, Constants.opponent.getBoard()));
+        boardGridView.setAdapter(new ShootingBoardGridAdapter(this, Constants.opponent.getBoard()));
         gridViewOwnBoard.setAdapter(new OwnBoardGridAdapter(this, player.getBoard()));
 
 
@@ -163,7 +157,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             buttonConfirmShot.setVisibility(Button.INVISIBLE);
             doAction(value, opponentBoard, currentXPosition, currentYPosition);
 
-            boardGridView.setAdapter(new GridAdapter(this, opponentBoard));
+            boardGridView.setAdapter(new ShootingBoardGridAdapter(this, opponentBoard));
 
             if(Functions.endGame(opponentBoard)){
                 Constants.winner = player;

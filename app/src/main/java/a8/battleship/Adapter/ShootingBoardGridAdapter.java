@@ -22,7 +22,7 @@ import a8.battleship.Tokens.Ship;
 //The adapter is  a description of how the cell will look like (in this case in the gridView)
 
 
-public class GridAdapter extends BaseAdapter {
+public class ShootingBoardGridAdapter extends BaseAdapter {
     private Context context;
     private Board board;
 
@@ -30,7 +30,7 @@ public class GridAdapter extends BaseAdapter {
 
 
     //The constructor
-    public GridAdapter(Context context, Board board) {
+    public ShootingBoardGridAdapter(Context context, Board board) {
         this.context = context;
         this.board = board;
     }
