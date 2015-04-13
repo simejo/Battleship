@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TabHost;
 
+import a8.battleship.Logic.Constants;
 import a8.battleship.R;
 
 /**
@@ -43,9 +44,10 @@ public class SettingsView extends ActionBarActivity implements View.OnClickListe
             startActivity(new Intent(SettingsView.this, StartView.class));
         }
         if(boatsRButton.isChecked()) {
-
+            Constants.gameLayout = "boats";
         }
         else if (girlsRButton.isChecked()) {
+            Constants.gameLayout = "girls";
 
         }
 

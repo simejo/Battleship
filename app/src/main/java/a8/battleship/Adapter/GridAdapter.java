@@ -78,37 +78,73 @@ public class GridAdapter extends BaseAdapter {
             BoardValues cellView = board.getContentInACell(x,y);
 
             //Converting BoardValues to images
+            if(Constants.gameLayout.equals("boats")){
 
-            if (cellView.equals(BoardValues.EAST)) {
-                cell.setImageResource(R.drawable.east);
-            } else if (cellView.equals(BoardValues.WEST)) {
-                cell.setImageResource(R.drawable.west);
-            } else if (cellView.equals(BoardValues.MIDDLE_HORIZONTAL)) {
-                cell.setImageResource(R.drawable.middle);
-            } else if (cellView.equals(BoardValues.MIDDLE_VERTICAL)) {
-                cell.setImageResource(R.drawable.middle);
-            } else if (cellView.equals(BoardValues.NORTH)) {
-                cell.setImageResource(R.drawable.north);
-            } else if (cellView.equals(BoardValues.SOUTH)){
-                cell.setImageResource(R.drawable.south);
-            } else if (cellView.equals(BoardValues.SOUTH_DESTROYED)) {
-                cell.setImageResource(R.drawable.southdestroyed);
-            } else if (cellView.equals(BoardValues.EAST_DESTROYED)) {
-                cell.setImageResource(R.drawable.eastdestroyed);
-            } else if (cellView.equals(BoardValues.WEST_DESTROYED)) {
-                cell.setImageResource(R.drawable.westdestroyed);
-            } else if (cellView.equals(BoardValues.MIDDLE_DESTROYED)) {
-                cell.setImageResource(R.drawable.middledestroyed);
-            } else if (cellView.equals(BoardValues.MIDDLE_HORIZONTAL_DESTROYED)) {
-                cell.setImageResource(R.drawable.middledestroyed);
-            }else if (cellView.equals(BoardValues.MIDDLE_VERTICAL_DESTROYED)) {
-                cell.setImageResource(R.drawable.middledestroyed);
-            } else if (cellView.equals(BoardValues.NORTH_DESTROYED)) {
-                cell.setImageResource(R.drawable.northdestroyed);
-            } else if(cellView.equals(BoardValues.MISSED)){
-                cell.setImageResource(R.drawable.missedshot);
-            } else {
-                cell.setImageResource(R.drawable.empty);
+
+                if (cellView.equals(BoardValues.EAST)) {
+                    cell.setImageResource(R.drawable.east);
+                } else if (cellView.equals(BoardValues.WEST)) {
+                    cell.setImageResource(R.drawable.west);
+                } else if (cellView.equals(BoardValues.MIDDLE_HORIZONTAL)) {
+                    cell.setImageResource(R.drawable.middle);
+                } else if (cellView.equals(BoardValues.MIDDLE_VERTICAL)) {
+                    cell.setImageResource(R.drawable.middle);
+                } else if (cellView.equals(BoardValues.NORTH)) {
+                    cell.setImageResource(R.drawable.north);
+                } else if (cellView.equals(BoardValues.SOUTH)){
+                    cell.setImageResource(R.drawable.south);
+                } else if (cellView.equals(BoardValues.SOUTH_DESTROYED)) {
+                    cell.setImageResource(R.drawable.southdestroyed);
+                } else if (cellView.equals(BoardValues.EAST_DESTROYED)) {
+                    cell.setImageResource(R.drawable.eastdestroyed);
+                } else if (cellView.equals(BoardValues.WEST_DESTROYED)) {
+                    cell.setImageResource(R.drawable.westdestroyed);
+                } else if (cellView.equals(BoardValues.MIDDLE_DESTROYED)) {
+                    cell.setImageResource(R.drawable.middledestroyed);
+                } else if (cellView.equals(BoardValues.MIDDLE_HORIZONTAL_DESTROYED)) {
+                    cell.setImageResource(R.drawable.middledestroyed);
+                } else if (cellView.equals(BoardValues.MIDDLE_VERTICAL_DESTROYED)) {
+                    cell.setImageResource(R.drawable.middledestroyed);
+                } else if (cellView.equals(BoardValues.NORTH_DESTROYED)) {
+                    cell.setImageResource(R.drawable.northdestroyed);
+                } else if(cellView.equals(BoardValues.MISSED)){
+                    cell.setImageResource(R.drawable.missedshot);
+                } else {
+                    cell.setImageResource(R.drawable.empty);
+                }
+
+            } else if(Constants.gameLayout.equals("girls")){
+                if (cellView.equals(BoardValues.EAST)) {
+                    cell.setImageResource(R.drawable.eastpink);
+                } else if (cellView.equals(BoardValues.WEST)) {
+                    cell.setImageResource(R.drawable.westpink);
+                } else if (cellView.equals(BoardValues.MIDDLE_HORIZONTAL)) {
+                    cell.setImageResource(R.drawable.middlepinkhorizontal);
+                } else if (cellView.equals(BoardValues.MIDDLE_VERTICAL)) {
+                    cell.setImageResource(R.drawable.middlepinkvertical);
+                } else if (cellView.equals(BoardValues.NORTH)) {
+                    cell.setImageResource(R.drawable.northpink);
+                } else if (cellView.equals(BoardValues.SOUTH)){
+                    cell.setImageResource(R.drawable.southpink);
+                } else if (cellView.equals(BoardValues.SOUTH_DESTROYED)) {
+                    cell.setImageResource(R.drawable.southpinkdestroyed);
+                } else if (cellView.equals(BoardValues.EAST_DESTROYED)) {
+                    cell.setImageResource(R.drawable.eastpinkdestroyed);
+                } else if (cellView.equals(BoardValues.WEST_DESTROYED)) {
+                    cell.setImageResource(R.drawable.westpinkdestroyed);
+                } else if (cellView.equals(BoardValues.MIDDLE_DESTROYED)) {
+                    cell.setImageResource(R.drawable.middlepinkverticaldestroyed);
+                } else if (cellView.equals(BoardValues.MIDDLE_HORIZONTAL_DESTROYED)) {
+                    cell.setImageResource(R.drawable.middlepinkhorizontaldestroyed);
+                } else if (cellView.equals(BoardValues.MIDDLE_VERTICAL_DESTROYED)) {
+                    cell.setImageResource(R.drawable.middlepinkverticaldestroyed);
+                } else if (cellView.equals(BoardValues.NORTH_DESTROYED)) {
+                    cell.setImageResource(R.drawable.northpinkdestroyed);
+                } else if(cellView.equals(BoardValues.MISSED)){
+                    cell.setImageResource(R.drawable.missedshot);
+                } else {
+                    cell.setImageResource(R.drawable.emptypink);
+                }
             }
 
         } else {

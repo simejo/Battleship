@@ -14,6 +14,8 @@ public class Constants {
 
     public static int boardSize = 10;
 
+    public static String gameLayout = "boats";
+
     public static int screenHeight;
     public static int screenWidth;
 
