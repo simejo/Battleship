@@ -72,13 +72,13 @@ public class Functions {
 
 
     //FINDING Y POSITION WHEN YOU ONLY HAVE A INT FOR THE POS
-    public static int findY(int position, int boardSize){
-        return position/boardSize;
+    public static int findY(int position){
+        return position/Constants.boardSize;
     }
 
     //FINDING X POSITION WHEN YOU ONLY HAVE A INT FOR THE POS
-    public static int findX(int position, int boardSize){
-        return position%boardSize;
+    public static int findX(int position){
+        return position%Constants.boardSize;
     }
 
 
