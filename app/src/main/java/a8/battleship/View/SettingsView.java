@@ -44,14 +44,14 @@ public class SettingsView extends ActionBarActivity implements View.OnClickListe
         checkBoxMusic.setChecked(Variables.cbBooleanMusic);
         checkBoxSound.setChecked(Variables.cbBooleanSound);
 
-        if(checkBoxMusic.isChecked()){
+        /*if(checkBoxMusic.isChecked()){
             Variables.cbBooleanMusic = true;
             Variables.amMusic.setStreamMute(AudioManager.STREAM_MUSIC, false);
         }
         else{
             Variables.cbBooleanMusic = false;
             Variables.amMusic.setStreamMute(AudioManager.STREAM_MUSIC, true);
-        }
+        }*/
 
     }
     @Override
@@ -77,7 +77,7 @@ public class SettingsView extends ActionBarActivity implements View.OnClickListe
     }
 
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
-        if (buttonView.getId() == R.id.checkBoxSoundSettings) {
+        /*if (buttonView.getId() == R.id.checkBoxSoundSettings) {
 
             Variables.cbBooleanSound = isChecked;
             Variables.amSound.setStreamMute(AudioManager.STREAM_MUSIC, !isChecked);
@@ -87,7 +87,7 @@ public class SettingsView extends ActionBarActivity implements View.OnClickListe
             Variables.cbBooleanMusic = isChecked;
             Variables.amMusic.setStreamMute(AudioManager.STREAM_MUSIC, !isChecked);
 
-        }
+        }*/
 
     }
 }

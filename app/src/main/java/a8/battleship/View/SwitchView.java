@@ -48,9 +48,9 @@ public class SwitchView extends ActionBarActivity implements View.OnClickListene
     }
     public void onClick(View v){
         //Functionality for button
-        if(!Variables.backgroundMusic.isPlaying()){
+        /*if(!Variables.backgroundMusic.isPlaying()){
             Variables.backgroundMusic.isLooping();
-        }
+        }*/
         if(v.getId() == R.id.buttonSwitchPlayer){
             //If its twoPlayer
             if(Variables.turn.equals("playerOne") && Variables.gameMode.equals("twoPlayer")){

@@ -19,7 +19,7 @@ public class IntroView extends ActionBarActivity {
 
         //Variables.hit = MediaPlayer.create(this, R.raw.hit);
         //Variables.miss = MediaPlayer.create(this, R.raw.miss);
-        Variables.backgroundMusic = MediaPlayer.create(this, R.raw.music);
+       /* Variables.backgroundMusic = MediaPlayer.create(this, R.raw.music);
 
 
         Variables.amSound = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
@@ -30,7 +30,7 @@ public class IntroView extends ActionBarActivity {
 
         Variables.backgroundMusic.start();
         Variables.backgroundMusic.setLooping(true);
-
+*/
         //Timer to start MainMenuView after 2 seconds
         Thread timer = new Thread(){
             public void run(){

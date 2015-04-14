@@ -47,9 +47,9 @@ public class Variables {
     public static String turn;
 
     //Sounds and music
-    public static MediaPlayer hit;
+    /*public static MediaPlayer hit;
     public static MediaPlayer miss;
     public static MediaPlayer backgroundMusic;
     public static AudioManager amSound;
-    public static AudioManager amMusic;
+    public static AudioManager amMusic;*/
 }
