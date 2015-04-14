@@ -1,12 +1,9 @@
 package a8.battleship.View;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.media.AudioManager;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -81,16 +78,6 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         //The small gridView which shows your OWN map
         gridViewOwnBoard.setNumColumns(Constants.boardSize);
         gridViewOwnBoard.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
-
-        //sounds
-        /*Constants.launch = MediaPlayer.create(this, R.raw.launch);
-        Constants.hit = MediaPlayer.create(this, R.raw.hit);
-        Constants.miss = MediaPlayer.create(this, R.raw.miss);
-
-        AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-        am.setStreamVolume(AudioManager.STREAM_MUSIC, am.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
-
-        */
 
         //Check who is playing, so we give the right parameter to the setAdapter-method
         Log.i("BattleView", "before if Constants.turn.equals(playerOne)");
@@ -187,7 +174,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                     //logic - AI MAKES A MOVE
                     Constants.turn = "playerAI";
                     if (playerAI.getLevel().equals("low")){
-                        int nextMove = playerAI.aiNextMoveLow();
+                        int nextMove = playerAI.aiNextMoveEasy();
                         int x = Functions.findX(nextMove, Constants.boardSize);
                         int y = Functions.findY(nextMove, Constants.boardSize);
                         BoardValues value = playerAI.getBoard().getContentInACell(x, y);
@@ -280,10 +267,10 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         Log.i(className, "X: " + Integer.toString(x) + ", Y: " + Integer.toString(y));
 
         if(Constants.gameMode.equals("onePlayer")){
-            Constants.stringStatus = Constants.playerAI.getName() + " hit one of your boats \n" + Constants.playerAI.getName() + "  di has score " + (Constants.playerAI.getScore() + 10);
+            Constants.stringStatus = Constants.playerAI.getName() + " hit one of your boats \n" + Constants.playerAI.getName() + " has score " + (Constants.playerAI.getScore() + 10);
         }
         else{
-            Constants.stringStatus = player.getName() + " hit one of your boats";
+            Constants.stringStatus = player.getName() + " hit one of your boats \n " + player.getName() + " has score " + player.getScore() ;
         }
 
         if (value == BoardValues.EAST){
