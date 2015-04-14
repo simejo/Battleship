@@ -52,6 +52,11 @@
     <string name="confirmShot">Confirm shot</string>
     <string name="nextPlayer">Next player</string>
 
+    //used in activity_settings_view.xml
+    <string name="gameMode">Game mode</string>
+    <string name="boats">Boats</string>
+    <string name="girls">Girls</string>
+    <string name="boys">Boys</string>
 
 
 
