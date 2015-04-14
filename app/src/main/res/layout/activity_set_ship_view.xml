@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:weightSum="1">
+    android:layout_height="match_parent">
 
-    <!-- Place Boats -->
     <TextView
         android:id = "@+id/switchViewHeader"
         android:text="@string/titleSetShip"
@@ -16,38 +14,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-
-    <LinearLayout
-        android:id="@+id/buttonHolderSetShipView"
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:layout_alignParentBottom="true">
-
-
-        <Button
-            android:id="@+id/buttonRandomize"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/randomizeShips"
-            android:layout_alignParentBottom="true"/>
-
-        <Button
-            android:id="@+id/buttonDone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/done"
-            android:layout_marginLeft="5dp"
-            android:layout_alignParentBottom="true"
-            android:layout_toRightOf="@+id/buttonRandomize"
-            android:layout_toEndOf="@+id/buttonRandomize" />
-    </LinearLayout>
-
-    <!--android:layout_toRightOf="@+id/checkBox"
-        android:layout_toEndOf="@+id/checkBox"-->
-
-
     <GridView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -55,6 +21,29 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/switchViewHeader"
         android:layout_above="@+id/buttonHolderSetShipView" />
+
+    <LinearLayout
+        android:id="@+id/buttonHolderSetShipView"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+
+        <Button
+            android:id="@+id/buttonRandomize"
+            android:layout_width="fill_parent"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/randomizeShips"/>
+
+        <Button
+            android:id="@+id/buttonDone"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/done" />
+    </LinearLayout>
 
 
 </RelativeLayout>
