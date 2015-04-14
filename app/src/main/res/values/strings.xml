@@ -41,6 +41,7 @@
     //used in activity_switch_view.xml
     <string name="switchPlayer">Battle</string>
     <string name="status">Status</string>
+    <string name="difficulty">Difficulty</string>
     <string name="player">Player Ones Turn</string>
 
     //used in activity_set_ship_view.xml
