@@ -14,6 +14,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import a8.battleship.Logic.BoardValues;
 import a8.battleship.Logic.Constants;
+import a8.battleship.Logic.Functions;
 import a8.battleship.Models.Board;
 import a8.battleship.R;
 import a8.battleship.Tokens.Ship;
@@ -25,8 +26,7 @@ import a8.battleship.Tokens.Ship;
 public class ShootingBoardGridAdapter extends BaseAdapter {
     private Context context;
     private Board board;
-
-
+    private int x,y;
 
 
     //The constructor
@@ -38,11 +38,6 @@ public class ShootingBoardGridAdapter extends BaseAdapter {
     //What to show, with the parameters so we can change the layout based on the different parameters
     //Position is the number in the array based on what cell you clicked
 
-    /*Can we give this method a parameter which is a board/player, and a coordinate?
-    So we can get the value in that cell? And then just call the
-    cell.setImageResource(R.drawable.XXXXXXX);
-    where XXXXXXX depends on what value the board has at a given coordinate?
-     */
     public View getView(int position, View convertView, ViewGroup parent) {
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -61,17 +56,8 @@ public class ShootingBoardGridAdapter extends BaseAdapter {
 
 
             //converting position to coordinates
-            int x,y;
-
-            if(position < 10){
-                y = 0;
-                x=position;
-            }
-            else{
-                y=(int) position/Constants.boardSize;
-                x= position % Constants.boardSize;
-
-            }
+            x = Functions.findX(position);
+            y = Functions.findY(position);
 
             //Getting the BoardValue depending on the coordinates
 
