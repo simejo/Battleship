@@ -185,12 +185,14 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                         int x = Functions.findX(nextMove);
                         int y = Functions.findY(nextMove);
                         BoardValues value = playerAI.getBoard().getContentInACell(x, y);
+
                         doAction(value, Constants.playerOne.getBoard(), x, y);
                         Log.i("BattleView","MEDIUM AI");
 
                     }
                     else if (playerAI.getLevel().equals("hard")){
                         int nextMove = playerAI.aiNextMoveHard();
+
                         int x = Functions.findX(nextMove);
                         int y = Functions.findY(nextMove);
                         BoardValues value = playerAI.getBoard().getContentInACell(x, y);
