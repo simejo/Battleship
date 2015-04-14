@@ -12,6 +12,7 @@ public class Player {
     private int score;
 
     public  Player() {
+        this.name = "";
         this.board = null;
         this.score = 0;
     }
