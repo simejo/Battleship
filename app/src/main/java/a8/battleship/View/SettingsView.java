@@ -18,7 +18,7 @@ import a8.battleship.R;
 public class SettingsView extends ActionBarActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener{
 
     private Button startButton, mainMenuButton;
-    private RadioButton boatsRButton, girlsRButton;
+    private RadioButton boatsRButton, girlsRButton, boysRButton;
     private CheckBox checkBoxMusic, checkBoxSound;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +29,7 @@ public class SettingsView extends ActionBarActivity implements View.OnClickListe
         mainMenuButton = (Button) findViewById(R.id.buttonMainMenu);
         boatsRButton = (RadioButton) findViewById(R.id.boatsRadioButton);
         girlsRButton = (RadioButton) findViewById(R.id.girlsRadioButton);
+        boysRButton = (RadioButton) findViewById(R.id.boysRadioButton);
         checkBoxMusic = (CheckBox) findViewById(R.id.checkBoxMusicSettings);
         checkBoxSound = (CheckBox) findViewById(R.id.checkBoxSoundSettings);
 
@@ -36,6 +37,7 @@ public class SettingsView extends ActionBarActivity implements View.OnClickListe
         mainMenuButton.setOnClickListener(this);
         boatsRButton.setOnClickListener(this);
         girlsRButton.setOnClickListener(this);
+        boysRButton.setOnClickListener(this);
 
         checkBoxSound.setOnCheckedChangeListener(this);
         checkBoxMusic.setOnCheckedChangeListener(this);
@@ -59,6 +61,9 @@ public class SettingsView extends ActionBarActivity implements View.OnClickListe
         else if (girlsRButton.isChecked()) {
             Constants.gameLayout = "girls";
 
+        }
+        else if (boysRButton.isChecked()) {
+            Constants.gameLayout = "boys";
         }
 
     }
