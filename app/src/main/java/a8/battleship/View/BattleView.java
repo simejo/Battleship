@@ -214,7 +214,11 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                     Variables.turn = "playerOne";
                 }
             }
-            startActivity(new Intent(BattleView.this, SwitchView.class));
+            Intent i = new Intent(BattleView.this, SwitchView.class);
+            // set the new task and clear flags
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(i);
+            //startActivity(new Intent(BattleView.this, SwitchView.class));
         }
         else if(v.getId() == R.id.buttonHome){
             alertDialogBuilder = new AlertDialog.Builder(this);
