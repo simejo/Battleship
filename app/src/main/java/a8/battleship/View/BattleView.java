@@ -1,12 +1,9 @@
 package a8.battleship.View;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.media.AudioManager;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -187,7 +184,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                     //logic - AI MAKES A MOVE
                     Constants.turn = "playerAI";
                     if (playerAI.getLevel().equals("low")){
-                        int nextMove = playerAI.aiNextMoveLow();
+                        int nextMove = playerAI.aiNextMoveEasy();
                         int x = Functions.findX(nextMove, Constants.boardSize);
                         int y = Functions.findY(nextMove, Constants.boardSize);
                         BoardValues value = playerAI.getBoard().getContentInACell(x, y);
