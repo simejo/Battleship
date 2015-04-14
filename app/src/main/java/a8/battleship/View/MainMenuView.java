@@ -18,7 +18,6 @@ public class MainMenuView extends ActionBarActivity implements View.OnClickListe
 
     private Button startButton, settingsButton, creditsButton;
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu_view);
@@ -33,22 +32,6 @@ public class MainMenuView extends ActionBarActivity implements View.OnClickListe
         Constants.screenHeight = this.getResources().getDisplayMetrics().heightPixels;
         Constants.screenWidth = this.getResources().getDisplayMetrics().widthPixels;
 
-        //sounds
-        //Constants.launch = MediaPlayer.create(this, R.raw.launch);
-        Constants.hit = MediaPlayer.create(this, R.raw.hit);
-        Constants.miss = MediaPlayer.create(this, R.raw.miss);
-        Constants.backgroundMusic = MediaPlayer.create(this, R.raw.music);
-
-        Constants.amSound = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-        Constants.amSound.setStreamVolume(AudioManager.STREAM_MUSIC, Constants.amSound.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
-
-        Constants.amMusic = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-        Constants.amMusic.setStreamVolume(AudioManager.STREAM_MUSIC, Constants.amMusic.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
-
-        Constants.backgroundMusic.start();
-        Constants.backgroundMusic.setLooping(true);
-
-
     }
 
     public void onClick(View v){
@@ -62,27 +45,5 @@ public class MainMenuView extends ActionBarActivity implements View.OnClickListe
             startActivity(new Intent(MainMenuView.this, SettingsView.class));
         }
 
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 }

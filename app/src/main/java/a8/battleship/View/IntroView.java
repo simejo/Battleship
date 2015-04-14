@@ -1,20 +1,12 @@
 package a8.battleship.View;
 
-/**
- * Created by simen on 14.04.15.
- */
-
-
+        import android.content.Context;
+        import android.media.AudioManager;
+        import android.media.MediaPlayer;
         import android.os.Bundle;
-        import android.app.Activity;
         import android.content.Intent;
         import android.support.v7.app.ActionBarActivity;
-        import android.util.Log;
-        import android.view.Menu;
-        import android.view.animation.Animation;
-        import android.view.animation.AnimationUtils;
-        import android.widget.LinearLayout;
-
+        import a8.battleship.Logic.Constants;
         import a8.battleship.R;
 
 public class IntroView extends ActionBarActivity {
@@ -22,6 +14,22 @@ public class IntroView extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro_view);
+
+        //Initiate the sounds and music for the rest of the game
+        Constants.hit = MediaPlayer.create(this, R.raw.hit);
+        Constants.miss = MediaPlayer.create(this, R.raw.miss);
+        Constants.backgroundMusic = MediaPlayer.create(this, R.raw.music);
+
+        Constants.amSound = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        Constants.amSound.setStreamVolume(AudioManager.STREAM_MUSIC, Constants.amSound.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+
+        Constants.amMusic = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        Constants.amMusic.setStreamVolume(AudioManager.STREAM_MUSIC, Constants.amMusic.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+
+        Constants.backgroundMusic.start();
+        Constants.backgroundMusic.setLooping(true);
+
+        //Timer to start MainMenuView after 2 seconds
         Thread timer = new Thread(){
             public void run(){
                 try{

@@ -7,7 +7,7 @@
         android:id="@+id/imageViewIntroLogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/west"
+        android:background="@drawable/logo"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 

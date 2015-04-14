@@ -44,13 +44,8 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
     private CheckBox checkBoxSound, checkBoxMusic;
     private AlertDialog.Builder alertDialogBuilder;
 
-
-
     //Need to know which Player is playing
     private Player player;
-
-    //String class name
-    private static String className = "BattleView.java";
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,6 +113,15 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
 
         checkBoxMusic.setChecked(Constants.cbBooleanMusic);
         checkBoxSound.setChecked(Constants.cbBooleanSound);
+
+        if(checkBoxMusic.isChecked()){
+            Constants.cbBooleanMusic = true;
+            Constants.amMusic.setStreamMute(AudioManager.STREAM_MUSIC, false);
+        }
+        else{
+            Constants.cbBooleanMusic = false;
+            Constants.amMusic.setStreamMute(AudioManager.STREAM_MUSIC, true);
+        }
 
         tvScoreCounter.setText("Score: " + player.getScore());
 
@@ -235,36 +239,15 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             selectedCell.setAlpha(0.5f);
             buttonConfirmShot.setVisibility(Button.VISIBLE);
         }
-        int boardSize = Constants.boardSize;
         //Finding y
         currentYPosition = Functions.findY(position);
         //Finding x
         currentXPosition = Functions.findX(position);
 
-        /*
-        //Need to get the opponents board
-        if (Constants.turn == "playerOne") {
-            if(Constants.gameMode == "onePlayer"){
-                opponentBoard = Constants.playerAI.getBoard();
-            }
-            else{
-                opponentBoard = Constants.playerTwo.getBoard();
-            }
-        } else {
-            opponentBoard = Constants.playerOne.getBoard();
-        }
-        //Check if this player hit a boat, and execute correct action
-        BoardValues value = opponentBoard.getValue(currentXPosition,currentYPosition);
-        //Checks what value it is, and performs the correct action
-        doAction(value, opponentBoard, currentXPosition, currentYPosition);*/
-
     }
-    //Help method to onItemClick() - Performs the correct action, and changes the Board-model
-    //CHANGES THE MODEL
 
+    //Help method to onItemClick() - Performs the correct action, and changes the Board-model
     public void doAction(BoardValues value, Board opponentBoard, int x, int y){
-        //Log.i(className, Constants.playerTwo.getBoard().toString());    //Printing board for player 2
-        Log.i(className, "X: " + Integer.toString(x) + ", Y: " + Integer.toString(y));
 
         if(Constants.gameMode.equals("onePlayer")){
             Constants.stringStatus = Constants.playerAI.getName() + " hit one of your boats \n" + Constants.playerAI.getName() + " has score " + (Constants.playerAI.getScore() + 10);
@@ -315,11 +298,8 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             opponentBoard.changeBoardValue(x, y, BoardValues.MIDDLE_VERTICAL_DESTROYED);
             addPoints();
         }
-
-
         else if (value == BoardValues.EMPTY){
             Constants.miss.start();
-            Log.i(className, "LOL, you missed");
             opponentBoard.changeBoardValue(x,y,BoardValues.MISSED);
             removePoints();
             Constants.stringStatus = player.getName() + " missed";
@@ -354,7 +334,6 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                 player.incrementScore();
             }
             else{
-                Log.i("BattleView", "AI ADD POINTS");
                 playerAI.incrementScore();
             }
         }
@@ -368,7 +347,6 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                 player.decrementScore();
             }
             else{
-                Log.i("BattleView", "AI REMOVE POINTS");
                 playerAI.decrementScore();
             }
         }
@@ -377,15 +355,12 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
     //Method which turns the sound and music on/off
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
         if (buttonView.getId() == R.id.cbSound) {
-
-                Constants.cbBooleanSound = isChecked;
-                Constants.amSound.setStreamMute(AudioManager.STREAM_MUSIC, !isChecked);
+            Constants.cbBooleanSound = isChecked;
+            Constants.amSound.setStreamMute(AudioManager.STREAM_MUSIC, !isChecked);
         }
         else if(buttonView.getId() == R.id.cbMusic){
-
-                Constants.cbBooleanMusic = isChecked;
-                Constants.amMusic.setStreamMute(AudioManager.STREAM_MUSIC, !isChecked);
-
+            Constants.cbBooleanMusic = isChecked;
+            Constants.amMusic.setStreamMute(AudioManager.STREAM_MUSIC, !isChecked);
         }
 
     }
