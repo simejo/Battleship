@@ -270,10 +270,10 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         Log.i(className, "X: " + Integer.toString(x) + ", Y: " + Integer.toString(y));
 
         if(Constants.gameMode.equals("onePlayer")){
-            Constants.stringStatus = Constants.playerAI.getName() + " hit one of your boats \n" + Constants.playerAI.getName() + "  di has score " + (Constants.playerAI.getScore() + 10);
+            Constants.stringStatus = Constants.playerAI.getName() + " hit one of your boats \n" + Constants.playerAI.getName() + " has score " + (Constants.playerAI.getScore() + 10);
         }
         else{
-            Constants.stringStatus = player.getName() + " hit one of your boats";
+            Constants.stringStatus = player.getName() + " hit one of your boats \n " + player.getName() + " has score " + player.getScore() ;
         }
 
         if (value == BoardValues.EAST){

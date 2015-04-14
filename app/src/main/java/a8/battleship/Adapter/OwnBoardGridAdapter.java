@@ -139,7 +139,7 @@ public class OwnBoardGridAdapter extends BaseAdapter {
                 } else if (cellView.equals(BoardValues.NORTH_DESTROYED)) {
                     cell.setImageResource(R.drawable.northpinkdestroyed);
                 } else if(cellView.equals(BoardValues.MISSED)){
-                    cell.setImageResource(R.drawable.missedshot);
+                    cell.setImageResource(R.drawable.emptypinkmissed);
                 } else {
                     cell.setImageResource(R.drawable.emptypink);
                 }
