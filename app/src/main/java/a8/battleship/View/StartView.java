@@ -146,10 +146,8 @@ public class StartView extends ActionBarActivity implements View.OnClickListener
             Variables.level = "easy";
         }else if(seekBar.getProgress() == 1){
             Variables.level = "medium";
-        }else
+        }else{
             Variables.level = "hard";
-        {
-
         }
     }
 }

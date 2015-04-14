@@ -7,7 +7,6 @@ public enum BoardValues {
     SOUTH,
     EAST,
     WEST,
-    MIDDLE,
     NORTH_DESTROYED,
     SOUTH_DESTROYED,
     EAST_DESTROYED,
