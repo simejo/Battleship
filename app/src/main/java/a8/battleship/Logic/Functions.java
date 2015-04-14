@@ -11,14 +11,8 @@ import a8.battleship.Tokens.Ship;
  */
 public class Functions {
 
-
-    /* USED IN: BattleView
-     * This method is used when we need to find the position to a ship
-     * If we hit a south-part/middle_vertical-part, we need to get to the north-part
-     * If we hit a east-part/middle_horizontal-part, we need to get to the west-part
-     * -- and then find the ship based on the x and y coordinate, to update the partsLeft variable to the ship
-     * TODO: Test if this works
-     */
+    //A method to find the ship that is hit
+    //TODO: FINISH THIS, OR REMOVE?????
     public static void findAndUpdateShip(int x, int y, Player opponent){
         BoardValues value = opponent.getBoard().getContentInACell(x,y);
         if (value == BoardValues.EAST){
@@ -57,6 +51,7 @@ public class Functions {
         }
     }
 
+    //A method that checks if a player has won
     public static boolean endGame(Board board){
         for (ArrayList<BoardValues> rows : board.getBoard()){
             for(BoardValues cell : rows){
@@ -71,20 +66,20 @@ public class Functions {
     }
 
 
-    //FINDING Y POSITION WHEN YOU ONLY HAVE A INT FOR THE POS
+    //Finding y position depending on the position given in the gridView
     public static int findY(int position){
-        return position/Constants.boardSize;
+        return position/ Variables.boardSize;
     }
 
-    //FINDING X POSITION WHEN YOU ONLY HAVE A INT FOR THE POS
+    //Finding x position depending on the position given in the gridView
     public static int findX(int position){
-        return position%Constants.boardSize;
+        return position% Variables.boardSize;
     }
 
 
-    //FINDING TOTAL POS BASED ON X AND Y
+    //Finding position depending on x and y coordinates
     public static int findPos(int x, int y){
-        return y*Constants.boardSize + x;
+        return y* Variables.boardSize + x;
     }
 
 }

@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
 import a8.battleship.Adapter.OwnBoardGridAdapter;
-import a8.battleship.Logic.Constants;
+import a8.battleship.Logic.Variables;
 import a8.battleship.Models.Board;
 import a8.battleship.Models.Player;
 import a8.battleship.R;
@@ -37,14 +37,14 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
 
     public void onClick(View v){
         if(v.getId() == R.id.buttonDone){
-            if (Constants.gameMode.equals("onePlayer")){
-                Constants.playerAI.setBoard(new Board(Constants.boardSize));
-                Constants.turn = "playerOne";
+            if (Variables.gameMode.equals("onePlayer")){
+                Variables.playerAI.setBoard(new Board(Variables.boardSize));
+                Variables.turn = "playerOne";
                 startActivity(new Intent(SetShipView.this, BattleView.class));
             }
-            else if(Constants.gameMode.equals("twoPlayer")){
-                if(Constants.turn.equals("playerTwo")) {
-                    Constants.turn = "playerOne";
+            else if(Variables.gameMode.equals("twoPlayer")){
+                if(Variables.turn.equals("playerTwo")) {
+                    Variables.turn = "playerOne";
                     startActivity(new Intent(SetShipView.this, SetShipView.class));
                 }
                 else {
@@ -53,12 +53,12 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
             }
         }
         else if(v.getId() == R.id.buttonRandomize){
-            if(Constants.turn.equals("playerOne")){
-                Constants.playerOne.setBoard(new Board(Constants.boardSize));
+            if(Variables.turn.equals("playerOne")){
+                Variables.playerOne.setBoard(new Board(Variables.boardSize));
                 setShipGridView.setAdapter(new OwnBoardGridAdapter(this, player.getBoard()));
             }
             else{
-                Constants.playerTwo.setBoard(new Board(Constants.boardSize));
+                Variables.playerTwo.setBoard(new Board(Variables.boardSize));
                 setShipGridView.setAdapter(new OwnBoardGridAdapter(this, player.getBoard()));
 
 
@@ -85,17 +85,17 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
 
         setShipGridView = (GridView) findViewById(R.id.setShipGridView);
 
-        setShipGridView.setNumColumns(Constants.boardSize);
+        setShipGridView.setNumColumns(Variables.boardSize);
 
 
         //Check who is playing, so we give the right parameter to the setAdapter-method
-        if (Constants.turn.equals("playerTwo")){
-            tvHeader.setText("Place boats for " + Constants.playerTwo.getName());
-            player = Constants.playerTwo;
+        if (Variables.turn.equals("playerTwo")){
+            tvHeader.setText("Place boats for " + Variables.playerTwo.getName());
+            player = Variables.playerTwo;
         }
         else{
-            tvHeader.setText("Place boats for " + Constants.playerOne.getName());
-            player = Constants.playerOne;
+            tvHeader.setText("Place boats for " + Variables.playerOne.getName());
+            player = Variables.playerOne;
         }
         setShipGridView.setAdapter(new OwnBoardGridAdapter(this, player.getBoard()));
 

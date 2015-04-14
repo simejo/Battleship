@@ -7,7 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import a8.battleship.Logic.Constants;
+import a8.battleship.Logic.Variables;
 import a8.battleship.R;
 import android.widget.TextView;
 
@@ -24,21 +24,21 @@ public class SwitchView extends ActionBarActivity implements View.OnClickListene
 
         buttonSwitchPlayer = (Button)findViewById(R.id.buttonSwitchPlayer);
         textViewStatus = (TextView)findViewById(R.id.textViewStatus);
-        textViewStatus.setText(Constants.stringStatus);
+        textViewStatus.setText(Variables.stringStatus);
 
         buttonSwitchPlayer.setOnClickListener(this);
 
         switchViewHeader = (TextView)findViewById(R.id.switchViewHeader);
-        if(Constants.gameMode.equals("onePlayer")){
-            switchViewHeader.setText(Constants.playerOne.getName() + "'s turn");
+        if(Variables.gameMode.equals("onePlayer")){
+            switchViewHeader.setText(Variables.playerOne.getName() + "'s turn");
         }
         else{
-            switch(Constants.turn){
+            switch(Variables.turn){
                 case("playerOne"):
-                    switchViewHeader.setText(Constants.playerOne.getName() + "'s turn");
+                    switchViewHeader.setText(Variables.playerOne.getName() + "'s turn");
                     break;
                 case("playerTwo"):
-                    switchViewHeader.setText(Constants.playerTwo.getName() + "'s turn");
+                    switchViewHeader.setText(Variables.playerTwo.getName() + "'s turn");
                     break;
                 case("playerAI"):
                     switchViewHeader.setText("Player AI's turn");
@@ -48,30 +48,30 @@ public class SwitchView extends ActionBarActivity implements View.OnClickListene
     }
     public void onClick(View v){
         //Functionality for button
-        if(!Constants.backgroundMusic.isPlaying()){
-            Constants.backgroundMusic.isLooping();
+        if(!Variables.backgroundMusic.isPlaying()){
+            Variables.backgroundMusic.isLooping();
         }
         if(v.getId() == R.id.buttonSwitchPlayer){
-            Log.i("SwitchView.java","When buttonSwitchPlayer is pressed - the current player is: " + Constants.turn);
+            Log.i("SwitchView.java","When buttonSwitchPlayer is pressed - the current player is: " + Variables.turn);
             //If its twoPlayer
-            if(Constants.turn.equals("playerOne") && Constants.gameMode.equals("twoPlayer")){
+            if(Variables.turn.equals("playerOne") && Variables.gameMode.equals("twoPlayer")){
                 startActivity(new Intent(SwitchView.this, BattleView.class));
             }
-            else if (Constants.turn.equals("playerTwo") && Constants.gameMode.equals("twoPlayer")){
+            else if (Variables.turn.equals("playerTwo") && Variables.gameMode.equals("twoPlayer")){
                 startActivity(new Intent(SwitchView.this, BattleView.class));
             }
             //If its onePlayer ---
-            if(Constants.turn.equals("playerOne") && Constants.gameMode.equals("onePlayer")){
+            if(Variables.turn.equals("playerOne") && Variables.gameMode.equals("onePlayer")){
 
                 startActivity(new Intent(SwitchView.this, BattleView.class));
             }
-            else if (Constants.turn.equals("playerAI") && Constants.gameMode.equals("onePlayer")){
+            else if (Variables.turn.equals("playerAI") && Variables.gameMode.equals("onePlayer")){
 
                 startActivity(new Intent(SwitchView.this, BattleView.class));
-                Constants.turn = "playerOne";
+                Variables.turn = "playerOne";
                 //startActivity(new Intent(SwitchView.this, BattleView.class));
             }
-            Log.i("SwitchView.java","When buttonSwitchPlayer logic is done - the current player is: " + Constants.turn);
+            Log.i("SwitchView.java","When buttonSwitchPlayer logic is done - the current player is: " + Variables.turn);
 
 
         }

@@ -6,43 +6,47 @@ import android.media.MediaPlayer;
 import a8.battleship.Models.AiPlayer;
 import a8.battleship.Models.Player;
 
-//This is a class which holds 'constants'
-public class Constants {
+//This is a class which holds 'variables'
+public class Variables {
 
+    //Keeps track of the board size
     public static int boardSize = 10;
 
+    //Keeps track of which layout that is selected
     public static String gameLayout = "boats";
 
-    public static int screenHeight;
-    public static int screenWidth;
 
+    //public static int screenHeight;
+    //public static int screenWidth;
+
+    //Keeps track of the players that is created
     public static Player playerOne;
     public static Player playerTwo;
 
     public static Player winner;
 
     public static AiPlayer playerAI;
-    public static String level = "low";
+    //Keeps track of the AIPlayer level
+    public static String level = "easy";
 
+    //Keeps track of the sound - enabled or not
     public static boolean cbBooleanSound = true;
+    //Keeps track of the music - enabled or not
     public static boolean cbBooleanMusic = true;
 
-
-    //This string will keep track of the last shot (missed or hit)
+    //Keeps track of the last shot - missed or hit
     public static String stringStatus;
 
-    //This will always be the players opponent
+    //Keeps track of the opponent
     public static Player opponent;
 
-    //Selected game mode
-    //onePlayer or twoPlayer
+    //Selected game mode - onePlayer or twoPlayer
     public static String gameMode;
 
-    //Player one or player two is playing
-    //playerOne or playerTwo or playerAI
+    //Keeps track of which player that is playing - playerOne, playerTwo or playerAI
     public static String turn;
 
-    //public static MediaPlayer launch;
+    //Sounds and music
     public static MediaPlayer hit;
     public static MediaPlayer miss;
     public static MediaPlayer backgroundMusic;

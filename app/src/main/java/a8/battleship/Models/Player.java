@@ -9,18 +9,16 @@ public class Player {
 
     private String name;
     private Board board;
-    private boolean turn;
     private int score;
 
     public  Player() {
         this.board = null;
-        this.turn = true;
+        this.score = 0;
     }
 
     public Player(String name){
         this.name = name;
         this.board = null;
-        this.turn = true;
         this.score = 0;
         Log.i("Player.class", "Player created with name: " + name);
     }

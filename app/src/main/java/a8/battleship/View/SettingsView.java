@@ -5,14 +5,13 @@ import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
 
-import a8.battleship.Logic.Constants;
+import a8.battleship.Logic.Variables;
 import a8.battleship.R;
 
 public class SettingsView extends ActionBarActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener{
@@ -42,8 +41,17 @@ public class SettingsView extends ActionBarActivity implements View.OnClickListe
         checkBoxSound.setOnCheckedChangeListener(this);
         checkBoxMusic.setOnCheckedChangeListener(this);
 
-        checkBoxMusic.setChecked(Constants.cbBooleanMusic);
-        checkBoxSound.setChecked(Constants.cbBooleanSound);
+        checkBoxMusic.setChecked(Variables.cbBooleanMusic);
+        checkBoxSound.setChecked(Variables.cbBooleanSound);
+
+        if(checkBoxMusic.isChecked()){
+            Variables.cbBooleanMusic = true;
+            Variables.amMusic.setStreamMute(AudioManager.STREAM_MUSIC, false);
+        }
+        else{
+            Variables.cbBooleanMusic = false;
+            Variables.amMusic.setStreamMute(AudioManager.STREAM_MUSIC, true);
+        }
 
     }
     @Override
@@ -56,14 +64,14 @@ public class SettingsView extends ActionBarActivity implements View.OnClickListe
             startActivity(new Intent(SettingsView.this, StartView.class));
         }
         if(boatsRButton.isChecked()) {
-            Constants.gameLayout = "boats";
+            Variables.gameLayout = "boats";
         }
         else if (girlsRButton.isChecked()) {
-            Constants.gameLayout = "girls";
+            Variables.gameLayout = "girls";
 
         }
         else if (boysRButton.isChecked()) {
-            Constants.gameLayout = "boys";
+            Variables.gameLayout = "boys";
         }
 
     }
@@ -71,13 +79,13 @@ public class SettingsView extends ActionBarActivity implements View.OnClickListe
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
         if (buttonView.getId() == R.id.checkBoxSoundSettings) {
 
-            Constants.cbBooleanSound = isChecked;
-            Constants.amSound.setStreamMute(AudioManager.STREAM_MUSIC, !isChecked);
+            Variables.cbBooleanSound = isChecked;
+            Variables.amSound.setStreamMute(AudioManager.STREAM_MUSIC, !isChecked);
         }
         else if(buttonView.getId() == R.id.checkBoxMusicSettings){
 
-            Constants.cbBooleanMusic = isChecked;
-            Constants.amMusic.setStreamMute(AudioManager.STREAM_MUSIC, !isChecked);
+            Variables.cbBooleanMusic = isChecked;
+            Variables.amMusic.setStreamMute(AudioManager.STREAM_MUSIC, !isChecked);
 
         }
 

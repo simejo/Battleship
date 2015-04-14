@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import a8.battleship.Logic.Constants;
+import a8.battleship.Logic.Variables;
 import a8.battleship.Models.AiPlayer;
 import a8.battleship.Models.Board;
 import a8.battleship.Models.Player;
@@ -64,40 +64,40 @@ public class StartView extends ActionBarActivity implements View.OnClickListener
             //Creates players
             //Creates Player One
             if(tvPlayerOne.getText().toString().equals("")){
-                Constants.playerOne = new Player("Player 1");
+                Variables.playerOne = new Player("Player 1");
             }
             else{
-                Constants.playerOne = new Player(tvPlayerOne.getText().toString());
+                Variables.playerOne = new Player(tvPlayerOne.getText().toString());
             }
-            Constants.playerOne.setBoard(new Board(Constants.boardSize));
+            Variables.playerOne.setBoard(new Board(Variables.boardSize));
 
-            Constants.turn = "playerOne";
+            Variables.turn = "playerOne";
 
             //Creates player two
             if(rbTwoPlayer.isChecked()){
 
                 if(tvPlayerTwo.getText().toString().equals("")){
-                    Constants.playerTwo = new Player("Player 2");
+                    Variables.playerTwo = new Player("Player 2");
                 }
                 else{
-                    Constants.playerTwo = new Player(tvPlayerTwo.getText().toString());
+                    Variables.playerTwo = new Player(tvPlayerTwo.getText().toString());
                 }
-                Constants.playerTwo.setBoard(new Board(Constants.boardSize));
-                Constants.gameMode = "twoPlayer";
-                Constants.turn = "playerTwo";
+                Variables.playerTwo.setBoard(new Board(Variables.boardSize));
+                Variables.gameMode = "twoPlayer";
+                Variables.turn = "playerTwo";
             }
 
             else{
                 //Creates player AI
-                Constants.playerAI = new AiPlayer();
-                Constants.playerAI.setBoard(new Board(Constants.boardSize));
-                Constants.gameMode = "onePlayer";
-                if(Constants.playerAI.getLevel().equals("low")){
-                    Constants.playerAI.setName("Per");
-                } else if(Constants.playerAI.getLevel().equals("medium")){
-                    Constants.playerAI.setName("Pål");
+                Variables.playerAI = new AiPlayer();
+                Variables.playerAI.setBoard(new Board(Variables.boardSize));
+                Variables.gameMode = "onePlayer";
+                if(Variables.playerAI.getLevel().equals("low")){
+                    Variables.playerAI.setName("Per");
+                } else if(Variables.playerAI.getLevel().equals("medium")){
+                    Variables.playerAI.setName("Pål");
                 } else{
-                    Constants.playerAI.setName("Askeladd");
+                    Variables.playerAI.setName("Askeladd");
                 }
             }
             startActivity(new Intent(StartView.this, SetShipView.class));
@@ -144,11 +144,11 @@ public class StartView extends ActionBarActivity implements View.OnClickListener
      */
     public void onStopTrackingTouch(SeekBar seekBar){
         if(seekBar.getProgress() == 0){
-            Constants.level = "low";
+            Variables.level = "low";
         }else if(seekBar.getProgress() == 1){
-            Constants.level = "medium";
+            Variables.level = "medium";
         }else
-            Constants.level = "hard";
+            Variables.level = "hard";
         {
 
         }

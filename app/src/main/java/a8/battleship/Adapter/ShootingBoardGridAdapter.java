@@ -7,18 +7,16 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import a8.battleship.Logic.BoardValues;
-import a8.battleship.Logic.Constants;
+import a8.battleship.Logic.Variables;
 import a8.battleship.Logic.Functions;
 import a8.battleship.Models.Board;
 import a8.battleship.R;
 
 
-//The adapter is  a description of how the cell will look like (in this case in the gridView)
-
+//The adapter is a description of how the cell will look like in the gridView
 public class ShootingBoardGridAdapter extends BaseAdapter {
     private Context context;
     private Board board;
-
 
     //The constructor
     public ShootingBoardGridAdapter(Context context, Board board) {
@@ -28,32 +26,26 @@ public class ShootingBoardGridAdapter extends BaseAdapter {
 
     //What to show, with the parameters so we can change the layout based on the different parameters
     //Position is the number in the array based on what cell you clicked
-
     public View getView(int position, View convertView, ViewGroup parent) {
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
         View gridView;
 
         if (convertView == null) {
 
             gridView = inflater.inflate(R.layout.grid_adapter_layout, null); //A reference to the adapter xml file
-
             ImageView cell = (ImageView) gridView.findViewById(R.id.cell);
-
             cell.setAdjustViewBounds(true); //Added this to remove the extra space between the cells in the grid
-
 
             //converting position to coordinates
             int x = Functions.findX(position);
             int y = Functions.findY(position);
 
             //Getting the BoardValue depending on the coordinates
-
             BoardValues cellView = board.getContentInACell(x,y);
 
             //Converting BoardValues to images
-            switch(Constants.gameLayout){
+            switch(Variables.gameLayout){
                 case "boats":
                     switch(cellView){
                         case SOUTH_DESTROYED: cell.setImageResource(R.drawable.southdestroyed);break;

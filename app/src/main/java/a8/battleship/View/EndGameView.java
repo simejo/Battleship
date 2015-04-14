@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import a8.battleship.Logic.Constants;
+import a8.battleship.Logic.Variables;
 import a8.battleship.R;
 
 /*
@@ -28,13 +28,13 @@ public class EndGameView extends ActionBarActivity implements View.OnClickListen
         buttonMainMenu = (Button)findViewById(R.id.buttonMainMenu);
         buttonMainMenu.setOnClickListener(this);
 
-        if(Constants.gameMode.equals("onePlayer")){
-            tvEndScore.setText(Constants.playerOne.getName() + " score: " + Constants.playerOne.getScore() + "\n " + Constants.playerAI.getName() + " score: " + Constants.playerAI.getScore());
+        if(Variables.gameMode.equals("onePlayer")){
+            tvEndScore.setText(Variables.playerOne.getName() + " score: " + Variables.playerOne.getScore() + "\n " + Variables.playerAI.getName() + " score: " + Variables.playerAI.getScore());
         } else {
-            tvEndScore.setText(Constants.playerOne.getName() + " score: " + Constants.playerOne.getScore() + "\n " + Constants.playerTwo.getName() + " score: " + Constants.playerTwo.getScore());
+            tvEndScore.setText(Variables.playerOne.getName() + " score: " + Variables.playerOne.getScore() + "\n " + Variables.playerTwo.getName() + " score: " + Variables.playerTwo.getScore());
         }
 
-        tvEndGameHeader.setText(Constants.winner + " won");
+        tvEndGameHeader.setText(Variables.winner + " won");
 
     }
 

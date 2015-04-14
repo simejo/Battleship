@@ -6,7 +6,7 @@ package a8.battleship.View;
         import android.os.Bundle;
         import android.content.Intent;
         import android.support.v7.app.ActionBarActivity;
-        import a8.battleship.Logic.Constants;
+        import a8.battleship.Logic.Variables;
         import a8.battleship.R;
 
 public class IntroView extends ActionBarActivity {
@@ -16,18 +16,18 @@ public class IntroView extends ActionBarActivity {
         setContentView(R.layout.activity_intro_view);
 
         //Initiate the sounds and music for the rest of the game
-        Constants.hit = MediaPlayer.create(this, R.raw.hit);
-        Constants.miss = MediaPlayer.create(this, R.raw.miss);
-        Constants.backgroundMusic = MediaPlayer.create(this, R.raw.music);
+        Variables.hit = MediaPlayer.create(this, R.raw.hit);
+        Variables.miss = MediaPlayer.create(this, R.raw.miss);
+        Variables.backgroundMusic = MediaPlayer.create(this, R.raw.music);
 
-        Constants.amSound = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-        Constants.amSound.setStreamVolume(AudioManager.STREAM_MUSIC, Constants.amSound.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+        Variables.amSound = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        Variables.amSound.setStreamVolume(AudioManager.STREAM_MUSIC, Variables.amSound.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
 
-        Constants.amMusic = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-        Constants.amMusic.setStreamVolume(AudioManager.STREAM_MUSIC, Constants.amMusic.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+        Variables.amMusic = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        Variables.amMusic.setStreamVolume(AudioManager.STREAM_MUSIC, Variables.amMusic.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
 
-        Constants.backgroundMusic.start();
-        Constants.backgroundMusic.setLooping(true);
+        Variables.backgroundMusic.start();
+        Variables.backgroundMusic.setLooping(true);
 
         //Timer to start MainMenuView after 2 seconds
         Thread timer = new Thread(){

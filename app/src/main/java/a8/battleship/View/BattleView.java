@@ -20,7 +20,7 @@ import android.widget.Toast;
 import a8.battleship.Adapter.ShootingBoardGridAdapter;
 import a8.battleship.Adapter.OwnBoardGridAdapter;
 import a8.battleship.Logic.BoardValues;
-import a8.battleship.Logic.Constants;
+import a8.battleship.Logic.Variables;
 import a8.battleship.Logic.Functions;
 import a8.battleship.Models.AiPlayer;
 import a8.battleship.Models.Board;
@@ -38,7 +38,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
     private TextView tvBattleTitle, tvScoreCounter;
     private Button buttonNextPlayer, buttonConfirmShot, buttonHome;
     private int currentXPosition, currentYPosition;
-    private AiPlayer playerAI = Constants.playerAI;
+    private AiPlayer playerAI = Variables.playerAI;
     private boolean hasShot = false;
     private View selectedCell = null;
     private CheckBox checkBoxSound, checkBoxMusic;
@@ -67,37 +67,37 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         buttonNextPlayer.setVisibility(Button.INVISIBLE);
         buttonConfirmShot.setVisibility(Button.INVISIBLE);
 
-        boardGridView.setNumColumns(Constants.boardSize);
+        boardGridView.setNumColumns(Variables.boardSize);
         boardGridView.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
 
         //The small gridView which shows your OWN map
-        gridViewOwnBoard.setNumColumns(Constants.boardSize);
+        gridViewOwnBoard.setNumColumns(Variables.boardSize);
         gridViewOwnBoard.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
 
         //Check who is playing, so we give the right parameter to the setAdapter-method
         Log.i("BattleView", "before if Constants.turn.equals(playerOne)");
-        if (Constants.turn.equals("playerOne")){
+        if (Variables.turn.equals("playerOne")){
             Log.i("BattleView", "after if Constants.turn.equals(playerOne)");
 
-            if(Constants.gameMode.equals("onePlayer")){
-               Constants.opponent = Constants.playerAI;
+            if(Variables.gameMode.equals("onePlayer")){
+               Variables.opponent = Variables.playerAI;
             }
             else{
-                Constants.opponent = Constants.playerTwo;
+                Variables.opponent = Variables.playerTwo;
             }
-            player = Constants.playerOne;
+            player = Variables.playerOne;
             tvBattleTitle.setText(player.getName() + "'s turn to battle");
 
         }
         else{
-            player = Constants.playerTwo;
-            Constants.opponent = Constants.playerOne;
-            tvBattleTitle.setText(Constants.playerTwo.getName() + "'s turn to battle");
+            player = Variables.playerTwo;
+            Variables.opponent = Variables.playerOne;
+            tvBattleTitle.setText(Variables.playerTwo.getName() + "'s turn to battle");
 
         }
 
         //Connecting the grids with the adapter
-        boardGridView.setAdapter(new ShootingBoardGridAdapter(this, Constants.opponent.getBoard()));
+        boardGridView.setAdapter(new ShootingBoardGridAdapter(this, Variables.opponent.getBoard()));
         gridViewOwnBoard.setAdapter(new OwnBoardGridAdapter(this, player.getBoard()));
 
 
@@ -111,16 +111,16 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         checkBoxMusic.setOnCheckedChangeListener(this);
         checkBoxSound.setOnCheckedChangeListener(this);
 
-        checkBoxMusic.setChecked(Constants.cbBooleanMusic);
-        checkBoxSound.setChecked(Constants.cbBooleanSound);
+        checkBoxMusic.setChecked(Variables.cbBooleanMusic);
+        checkBoxSound.setChecked(Variables.cbBooleanSound);
 
         if(checkBoxMusic.isChecked()){
-            Constants.cbBooleanMusic = true;
-            Constants.amMusic.setStreamMute(AudioManager.STREAM_MUSIC, false);
+            Variables.cbBooleanMusic = true;
+            Variables.amMusic.setStreamMute(AudioManager.STREAM_MUSIC, false);
         }
         else{
-            Constants.cbBooleanMusic = false;
-            Constants.amMusic.setStreamMute(AudioManager.STREAM_MUSIC, true);
+            Variables.cbBooleanMusic = false;
+            Variables.amMusic.setStreamMute(AudioManager.STREAM_MUSIC, true);
         }
 
         tvScoreCounter.setText("Score: " + player.getScore());
@@ -137,15 +137,15 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
 
             Board opponentBoard;
             //Need to get the opponents board to change the values
-            if (Constants.turn.equals("playerOne")) {
-                if(Constants.gameMode.equals("onePlayer")){
-                    opponentBoard = Constants.playerAI.getBoard();
+            if (Variables.turn.equals("playerOne")) {
+                if(Variables.gameMode.equals("onePlayer")){
+                    opponentBoard = Variables.playerAI.getBoard();
                 }
                 else{
-                    opponentBoard = Constants.playerTwo.getBoard();
+                    opponentBoard = Variables.playerTwo.getBoard();
                 }
             } else {
-                opponentBoard = Constants.playerOne.getBoard();
+                opponentBoard = Variables.playerOne.getBoard();
             }
             BoardValues value = opponentBoard.getValue(currentXPosition,currentYPosition);
             buttonNextPlayer.setVisibility(Button.VISIBLE);
@@ -155,41 +155,41 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             boardGridView.setAdapter(new ShootingBoardGridAdapter(this, opponentBoard));
 
             if(Functions.endGame(opponentBoard)){
-                Constants.winner = player;
+                Variables.winner = player;
                 startActivity(new Intent(BattleView.this, EndGameView.class));
             }
 
         }
         else if(v.getId() == R.id.buttonNextPlayer){
 
-            if(Constants.gameMode.equals("twoPlayer")){
-                if(Constants.turn.equals("playerOne")){
-                    Constants.turn = "playerTwo";
+            if(Variables.gameMode.equals("twoPlayer")){
+                if(Variables.turn.equals("playerOne")){
+                    Variables.turn = "playerTwo";
                 }
                 else{
-                    Constants.turn = "playerOne";
+                    Variables.turn = "playerOne";
                 }
-                Log.i("Battleview", "\n playerOnes board \n " + Constants.playerOne.getBoard().toString() + "\n playerTwos board " + Constants.playerTwo.getBoard().toString());
+                Log.i("Battleview", "\n playerOnes board \n " + Variables.playerOne.getBoard().toString() + "\n playerTwos board " + Variables.playerTwo.getBoard().toString());
 
             }
-            else if(Constants.gameMode.equals("onePlayer")){
-                if(Constants.turn.equals("playerOne")){
-                Log.i("BattleView","turn is " + Constants.turn);
+            else if(Variables.gameMode.equals("onePlayer")){
+                if(Variables.turn.equals("playerOne")){
+                Log.i("BattleView","turn is " + Variables.turn);
                     //logic - AI MAKES A MOVE
-                    Constants.turn = "playerAI";
+                    Variables.turn = "playerAI";
                     if (playerAI.getLevel().equals("low")){
                         int nextMove = playerAI.aiNextMoveEasy();
                         int x = Functions.findX(nextMove);
                         int y = Functions.findY(nextMove);
-                        BoardValues value = Constants.playerOne.getBoard().getContentInACell(x, y);
-                        doAction(value, Constants.playerOne.getBoard(), x, y);
+                        BoardValues value = Variables.playerOne.getBoard().getContentInACell(x, y);
+                        doAction(value, Variables.playerOne.getBoard(), x, y);
                     }
                     else if (playerAI.getLevel().equals("medium")){
                         int nextMove = playerAI.aiNextMoveMedium();
                         int x = Functions.findX(nextMove);
                         int y = Functions.findY(nextMove);
-                        BoardValues value = Constants.playerOne.getBoard().getContentInACell(x, y);
-                        doAction(value, Constants.playerOne.getBoard(), x, y);
+                        BoardValues value = Variables.playerOne.getBoard().getContentInACell(x, y);
+                        doAction(value, Variables.playerOne.getBoard(), x, y);
                         Log.i("BattleView","MEDIUM AI");
 
                     }
@@ -197,12 +197,12 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                         int nextMove = playerAI.aiNextMoveHard();
                         int x = Functions.findX(nextMove);
                         int y = Functions.findY(nextMove);
-                        BoardValues value = Constants.playerOne.getBoard().getContentInACell(x, y);
-                        doAction(value, Constants.playerOne.getBoard(), x, y);
+                        BoardValues value = Variables.playerOne.getBoard().getContentInACell(x, y);
+                        doAction(value, Variables.playerOne.getBoard(), x, y);
                     }
                 }
                 else{
-                    Constants.turn = "playerOne";
+                    Variables.turn = "playerOne";
                 }
 
             }
@@ -249,65 +249,65 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
     //Help method to onItemClick() - Performs the correct action, and changes the Board-model
     public void doAction(BoardValues value, Board opponentBoard, int x, int y){
 
-        if(Constants.gameMode.equals("onePlayer")){
-            Constants.stringStatus = Constants.playerAI.getName() + " hit one of your boats \n" + Constants.playerAI.getName() + " has score " + (Constants.playerAI.getScore() + 10);
+        if(Variables.gameMode.equals("onePlayer")){
+            Variables.stringStatus = Variables.playerAI.getName() + " hit one of your boats \n" + Variables.playerAI.getName() + " has score " + (Variables.playerAI.getScore() + 10);
         }
         else{
-            Constants.stringStatus = player.getName() + " hit one of your boats \n " + player.getName() + " has score " + (player.getScore() + 10) ;
+            Variables.stringStatus = player.getName() + " hit one of your boats \n " + player.getName() + " has score " + (player.getScore() + 10) ;
         }
 
         if (value == BoardValues.EAST){
-            Constants.hit.start();
+            Variables.hit.start();
             //Log.i(className, "hit noise" );
-            Functions.findAndUpdateShip(x,y,Constants.opponent);        //Will update partsLeft in the correct ship (hopefully)
+            Functions.findAndUpdateShip(x,y, Variables.opponent);        //Will update partsLeft in the correct ship (hopefully)
             opponentBoard.changeBoardValue(x,y, BoardValues.EAST_DESTROYED);
             addPoints();
         }
         else if (value == BoardValues.SOUTH){
-            Constants.hit.start();
+            Variables.hit.start();
             //Log.i(className, "hit noise" );
-            Functions.findAndUpdateShip(x,y,Constants.opponent);
+            Functions.findAndUpdateShip(x,y, Variables.opponent);
             opponentBoard.changeBoardValue(x, y, BoardValues.SOUTH_DESTROYED);
             addPoints();
         }
         else if (value == BoardValues.WEST){
-            Constants.hit.start();
+            Variables.hit.start();
             //Log.i(className, "hit noise" );
-            Functions.findAndUpdateShip(x,y,Constants.opponent);
+            Functions.findAndUpdateShip(x,y, Variables.opponent);
             opponentBoard.changeBoardValue(x, y, BoardValues.WEST_DESTROYED);
             addPoints();
         }
         else if (value == BoardValues.NORTH){
-            Constants.hit.start();
+            Variables.hit.start();
             //Log.i(className, "hit noise" );
-            Functions.findAndUpdateShip(x,y,Constants.opponent);
+            Functions.findAndUpdateShip(x,y, Variables.opponent);
             opponentBoard.changeBoardValue(x, y, BoardValues.NORTH_DESTROYED);
             addPoints();
         }
         else if (value == BoardValues.MIDDLE_HORIZONTAL){
-            Constants.hit.start();
+            Variables.hit.start();
             //Log.i(className, "hit noise" );
-            Functions.findAndUpdateShip(x,y,Constants.opponent);
+            Functions.findAndUpdateShip(x,y, Variables.opponent);
             opponentBoard.changeBoardValue(x, y, BoardValues.MIDDLE_HORIZONTAL_DESTROYED);
             addPoints();
         }
         else if (value == BoardValues.MIDDLE_VERTICAL){
-            Constants.hit.start();
+            Variables.hit.start();
             //Log.i(className, "hit noise" );
-            Functions.findAndUpdateShip(x,y,Constants.opponent);
+            Functions.findAndUpdateShip(x,y, Variables.opponent);
             opponentBoard.changeBoardValue(x, y, BoardValues.MIDDLE_VERTICAL_DESTROYED);
             addPoints();
         }
         else if (value == BoardValues.EMPTY){
-            Constants.miss.start();
+            Variables.miss.start();
             opponentBoard.changeBoardValue(x,y,BoardValues.MISSED);
             removePoints();
-            Constants.stringStatus = player.getName() + " missed";
-            if(Constants.gameMode.equals("onePlayer")){
-                Constants.stringStatus = Constants.playerAI.getName() + " missed\n" + Constants.playerAI.getName() + " has score " + Constants.playerAI.getScore();
+            Variables.stringStatus = player.getName() + " missed";
+            if(Variables.gameMode.equals("onePlayer")){
+                Variables.stringStatus = Variables.playerAI.getName() + " missed\n" + Variables.playerAI.getName() + " has score " + Variables.playerAI.getScore();
             }
             else{
-                Constants.stringStatus = player.getName() + " missed\n" + Constants.opponent.getName() + " has score " + Constants.opponent.getScore();
+                Variables.stringStatus = player.getName() + " missed\n" + Variables.opponent.getName() + " has score " + Variables.opponent.getScore();
             }
         }
         //Checks if it was a valid shot
@@ -326,11 +326,11 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
 
     //Help method - to increment/decrement the score to the correct player.
     public void addPoints(){
-        if(Constants.gameMode.equals("twoPlayer")){
+        if(Variables.gameMode.equals("twoPlayer")){
             player.incrementScore();
         }
         else{
-            if(Constants.turn.equals("playerOne")){
+            if(Variables.turn.equals("playerOne")){
                 player.incrementScore();
             }
             else{
@@ -339,11 +339,11 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         }
     }
     public void removePoints(){
-        if(Constants.gameMode.equals("twoPlayer")){
+        if(Variables.gameMode.equals("twoPlayer")){
             player.decrementScore();
         }
         else{
-            if(Constants.turn.equals("playerOne")){
+            if(Variables.turn.equals("playerOne")){
                 player.decrementScore();
             }
             else{
@@ -355,12 +355,12 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
     //Method which turns the sound and music on/off
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
         if (buttonView.getId() == R.id.cbSound) {
-            Constants.cbBooleanSound = isChecked;
-            Constants.amSound.setStreamMute(AudioManager.STREAM_MUSIC, !isChecked);
+            Variables.cbBooleanSound = isChecked;
+            Variables.amSound.setStreamMute(AudioManager.STREAM_MUSIC, !isChecked);
         }
         else if(buttonView.getId() == R.id.cbMusic){
-            Constants.cbBooleanMusic = isChecked;
-            Constants.amMusic.setStreamMute(AudioManager.STREAM_MUSIC, !isChecked);
+            Variables.cbBooleanMusic = isChecked;
+            Variables.amMusic.setStreamMute(AudioManager.STREAM_MUSIC, !isChecked);
         }
 
     }
