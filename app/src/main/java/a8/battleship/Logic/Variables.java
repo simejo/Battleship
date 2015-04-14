@@ -55,10 +55,11 @@ public class Variables {
     public static AudioManager amSound;
 <<<<<<< HEAD
     public static AudioManager amMusic;*/
-=======
+
     public static AudioManager amMusic;
 
     public static ShootingBoardGridAdapter shootingBoardGridAdapter;
     public static OwnBoardGridAdapter ownBoardGridAdapter;
->>>>>>> c44f0fa6f832bbff7d7201c5c2f8fbecd491c6d5
+
 }
+
