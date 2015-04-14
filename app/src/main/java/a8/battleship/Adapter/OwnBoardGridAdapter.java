@@ -46,7 +46,7 @@ public class OwnBoardGridAdapter extends BaseAdapter {
 
         if (convertView == null) {
 
-            gridView = new View(context);
+            //gridView = new View(context);
 
             gridView = inflater.inflate(R.layout.grid_adapter_layout, null); //A reference to the adapter xml file
 

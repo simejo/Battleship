@@ -45,11 +45,10 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
             else if(Constants.gameMode.equals("twoPlayer")){
                 if(Constants.turn.equals("playerTwo")) {
                     Constants.turn = "playerOne";
-                    startActivity(new Intent(SetShipView.this, BattleView.class));
+                    startActivity(new Intent(SetShipView.this, SetShipView.class));
                 }
                 else {
-                    Constants.turn = "playerTwo";
-                    startActivity(new Intent(SetShipView.this, SetShipView.class));
+                    startActivity(new Intent(SetShipView.this, BattleView.class));
                 }
             }
         }
