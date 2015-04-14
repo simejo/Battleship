@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -36,11 +37,11 @@ public class SettingsView extends ActionBarActivity implements View.OnClickListe
         boatsRButton.setOnClickListener(this);
         girlsRButton.setOnClickListener(this);
 
-        checkBoxMusic.setChecked(Constants.cbBooleanMusic);
-        checkBoxSound.setChecked(Constants.cbBooleanSound);
-
         checkBoxSound.setOnCheckedChangeListener(this);
         checkBoxMusic.setOnCheckedChangeListener(this);
+
+        checkBoxMusic.setChecked(Constants.cbBooleanMusic);
+        checkBoxSound.setChecked(Constants.cbBooleanSound);
 
     }
     @Override
@@ -63,12 +64,12 @@ public class SettingsView extends ActionBarActivity implements View.OnClickListe
     }
 
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
-        if (buttonView.getId() == R.id.cbSound) {
+        if (buttonView.getId() == R.id.checkBoxSoundSettings) {
 
             Constants.cbBooleanSound = isChecked;
             Constants.amSound.setStreamMute(AudioManager.STREAM_MUSIC, !isChecked);
         }
-        else if(buttonView.getId() == R.id.cbMusic){
+        else if(buttonView.getId() == R.id.checkBoxMusicSettings){
 
             Constants.cbBooleanMusic = isChecked;
             Constants.amMusic.setStreamMute(AudioManager.STREAM_MUSIC, !isChecked);
