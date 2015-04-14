@@ -17,8 +17,6 @@ public class Ship extends Activity{
     private int x;
     private int y;
     private int direction;
-    private int positionInArray; //Will be added later, in the Board.java class. Makes it easier to find the ship (?)
-
 
     private int partsLeft;
 
@@ -28,7 +26,6 @@ public class Ship extends Activity{
         this.x = 0;
         this.y = 0;
         this.partsLeft = shipSize;
-        this.positionInArray = 0;
 
         if(direction==0){//adding pictures to array if vertical
             ship.add(BoardValues.NORTH);
@@ -67,9 +64,7 @@ public class Ship extends Activity{
 
 
     public ArrayList<BoardValues> getShip(){
-
         return this.ship;
-
     }
 
     public int getDirection(){

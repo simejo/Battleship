@@ -18,7 +18,6 @@ public class EndGameView extends ActionBarActivity implements View.OnClickListen
     private Button buttonMainMenu;
     private TextView tvEndGameHeader, tvEndScore;
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_end_game_view);
@@ -33,7 +32,6 @@ public class EndGameView extends ActionBarActivity implements View.OnClickListen
         } else {
             tvEndScore.setText(Variables.playerOne.getName() + " score: " + Variables.playerOne.getScore() + "\n " + Variables.playerTwo.getName() + " score: " + Variables.playerTwo.getScore());
         }
-
         tvEndGameHeader.setText(Variables.winner + " won");
 
     }

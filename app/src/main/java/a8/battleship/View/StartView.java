@@ -92,7 +92,7 @@ public class StartView extends ActionBarActivity implements View.OnClickListener
                 Variables.playerAI = new AiPlayer();
                 Variables.playerAI.setBoard(new Board(Variables.boardSize));
                 Variables.gameMode = "onePlayer";
-                if(Variables.playerAI.getLevel().equals("low")){
+                if(Variables.playerAI.getLevel().equals("easy")){
                     Variables.playerAI.setName("Per");
                 } else if(Variables.playerAI.getLevel().equals("medium")){
                     Variables.playerAI.setName("Pål");
@@ -121,9 +121,8 @@ public class StartView extends ActionBarActivity implements View.OnClickListener
             tvMediumAI.setVisibility(View.VISIBLE);
             tvHardAI.setVisibility(View.VISIBLE);
         }
-
-
     }
+
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
 
     }
@@ -144,7 +143,7 @@ public class StartView extends ActionBarActivity implements View.OnClickListener
      */
     public void onStopTrackingTouch(SeekBar seekBar){
         if(seekBar.getProgress() == 0){
-            Variables.level = "low";
+            Variables.level = "easy";
         }else if(seekBar.getProgress() == 1){
             Variables.level = "medium";
         }else
