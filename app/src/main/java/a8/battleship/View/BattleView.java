@@ -175,25 +175,27 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                     Constants.turn = "playerAI";
                     if (playerAI.getLevel().equals("low")){
                         int nextMove = playerAI.aiNextMoveEasy();
-                        int x = Functions.findX(nextMove, Constants.boardSize);
-                        int y = Functions.findY(nextMove, Constants.boardSize);
-                        BoardValues value = Constants.playerOne.getBoard().getContentInACell(x, y);
+                        int x = Functions.findX(nextMove);
+                        int y = Functions.findY(nextMove);
+                        BoardValues value = playerAI.getBoard().getContentInACell(x, y);
                         doAction(value, Constants.playerOne.getBoard(), x, y);
                     }
                     else if (playerAI.getLevel().equals("medium")){
                         int nextMove = playerAI.aiNextMoveMedium();
-                        int x = Functions.findX(nextMove, Constants.boardSize);
-                        int y = Functions.findY(nextMove, Constants.boardSize);
-                        BoardValues value = Constants.playerOne.getBoard().getContentInACell(x, y);
+                        int x = Functions.findX(nextMove);
+                        int y = Functions.findY(nextMove);
+                        BoardValues value = playerAI.getBoard().getContentInACell(x, y);
+
                         doAction(value, Constants.playerOne.getBoard(), x, y);
                         Log.i("BattleView","MEDIUM AI");
 
                     }
                     else if (playerAI.getLevel().equals("hard")){
                         int nextMove = playerAI.aiNextMoveHard();
-                        int x = Functions.findX(nextMove, Constants.boardSize);
-                        int y = Functions.findY(nextMove, Constants.boardSize);
-                        BoardValues value = Constants.playerOne.getBoard().getContentInACell(x, y);
+
+                        int x = Functions.findX(nextMove);
+                        int y = Functions.findY(nextMove);
+                        BoardValues value = playerAI.getBoard().getContentInACell(x, y);
                         doAction(value, Constants.playerOne.getBoard(), x, y);
                     }
                 }
@@ -237,9 +239,9 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         }
         int boardSize = Constants.boardSize;
         //Finding y
-        currentYPosition = Functions.findY(position, boardSize);
+        currentYPosition = Functions.findY(position);
         //Finding x
-        currentXPosition = Functions.findX(position,boardSize);
+        currentXPosition = Functions.findX(position);
 
         /*
         //Need to get the opponents board
