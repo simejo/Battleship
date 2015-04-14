@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -43,6 +44,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
     private View selectedCell = null;
     private CheckBox checkBoxSound, checkBoxMusic;
     private AlertDialog.Builder alertDialogBuilder;
+    private boolean hit;
 
     //Need to know which Player is playing
     private Player player;
@@ -73,6 +75,11 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         //The small gridView which shows your OWN map
         gridViewOwnBoard.setNumColumns(Variables.boardSize);
         gridViewOwnBoard.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
+
+        //Sound effects are created
+        Variables.hit = MediaPlayer.create(this, R.raw.hit);
+        Variables.miss = MediaPlayer.create(this, R.raw.miss);
+
 
         //Check who is playing, so we give the right parameter to the setAdapter-method
         Log.i("BattleView", "before if Constants.turn.equals(playerOne)");
@@ -135,6 +142,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             hasShot = true;
             //Log.i(className, "onClick: buttonConfirmShot was clicked");
 
+
             Board opponentBoard;
             //Need to get the opponents board to change the values
             if (Variables.turn.equals("playerOne")) {
@@ -161,6 +169,19 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
 
         }
         else if(v.getId() == R.id.buttonNextPlayer){
+            //release of sound garbage disposal
+            if(hit){
+                Log.i("BattleView.java", "HIT RELEASE");
+                Variables.miss.start();
+                Variables.miss.release();
+                Variables.hit.release();
+            }
+            else {
+                Log.i("BattleView.java", "MISS RELEASE");
+                Variables.hit.start();
+                Variables.hit.release();
+                Variables.miss.release();
+            }
 
             if(Variables.gameMode.equals("twoPlayer")){
                 if(Variables.turn.equals("playerOne")){
@@ -257,49 +278,63 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         }
 
         if (value == BoardValues.EAST){
+
             Variables.hit.start();
+            hit=true;
             //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y, Variables.opponent);        //Will update partsLeft in the correct ship (hopefully)
             opponentBoard.changeBoardValue(x,y, BoardValues.EAST_DESTROYED);
             addPoints();
         }
         else if (value == BoardValues.SOUTH){
+
             Variables.hit.start();
+            hit=true;
             //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y, Variables.opponent);
             opponentBoard.changeBoardValue(x, y, BoardValues.SOUTH_DESTROYED);
             addPoints();
         }
         else if (value == BoardValues.WEST){
+
             Variables.hit.start();
+            hit=true;
             //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y, Variables.opponent);
             opponentBoard.changeBoardValue(x, y, BoardValues.WEST_DESTROYED);
             addPoints();
         }
         else if (value == BoardValues.NORTH){
+
             Variables.hit.start();
+            hit=true;
             //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y, Variables.opponent);
             opponentBoard.changeBoardValue(x, y, BoardValues.NORTH_DESTROYED);
             addPoints();
         }
         else if (value == BoardValues.MIDDLE_HORIZONTAL){
+
             Variables.hit.start();
+            hit=true;
             //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y, Variables.opponent);
             opponentBoard.changeBoardValue(x, y, BoardValues.MIDDLE_HORIZONTAL_DESTROYED);
             addPoints();
         }
         else if (value == BoardValues.MIDDLE_VERTICAL){
+
             Variables.hit.start();
+            hit=true;
             //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y, Variables.opponent);
             opponentBoard.changeBoardValue(x, y, BoardValues.MIDDLE_VERTICAL_DESTROYED);
             addPoints();
         }
         else if (value == BoardValues.EMPTY){
+
             Variables.miss.start();
+            hit=false;
             opponentBoard.changeBoardValue(x,y,BoardValues.MISSED);
             removePoints();
             Variables.stringStatus = player.getName() + " missed";

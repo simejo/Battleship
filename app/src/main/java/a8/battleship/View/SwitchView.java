@@ -29,6 +29,8 @@ public class SwitchView extends ActionBarActivity implements View.OnClickListene
         buttonSwitchPlayer.setOnClickListener(this);
 
         switchViewHeader = (TextView)findViewById(R.id.switchViewHeader);
+
+        Log.i("SwitchView.java", "fault checking");
         if(Variables.gameMode.equals("onePlayer")){
             switchViewHeader.setText(Variables.playerOne.getName() + "'s turn");
         }

@@ -16,9 +16,11 @@ public class IntroView extends ActionBarActivity {
         setContentView(R.layout.activity_intro_view);
 
         //Initiate the sounds and music for the rest of the game
-        Variables.hit = MediaPlayer.create(this, R.raw.hit);
-        Variables.miss = MediaPlayer.create(this, R.raw.miss);
+
+        //Variables.hit = MediaPlayer.create(this, R.raw.hit);
+        //Variables.miss = MediaPlayer.create(this, R.raw.miss);
         Variables.backgroundMusic = MediaPlayer.create(this, R.raw.music);
+
 
         Variables.amSound = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         Variables.amSound.setStreamVolume(AudioManager.STREAM_MUSIC, Variables.amSound.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
