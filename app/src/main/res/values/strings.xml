@@ -17,8 +17,6 @@
     <string name="tvPlayerOneHint">Name of Player 1</string>
     <string name="tvPlayerTwoHint">Name of Player 2</string>
 
-
-
     //used in activity_credits_view.xml
     <string name="creditsMusic">Music made by: LE-SIUL</string>
     <string name="creditsDevelopers">Developers: \n Simen Johnsrud \n Morten Kartevoll \n Thea Hove Johansen \n Maja Kirkerød \n Manasa Vallamkondu \n Silje Christensen</string>
