@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
+<module external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$" external.system.id="GRADLE" external.system.module.group="" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
+=======
 <module external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$" external.system.id="GRADLE" type="JAVA_MODULE" version="4">
+>>>>>>> 7ff9e70676bcfd16eade947e276beab1697cea40
   <component name="FacetManager">
     <facet type="java-gradle" name="Java-Gradle">
       <configuration>
@@ -7,9 +11,13 @@
       </configuration>
     </facet>
   </component>
+<<<<<<< HEAD
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+=======
   <component name="NewModuleRootManager" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/build/classes/main" />
     <output-test url="file://$MODULE_DIR$/build/classes/test" />
+>>>>>>> 7ff9e70676bcfd16eade947e276beab1697cea40
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/.gradle" />
@@ -18,7 +26,7 @@
     <orderEntry type="inheritedJdk" />
 =======
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
->>>>>>> 95755d5a242add96e7b7c5c6e3bb425300303fd3
+>>>>>>> 7ff9e70676bcfd16eade947e276beab1697cea40
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>

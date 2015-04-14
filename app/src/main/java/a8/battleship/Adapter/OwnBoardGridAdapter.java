@@ -57,8 +57,8 @@ public class OwnBoardGridAdapter extends BaseAdapter {
 
             //converting position to coordinates
 
-            x = Functions.findX(position, Constants.boardSize);
-            y = Functions.findY(position, Constants.boardSize);
+            x = Functions.findX(position);
+            y = Functions.findY(position);
 
             //Getting the BoardValue depending on the coordinates
 
