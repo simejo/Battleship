@@ -56,7 +56,7 @@ public class Functions {
         for (ArrayList<BoardValues> rows : board.getBoard()){
             for(BoardValues cell : rows){
                 if(cell == BoardValues.WEST || cell == BoardValues.EAST || cell == BoardValues.NORTH || cell == BoardValues.SOUTH
-                        || cell == BoardValues.MIDDLE || cell == BoardValues.MIDDLE_HORIZONTAL || cell == BoardValues.MIDDLE_VERTICAL){
+                        || cell == BoardValues.MIDDLE_HORIZONTAL || cell == BoardValues.MIDDLE_VERTICAL){
                     return false;
 
                 }

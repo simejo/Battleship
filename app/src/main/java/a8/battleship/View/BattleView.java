@@ -7,7 +7,6 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -30,12 +29,12 @@ import a8.battleship.R;
 
 
 /**
- * This is the game/boardGridView/battleview.
- * All the logic needed to show the boardGridView on the screen
+ * This is the game/gridViewShootingBoard/battleview.
+ * All the logic needed to show the gridViewShootingBoard on the screen
  */
 public class BattleView extends ActionBarActivity implements View.OnClickListener, AdapterView.OnItemClickListener, CompoundButton.OnCheckedChangeListener {
 
-    private GridView boardGridView, gridViewOwnBoard;
+    private GridView gridViewShootingBoard, gridViewOwnBoard;
     private TextView tvBattleTitle, tvScoreCounter;
     private Button buttonNextPlayer, buttonConfirmShot, buttonHome;
     private int currentXPosition, currentYPosition;
@@ -53,7 +52,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_battle_view);
 
-        boardGridView = (GridView) findViewById(R.id.boardGridView);
+        gridViewShootingBoard = (GridView) findViewById(R.id.boardGridView);
         gridViewOwnBoard = (GridView) findViewById(R.id.gridViewOwnBoard);
 
         tvBattleTitle = (TextView) findViewById(R.id.textBattleTitle);
@@ -69,16 +68,16 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         buttonNextPlayer.setVisibility(Button.INVISIBLE);
         buttonConfirmShot.setVisibility(Button.INVISIBLE);
 
-        boardGridView.setNumColumns(Variables.boardSize);
-        boardGridView.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
+        gridViewShootingBoard.setNumColumns(Variables.boardSize);
+        gridViewShootingBoard.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
 
         //The small gridView which shows your OWN map
         gridViewOwnBoard.setNumColumns(Variables.boardSize);
         gridViewOwnBoard.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
 
         //Sound effects are created
-       /* Variables.hit = MediaPlayer.create(this, R.raw.hit);
-        Variables.miss = MediaPlayer.create(this, R.raw.miss);*/
+
+        Variables.miss = MediaPlayer.create(this, R.raw.miss);
 
 
         //Check who is playing, so we give the right parameter to the setAdapter-method
@@ -100,15 +99,15 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         }
 
         //Connecting the grids with the adapter
-        boardGridView.setAdapter(Variables.shootingBoardGridAdapter = new ShootingBoardGridAdapter(this, Variables.opponent.getBoard()));
+        gridViewShootingBoard.setAdapter(Variables.shootingBoardGridAdapter = new ShootingBoardGridAdapter(this, Variables.opponent.getBoard()));
         gridViewOwnBoard.setAdapter(Variables.ownBoardGridAdapter = new OwnBoardGridAdapter(this, player.getBoard()));
 
-        boardGridView.setOnItemClickListener(this);
+        gridViewShootingBoard.setOnItemClickListener(this);
 
         buttonNextPlayer.setOnClickListener(this);
         buttonConfirmShot.setOnClickListener(this);
         buttonHome.setOnClickListener(this);
-        /*
+
         checkBoxMusic.setOnCheckedChangeListener(this);
         checkBoxSound.setOnCheckedChangeListener(this);
 
@@ -122,7 +121,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         else{
             Variables.cbBooleanMusic = false;
             Variables.amMusic.setStreamMute(AudioManager.STREAM_MUSIC, true);
-        }*/
+        }
 
         tvScoreCounter.setText("Score: " + player.getScore());
 
@@ -134,12 +133,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         if(v.getId() == R.id.buttonConfirmShot){
             //This prevents the user to shoot more than once
             hasShot = true;
-<<<<<<< HEAD
-            //Log.i(className, "onClick: buttonConfirmShot was clicked");
 
-
-=======
->>>>>>> c44f0fa6f832bbff7d7201c5c2f8fbecd491c6d5
             Board opponentBoard;
             //Need to get the opponents board to change the values
             if (Variables.turn.equals("playerOne")) {
@@ -157,7 +151,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             buttonConfirmShot.setVisibility(Button.INVISIBLE);
             doAction(value, opponentBoard, currentXPosition, currentYPosition);
 
-            boardGridView.setAdapter(Variables.shootingBoardGridAdapter = new ShootingBoardGridAdapter(this, opponentBoard));
+            gridViewShootingBoard.setAdapter(Variables.shootingBoardGridAdapter = new ShootingBoardGridAdapter(this, opponentBoard));
 
             if(Functions.endGame(opponentBoard)){
                 Variables.winner = player;
@@ -167,19 +161,13 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         }
         else if(v.getId() == R.id.buttonNextPlayer){
             //release of sound garbage disposal
-            /*if(hit){
-                Log.i("BattleView.java", "HIT RELEASE");
-                Variables.miss.start();
-                Variables.miss.release();
+            if(hit){
                 Variables.hit.release();
 
             }
             else {
-                Log.i("BattleView.java", "MISS RELEASE");
-                Variables.hit.start();
-                Variables.hit.release();
                 Variables.miss.release();
-            }*/
+            }
 
             if(Variables.gameMode.equals("twoPlayer")){
                 if(Variables.turn.equals("playerOne")){
@@ -225,7 +213,6 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                 else{
                     Variables.turn = "playerOne";
                 }
-
             }
             startActivity(new Intent(BattleView.this, SwitchView.class));
         }
@@ -248,11 +235,9 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
     //Method to use when a cell is clicked
     public void onItemClick(AdapterView parent, View v, int position, long id) {
 
-        /*Board opponentBoard;*/
         if(!(selectedCell == null)){
             selectedCell.setAlpha(1);
         }
-
 
         //Checks whether the player has shot or not
         if(!hasShot){
@@ -276,77 +261,58 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         else{
             Variables.stringStatus = player.getName() + " hit one of your boats \n " + player.getName() + " has score " + (player.getScore() + 10) ;
         }
-
+        hit = true;
         if (value == BoardValues.EAST){
 
-            /*Variables.hit.start();
-
-            hit=true;
-            //Log.i(className, "hit noise" );
-*/
-            Functions.findAndUpdateShip(x,y, Variables.opponent);        //Will update partsLeft in the correct ship (hopefully)
+            Variables.hit = MediaPlayer.create(this, R.raw.hit);
+            Variables.hit.start();
+            //Functions.findAndUpdateShip(x,y, Variables.opponent);        //Will update partsLeft in the correct ship (hopefully)
             opponentBoard.changeBoardValue(x,y, BoardValues.EAST_DESTROYED);
             addPoints();
         }
         else if (value == BoardValues.SOUTH){
 
-            /*Variables.hit.start();
-
-            hit=true;
-            //Log.i(className, "hit noise" );
-*/
-            Functions.findAndUpdateShip(x,y, Variables.opponent);
+            Variables.hit = MediaPlayer.create(this, R.raw.hit);
+            Variables.hit.start();
+            //Functions.findAndUpdateShip(x,y, Variables.opponent);
             opponentBoard.changeBoardValue(x, y, BoardValues.SOUTH_DESTROYED);
             addPoints();
         }
         else if (value == BoardValues.WEST){
 
-            /*Variables.hit.start();
-
-            hit=true;
-            //Log.i(className, "hit noise" );
-*/
-            Functions.findAndUpdateShip(x,y, Variables.opponent);
+            Variables.hit = MediaPlayer.create(this, R.raw.hit);
+            Variables.hit.start();
+            //Functions.findAndUpdateShip(x,y, Variables.opponent);
             opponentBoard.changeBoardValue(x, y, BoardValues.WEST_DESTROYED);
             addPoints();
         }
         else if (value == BoardValues.NORTH){
 
-            /*Variables.hit.start();
-
-            hit=true;
-            //Log.i(className, "hit noise" );
-*/
-            Functions.findAndUpdateShip(x,y, Variables.opponent);
+            Variables.hit = MediaPlayer.create(this, R.raw.hit);
+            Variables.hit.start();
+            //Functions.findAndUpdateShip(x,y, Variables.opponent);
             opponentBoard.changeBoardValue(x, y, BoardValues.NORTH_DESTROYED);
             addPoints();
         }
         else if (value == BoardValues.MIDDLE_HORIZONTAL){
 
-            /*Variables.hit.start();
-
-            hit=true;
-            //Log.i(className, "hit noise" );
-*/
-            Functions.findAndUpdateShip(x,y, Variables.opponent);
+            Variables.hit = MediaPlayer.create(this, R.raw.hit);
+            Variables.hit.start();
+            //Functions.findAndUpdateShip(x,y, Variables.opponent);
             opponentBoard.changeBoardValue(x, y, BoardValues.MIDDLE_HORIZONTAL_DESTROYED);
             addPoints();
         }
         else if (value == BoardValues.MIDDLE_VERTICAL){
-
-            /*Variables.hit.start();
-
-            hit=true;
-            //Log.i(className, "hit noise" );
-*/
-            Functions.findAndUpdateShip(x,y, Variables.opponent);
+            Variables.hit = MediaPlayer.create(this, R.raw.hit);
+            Variables.hit.start();
+            //Functions.findAndUpdateShip(x,y, Variables.opponent);
             opponentBoard.changeBoardValue(x, y, BoardValues.MIDDLE_VERTICAL_DESTROYED);
             addPoints();
         }
         else if (value == BoardValues.EMPTY){
-
-  /*          Variables.miss.start();
-            hit=false;*/
+            Variables.miss = MediaPlayer.create(this, R.raw.miss);
+            Variables.miss.start();
+            hit=false;
             opponentBoard.changeBoardValue(x,y,BoardValues.MISSED);
             removePoints();
             Variables.stringStatus = player.getName() + " missed";
@@ -400,14 +366,14 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
 
     //Method which turns the sound and music on/off
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
-        /*if (buttonView.getId() == R.id.cbSound) {
+        if (buttonView.getId() == R.id.cbSound) {
             Variables.cbBooleanSound = isChecked;
             Variables.amSound.setStreamMute(AudioManager.STREAM_MUSIC, !isChecked);
         }
         else if(buttonView.getId() == R.id.cbMusic){
             Variables.cbBooleanMusic = isChecked;
             Variables.amMusic.setStreamMute(AudioManager.STREAM_MUSIC, !isChecked);
-        }*/
+        }
 
     }
 

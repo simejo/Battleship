@@ -49,16 +49,14 @@ public class Variables {
     public static String turn;
 
     //Sounds and music
-    /*public static MediaPlayer hit;
+    public static MediaPlayer hit;
     public static MediaPlayer miss;
     public static MediaPlayer backgroundMusic;
     public static AudioManager amSound;
-<<<<<<< HEAD
-    public static AudioManager amMusic;*/
-=======
+
     public static AudioManager amMusic;
+
 
     public static ShootingBoardGridAdapter shootingBoardGridAdapter;
     public static OwnBoardGridAdapter ownBoardGridAdapter;
->>>>>>> c44f0fa6f832bbff7d7201c5c2f8fbecd491c6d5
 }
