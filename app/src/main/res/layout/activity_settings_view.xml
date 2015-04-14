@@ -53,6 +53,15 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true" />
 
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Boys"
+                android:id="@+id/boysRadioButton"
+                android:layout_gravity="left|top"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
