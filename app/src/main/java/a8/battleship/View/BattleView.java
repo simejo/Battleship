@@ -92,11 +92,9 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         }
 
         //Connecting the grids with the adapter
-        boardGridView.setAdapter(new ShootingBoardGridAdapter(this, Variables.opponent.getBoard()));
-        gridViewOwnBoard.setAdapter(new OwnBoardGridAdapter(this, player.getBoard()));
+        boardGridView.setAdapter(Variables.shootingBoardGridAdapter = new ShootingBoardGridAdapter(this, Variables.opponent.getBoard()));
+        gridViewOwnBoard.setAdapter(Variables.ownBoardGridAdapter = new OwnBoardGridAdapter(this, player.getBoard()));
 
-
-        //Which means that the following lines must be rewritten a bit
         boardGridView.setOnItemClickListener(this);
 
         buttonNextPlayer.setOnClickListener(this);
@@ -126,10 +124,8 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
     public void onClick(View v) {
 
         if(v.getId() == R.id.buttonConfirmShot){
-            //This prevents the user to shot more than once
+            //This prevents the user to shoot more than once
             hasShot = true;
-            //Log.i(className, "onClick: buttonConfirmShot was clicked");
-
             Board opponentBoard;
             //Need to get the opponents board to change the values
             if (Variables.turn.equals("playerOne")) {
@@ -147,7 +143,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             buttonConfirmShot.setVisibility(Button.INVISIBLE);
             doAction(value, opponentBoard, currentXPosition, currentYPosition);
 
-            boardGridView.setAdapter(new ShootingBoardGridAdapter(this, opponentBoard));
+            boardGridView.setAdapter(Variables.shootingBoardGridAdapter = new ShootingBoardGridAdapter(this, opponentBoard));
 
             if(Functions.endGame(opponentBoard)){
                 Variables.winner = player;
@@ -168,27 +164,28 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             }
             else if(Variables.gameMode.equals("onePlayer")){
                 if(Variables.turn.equals("playerOne")){
+                    int nextMove, x, y;
                     //logic - AI MAKES A MOVE
                     Variables.turn = "playerAI";
                     if (playerAI.getLevel().equals("easy")){
-                        int nextMove = playerAI.aiNextMoveEasy();
-                        int x = Functions.findX(nextMove);
-                        int y = Functions.findY(nextMove);
+                        nextMove = playerAI.aiNextMoveEasy();
+                        x = Functions.findX(nextMove);
+                        y = Functions.findY(nextMove);
                         BoardValues value = Variables.playerOne.getBoard().getContentInACell(x, y);
                         doAction(value, Variables.playerOne.getBoard(), x, y);
                     }
                     else if (playerAI.getLevel().equals("medium")){
-                        int nextMove = playerAI.aiNextMoveMedium();
-                        int x = Functions.findX(nextMove);
-                        int y = Functions.findY(nextMove);
+                        nextMove = playerAI.aiNextMoveMedium();
+                        x = Functions.findX(nextMove);
+                        y = Functions.findY(nextMove);
                         BoardValues value = Variables.playerOne.getBoard().getContentInACell(x, y);
                         doAction(value, Variables.playerOne.getBoard(), x, y);
 
                     }
                     else if (playerAI.getLevel().equals("hard")){
-                        int nextMove = playerAI.aiNextMoveHard();
-                        int x = Functions.findX(nextMove);
-                        int y = Functions.findY(nextMove);
+                        nextMove = playerAI.aiNextMoveHard();
+                        x = Functions.findX(nextMove);
+                        y = Functions.findY(nextMove);
                         BoardValues value = Variables.playerOne.getBoard().getContentInACell(x, y);
                         doAction(value, Variables.playerOne.getBoard(), x, y);
                     }

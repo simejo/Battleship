@@ -3,6 +3,8 @@ package a8.battleship.Logic;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 
+import a8.battleship.Adapter.OwnBoardGridAdapter;
+import a8.battleship.Adapter.ShootingBoardGridAdapter;
 import a8.battleship.Models.AiPlayer;
 import a8.battleship.Models.Player;
 
@@ -52,4 +54,7 @@ public class Variables {
     public static MediaPlayer backgroundMusic;
     public static AudioManager amSound;
     public static AudioManager amMusic;
+
+    public static ShootingBoardGridAdapter shootingBoardGridAdapter;
+    public static OwnBoardGridAdapter ownBoardGridAdapter;
 }
