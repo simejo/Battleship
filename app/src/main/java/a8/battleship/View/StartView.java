@@ -78,13 +78,13 @@ public class StartView extends ActionBarActivity implements View.OnClickListener
 
                 if(tvPlayerTwo.getText().toString().equals("")){
                     Constants.playerTwo = new Player("Player 2");
-
                 }
                 else{
                     Constants.playerTwo = new Player(tvPlayerTwo.getText().toString());
                 }
                 Constants.playerTwo.setBoard(new Board(Constants.boardSize));
                 Constants.gameMode = "twoPlayer";
+                Constants.turn = "playerTwo";
             }
 
             else{
