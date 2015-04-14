@@ -270,7 +270,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             Constants.stringStatus = Constants.playerAI.getName() + " hit one of your boats \n" + Constants.playerAI.getName() + " has score " + (Constants.playerAI.getScore() + 10);
         }
         else{
-            Constants.stringStatus = player.getName() + " hit one of your boats \n " + player.getName() + " has score " + player.getScore() ;
+            Constants.stringStatus = player.getName() + " hit one of your boats \n " + player.getName() + " has score " + (player.getScore() + 10) ;
         }
 
         if (value == BoardValues.EAST){
@@ -327,7 +327,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                 Constants.stringStatus = Constants.playerAI.getName() + " missed\n" + Constants.playerAI.getName() + " has score " + Constants.playerAI.getScore();
             }
             else{
-                Constants.stringStatus = player.getName() + " missed";
+                Constants.stringStatus = player.getName() + " missed\n" + Constants.opponent.getName() + " has score " + Constants.opponent.getScore();
             }
         }
         //Checks if it was a valid shot

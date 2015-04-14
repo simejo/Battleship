@@ -46,7 +46,7 @@ public class OwnBoardGridAdapter extends BaseAdapter {
 
         if (convertView == null) {
 
-            gridView = new View(context);
+            //gridView = new View(context);
 
             gridView = inflater.inflate(R.layout.grid_adapter_layout, null); //A reference to the adapter xml file
 
@@ -99,8 +99,56 @@ public class OwnBoardGridAdapter extends BaseAdapter {
                 } else {
                     cell.setImageResource(R.drawable.empty);
                 }
+            }
+            else if(Constants.gameLayout.equals("boys")){
 
-            } else if(Constants.gameLayout.equals("girls")){
+                if (cellView.equals(BoardValues.EAST)) {
+                    cell.setImageResource(R.drawable.eastgreen);
+                }
+                else if (cellView.equals(BoardValues.WEST)) {
+                    cell.setImageResource(R.drawable.westgreen);
+                }
+                else if (cellView.equals(BoardValues.MIDDLE_HORIZONTAL)) {
+                    cell.setImageResource(R.drawable.middlegreenhorizontal);
+                }
+                else if (cellView.equals(BoardValues.MIDDLE_VERTICAL)) {
+                    cell.setImageResource(R.drawable.middlegreenvertical);
+                }
+                else if (cellView.equals(BoardValues.NORTH)) {
+                    cell.setImageResource(R.drawable.northgreen);
+                }
+                else if (cellView.equals(BoardValues.SOUTH)){
+                    cell.setImageResource(R.drawable.southgreen);
+                }
+                else if (cellView.equals(BoardValues.SOUTH_DESTROYED)) {
+                    cell.setImageResource(R.drawable.southgreendestroyed);
+                }
+                else if (cellView.equals(BoardValues.EAST_DESTROYED)) {
+                    cell.setImageResource(R.drawable.eastgreendestroyed);
+                }
+                else if (cellView.equals(BoardValues.WEST_DESTROYED)) {
+                    cell.setImageResource(R.drawable.westgreendestroyed);
+                }
+                else if (cellView.equals(BoardValues.MIDDLE_DESTROYED)) {
+                    cell.setImageResource(R.drawable.middlegreenverticaldestroyed);
+                }
+                else if (cellView.equals(BoardValues.MIDDLE_HORIZONTAL_DESTROYED)) {
+                    cell.setImageResource(R.drawable.middlegreenhorizontaldestroyed);
+                }
+                else if (cellView.equals(BoardValues.MIDDLE_VERTICAL_DESTROYED)) {
+                    cell.setImageResource(R.drawable.middlegreenverticaldestroyed);
+                }
+                else if (cellView.equals(BoardValues.NORTH_DESTROYED)) {
+                    cell.setImageResource(R.drawable.northgreendestroyed);
+                }
+                else if(cellView.equals(BoardValues.MISSED)){
+                    cell.setImageResource(R.drawable.emptygreenmissed);
+                }
+                else {
+                cell.setImageResource(R.drawable.emptygreen);
+                }
+            }
+            else if(Constants.gameLayout.equals("girls")){
                 if (cellView.equals(BoardValues.EAST)) {
                     cell.setImageResource(R.drawable.eastpink);
                 } else if (cellView.equals(BoardValues.WEST)) {
@@ -133,6 +181,8 @@ public class OwnBoardGridAdapter extends BaseAdapter {
                     cell.setImageResource(R.drawable.emptypink);
                 }
             }
+
+
 
         } else {
             gridView = (View) convertView;
