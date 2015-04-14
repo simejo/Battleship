@@ -15,9 +15,7 @@ public class SwitchView extends ActionBarActivity implements View.OnClickListene
 
     private Button buttonSwitchPlayer;
     private TextView switchViewHeader, textViewStatus;
-    //private AiPlayer playerAI = Constants.playerAI;;
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_switch_view);
@@ -52,7 +50,6 @@ public class SwitchView extends ActionBarActivity implements View.OnClickListene
             Variables.backgroundMusic.isLooping();
         }
         if(v.getId() == R.id.buttonSwitchPlayer){
-            Log.i("SwitchView.java","When buttonSwitchPlayer is pressed - the current player is: " + Variables.turn);
             //If its twoPlayer
             if(Variables.turn.equals("playerOne") && Variables.gameMode.equals("twoPlayer")){
                 startActivity(new Intent(SwitchView.this, BattleView.class));
@@ -62,18 +59,12 @@ public class SwitchView extends ActionBarActivity implements View.OnClickListene
             }
             //If its onePlayer ---
             if(Variables.turn.equals("playerOne") && Variables.gameMode.equals("onePlayer")){
-
                 startActivity(new Intent(SwitchView.this, BattleView.class));
             }
             else if (Variables.turn.equals("playerAI") && Variables.gameMode.equals("onePlayer")){
-
                 startActivity(new Intent(SwitchView.this, BattleView.class));
                 Variables.turn = "playerOne";
-                //startActivity(new Intent(SwitchView.this, BattleView.class));
             }
-            Log.i("SwitchView.java","When buttonSwitchPlayer logic is done - the current player is: " + Variables.turn);
-
-
         }
 
 

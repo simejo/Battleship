@@ -14,10 +14,10 @@ import a8.battleship.Models.Board;
 import a8.battleship.Models.Player;
 import a8.battleship.R;
 
-/**
- * This is the view where the player can place his/hers boats
- */
-public class SetShipView extends ActionBarActivity implements View.OnClickListener, AdapterView.OnItemClickListener{
+
+//This is the view where the player can place his/hers boats
+
+public class SetShipView extends ActionBarActivity implements View.OnClickListener{
 
     private Button buttonStartGame, buttonRandomizeShips;
     private TextView tvHeader;
@@ -66,12 +66,6 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
         }
     }
 
-    //Method to use when a cell is clicked
-    //TODO: Implement this, to make changes on the board when clicked
-    public void onItemClick(AdapterView parent, View v, int position, long id) {
-
-    }
-
     //Connecting with the XML-objects
     public void initiateWidgets(){
 
@@ -98,8 +92,5 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
             player = Variables.playerOne;
         }
         setShipGridView.setAdapter(new OwnBoardGridAdapter(this, player.getBoard()));
-
-        //Gives the adapter onItemClickListener
-        //setShipGridView.setOnItemClickListener(this);
     }
 }

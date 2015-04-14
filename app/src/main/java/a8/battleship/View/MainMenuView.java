@@ -26,6 +26,7 @@ public class MainMenuView extends ActionBarActivity implements View.OnClickListe
         creditsButton.setOnClickListener(this);
     }
 
+    //A method that is called when a button is pushed
     public void onClick(View v){
         if(v.getId() == R.id.buttonCredits){
             startActivity(new Intent(MainMenuView.this, CreditsView.class));

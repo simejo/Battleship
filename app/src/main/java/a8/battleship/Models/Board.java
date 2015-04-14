@@ -13,8 +13,6 @@ public class Board{
     private BoardValues EMPTY = BoardValues.EMPTY;
     private ArrayList<ArrayList<BoardValues>> board;
 
-    //private String className = "Board.java";
-
     private Random random = new Random();
     private ArrayList<Ship> shipArray = new ArrayList<>(Arrays.asList(
             new Ship(3,random.nextInt(2)),new Ship(3,random.nextInt(2)),
@@ -40,7 +38,6 @@ public class Board{
 
 
 
-    //Getter
     //Getter for the board
     public ArrayList<ArrayList<BoardValues>> getBoard(){
         return board;
@@ -87,7 +84,7 @@ public class Board{
             while(!valid){//while boat not placed
                 //make a random x value between the boardSize minus the length of the boat and zero
                 x = random.nextInt((boardSize - shipArray.get(i).getShip().size()) + 1);//random place where it is okay to place boat on empty board
-                y = random.nextInt((boardSize - shipArray.get(i).getShip().size()));
+                y = random.nextInt((boardSize - shipArray.get(i).getShip().size()) + 1);
 
                 if(shipArray.get(i).getDirection() == 0){//if vertical
                     int counter = 0; //counter that increases if one of coordinates is filled

@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -75,10 +74,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         gridViewOwnBoard.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
 
         //Check who is playing, so we give the right parameter to the setAdapter-method
-        Log.i("BattleView", "before if Constants.turn.equals(playerOne)");
         if (Variables.turn.equals("playerOne")){
-            Log.i("BattleView", "after if Constants.turn.equals(playerOne)");
-
             if(Variables.gameMode.equals("onePlayer")){
                Variables.opponent = Variables.playerAI;
             }
@@ -87,7 +83,6 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             }
             player = Variables.playerOne;
             tvBattleTitle.setText(player.getName() + "'s turn to battle");
-
         }
         else{
             player = Variables.playerTwo;
@@ -169,15 +164,13 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                 else{
                     Variables.turn = "playerOne";
                 }
-                Log.i("Battleview", "\n playerOnes board \n " + Variables.playerOne.getBoard().toString() + "\n playerTwos board " + Variables.playerTwo.getBoard().toString());
 
             }
             else if(Variables.gameMode.equals("onePlayer")){
                 if(Variables.turn.equals("playerOne")){
-                Log.i("BattleView","turn is " + Variables.turn);
                     //logic - AI MAKES A MOVE
                     Variables.turn = "playerAI";
-                    if (playerAI.getLevel().equals("low")){
+                    if (playerAI.getLevel().equals("easy")){
                         int nextMove = playerAI.aiNextMoveEasy();
                         int x = Functions.findX(nextMove);
                         int y = Functions.findY(nextMove);
@@ -190,7 +183,6 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                         int y = Functions.findY(nextMove);
                         BoardValues value = Variables.playerOne.getBoard().getContentInACell(x, y);
                         doAction(value, Variables.playerOne.getBoard(), x, y);
-                        Log.i("BattleView","MEDIUM AI");
 
                     }
                     else if (playerAI.getLevel().equals("hard")){
@@ -199,6 +191,10 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                         int y = Functions.findY(nextMove);
                         BoardValues value = Variables.playerOne.getBoard().getContentInACell(x, y);
                         doAction(value, Variables.playerOne.getBoard(), x, y);
+                    }
+                    if(Functions.endGame(player.getBoard())){
+                        Variables.winner = playerAI;
+                        startActivity(new Intent(BattleView.this, EndGameView.class));
                     }
                 }
                 else{
@@ -258,42 +254,36 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
 
         if (value == BoardValues.EAST){
             Variables.hit.start();
-            //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y, Variables.opponent);        //Will update partsLeft in the correct ship (hopefully)
             opponentBoard.changeBoardValue(x,y, BoardValues.EAST_DESTROYED);
             addPoints();
         }
         else if (value == BoardValues.SOUTH){
             Variables.hit.start();
-            //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y, Variables.opponent);
             opponentBoard.changeBoardValue(x, y, BoardValues.SOUTH_DESTROYED);
             addPoints();
         }
         else if (value == BoardValues.WEST){
             Variables.hit.start();
-            //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y, Variables.opponent);
             opponentBoard.changeBoardValue(x, y, BoardValues.WEST_DESTROYED);
             addPoints();
         }
         else if (value == BoardValues.NORTH){
             Variables.hit.start();
-            //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y, Variables.opponent);
             opponentBoard.changeBoardValue(x, y, BoardValues.NORTH_DESTROYED);
             addPoints();
         }
         else if (value == BoardValues.MIDDLE_HORIZONTAL){
             Variables.hit.start();
-            //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y, Variables.opponent);
             opponentBoard.changeBoardValue(x, y, BoardValues.MIDDLE_HORIZONTAL_DESTROYED);
             addPoints();
         }
         else if (value == BoardValues.MIDDLE_VERTICAL){
             Variables.hit.start();
-            //Log.i(className, "hit noise" );
             Functions.findAndUpdateShip(x,y, Variables.opponent);
             opponentBoard.changeBoardValue(x, y, BoardValues.MIDDLE_VERTICAL_DESTROYED);
             addPoints();
@@ -321,7 +311,6 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
 
         }
         tvScoreCounter.setText("Score: " + player.getScore());
-        //Log.i(className, "Inside doAction()");
     }
 
     //Help method - to increment/decrement the score to the correct player.
