@@ -63,6 +63,12 @@ public class ShootingBoardGridAdapter extends BaseAdapter {
             switch(Variables.gameLayout){
                 case "boats":
                     switch(cellView){
+                        case EAST_HIT: cell.setImageResource(R.drawable.emptyexplosion);break;
+                        case WEST_HIT: cell.setImageResource(R.drawable.emptyexplosion);break;
+                        case NORTH_HIT: cell.setImageResource(R.drawable.emptyexplosion);break;
+                        case SOUTH_HIT: cell.setImageResource(R.drawable.emptyexplosion);break;
+                        case MIDDLE_HORIZONTAL_HIT: cell.setImageResource(R.drawable.emptyexplosion);break;
+                        case MIDDLE_VERTICAL_HIT: cell.setImageResource(R.drawable.emptyexplosion);break;
                         case SOUTH_DESTROYED: cell.setImageResource(R.drawable.southdestroyed);break;
                         case EAST_DESTROYED: cell.setImageResource(R.drawable.eastdestroyed); break;
                         case WEST_DESTROYED: cell.setImageResource(R.drawable.westdestroyed); break;
@@ -75,6 +81,12 @@ public class ShootingBoardGridAdapter extends BaseAdapter {
                     break;
                 case "girls":
                     switch(cellView){
+                        case EAST_HIT: cell.setImageResource(R.drawable.emptypinkdestroyed);break;
+                        case WEST_HIT: cell.setImageResource(R.drawable.emptypinkdestroyed);break;
+                        case NORTH_HIT: cell.setImageResource(R.drawable.emptypinkdestroyed);break;
+                        case SOUTH_HIT: cell.setImageResource(R.drawable.emptypinkdestroyed);break;
+                        case MIDDLE_HORIZONTAL_HIT: cell.setImageResource(R.drawable.emptypinkdestroyed);break;
+                        case MIDDLE_VERTICAL_HIT: cell.setImageResource(R.drawable.emptypinkdestroyed);break;
                         case SOUTH_DESTROYED: cell.setImageResource(R.drawable.southpinkdestroyed); break;
                         case EAST_DESTROYED: cell.setImageResource(R.drawable.eastpinkdestroyed); break;
                         case WEST_DESTROYED: cell.setImageResource(R.drawable.westpinkdestroyed); break;
@@ -87,6 +99,12 @@ public class ShootingBoardGridAdapter extends BaseAdapter {
                     break;
                 case "boys":
                     switch(cellView){
+                        case EAST_HIT: cell.setImageResource(R.drawable.emptygreendestroyed);break;
+                        case WEST_HIT: cell.setImageResource(R.drawable.emptygreendestroyed);break;
+                        case NORTH_HIT: cell.setImageResource(R.drawable.emptygreendestroyed);break;
+                        case SOUTH_HIT: cell.setImageResource(R.drawable.emptygreendestroyed);break;
+                        case MIDDLE_HORIZONTAL_HIT: cell.setImageResource(R.drawable.emptygreendestroyed);break;
+                        case MIDDLE_VERTICAL_HIT: cell.setImageResource(R.drawable.emptygreendestroyed);break;
                         case SOUTH_DESTROYED: cell.setImageResource(R.drawable.southgreendestroyed); break;
                         case EAST_DESTROYED: cell.setImageResource(R.drawable.eastgreendestroyed); break;
                         case WEST_DESTROYED: cell.setImageResource(R.drawable.westgreendestroyed); break;

@@ -263,54 +263,54 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             Variables.stringStatus = Variables.playerAI.getName() + " hit one of your boats \n" + Variables.playerAI.getName() + " has score " + (Variables.playerAI.getScore() + 10);
         }
         else{
-            Variables.stringStatus = player.getName() + " hit one of your boats \n " + player.getName() + " has score " + (player.getScore() + 10) ;
+            Variables.stringStatus = Variables.opponent.getName() + " hit one of your boats \n " + Variables.opponent.getName() + " has score " + (Variables.opponent.getScore() + 10) ;
         }
         hit = true;
         if (value == BoardValues.EAST){
 
             Variables.hit = MediaPlayer.create(this, R.raw.hit);
             Variables.hit.start();
-            //Functions.findAndUpdateShip(x,y, Variables.opponent);        //Will update partsLeft in the correct ship (hopefully)
-            opponentBoard.changeBoardValue(x,y, BoardValues.EAST_DESTROYED);
+            opponentBoard.changeBoardValue(x,y, BoardValues.EAST_HIT);
+            Functions.findAndUpdateShip(x,y, Variables.opponent);        //Will update partsLeft in the correct ship (hopefully)
             addPoints();
         }
         else if (value == BoardValues.SOUTH){
 
             Variables.hit = MediaPlayer.create(this, R.raw.hit);
             Variables.hit.start();
-            //Functions.findAndUpdateShip(x,y, Variables.opponent);
-            opponentBoard.changeBoardValue(x, y, BoardValues.SOUTH_DESTROYED);
+            opponentBoard.changeBoardValue(x, y, BoardValues.SOUTH_HIT);
+            Functions.findAndUpdateShip(x,y, Variables.opponent);
             addPoints();
         }
         else if (value == BoardValues.WEST){
 
             Variables.hit = MediaPlayer.create(this, R.raw.hit);
             Variables.hit.start();
-            //Functions.findAndUpdateShip(x,y, Variables.opponent);
-            opponentBoard.changeBoardValue(x, y, BoardValues.WEST_DESTROYED);
+            opponentBoard.changeBoardValue(x, y, BoardValues.WEST_HIT);
+            Functions.findAndUpdateShip(x,y, Variables.opponent);
             addPoints();
         }
         else if (value == BoardValues.NORTH){
 
             Variables.hit = MediaPlayer.create(this, R.raw.hit);
             Variables.hit.start();
-            //Functions.findAndUpdateShip(x,y, Variables.opponent);
-            opponentBoard.changeBoardValue(x, y, BoardValues.NORTH_DESTROYED);
+            opponentBoard.changeBoardValue(x, y, BoardValues.NORTH_HIT);
+            Functions.findAndUpdateShip(x,y, Variables.opponent);
             addPoints();
         }
         else if (value == BoardValues.MIDDLE_HORIZONTAL){
 
             Variables.hit = MediaPlayer.create(this, R.raw.hit);
             Variables.hit.start();
-            //Functions.findAndUpdateShip(x,y, Variables.opponent);
-            opponentBoard.changeBoardValue(x, y, BoardValues.MIDDLE_HORIZONTAL_DESTROYED);
+            opponentBoard.changeBoardValue(x, y, BoardValues.MIDDLE_HORIZONTAL_HIT);
+            Functions.findAndUpdateShip(x,y, Variables.opponent);
             addPoints();
         }
         else if (value == BoardValues.MIDDLE_VERTICAL){
             Variables.hit = MediaPlayer.create(this, R.raw.hit);
             Variables.hit.start();
-            //Functions.findAndUpdateShip(x,y, Variables.opponent);
-            opponentBoard.changeBoardValue(x, y, BoardValues.MIDDLE_VERTICAL_DESTROYED);
+            opponentBoard.changeBoardValue(x, y, BoardValues.MIDDLE_VERTICAL_HIT);
+            Functions.findAndUpdateShip(x,y, Variables.opponent);
             addPoints();
         }
         else if (value == BoardValues.EMPTY){

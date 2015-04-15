@@ -1,5 +1,7 @@
 package a8.battleship.Logic;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 import a8.battleship.Models.Board;
@@ -20,37 +22,40 @@ public class Functions {
      */
     public static void findAndUpdateShip(int x, int y, Player opponent){
         BoardValues value = opponent.getBoard().getContentInACell(x,y);
-        if (value == BoardValues.EAST){
+        if (value == BoardValues.EAST | value == BoardValues.EAST_HIT){
             findAndUpdateShip(x - 1, y,  opponent);
-        } else if (value == BoardValues.MIDDLE_HORIZONTAL | value == BoardValues.MIDDLE_HORIZONTAL_DESTROYED){
+        } else if (value == BoardValues.MIDDLE_HORIZONTAL | value == BoardValues.MIDDLE_HORIZONTAL_HIT){
             findAndUpdateShip(x - 1, y, opponent);
         }
-        else if (value == BoardValues.MIDDLE_VERTICAL | value == BoardValues.MIDDLE_VERTICAL_DESTROYED){
+        else if (value == BoardValues.MIDDLE_VERTICAL | value == BoardValues.MIDDLE_VERTICAL_HIT){
             findAndUpdateShip(x, y - 1, opponent);
         }
-        else if (value == BoardValues.SOUTH | value == BoardValues.SOUTH_DESTROYED){
+        else if (value == BoardValues.SOUTH | value == BoardValues.SOUTH_HIT){
             findAndUpdateShip(x, y - 1, opponent);
         }
-        else if (value == BoardValues.NORTH | value == BoardValues.NORTH_DESTROYED){
+        else if (value == BoardValues.NORTH | value == BoardValues.NORTH_HIT){
             //Gets the shipList to the opponent
             ArrayList<Ship> shipsList = opponent.getBoard().getShipArray();
             for (int i = 0; i < shipsList.size(); i++){
                 //Checking the ship
                 Ship ship = shipsList.get(i);
                 if (x == ship.getX() && y == ship.getY()){
-                    //ship.decreasePartsLeft();
+                    ship.decreasePartsLeft(x,y, opponent.getBoard());
                 }
             }
         }
-        else if (value == BoardValues.WEST | value == BoardValues.WEST_DESTROYED ){
+        else if (value == BoardValues.WEST | value == BoardValues.WEST_HIT ){
             //Gets the shipList to the opponent
+            Log.i("FUNCTIONS", "IN the START");
             ArrayList<Ship> shipsList = opponent.getBoard().getShipArray();
+            Log.i("FUNCTIONS", "Shiplist: " + shipsList.toString());
             for (int i = 0; i < shipsList.size(); i++){
                 //Checking the ship
                 Ship ship = shipsList.get(i);
                 if (x == ship.getX() && y == ship.getY()){
+                    Log.i("FUNCTIONS", "BEFORE DECREASE");
                     //DECREASING PARTS LEFT
-                    ship.decreasePartsLeft();
+                    ship.decreasePartsLeft(x,y,opponent.getBoard());
                 }
             }
         }

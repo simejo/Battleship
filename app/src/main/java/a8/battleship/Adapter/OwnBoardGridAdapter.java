@@ -70,6 +70,12 @@ public class OwnBoardGridAdapter extends BaseAdapter {
                         case SOUTH: cell.setImageResource(R.drawable.south);break;
                         case MIDDLE_HORIZONTAL: cell.setImageResource(R.drawable.middle);break;
                         case MIDDLE_VERTICAL: cell.setImageResource(R.drawable.middle);break;
+                        case EAST_HIT: cell.setImageResource(R.drawable.eastdestroyed);break;
+                        case WEST_HIT: cell.setImageResource(R.drawable.westdestroyed);break;
+                        case NORTH_HIT: cell.setImageResource(R.drawable.northdestroyed);break;
+                        case SOUTH_HIT: cell.setImageResource(R.drawable.southdestroyed);break;
+                        case MIDDLE_HORIZONTAL_HIT: cell.setImageResource(R.drawable.middledestroyed);break;
+                        case MIDDLE_VERTICAL_HIT: cell.setImageResource(R.drawable.middledestroyed);break;
                         case SOUTH_DESTROYED: cell.setImageResource(R.drawable.southdestroyed);break;
                         case EAST_DESTROYED: cell.setImageResource(R.drawable.eastdestroyed); break;
                         case WEST_DESTROYED: cell.setImageResource(R.drawable.westdestroyed); break;
@@ -88,6 +94,12 @@ public class OwnBoardGridAdapter extends BaseAdapter {
                         case SOUTH: cell.setImageResource(R.drawable.southpink);break;
                         case MIDDLE_HORIZONTAL: cell.setImageResource(R.drawable.middlepinkhorizontal);break;
                         case MIDDLE_VERTICAL: cell.setImageResource(R.drawable.middlepinkvertical);break;
+                        case EAST_HIT: cell.setImageResource(R.drawable.eastpinkdestroyed);break;
+                        case WEST_HIT: cell.setImageResource(R.drawable.westpinkdestroyed);break;
+                        case NORTH_HIT: cell.setImageResource(R.drawable.northpinkdestroyed);break;
+                        case SOUTH_HIT: cell.setImageResource(R.drawable.southpinkdestroyed);break;
+                        case MIDDLE_HORIZONTAL_HIT: cell.setImageResource(R.drawable.middlepinkhorizontaldestroyed);break;
+                        case MIDDLE_VERTICAL_HIT: cell.setImageResource(R.drawable.middlepinkverticaldestroyed);break;
                         case SOUTH_DESTROYED: cell.setImageResource(R.drawable.southpinkdestroyed); break;
                         case EAST_DESTROYED: cell.setImageResource(R.drawable.eastpinkdestroyed); break;
                         case WEST_DESTROYED: cell.setImageResource(R.drawable.westpinkdestroyed); break;
@@ -106,6 +118,12 @@ public class OwnBoardGridAdapter extends BaseAdapter {
                         case SOUTH: cell.setImageResource(R.drawable.southgreen);break;
                         case MIDDLE_HORIZONTAL: cell.setImageResource(R.drawable.middlegreenhorizontal);break;
                         case MIDDLE_VERTICAL: cell.setImageResource(R.drawable.middlegreenvertical);break;
+                        case EAST_HIT: cell.setImageResource(R.drawable.eastgreendestroyed);break;
+                        case WEST_HIT: cell.setImageResource(R.drawable.westgreendestroyed);break;
+                        case NORTH_HIT: cell.setImageResource(R.drawable.northgreendestroyed);break;
+                        case SOUTH_HIT: cell.setImageResource(R.drawable.southgreendestroyed);break;
+                        case MIDDLE_HORIZONTAL_HIT: cell.setImageResource(R.drawable.middlegreenhorizontaldestroyed);break;
+                        case MIDDLE_VERTICAL_HIT: cell.setImageResource(R.drawable.middlegreenverticaldestroyed);break;
                         case SOUTH_DESTROYED: cell.setImageResource(R.drawable.southgreendestroyed); break;
                         case EAST_DESTROYED: cell.setImageResource(R.drawable.eastgreendestroyed); break;
                         case WEST_DESTROYED: cell.setImageResource(R.drawable.westgreendestroyed); break;
