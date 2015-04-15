@@ -12,20 +12,32 @@ import a8.battleship.Logic.Functions;
 import a8.battleship.Models.Board;
 import a8.battleship.R;
 
-
-//The adapter is a description of how the cell will look like in the gridView
+/**
+ * The class is an adapter that is used in the gridView that shows the map without boats (the shooting grid). The adapter is a description of how the cell will look like in the gridView.
+ */
 public class ShootingBoardGridAdapter extends BaseAdapter {
     private Context context;
     private Board board;
 
-    //The constructor
+    /**
+     * The adapter constructor. This is the creator of each reference to the adapter.
+     * @param context The context from
+     * @param board The board is the model to be set pictures to.
+     */
     public ShootingBoardGridAdapter(Context context, Board board) {
         this.context = context;
         this.board = board;
     }
 
-    //What to show, with the parameters so we can change the layout based on the different parameters
-    //Position is the number in the array based on what cell you clicked
+    /**
+     * This is the most important method in the adapter. Here, we decides how each cell should look like
+     * @param position The number of which cell that is viewed.
+     * @param convertView The old view to reuse, if possible. Note: We must check that this view is non-null
+     *                    and of an appropriate type before using. If it is not possible to convert this view
+     *                    to display the correct data, this method can create a new view.
+     * @param parent The parent that this view will eventually be attached to Returns
+     * @return A View corresponding to the data at the specified position.
+     */
     public View getView(int position, View convertView, ViewGroup parent) {
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -33,18 +45,21 @@ public class ShootingBoardGridAdapter extends BaseAdapter {
 
         if (convertView == null) {
 
-            gridView = inflater.inflate(R.layout.grid_adapter_layout, null); //A reference to the adapter xml file
+            //References to xml files.
+            gridView = inflater.inflate(R.layout.grid_adapter_layout, null);
             ImageView cell = (ImageView) gridView.findViewById(R.id.cell);
-            cell.setAdjustViewBounds(true); //Added this to remove the extra space between the cells in the grid
 
-            //converting position to coordinates
+            //Added this to remove the extra space between the cells in the grid.
+            cell.setAdjustViewBounds(true);
+
+            //converting position to coordinates.
             int x = Functions.findX(position);
             int y = Functions.findY(position);
 
-            //Getting the BoardValue depending on the coordinates
+            //Getting the BoardValue depending on the coordinates.
             BoardValues cellView = board.getContentInACell(x,y);
 
-            //Converting BoardValues to images
+            //Converting BoardValues to images.
             switch(Variables.gameLayout){
                 case "boats":
                     switch(cellView){
@@ -90,11 +105,11 @@ public class ShootingBoardGridAdapter extends BaseAdapter {
         return gridView;
     }
 
-    //Below, there are basic methods to make the adapter work
+    //Below, there are basic methods to make the adapter work.
 
     @Override
     public int getCount() {
-        return board.getLength(); //ships.length;
+        return board.getLength();
     }
 
     @Override

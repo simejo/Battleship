@@ -6,16 +6,24 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-
 import a8.battleship.Logic.Variables;
 import a8.battleship.R;
 import android.widget.TextView;
 
+/**
+ * This class is responsible for the switch between playerOne and playerTwo.
+ * When playerOne has shot, confirmed shot, and pressed next player, a switch view will appear
+ * to make sure that the other player wont be able to see playerOne's board, and vice versa.
+ */
 public class SwitchView extends ActionBarActivity implements View.OnClickListener{
 
     private Button buttonSwitchPlayer;
     private TextView switchViewHeader, textViewStatus;
 
+    /**
+     *
+     * @param savedInstanceState
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_switch_view);
@@ -46,11 +54,11 @@ public class SwitchView extends ActionBarActivity implements View.OnClickListene
             }
         }
     }
+
     public void onClick(View v){
-        //Functionality for button
-        /*if(!Variables.backgroundMusic.isPlaying()){
-            Variables.backgroundMusic.isLooping();
-        }*/
+        /**
+         * When this button is pressed, the view will change back to battleView.
+         */
         if(v.getId() == R.id.buttonSwitchPlayer){
             //If its twoPlayer
             if(Variables.turn.equals("playerOne") && Variables.gameMode.equals("twoPlayer")){
@@ -59,7 +67,7 @@ public class SwitchView extends ActionBarActivity implements View.OnClickListene
             else if (Variables.turn.equals("playerTwo") && Variables.gameMode.equals("twoPlayer")){
                 startActivity(new Intent(SwitchView.this, BattleView.class));
             }
-            //If its onePlayer ---
+            //If its onePlayer
             if(Variables.turn.equals("playerOne") && Variables.gameMode.equals("onePlayer")){
                 startActivity(new Intent(SwitchView.this, BattleView.class));
             }
@@ -68,9 +76,5 @@ public class SwitchView extends ActionBarActivity implements View.OnClickListene
                 Variables.turn = "playerOne";
             }
         }
-
-
-
-
     }
 }

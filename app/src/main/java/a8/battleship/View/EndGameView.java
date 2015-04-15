@@ -10,8 +10,9 @@ import android.widget.TextView;
 import a8.battleship.Logic.Variables;
 import a8.battleship.R;
 
-/*
- * Created by Kartefull on 11.03.2015.
+/**
+ * The EndGameView class holds one button which directs you back to the main menu.
+ * It also shows who the winner is and how many points the different players have received.
  */
 public class EndGameView extends ActionBarActivity implements View.OnClickListener{
 

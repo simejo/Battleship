@@ -6,8 +6,8 @@ import a8.battleship.Models.Board;
 import a8.battleship.Models.Player;
 import a8.battleship.Tokens.Ship;
 
-/*
-This class contains essential methods that is useful for one or several classes.
+/**
+ * This class contains essential methods that is useful for one or several classes.
  */
 public class Functions {
 
