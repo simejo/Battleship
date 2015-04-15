@@ -53,20 +53,12 @@ public class Variables {
     public static MediaPlayer miss;
     public static MediaPlayer backgroundMusic;
     public static AudioManager amSound;
-<<<<<<< HEAD
-<<<<<<< HEAD
-    public static AudioManager amMusic;*/
-=======
->>>>>>> 137201eef556d8a4c037c78218fae7fb069689ff
+
 
     public static AudioManager amMusic;
 
 
     public static ShootingBoardGridAdapter shootingBoardGridAdapter;
     public static OwnBoardGridAdapter ownBoardGridAdapter;
-<<<<<<< HEAD
 
-=======
->>>>>>> 137201eef556d8a4c037c78218fae7fb069689ff
 }
-

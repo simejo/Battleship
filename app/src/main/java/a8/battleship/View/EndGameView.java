@@ -13,11 +13,25 @@ import a8.battleship.R;
 /*
  * Created by Kartefull on 11.03.2015.
  */
+
+/**
+ * EndGameView contains all functionality needed when the battle is over and a player has won
+ */
 public class EndGameView extends ActionBarActivity implements View.OnClickListener{
 
+    /**
+     * @param buttonMainMenu is a button leading back to main menu
+     * @param tvEndGameHeader is congratulating text displayed on end screen
+     * @param tvEndScore is text displaying score at the end of the game
+     */
     private Button buttonMainMenu;
     private TextView tvEndGameHeader, tvEndScore;
 
+    /**
+     * onCreate makes a new view, and gives each variable correct value, and displays correct text.
+     * In addition, sets click listeners
+     *
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_end_game_view);
@@ -36,6 +50,9 @@ public class EndGameView extends ActionBarActivity implements View.OnClickListen
 
     }
 
+    /**
+     * if button is clicked, return to main menu
+     */
     public void onClick(View v) {
         if(v.getId() == R.id.buttonMainMenu){
             startActivity(new Intent(EndGameView.this, MainMenuView.class));
