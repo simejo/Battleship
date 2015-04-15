@@ -9,10 +9,17 @@ import android.widget.Button;
 import a8.battleship.Logic.Variables;
 import a8.battleship.R;
 
+/**
+ *This class shows the Main menu where you can choose between 'New game', 'Settings' and 'Credits'
+ */
 public class MainMenuView extends ActionBarActivity implements View.OnClickListener{
 
     private Button startButton, settingsButton, creditsButton;
 
+    /**
+     * In this method is the MainMenuView created and the different buttons is initialized
+     * @param savedInstanceState
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu_view);
@@ -26,7 +33,10 @@ public class MainMenuView extends ActionBarActivity implements View.OnClickListe
         creditsButton.setOnClickListener(this);
     }
 
-    //A method that is called when a button is pushed
+    /**
+     * A method that is called when a button is pushed
+     * @param v
+     */
     public void onClick(View v){
         if(v.getId() == R.id.buttonCredits){
             startActivity(new Intent(MainMenuView.this, CreditsView.class));

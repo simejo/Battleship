@@ -9,13 +9,19 @@ package a8.battleship.View;
         import a8.battleship.Logic.Variables;
         import a8.battleship.R;
 
+/**
+ * This class shows the logo in 2 seconds when the game starts.
+ */
 public class IntroView extends ActionBarActivity {
-
+    /**
+     * In this method is the IntroView created and the music is initialized
+     * @param savedInstanceState
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro_view);
 
-        //Initiate the sounds and music for the rest of the game
+        //Initialize the sounds and music for the rest of the game
 
         Variables.backgroundMusic = MediaPlayer.create(this, R.raw.music);
 
