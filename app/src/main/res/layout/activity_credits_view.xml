@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:weightSum="1" android:orientation="vertical" android:gravity="center_horizontal">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
 
     <TextView
         android:layout_width="wrap_content"
@@ -9,17 +11,10 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/creditsTitle"
         android:id="@+id/creditsTitle"
-        android:layout_weight="0.28"
+        android:layout_weight="0.33"
         android:textSize="25dp"
         android:gravity="center"
         />
-    <TextView
-        android:layout_width="135dp"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="@string/creditsMusic"
-        android:id="@+id/stringCreditsMusic"
-        android:gravity="center" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -27,8 +22,26 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/creditsDevelopers"
         android:id="@+id/stringCreditDevelopers"
-        android:layout_weight="0.11"
+        android:layout_weight="0.33"
         android:gravity="center" />
+
+    <TextView
+        android:layout_width="135dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/creditsMusic"
+        android:id="@+id/stringCreditsMusic"
+        android:layout_weight="0.33"
+        android:gravity="top|center"
+        android:layout_gravity="center_horizontal" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/mainMenu"
+        android:id="@+id/buttonCreditsBack"
+        android:layout_weight="0"
+        android:layout_gravity="center_horizontal|bottom" />
 
 
 </LinearLayout>

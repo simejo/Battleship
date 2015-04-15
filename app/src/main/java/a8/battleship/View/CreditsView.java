@@ -1,11 +1,17 @@
 package a8.battleship.View;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.view.View;
+import android.widget.Button;
+
 import a8.battleship.R;
 
 //This class shows credits to the game
-public class CreditsView extends ActionBarActivity {
+public class CreditsView extends ActionBarActivity implements View.OnClickListener{
+
+    private Button buttonBack;
 
     /**
      * onCreate is called when the class is shown. Here we initialize all objects and references and set listeners to the widgets
@@ -16,5 +22,14 @@ public class CreditsView extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_credits_view);
+        buttonBack = (Button) findViewById(R.id.buttonCreditsBack);
+        buttonBack.setOnClickListener(this);
+    }
+
+    public void onClick(View v){
+        if(v.getId() == R.id.buttonCreditsBack){
+            startActivity(new Intent(CreditsView.this, MainMenuView.class));
+        }
     }
 }
+
