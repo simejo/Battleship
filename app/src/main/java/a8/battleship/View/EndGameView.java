@@ -36,7 +36,7 @@ public class EndGameView extends ActionBarActivity implements View.OnClickListen
         tvEndGameHeader.setText(Variables.winner + " won");
 
     }
-    
+
     public void onClick(View v) {
         if(v.getId() == R.id.buttonMainMenu){
             startActivity(new Intent(EndGameView.this, MainMenuView.class));
