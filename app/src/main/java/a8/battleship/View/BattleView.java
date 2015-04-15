@@ -133,15 +133,6 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
         if(v.getId() == R.id.buttonConfirmShot){
             //This prevents the user to shoot more than once
             hasShot = true;
-<<<<<<< HEAD
-
-            //Log.i(className, "onClick: buttonConfirmShot was clicked");
-
-
-
-=======
-
->>>>>>> 137201eef556d8a4c037c78218fae7fb069689ff
             Board opponentBoard;
             //Need to get the opponents board to change the values
             if (Variables.turn.equals("playerOne")) {
