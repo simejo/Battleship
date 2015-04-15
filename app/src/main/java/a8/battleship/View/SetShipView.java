@@ -14,21 +14,23 @@ import a8.battleship.Models.Player;
 import a8.battleship.R;
 
 /**
- * This is the view where the player can place his/hers boats
+ * This is the view where the player can place his/hers boats.
  */
 public class SetShipView extends ActionBarActivity implements View.OnClickListener{
 
     private Button buttonStartGame, buttonRandomizeShips;
     private TextView tvHeader;
 
-    //Need to know which Player is playing
+    //Need to know which Player is playing.
     Player player;
 
     GridView setShipGridView;
 
     /**
-     * In this method is the SetShipView method created
-     * @param savedInstanceState
+     * onCreate is called when the class is shown. Here we initialize all objects and references and set listeners to the widgets.
+     * @param savedInstanceState If you save the state of the application in a bundle, it can be passed
+     *                           back to onCreate if the activity needs to be recreated so that you don't
+     *                           lose this prior information. If no data was supplied, savedInstanceState is null.
      */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,18 +40,18 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
     }
 
     /**
-     * A method that is called when a button is pushed
-     * @param v
+     * A method that is called when a button is pushed.
+     * @param v a reference to the clicked button.
      */
     public void onClick(View v){
         if(v.getId() == R.id.buttonDone){
-            //If the game mode is one player, the ai player gets a new board
+            //If the game mode is one player, the ai player gets a new board.
             if (Variables.gameMode.equals("onePlayer")){
                 Variables.playerAI.setBoard(new Board(Variables.boardSize));
                 Variables.turn = "playerOne";
                 startActivity(new Intent(SetShipView.this, BattleView.class));
             }
-            //If the game mode is two player, each player set ships on their board
+            //If the game mode is two player, each player set ships on their .
             else if(Variables.gameMode.equals("twoPlayer")){
                 if(Variables.turn.equals("playerTwo")) {
                     Variables.turn = "playerOne";
@@ -60,7 +62,7 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
                 }
             }
         }
-        //The randomize button returns a new randomized board
+        //The randomize button returns a new randomized board.
         else if(v.getId() == R.id.buttonRandomize){
             if(Variables.turn.equals("playerOne")){
                 Variables.playerOne.setBoard(new Board(Variables.boardSize));
@@ -74,7 +76,7 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
     }
 
     /**
-     * Connecting with the XML-objects
+     * Connecting with the XML-objects.
      */
     public void initiateWidgets(){
 
@@ -91,7 +93,7 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
         setShipGridView.setNumColumns(Variables.boardSize);
 
 
-        //Check who is playing, so we give the right parameter to the setAdapter-method
+        //Check who is playing, so we give the right parameter to the setAdapter-method.
         if (Variables.turn.equals("playerTwo")){
             tvHeader.setText("Place boats for " + Variables.playerTwo.getName());
             player = Variables.playerTwo;

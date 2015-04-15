@@ -10,15 +10,17 @@ import a8.battleship.Logic.Variables;
 import a8.battleship.R;
 
 /**
- *This class shows the Main menu where you can choose between 'New game', 'Settings' and 'Credits'
+ *This class shows the Main menu where you can choose between 'New game', 'Settings' and 'Credits'.
  */
 public class MainMenuView extends ActionBarActivity implements View.OnClickListener{
 
     private Button startButton, settingsButton, creditsButton;
 
     /**
-     * In this method is the MainMenuView created and the different buttons is initialized
-     * @param savedInstanceState
+     * onCreate is called when the class is shown. Here we initialize all objects and references and set listeners to the widgets.
+     * @param savedInstanceState If you save the state of the application in a bundle, it can be passed
+     *                           back to onCreate if the activity needs to be recreated so that you don't
+     *                           lose this prior information. If no data was supplied, savedInstanceState is null.
      */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,8 +36,8 @@ public class MainMenuView extends ActionBarActivity implements View.OnClickListe
     }
 
     /**
-     * A method that is called when a button is pushed
-     * @param v
+     * A method that is called when a button is pushed.
+     * @param v a reference to the clicked button.
      */
     public void onClick(View v){
         if(v.getId() == R.id.buttonCredits){
