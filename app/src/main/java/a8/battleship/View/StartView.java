@@ -16,7 +16,6 @@ import a8.battleship.Models.Player;
 import a8.battleship.R;
 
 /**
- * Created by Kartefull on 11.03.2015.
  * This is the view where a player can choose between one-player or two-players
  * The player and the board will be initialized here
  */
@@ -27,7 +26,10 @@ public class StartView extends ActionBarActivity implements View.OnClickListener
     private TextView tvPlayerOne, tvPlayerTwo, tvEasyAI, tvMediumAI, tvHardAI, tvDifficulty;
     private SeekBar sbAIChooser;
 
-    @Override
+    /**
+     *
+     * @param savedInstanceState
+     */
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_view);
@@ -56,12 +58,20 @@ public class StartView extends ActionBarActivity implements View.OnClickListener
         sbAIChooser.setOnSeekBarChangeListener(this);
 
     }
+
+
+    /**
+     *
+     * @param v
+     */
     public void onClick(View v){
 
-        //Functionality for button
+        /**
+         * If this button is pressed, the user has decided if he/she wants one player or two player
+         * and the players is created
+         * The boards will be initialized here.
+         */
         if(v.getId() == R.id.buttonStartGame){
-
-            //Creates players
             //Creates Player One
             if(tvPlayerOne.getText().toString().equals("")){
                 Variables.playerOne = new Player("Player 1");
@@ -75,7 +85,6 @@ public class StartView extends ActionBarActivity implements View.OnClickListener
 
             //Creates player two
             if(rbTwoPlayer.isChecked()){
-
                 if(tvPlayerTwo.getText().toString().equals("")){
                     Variables.playerTwo = new Player("Player 2");
                 }
@@ -123,8 +132,13 @@ public class StartView extends ActionBarActivity implements View.OnClickListener
         }
     }
 
+    /**
+     * Need this method because it's a part of the interface, but we don't use it.
+     * @param seekBar
+     * @param progress
+     * @param fromUser
+     */
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
-
     }
 
     /**
