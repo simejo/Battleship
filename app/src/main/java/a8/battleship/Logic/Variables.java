@@ -58,18 +58,10 @@ public class Variables {
     public static MediaPlayer miss;
     public static MediaPlayer backgroundMusic;
     public static AudioManager amSound;
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 29c255646084343c46aac11fb138b035eeb90d48
     public static AudioManager amMusic;
 
     //The different adapters
     public static ShootingBoardGridAdapter shootingBoardGridAdapter;
     public static OwnBoardGridAdapter ownBoardGridAdapter;
-<<<<<<< HEAD
 
-=======
->>>>>>> 29c255646084343c46aac11fb138b035eeb90d48
 }
