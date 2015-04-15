@@ -4,13 +4,13 @@
     android:layout_height="fill_parent"
     android:paddingTop="@dimen/activity_vertical_margin">
 
-    <TextView
-        android:id = "@+id/switchViewHeader"
-        android:text="@string/mainMenuTitle"
+    <ImageView
+        android:id="@+id/imageViewTitle"
         android:layout_width="fill_parent"
-        android:textSize="25dp"
         android:layout_height="wrap_content"
-        android:gravity="center" />
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:background="@drawable/logo"/>
 
     <Button
         android:id="@+id/buttonStart"
@@ -18,8 +18,8 @@
         android:layout_height="wrap_content"
         android:text="@string/start"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="84dp"
-        android:layout_below="@+id/switchViewHeader" />
+        android:layout_marginTop="70dp"
+        android:layout_below="@+id/imageViewTitle" />
 
     <Button
         android:id="@+id/buttonSettings"

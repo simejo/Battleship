@@ -54,14 +54,14 @@ public class SettingsView extends ActionBarActivity implements View.OnClickListe
         checkBoxMusic.setChecked(Variables.cbBooleanMusic);
         checkBoxSound.setChecked(Variables.cbBooleanSound);
 
-        /*if(checkBoxMusic.isChecked()){
+        if(checkBoxMusic.isChecked()){
             Variables.cbBooleanMusic = true;
             Variables.amMusic.setStreamMute(AudioManager.STREAM_MUSIC, false);
         }
         else{
             Variables.cbBooleanMusic = false;
             Variables.amMusic.setStreamMute(AudioManager.STREAM_MUSIC, true);
-        }*/
+        }
 
     }
 
