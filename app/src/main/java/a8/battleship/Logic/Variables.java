@@ -8,27 +8,30 @@ import a8.battleship.Adapter.ShootingBoardGridAdapter;
 import a8.battleship.Models.AiPlayer;
 import a8.battleship.Models.Player;
 
-//This is a class which holds 'variables'
+/*
+This class holds different 'variables' which either change during a battle, or that a user can set.
+ */
 public class Variables {
 
     //Keeps track of the board size
     public static int boardSize = 10;
 
     //Keeps track of which layout that is selected
+    //boats, girls or boys
     public static String gameLayout = "boats";
-
-
-    //public static int screenHeight;
-    //public static int screenWidth;
 
     //Keeps track of the players that is created
     public static Player playerOne;
     public static Player playerTwo;
+    public static AiPlayer playerAI;
 
+    //TODO: is this used??
+    //Keeps track of the winner
     public static Player winner;
 
-    public static AiPlayer playerAI;
+
     //Keeps track of the AIPlayer level
+    //easy, medium or hard
     public static String level = "easy";
 
     //Keeps track of the sound - enabled or not
@@ -42,10 +45,12 @@ public class Variables {
     //Keeps track of the opponent
     public static Player opponent;
 
-    //Selected game mode - onePlayer or twoPlayer
+    //Selected game mode
+    //onePlayer or twoPlayer
     public static String gameMode;
 
-    //Keeps track of which player that is playing - playerOne, playerTwo or playerAI
+    //Keeps track of which player that is playing
+    //playerOne, playerTwo or playerAI
     public static String turn;
 
     //Sounds and music
@@ -53,20 +58,9 @@ public class Variables {
     public static MediaPlayer miss;
     public static MediaPlayer backgroundMusic;
     public static AudioManager amSound;
-<<<<<<< HEAD
-<<<<<<< HEAD
-    public static AudioManager amMusic;*/
-=======
->>>>>>> 137201eef556d8a4c037c78218fae7fb069689ff
-
     public static AudioManager amMusic;
 
-
+    //The different adapters
     public static ShootingBoardGridAdapter shootingBoardGridAdapter;
     public static OwnBoardGridAdapter ownBoardGridAdapter;
-<<<<<<< HEAD
-
-=======
->>>>>>> 137201eef556d8a4c037c78218fae7fb069689ff
 }
-
