@@ -1,6 +1,9 @@
 package a8.battleship.Logic;
 
-//enum class which holds the board values possible
+/**
+ * Enum class which holds the possible board values
+ * We differ between the MIDDLE_VERTICAL and MIDDLE_HORIZONTAL to make the logic easier
+ */
 public enum BoardValues {
     EMPTY,
     NORTH,
@@ -11,7 +14,6 @@ public enum BoardValues {
     SOUTH_DESTROYED,
     EAST_DESTROYED,
     WEST_DESTROYED,
-    MIDDLE_DESTROYED,
     MISSED,
     MIDDLE_VERTICAL,
     MIDDLE_HORIZONTAL,
