@@ -21,11 +21,14 @@ public class Player {
         this.score = 0;
     }
 
+    /**
+     * A constructor when name fields are filled in
+     * @param name When the player gets a name
+     */
     public Player(String name){
         this.name = name;
         this.board = null;
         this.score = 0;
-        Log.i("Player.class", "Player created with name: " + name);
     }
 
     public String getName(){
@@ -40,10 +43,12 @@ public class Player {
         this.board = board;
     }
 
+    //A setter method to increase the score of the player
     public void incrementScore(){
         this.score += 10;
     }
 
+    //A setter method to decrease the score of the player
     public void decrementScore(){
         this.score -= 1;
     }
