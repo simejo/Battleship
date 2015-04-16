@@ -63,4 +63,5 @@ public class Variables {
     //The different adapters
     public static ShootingBoardGridAdapter shootingBoardGridAdapter;
     public static OwnBoardGridAdapter ownBoardGridAdapter;
+
 }
