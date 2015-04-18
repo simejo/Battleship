@@ -13,7 +13,6 @@ import a8.battleship.Models.Ship;
  */
 public class Functions {
 
-    //TODO: FINISH THIS, OR REMOVE?????
     /**
      * findAndUpdateShip(int x, int y, Player opponent) takes a coordinate (x,y) and Player.
      * This method is recursive until it finds the WEST-part or the NORTH-part of a boat
@@ -46,14 +45,11 @@ public class Functions {
         }
         else if (value == BoardValues.WEST | value == BoardValues.WEST_HIT ){
             //Gets the shipList to the opponent
-            Log.i("FUNCTIONS", "IN the START");
             ArrayList<Ship> shipsList = opponent.getBoard().getShipArray();
-            Log.i("FUNCTIONS", "Shiplist: " + shipsList.toString());
             for (int i = 0; i < shipsList.size(); i++){
                 //Checking the ship
                 Ship ship = shipsList.get(i);
                 if (x == ship.getX() && y == ship.getY()){
-                    Log.i("FUNCTIONS", "BEFORE DECREASE");
                     //DECREASING PARTS LEFT
                     ship.decreasePartsLeft(x,y,opponent.getBoard());
                 }

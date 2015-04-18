@@ -29,10 +29,10 @@ public class IntroView extends ActionBarActivity {
 
 
         Variables.amSound = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-        Variables.amSound.setStreamVolume(AudioManager.STREAM_MUSIC, Variables.amSound.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+        Variables.amSound.setStreamVolume(AudioManager.STREAM_MUSIC, Variables.amSound.getStreamVolume(AudioManager.STREAM_MUSIC), 0);
 
         Variables.amMusic = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-        Variables.amMusic.setStreamVolume(AudioManager.STREAM_MUSIC, Variables.amMusic.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+        Variables.amMusic.setStreamVolume(AudioManager.STREAM_MUSIC, Variables.amMusic.getStreamVolume(AudioManager.STREAM_MUSIC), 0);
 
         Variables.backgroundMusic.start();
         Variables.backgroundMusic.setLooping(true);
