@@ -92,6 +92,8 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
 
         setShipGridView.setNumColumns(Variables.boardSize);
 
+        buttonRandomizeShips.setText("Randomize " + Variables.gameLayout);
+
 
         //Check who is playing, so we give the right parameter to the setAdapter-method.
         if (Variables.turn.equals("playerTwo")){

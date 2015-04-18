@@ -36,7 +36,6 @@ public class SwitchView extends ActionBarActivity implements View.OnClickListene
 
         switchViewHeader = (TextView)findViewById(R.id.switchViewHeader);
 
-        Log.i("SwitchView.java", "fault checking");
         if(Variables.gameMode.equals("onePlayer")){
             switchViewHeader.setText(Variables.playerOne.getName() + "'s turn");
         }
@@ -61,20 +60,12 @@ public class SwitchView extends ActionBarActivity implements View.OnClickListene
          */
         if(v.getId() == R.id.buttonSwitchPlayer){
             //If its twoPlayer
-            if(Variables.turn.equals("playerOne") && Variables.gameMode.equals("twoPlayer")){
-                startActivity(new Intent(SwitchView.this, BattleView.class));
-            }
-            else if (Variables.turn.equals("playerTwo") && Variables.gameMode.equals("twoPlayer")){
-                startActivity(new Intent(SwitchView.this, BattleView.class));
-            }
-            //If its onePlayer
-            if(Variables.turn.equals("playerOne") && Variables.gameMode.equals("onePlayer")){
-                startActivity(new Intent(SwitchView.this, BattleView.class));
-            }
-            else if (Variables.turn.equals("playerAI") && Variables.gameMode.equals("onePlayer")){
-                startActivity(new Intent(SwitchView.this, BattleView.class));
+            if (Variables.turn.equals("playerAI") && Variables.gameMode.equals("onePlayer")){
                 Variables.turn = "playerOne";
             }
+            Intent i = new Intent(SwitchView.this, BattleView.class);
+            //i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(i);
         }
     }
 }

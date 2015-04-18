@@ -41,13 +41,17 @@ public class MainMenuView extends ActionBarActivity implements View.OnClickListe
      */
     public void onClick(View v){
         if(v.getId() == R.id.buttonCredits){
-            startActivity(new Intent(MainMenuView.this, CreditsView.class));
+            Intent i = new Intent(MainMenuView.this, CreditsView.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(i);
         }
         else if(v.getId() == R.id.buttonStart){
             startActivity(new Intent(MainMenuView.this, StartView.class));
         }
         else if(v.getId() == R.id.buttonSettings){
-            startActivity(new Intent(MainMenuView.this, SettingsView.class));
+            Intent i = new Intent(MainMenuView.this, SettingsView.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(i);
         }
 
     }

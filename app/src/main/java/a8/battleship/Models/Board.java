@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 import a8.battleship.Logic.BoardValues;
-import a8.battleship.Tokens.Ship;
 
 /**
  * This class holds the board and places 5 ships with length: 3,3,4,4,5 , with random vertical or horizontal direction,

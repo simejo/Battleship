@@ -56,7 +56,9 @@ public class EndGameView extends ActionBarActivity implements View.OnClickListen
      */
     public void onClick(View v) {
         if(v.getId() == R.id.buttonMainMenu){
-            startActivity(new Intent(EndGameView.this, MainMenuView.class));
+            Intent i = new Intent(EndGameView.this, MainMenuView.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(i);
         }
     }
 }

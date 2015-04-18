@@ -7,6 +7,7 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -201,7 +202,9 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             //if game is over, set winner and end game
             if(Functions.endGame(opponentBoard)){
                 Variables.winner = player;
-                startActivity(new Intent(BattleView.this, EndGameView.class));
+                Intent i = new Intent(BattleView.this, EndGameView.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(i);
             }
 
         }
@@ -262,11 +265,6 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                         doAction(value, Variables.playerOne.getBoard(), x, y);
                     }
 
-                    //if game is over, end battle
-                    if(Functions.endGame(player.getBoard())){
-                        Variables.winner = playerAI;
-                        startActivity(new Intent(BattleView.this, EndGameView.class));
-                    }
                 }
 
                 //if playerOne is next player
@@ -274,11 +272,21 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
                     Variables.turn = "playerOne";
                 }
             }
+
             // set the new task and clear flags
-            Intent i = new Intent(BattleView.this, SwitchView.class);
+            Intent i;
+            if(Functions.endGame(Variables.playerOne.getBoard())){
+                Log.i("BattleView", "AI WON");
+                i = new Intent(BattleView.this, EndGameView.class);
+            }
+            else{
+                Log.i("BattleView", "AI DIDNT WON");
+                i = new Intent(BattleView.this, SwitchView.class);
+            }
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            Log.i("BattleView", "StartActivity");
             startActivity(i);
-            //startActivity(new Intent(BattleView.this, SwitchView.class));
+            Log.i("BattleView", "Activity should have started");
         }
         //if home button is pressed, return to main menu
         else if(v.getId() == R.id.buttonHome){
@@ -290,7 +298,10 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
 
                 @Override
                 public void onClick(DialogInterface arg0, int arg1) {
-                    startActivity(new Intent(BattleView.this, MainMenuView.class));
+                    Intent i = new Intent(BattleView.this, MainMenuView.class);
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(i);
+
                 }
             });
             alertDialogBuilder.setNegativeButton("Cancel", null);

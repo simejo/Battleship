@@ -1,4 +1,4 @@
-package a8.battleship.Tokens;
+package a8.battleship.Models;
 //Class to instanciate ships
 import android.app.Activity;
 import android.util.Log;
@@ -8,7 +8,7 @@ import a8.battleship.Logic.BoardValues;
 import a8.battleship.Models.Board;
 
 
-public class Ship extends Activity{
+public class Ship{
     //arraylist will contain enumvalues of the ship, from top to bottom, or from left to right
     private ArrayList<BoardValues> ship;
     //ex North, middle, middle, south
@@ -64,11 +64,11 @@ public class Ship extends Activity{
         this.x = x;
         this.y = y;
     }
-    //returns ship's x coordinate
+    //returns ship's x WEST/NORTH coordinate
     public int getX(){
         return this.x;
     }
-    //returns ship's y coordinate
+    //returns ship's y WEST/NORTH coordinate
     public int getY(){
         return this.y;
     }

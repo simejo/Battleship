@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import a8.battleship.Models.Board;
 import a8.battleship.Models.Player;
-import a8.battleship.Tokens.Ship;
+import a8.battleship.Models.Ship;
 
 /**
  * This class contains essential methods that is useful for one or several classes.

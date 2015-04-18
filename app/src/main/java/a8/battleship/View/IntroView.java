@@ -47,7 +47,9 @@ public class IntroView extends ActionBarActivity {
                     e.printStackTrace();
                 }
                 finally{
-                    startActivity(new Intent(IntroView.this, MainMenuView.class));
+                    Intent i = new Intent(IntroView.this, MainMenuView.class);
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(i);
                 }
             }
         };
