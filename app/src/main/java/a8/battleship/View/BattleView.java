@@ -276,17 +276,14 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             // set the new task and clear flags
             Intent i;
             if(Functions.endGame(Variables.playerOne.getBoard())){
-                Log.i("BattleView", "AI WON");
+                Variables.winner = playerAI;
                 i = new Intent(BattleView.this, EndGameView.class);
             }
             else{
-                Log.i("BattleView", "AI DIDNT WON");
                 i = new Intent(BattleView.this, SwitchView.class);
             }
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            Log.i("BattleView", "StartActivity");
             startActivity(i);
-            Log.i("BattleView", "Activity should have started");
         }
         //if home button is pressed, return to main menu
         else if(v.getId() == R.id.buttonHome){
