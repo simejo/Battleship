@@ -11,27 +11,18 @@ import a8.battleship.Logic.Variables;
 import a8.battleship.R;
 
 /**
- * The EndGameView class holds one button which directs you back to the main menu.
- * It also shows who the winner is and how many points the different players have received.
- */
-
-/**
  * EndGameView contains all functionality needed when the battle is over and a player has won
  */
 public class EndGameView extends ActionBarActivity implements View.OnClickListener{
 
-    /**
-     * @param buttonMainMenu is a button leading back to main menu
-     * @param tvEndGameHeader is congratulating text displayed on end screen
-     * @param tvEndScore is text displaying score at the end of the game
-     */
     private Button buttonMainMenu;
     private TextView tvEndGameHeader, tvEndScore;
 
     /**
-     * onCreate makes a new view, and gives each variable correct value, and displays correct text.
-     * In addition, sets click listeners
-     *
+     * onCreate is called when the class is shown. Here we initialize all objects and references and set listeners to the widgets
+     * @param savedInstanceState If you save the state of the application in a bundle, it can be passed
+     *                           back to onCreate if the activity needs to be recreated so that you don't
+     *                           lose this prior information. If no data was supplied, savedInstanceState is null.
      */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +43,8 @@ public class EndGameView extends ActionBarActivity implements View.OnClickListen
     }
 
     /**
-     * if button is clicked, return to main menu
+     * The onClick method is called when one of its observers (buttons) are pushed.
+     * @param v The source view which is pushed.
      */
     public void onClick(View v) {
         if(v.getId() == R.id.buttonMainMenu){

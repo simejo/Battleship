@@ -36,24 +36,6 @@ import a8.battleship.R;
  */
 public class BattleView extends ActionBarActivity implements View.OnClickListener, AdapterView.OnItemClickListener, CompoundButton.OnCheckedChangeListener {
 
-    /**
-     * @param gridViewShootingBoard is a grid view of the opponent's board
-     * @param gridViewOwnBoard is a grid view of your own board
-     * @param buttonNextPlayer is a button to end your own turn
-     * @param buttonConfirmShot is a button to confirm that the marked coordinate is about to be shot
-     * @param buttonHome is a button that takes the player to the main screen
-     * @param currentXPosition is the int to the currently selected X coordinate in the grid view
-     * @param currentYPosition is the int to the currently selected Y coordinate in the grid view
-     * @param playerAI is the artificial player if you do not have a physical opponent
-     * @param hasShot indikates if the current player has already taken a shot at the opponent
-     * @param selectedCell indicates what cell is currently selected
-     * @param checkBoxSound is a checkbox that decides whether or not there are sound effects in the game
-     * @param checkBoxMusic is a checkbox that decides whether or not there is background music in the game
-     * @param alertDialogBuilder is a pop up box that is displayed if you press the home button
-     * @param hit is a boolean that indicates if the shot taken was a hit or miss
-     * @param player indicates what player is the current active player/who's turn it is
-     */
-
     private GridView gridViewShootingBoard, gridViewOwnBoard;
     private TextView tvBattleTitle, tvScoreCounter;
     private Button buttonNextPlayer, buttonConfirmShot, buttonHome;
@@ -67,9 +49,10 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
     private Player player;
 
     /**
-     * onCreate creates a view, and instantiates all needed parameters, excluding the ones only needed in specific functions.
-     * In addition it checks what player is currently playing to indicate who is the opponent, either AI or player two.
-     * The function adds click listeners to all relevant buttons, and sets all variables to default values
+     * onCreate is called when the class is shown. Here we initialize all objects and references and set listeners to the widgets
+     * @param savedInstanceState If you save the state of the application in a bundle, it can be passed
+     *                           back to onCreate if the activity needs to be recreated so that you don't
+     *                           lose this prior information. If no data was supplied, savedInstanceState is null.
      */
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -162,7 +145,8 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
     }
 
     /**
-     * onClick registers what button has been clicked and changes the relevant variables in the desired way
+     * The onClick method is called when one of its observers (buttons) are pushed.
+     * @param v The source view which is pushed.
      */
     public void onClick(View v) {
 
@@ -308,7 +292,11 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
     }
 
     /**
-     * Method to use when a cell is clicked
+     * This method is called when one of its observers (cells in the grid) are pushed or marked.
+     * @param parent The parent of the adapterView
+     * @param v The source view which is pushed (The cell).
+     * @param position The position of the cell in the gridView.
+     * @param id The id of the cell.
      */
     public void onItemClick(AdapterView parent, View v, int position, long id) {
 
@@ -331,7 +319,10 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
 
     /**
      * Help method to onClick() - Performs the correct action, and changes the Board-model
-     *
+     * @param value The BoardValue of the cell that is selected
+     * @param opponentBoard The board the player is shooting at
+     * @param x The x-coordinate
+     * @param y The y-coordinate
      */
     public void doAction(BoardValues value, Board opponentBoard, int x, int y){
 
@@ -428,7 +419,7 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
     }
 
     /**
-     * Help method - to increment/decrement the score to the correct player.
+     * Help method to add points of the player if he hit
      */
     public void addPoints(){
         if(Variables.gameMode.equals("twoPlayer")){
@@ -443,6 +434,10 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
             }
         }
     }
+
+    /**
+     * Help method to remove points of the player if he missed
+     */
     public void removePoints(){
         if(Variables.gameMode.equals("twoPlayer")){
             player.decrementScore();
@@ -458,7 +453,9 @@ public class BattleView extends ActionBarActivity implements View.OnClickListene
     }
 
     /**
-     * Method which turns the sound and music on/off
+     * Checks if the checkboxes for the background music and the sounds is checked or not.
+     * @param buttonView The source view which is pushed
+     * @param isChecked A boolean that indicates if the pushed checkBox became checked or not
      */
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
         if (buttonView.getId() == R.id.cbSound) {

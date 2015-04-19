@@ -27,8 +27,10 @@ public class StartView extends ActionBarActivity implements View.OnClickListener
     private SeekBar sbAIChooser;
 
     /**
-     *
-     * @param savedInstanceState
+     * onCreate is called when the class is shown. Here we initialize all objects and references and set listeners to the widgets
+     * @param savedInstanceState If you save the state of the application in a bundle, it can be passed
+     *                           back to onCreate if the activity needs to be recreated so that you don't
+     *                           lose this prior information. If no data was supplied, savedInstanceState is null.
      */
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -61,8 +63,8 @@ public class StartView extends ActionBarActivity implements View.OnClickListener
 
 
     /**
-     *
-     * @param v
+     * The onClick method is called when one of its observers (buttons) are pushed.
+     * @param v The source view which is pushed.
      */
     public void onClick(View v){
 

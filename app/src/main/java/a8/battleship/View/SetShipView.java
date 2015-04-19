@@ -40,8 +40,8 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
     }
 
     /**
-     * A method that is called when a button is pushed.
-     * @param v a reference to the clicked button.
+     * The onClick method is called when one of its observers (buttons) are pushed.
+     * @param v The source view which is pushed.
      */
     public void onClick(View v){
         if(v.getId() == R.id.buttonDone){

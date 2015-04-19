@@ -36,8 +36,8 @@ public class MainMenuView extends ActionBarActivity implements View.OnClickListe
     }
 
     /**
-     * A method that is called when a button is pushed.
-     * @param v a reference to the clicked button.
+     * The onClick method is called when one of its observers (buttons) are pushed.
+     * @param v The source view which is pushed.
      */
     public void onClick(View v){
         if(v.getId() == R.id.buttonCredits){

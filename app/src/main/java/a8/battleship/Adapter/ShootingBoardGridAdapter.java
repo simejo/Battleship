@@ -15,7 +15,14 @@ import a8.battleship.R;
 /**
  * The class is an adapter that is used in the gridView that shows the map without boats (the shooting grid). The adapter is a description of how the cell will look like in the gridView.
  */
+
 public class ShootingBoardGridAdapter extends BaseAdapter {
+
+    /**
+     * @param context The context of the class. Must be declared in order to use it with widgets in an Activity class.
+     * @param board The board is the model to be set pictures to.
+     */
+
     private Context context;
     private Board board;
 

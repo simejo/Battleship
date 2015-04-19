@@ -12,16 +12,20 @@ import a8.battleship.Logic.Functions;
 import a8.battleship.Models.Board;
 import a8.battleship.R;
 
-//The class is an adapter that is used in the gridView that shows the map with boats. The adapter is a description of how the cell will look like in the gridView.
+/**
+ * The class is an adapter that is used in the gridView that shows the map with boats. The adapter is a description of how the cell will look like in the gridView.
+ */
+
 public class OwnBoardGridAdapter extends BaseAdapter {
+
     private Context context;
     private Board board;
     private int x, y;
 
     /**
      * The adapter constructor. This is the creator of each reference to the adapter.
-     * @param context The context from
-     * @param board The board is the model to be set pictures to.
+     * @param context The context sent in from the overlying class
+     * @param board The board which to set the adapter on
      */
     public OwnBoardGridAdapter(Context context, Board board) {
         this.context = context;

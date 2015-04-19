@@ -8,7 +8,9 @@ import android.widget.Button;
 
 import a8.battleship.R;
 
-//This class shows credits to the game
+/**
+ * This class shows credits to the game
+ */
 public class CreditsView extends ActionBarActivity implements View.OnClickListener{
 
     private Button buttonBack;
@@ -26,6 +28,10 @@ public class CreditsView extends ActionBarActivity implements View.OnClickListen
         buttonBack.setOnClickListener(this);
     }
 
+    /**
+     * The onClick method is called when one of its observers (buttons) are pushed.
+     * @param v The source view which is pushed.
+     */
     public void onClick(View v){
         if(v.getId() == R.id.buttonCreditsBack){
             Intent i = new Intent(CreditsView.this, MainMenuView.class);

@@ -15,7 +15,7 @@ import a8.battleship.Logic.Variables;
 import a8.battleship.R;
 
 /**
- * This is the class where you can select which layout you want on the game.
+ * This is the class where you can select which layout you want in the game.
  * You can choose between boats, girls or boys.
  * You can also choose if you want the background music and/or the sounds.
  * You can navigate back to main menu and to the start game view.
@@ -27,8 +27,10 @@ public class SettingsView extends ActionBarActivity implements View.OnClickListe
     private CheckBox checkBoxMusic, checkBoxSound;
 
     /**
-     *
-     * @param savedInstanceState
+     * onCreate is called when the class is shown. Here we initialize all objects and references and set listeners to the widgets
+     * @param savedInstanceState If you save the state of the application in a bundle, it can be passed
+     *                           back to onCreate if the activity needs to be recreated so that you don't
+     *                           lose this prior information. If no data was supplied, savedInstanceState is null.
      */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,8 +68,8 @@ public class SettingsView extends ActionBarActivity implements View.OnClickListe
     }
 
     /**
-     *
-     * @param v
+     * The onClick method is called when one of its observers (buttons) are pushed.
+     * @param v The source view which is pushed.
      */
     public void onClick(View v){
         if(v.getId() == R.id.buttonMainMenu){
@@ -92,8 +94,8 @@ public class SettingsView extends ActionBarActivity implements View.OnClickListe
 
     /**
      * Checks if the checkboxes for the background music and the sounds is checked or not.
-     * @param buttonView
-     * @param isChecked
+     * @param buttonView The source view which is pushed
+     * @param isChecked A boolean that indicates if the pushed checkBox became checked or not
      */
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
         if (buttonView.getId() == R.id.checkBoxSoundSettings) {

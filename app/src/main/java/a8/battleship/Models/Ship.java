@@ -1,12 +1,9 @@
 package a8.battleship.Models;
-//Class to instanciate ships
-import android.app.Activity;
-import android.util.Log;
 
 import java.util.ArrayList;
 import a8.battleship.Logic.BoardValues;
-import a8.battleship.Models.Board;
 
+//Class to instanciate ships
 
 public class Ship{
     //arraylist will contain enumvalues of the ship, from top to bottom, or from left to right
@@ -23,7 +20,11 @@ public class Ship{
     //indicates how many ship pieces there are left that aren't hit
     private int partsLeft;
 
-    //Constructor of a ship, it takes in what length the ship is going to have, and what direction it is supposed to be in
+    /**
+     * Constructor of the ship
+     * @param shipSize The size of the ship
+     * @param direction The direction of the ship. 0 = Vertical, 1 = Horizontal
+     */
     public Ship(int shipSize, int direction){
         ship = new ArrayList<>();
         this.direction=direction;
@@ -59,56 +60,76 @@ public class Ship{
         return this.shipSize;
     }
 
-    //Sets the ship's position
+    /**
+     * Sets the position of the ship
+     * @param x The x-coordinate
+     * @param y The y-coordinate
+     */
     public void setShipPosition(int x, int y){
         this.x = x;
         this.y = y;
     }
-    //returns ship's x WEST/NORTH coordinate
+    /**
+     * Returns ship's x WEST/NORTH coordinate
+     */
     public int getX(){
         return this.x;
     }
-    //returns ship's y WEST/NORTH coordinate
+
+    /**
+     * Returns ship's y WEST/NORTH coordinate
+     */
     public int getY(){
         return this.y;
     }
 
 
-    //Decreasing partsLeft - e.g when the ship is hit
+    /**
+     * Decreasing partsLeft - e.g when the ship is hit
+     */
     public void decreasePartsLeft(int x, int y, Board board){
         this.partsLeft--;
-        Log.i("PARTS LEFT", "PARTS LEFT AFTER" + partsLeft);
         if(this.partsLeft == 0){
             SetShipSunken(x,y, board);
         }
     }
 
-    //returns entire ship
+    /**
+     * Returns the entire ship
+     */
     public ArrayList<BoardValues> getShip(){
         return this.ship;
     }
 
-    //returns direction of ship
+    /**
+     * Returns direction of ship
+     */
     public int getDirection(){
         return this.direction;
-
     }
 
+    /**
+     * A method that change BoardValues from HIT to DESTROYD, which means that the
+     * entire destroyed ship becomes visible for the player
+     * @param x The x-coordinate
+     * @param y The y-coordinate
+     * @param board The corresponding board
+     */
     private void SetShipSunken(int x, int y, Board board){
 
-        if(this.ship.get(0) ==  BoardValues.NORTH){//adding pictures to array if vertical
+        //adding pictures to array if vertical
+        if(this.ship.get(0) ==  BoardValues.NORTH){
             board.changeBoardValue(x,y,BoardValues.NORTH_DESTROYED);
             int i = 1;
             while (this.ship.get(i) != BoardValues.SOUTH){
                 y++;
                 board.changeBoardValue(x,y,BoardValues.MIDDLE_VERTICAL_DESTROYED);
                 i++;
-                Log.i("SHIP", "i after: " + i + " ship size: " + getShipSize() + this.ship.get(i).toString());
             }
             y++;
             board.changeBoardValue(x,y,BoardValues.SOUTH_DESTROYED);
-
         }
+        //adding pictures to array if horizontal
         else if(this.ship.get(0) ==  BoardValues.WEST){//if horizontal add west image
             board.changeBoardValue(x,y,BoardValues.WEST_DESTROYED);
             int i = 1;
@@ -116,7 +137,6 @@ public class Ship{
                 x ++;
                 board.changeBoardValue(x,y,BoardValues.MIDDLE_HORIZONTAL_DESTROYED);
                 i++;
-                Log.i("SHIP", "i after: " + i + " ship size: " + getShipSize() + this.ship.get(i).toString());
             }
             x++;
             board.changeBoardValue(x,y,BoardValues.EAST_DESTROYED);

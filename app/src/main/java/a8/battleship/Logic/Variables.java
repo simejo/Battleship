@@ -8,8 +8,8 @@ import a8.battleship.Adapter.ShootingBoardGridAdapter;
 import a8.battleship.Models.AiPlayer;
 import a8.battleship.Models.Player;
 
-/*
-This class holds different 'variables' which either change during a battle, or that a user can set.
+/**
+ * This class holds different variables which either change during a battle, or that a user can set.
  */
 public class Variables {
 
@@ -25,17 +25,15 @@ public class Variables {
     public static Player playerTwo;
     public static AiPlayer playerAI;
 
-    //TODO: is this used??
     //Keeps track of the winner
     public static Player winner;
 
-
-    //Keeps track of the AIPlayer level
-    //easy, medium or hard
+    //Keeps track of the AIPlayer level. Easy, medium or hard
     public static String level = "easy";
 
     //Keeps track of the sound - enabled or not
     public static boolean cbBooleanSound = true;
+
     //Keeps track of the music - enabled or not
     public static boolean cbBooleanMusic = true;
 

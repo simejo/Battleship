@@ -46,13 +46,19 @@ public class Board{
     }
 
 
-
-    //Getter for the board
+    /**
+     * Getter for the board
+     */
     public ArrayList<ArrayList<BoardValues>> getBoard(){
         return board;
     }
 
-    //Getter for a specific value at the board, given x and y coordinates
+    /**
+     * Getter for a specific value at the board, given x and y coordinates
+     * @param x The x-coordinate
+     * @param y The y-coordinate
+     * @return The BoardValue on the given coordinates
+     */
     public BoardValues getValue(int x, int y){
         ArrayList<BoardValues> row = board.get(y);
         return row.get(x);
@@ -62,7 +68,12 @@ public class Board{
         return shipArray;
     }
 
-    //Change value in the board
+    /**
+     * Change value in the board
+     * @param x The x-coordinate
+     * @param y The y-coordinate
+     * @param value The new BoardValue the given placement should get
+     */
     public void changeBoardValue(int x, int y, BoardValues value){
         ArrayList<BoardValues> tempRow = board.get(y);
         tempRow.set(x, value);
@@ -70,11 +81,10 @@ public class Board{
     }
 
     /**
-     * Helping method
      * Actually replaces the empty spaces with the ships
      * @param ship A ship with fixed length and direction(vertical or horizontal)
-     * @param x Columns
-     * @param y Rows
+     * @param x The x-coordinate
+     * @param y The y-coordinate
      */
     public void placeShip(Ship ship, int x, int y){
         //vertical direction
@@ -98,8 +108,7 @@ public class Board{
     }
 
     /**
-     * Helping Method
-     * randomizeShipPositions places the ships random onto the board. It uses placeShip, another helping method in this class
+     * RandomizeShipPositions places the ships random onto the board. It uses placeShip, another helping method in this class
      */
     private void randomizeShipPositions(){
         for(int i = 0; i < shipArray.size(); i++){
@@ -155,11 +164,19 @@ public class Board{
         return boardSize * boardSize;
     }
 
-    //Get value in the board
+    /**
+     * Get value in the board
+     * @param x The x-coordinate
+     * @param y The y-coordinate
+     */
     public BoardValues getContentInACell(int x, int y){
         return board.get(y).get(x);
     }
 
+    /**
+     * Below two toString methods
+     * @return The string
+     */
     public String toString(){
         String holder = "\n";
         for(int i =0;i<10;i++ ){

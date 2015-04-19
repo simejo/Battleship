@@ -9,8 +9,15 @@ import a8.battleship.Logic.Functions;
 import a8.battleship.Models.AiPlayer;
 import a8.battleship.Models.Player;
 
+/**
+ * This class is used for tests on the Player and AiPlayer classes
+ */
 public class PlayerTests extends InstrumentationTestCase {
 
+    /**
+     * This test tests if the given name for the player is correctly set
+     * @throws Exception
+     */
     public void testSetName() throws Exception{
         final String expectedName = "Ulf";
         final Player playerToTest = new Player();
@@ -18,6 +25,10 @@ public class PlayerTests extends InstrumentationTestCase {
         assertEquals(playerToTest.getName(), expectedName);
     }
 
+    /**
+     * This test tests if the correct coordinates is added to the prioritizedMoves list
+     * @throws Exception
+     */
     public void testUpdatePrioritizedMovesMedium() throws Exception{
         final AiPlayer aiPlayerToTest = new AiPlayer();
         aiPlayerToTest.updatePrioritizedMovesMedium(4,5);
