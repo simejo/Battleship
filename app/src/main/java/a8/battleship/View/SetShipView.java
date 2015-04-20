@@ -80,7 +80,7 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
      */
     public void initiateWidgets(){
 
-        tvHeader = (TextView) findViewById(R.id.switchViewHeader);
+        tvHeader = (TextView) findViewById(R.id.setShipViewHeader);
 
         buttonStartGame = (Button) findViewById(R.id.buttonDone);
         buttonRandomizeShips = (Button) findViewById(R.id.buttonRandomize);
@@ -97,11 +97,11 @@ public class SetShipView extends ActionBarActivity implements View.OnClickListen
 
         //Check who is playing, so we give the right parameter to the setAdapter-method.
         if (Variables.turn.equals("playerTwo")){
-            tvHeader.setText("Place boats for " + Variables.playerTwo.getName());
+            tvHeader.setText("Place " + Variables.gameLayout + " for " + Variables.playerTwo.getName());
             player = Variables.playerTwo;
         }
         else{
-            tvHeader.setText("Place boats for " + Variables.playerOne.getName());
+            tvHeader.setText("Place " + Variables.gameLayout + " for " + Variables.playerOne.getName());
             player = Variables.playerOne;
         }
         setShipGridView.setAdapter(new OwnBoardGridAdapter(this, player.getBoard()));
